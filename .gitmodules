@@ -1,0 +1,6 @@
+[submodule "42_Paris_2023/Cursus_2023"]
+	path = 42_Paris_2023/Cursus_2023
+	url = git@github.com:M1000-93/Cursus_2023.git
+[submodule "Others/My_commands"]
+	path = Others/My_commands
+	url = git@github.com:M1000-93/My_commands.git
