@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 22:29:03 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/15 10:21:50 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/21 15:08:18 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@ size_t	ft_strlen(const char *s)
 
 	i = 0;
 	while (s[i])
+	{
+		if (s[i] == '\0')
+			return (i);
 		i++;
+	}
 	return (i);
 }

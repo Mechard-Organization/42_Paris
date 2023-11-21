@@ -6,19 +6,20 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 12:03:14 by mechard           #+#    #+#              #
-#    Updated: 2023/11/20 15:48:37 by mechard          ###   ########.fr        #
+#    Updated: 2023/11/21 12:57:15 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_printf.c \
+SRCS		= ft_printf.c ft_parse.c \
 
-OBJS		= $(SRC:.c=.o)
+OBJS		= $(SRCS:.c=.o)
 
-HEADERS		= libft/libft.h libftprintf.h/
+HEADERS		= libft/libft.h libftprintf.h
 
-LIB			= libft.a
+LIB			= libft/libft.a
 PATH_LIB 	= libft/
 
+EXEC		= printf
 NAME		= libftprintf.a
 
 #reset_color#
@@ -58,7 +59,7 @@ $(NAME) : $(OBJS)
 	@ar rcs $(NAME) $(OBJS)
 	@ranlib $(NAME)
 	@echo "            compilation de libftprintf.a $(GREEN1)OK$(D_COLOR)\n"
-	@cc -g -o printf  main.c $(NAME) ./libft/libft.a
+	@cc -g -o $(EXEC)  main.c $(NAME) $(LIB)
 
 all : $(NAME)
 

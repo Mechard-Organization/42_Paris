@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:31:48 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/20 15:20:33 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/21 14:01:55 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 # include <stdarg.h>
 
 int		ft_printf(const char *, ...);
+int		ft_parse(const char *str, va_list arg);
 
 #endif

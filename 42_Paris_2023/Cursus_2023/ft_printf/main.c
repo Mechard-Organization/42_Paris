@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:36:13 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/20 15:50:03 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/21 14:14:06 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	main(int ac, char **av)
 {
-	if (ac == 2)
-		ft_printf(av[1], av[2]);
+	ft_printf(av[1], av[2], av[3]);
 	return (0);
 }
