@@ -1,1 +1,0 @@
-route get default | grep gateway | xargs | cut -c 10-
