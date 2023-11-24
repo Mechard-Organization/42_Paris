@@ -6,11 +6,11 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 12:03:14 by mechard           #+#    #+#              #
-#    Updated: 2023/11/21 12:57:15 by mechard          ###   ########.fr        #
+#    Updated: 2023/11/22 14:21:29 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= ft_printf.c ft_parse.c \
+SRCS		= ft_printf.c ft_parse.c ft_convert.c \
 
 OBJS		= $(SRCS:.c=.o)
 

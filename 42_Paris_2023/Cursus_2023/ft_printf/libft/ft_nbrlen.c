@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 14:31:48 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/24 12:35:45 by mechard          ###   ########.fr       */
+/*   Created: 2023/11/24 11:24:49 by mechard           #+#    #+#             */
+/*   Updated: 2023/11/24 11:25:00 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_printf
+unsigned int	ft_nbrlen(long n, int base)
 {
-	int					len_flag;
-	struct s_printf		*next;
-}						t_printf;
+	size_t	len;
+	int		isneg;
 
-int		ft_printf(const char *, ...);
-int		ft_parse(const char *str, va_list arg);
-
-char	*ft_convert_base(va_list arg, char *base);
-char	*ft_convert_ui(va_list arg);
-
-#endif
+	len = 0;
+	isneg = 0;
+	if (n < 0)
+	{
+		len++;
+		isneg++;
+		n = -n;
+	}
+	while (n >= 1)
+	{
+		len++;
+		n /= base;
+	}
+	return (len);
+}

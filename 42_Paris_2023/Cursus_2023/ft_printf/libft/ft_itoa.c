@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:30:18 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/14 18:51:13 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/24 11:24:31 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,36 +39,15 @@ char	*ft_nbrstr(char *str, long nbr, int len, int isneg)
 	return (str);
 }
 
-unsigned int	ft_lennbr(long n)
+char	*ft_itoa(size_t n)
 {
-	size_t	len;
-	int		isneg;
-
-	len = 0;
-	isneg = 0;
-	if (n < 0)
-	{
-		len++;
-		isneg++;
-		n = -n;
-	}
-	while (n >= 1)
-	{
-		len++;
-		n /= 10;
-	}
-	return (len);
-}
-
-char	*ft_itoa(int n)
-{
-	int		len;
-	char	*r;
-	long	nbr;
-	int		isneg;
+	long long int	len;
+	char			*r;
+	long			nbr;
+	int				isneg;
 
 	nbr = n;
-	len = ft_lennbr(nbr);
+	len = ft_nbrlen(nbr, 10);
 	r = 0;
 	isneg = 0;
 	r = ft_nbrstr(r, nbr, len, isneg);

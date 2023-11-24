@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2023/11/20 14:58:51 by mechard          ###   ########.fr        #
+#    Updated: 2023/11/24 11:25:12 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@ SRCS		= ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_memchr.c\
 			ft_split.c ft_itoa.c ft_strmapi.c ft_putchar_fd.c ft_putstr_fd.c\
 			ft_putendl_fd.c ft_putnbr_fd.c ft_striteri.c ft_strcpy.c \
 			ft_strtrim.c ft_lstnew.c ft_lstadd_front.c ft_lstsize.c\
-			ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c\
-			ft_lstclear.c ft_lstiter.c ft_lstmap.c
+			ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
+			ft_lstiter.c ft_lstmap.c ft_strcmp.c ft_nbrlen.c
 
 OBJS	= $(SRCS:.c=.o)
 

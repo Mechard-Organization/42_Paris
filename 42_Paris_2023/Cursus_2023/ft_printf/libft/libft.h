@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:27:59 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/15 11:51:59 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/24 11:24:12 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_memcmp(void *s1, void *s2, size_t n);
 int					ft_lstsize(t_list *lst);
+int					ft_strcmp(char *s1, char *s2);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
+unsigned int		ft_nbrlen(long n, int base);
 
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_strchr(char *s, int c);
@@ -47,7 +49,7 @@ char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strdup(const char *src);
 char				*ft_strcat(char *dest, char *src);
 char				*ft_strjoin(const char *s1, const char *s2);
-char				*ft_itoa(int n);
+char				*ft_itoa(size_t n);
 char				*ft_strtrim(char const *s1, char const *student);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				**ft_split(const char *s, char c);

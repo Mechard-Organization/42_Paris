@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:49:58 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/21 15:28:11 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/24 14:50:50 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 int	ft_rules(size_t ev, va_list arg)
 {
-	char 	*tmp_str;
-	// int		*tmp_tint;
-	// int		tmp_i;
-	
+	// printf("-----Test_rules-----\n");
 	if (ev == 0)
-	{
-		tmp_str = (char *)va_arg(arg, char *);
-		ft_putnbr_fd(ev, 0);
-		return (1);
-	}
+		return (ft_putchar_fd((int)va_arg(arg, int), 0), 1);
+	else if (ev == 1 || ev == 2)
+		return (ft_putnbr_fd((int)va_arg(arg, int), 0), 1);
+	else if (ev == 3)
+		return (ft_putstr_fd(ft_convert_base(arg, "add"), 0), 1);
 	else if (ev == 4)
-	{
-		tmp_str = (char *)va_arg(arg, char *);
-		ft_putstr_fd(tmp_str, 0);
-		return (1);
-	}
-	return (0);
+		return (ft_putstr_fd(ft_convert_base(arg, "ADD"), 0), 1);
+	else if (ev == 5)
+		return (ft_putstr_fd((char *)va_arg(arg, char *), 0), 1);
+	else if (ev == 6)
+		return (ft_putstr_fd(ft_convert_base(arg,"Dec"), 0), 1);
+	else if (ev == 7)
+		return (ft_putstr_fd(ft_convert_base(arg,"hex"), 0), 1);
+	else if (ev == 8)
+		return (ft_putstr_fd(ft_convert_base(arg,"HEX"), 0), 1);
+	else if (ev == 9)
+		return(ft_putchar_fd('%', 0), 1);
+	return (-1);
 }
 
 int	ft_parse(const char *str, va_list arg)
@@ -41,7 +44,8 @@ int	ft_parse(const char *str, va_list arg)
 
 	i = 1;
 	ev = 0;
-	flags = "cdipsuxX%";
+	flags = "cdipPsuxX%";
+	// printf("-----Test_parse-----\n");
 	while (str[i])
 	{
 		ev = 0;

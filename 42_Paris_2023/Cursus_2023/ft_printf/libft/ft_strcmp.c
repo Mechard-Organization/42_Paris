@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 14:31:48 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/24 12:35:45 by mechard          ###   ########.fr       */
+/*   Created: 2023/11/22 14:47:49 by mechard           #+#    #+#             */
+/*   Updated: 2023/11/22 14:49:44 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#include "libft.h"
 
-# include "./libft/libft.h"
-# include <stdarg.h>
-# include <stdio.h>
-
-typedef struct	s_printf
+int	ft_strcmp(char *s1, char *s2)
 {
-	int					len_flag;
-	struct s_printf		*next;
-}						t_printf;
+	int add;
 
-int		ft_printf(const char *, ...);
-int		ft_parse(const char *str, va_list arg);
-
-char	*ft_convert_base(va_list arg, char *base);
-char	*ft_convert_ui(va_list arg);
-
-#endif
+	add = 0;
+	while (s1[add] != '\0')
+	{
+		if (s1[add] != s2[add])
+			return ((unsigned char)s1[add] - (unsigned char)s2[add]);
+		add++;
+	}
+	if (s2[add] != '\0')
+		return ((unsigned char)s1[add] - (unsigned char)s2[add]);
+	return (0);
+}
