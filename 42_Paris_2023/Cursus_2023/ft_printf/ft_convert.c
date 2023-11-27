@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 13:59:05 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/24 14:55:28 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/27 14:39:20 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*ft_print_add(va_list arg)
 	size_t				i;
 	size_t				len;
 
-	// printf("-----Test_conhex-----\n");
 	convert = (unsigned long long)va_arg(arg, unsigned long long);
 	if (convert == 0)
 		return ("(nil)");
@@ -50,6 +49,7 @@ char	*ft_convert_ui(va_list arg)
 	res = ft_itoa(ui);
 	return (res);
 }
+
 char	*ft_set_alph(char *base)
 {
 	if (ft_strcmp(base, "HEX") == 0)
@@ -59,12 +59,12 @@ char	*ft_set_alph(char *base)
 
 char	*ft_convert_hex(va_list arg, char *base)
 {
-	int					convert;
-	char				*alph;
-	char				*res_hex;
-	size_t				i;
-	size_t				len;
-	
+	int		convert;
+	char	*alph;
+	char	*res_hex;
+	size_t	i;
+	size_t	len;
+
 	convert = (int)va_arg(arg, int);
 	if (convert == 0)
 		return (ft_strdup("(nil)"));
@@ -87,7 +87,6 @@ char	*ft_convert_hex(va_list arg, char *base)
 
 char	*ft_convert_base(va_list arg, char *base)
 {
-	// printf("-----Test_conbas-----\n");
 	if (ft_strcmp(base, "add") == 0)
 		return (ft_print_add(arg));
 	else if (ft_strcmp(base, "Dec") == 0)
