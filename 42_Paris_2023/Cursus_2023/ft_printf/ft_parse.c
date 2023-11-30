@@ -6,86 +6,89 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:49:58 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/27 14:35:54 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/30 19:19:21 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int	ft_rules(size_t ev, va_list arg)
+t_res	ft_rules(size_t ev, va_list arg)
 {
+	t_res	res;
+
+	res.res = (char *)malloc(sizeof(char *) * 2);
 	if (ev == 'c')
-		return (ft_putchar_fd((int)va_arg(arg, int), 0), 0);
+		res.res[0] = (char)va_arg(arg, int);
 	else if (ev == 'd' || ev == 'i')
-		return (ft_putnbr_fd((int)va_arg(arg, int), 0), 0);
+		res.res = ft_itoa((int)va_arg(arg, int));
 	else if (ev == 'p')
-		return (ft_putstr_fd(ft_convert_base(arg, "add"), 0), 0);
+		res.res = ft_convert_base(arg, "add");
 	else if (ev == 'P')
-		return (ft_putstr_fd(ft_convert_base(arg, "ADD"), 0), 0);
+		res.res = ft_convert_base(arg, "ADD");
 	else if (ev == 's')
-		return (ft_putstr_fd((char *)va_arg(arg, char *), 0), 0);
+		res.res = (char *)va_arg(arg, char *);
 	else if (ev == 'u')
-		return (ft_putstr_fd(ft_convert_base(arg, "Dec"), 0), 0);
+		res.res = ft_convert_base(arg, "Dec");
 	else if (ev == 'x')
-		return (ft_putstr_fd(ft_convert_base(arg, "hex"), 0), 0);
+		res.res = ft_convert_base(arg, "hex");
 	else if (ev == 'X')
-		return (ft_putstr_fd(ft_convert_base(arg, "HEX"), 0), 0);
+		res.res = ft_convert_base(arg, "HEX");
 	else if (ev == '%')
-		return (ft_putchar_fd('%', 0), 0);
-	return (-1);
+		res.res[0] = '%';
+	res.len_f = 1;
+	return (res);
 }
 
-int	ft_brules(va_list arg, const char *str, size_t i)
+t_res	ft_brules(va_list arg, const char *str, size_t i)
 {
-	int	nb;
+	int		nb;
+	t_res	res;
 
+	res.res = NULL;
+	res.len_f = 1;
 	if (str[i] == '#')
 	{
-		i++;
-		if (str[i] == 'x')
-			return (ft_putstr_fd("0x", 0), ft_putstr_fd(ft_convert_base(arg,
-						"hex"), 0), 1);
-		else if (str[i] == 'X')
-			return (ft_putstr_fd("0X", 0), ft_putstr_fd(ft_convert_base(arg,
-						"HEX"), 0), 1);
+		if (str[i + res.len_f] == 'x')
+			res.res = ft_strjoin("0x", ft_convert_base(arg, "hex"));
+		else if (str[i + res.len_f] == 'X')
+			res.res = ft_strjoin("0X", ft_convert_base(arg, "HEX"));
 	}
 	else if (str[i] == '+' || str[i] == ' ')
 	{
 		nb = (int)va_arg(arg, int);
-		if ((str[i + 1] == 'd' || str[i + 1] == 'i') && (str[i] == '+'
-				|| str[i] == ' '))
-		{
-			if (nb >= 0)
-				return (ft_putchar_fd(str[i], 0), ft_putnbr_fd(nb, 0), 1);
-			return (ft_putnbr_fd(nb, 0), 1);
-		}
+		if ((str[i + res.len_f] == 'd' || str[i + res.len_f] == 'i')
+			&& (str[i] == '+' || str[i] == ' ') && nb >= 0)
+			res.res = "+";
+		res.res = ft_strjoin(res.res, ft_itoa(nb));
 	}
-	return (0);
+	if (res.res != NULL)
+		res.len_f++;
+	return (res);
 }
 
-int	ft_parse(const char *str, va_list arg)
+t_res	ft_parse(const char *str, int len, va_list arg)
 {
-	size_t	i;
 	size_t	ev;
+	t_res	res;
 	char	*flags;
 	char	*bonus;
 
-	i = 1;
 	ev = 0;
-	flags = "cdipPsuxX%";
 	bonus = "# +";
-	while (str[i])
+	flags = "cdipPsuxX%";
+	while (str[len + 1])
 	{
 		ev = 0;
+		len++;
 		while (flags[ev])
 		{
-			if (str[i] == flags[ev])
+			if (str[len] == flags[ev])
 				return (ft_rules(flags[ev], arg));
-			if (str[i] == bonus[ev])
-				return (ft_brules(arg, str, i), i++);
+			else if (str[len] == bonus[ev])
+				return (ft_brules(arg, str, len));
 			ev++;
 		}
-		i++;
 	}
-	return (i);
+	res.res = NULL;
+	return (res);
 }

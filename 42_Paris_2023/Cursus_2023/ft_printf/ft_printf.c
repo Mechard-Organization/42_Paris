@@ -6,44 +6,55 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:31:17 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/27 14:38:13 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/30 19:19:23 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void	ft_display(const char *str, va_list arg)
+int	ft_display(const char *str, va_list arg)
 {
-	size_t	f;
+	int		len;
+	int		tmp;
+	t_res	res;
+	char	*dis;
 
-	while (*str)
+	len = 0;
+	dis = NULL;
+	res.len = 0;
+	while (str[len])
 	{
-		if (*str != '%')
-			ft_putchar_fd(*str, 0);
+		if (str[len] != '%')
+			ft_putchar_fd(str[len], 1);
 		else
 		{
-			f = 0;
-			if (*str - 2 == '#' || *str - 2 == ' ' || *str - 2 == '+' || *str
-				- 2 == '0')
-				f++;
-			f += ft_parse(str, arg);
-			if (f < 0)
-			{
-				ft_putstr_fd("\nErreur d'arguments !\n", 0);
-				return ;
-			}
-			str += f;
+			tmp = res.len;
+			res = ft_parse(str, len, arg);
+			if (!res.res)
+				return (ft_putstr_fd("\nErreur d'arguments !\n", 1), 22);
+			len += res.len_f;
+			res.len += tmp + (int)ft_strlen(res.res) - res.len_f;
+			ft_putstr_fd(res.res, 1);
 		}
-		str++;
+		res.len++;
+		len++;
 	}
+	res.len++;
+	// printf("\nres.len_f = %d\n", res.len_f);
+	// printf("res.len = %d\n\n", res.len);
+	// printf("len = %d\n\n", len);
+	// ft_putstr_fd(dis, 1);
+	return (res.len);
 }
 
 int	ft_printf(const char *form, ...)
 {
 	va_list	arg;
+	int		i;
 
+	i = 0;
 	va_start(arg, form);
-	ft_display(form, arg);
+	i = ft_display(form, arg);
 	va_end(arg);
-	return (0);
+	return (i);
 }

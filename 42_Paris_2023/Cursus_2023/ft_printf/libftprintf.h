@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:31:48 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/27 14:41:34 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/30 19:19:26 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,18 @@ typedef struct s_printf
 	struct s_printf	*next;
 }					t_printf;
 
+typedef struct s_res
+{
+	char	*res;
+	int		len;
+	int		len_f;
+}					t_res;
+
 int					ft_printf(const char *str, ...);
-int					ft_parse(const char *str, va_list arg);
 
 char				*ft_convert_base(va_list arg, char *base);
 char				*ft_convert_ui(va_list arg);
+
+t_res				ft_parse(const char *str, int i, va_list arg);
 
 #endif
