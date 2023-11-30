@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:31:17 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/30 19:19:23 by mechard          ###   ########.fr       */
+/*   Updated: 2023/11/30 19:39:13 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,17 @@ int	ft_display(const char *str, va_list arg)
 			if (!res.res)
 				return (ft_putstr_fd("\nErreur d'arguments !\n", 1), 22);
 			len += res.len_f;
+			// printf("\nres.len avant = %d\n", res.len);
 			res.len += tmp + (int)ft_strlen(res.res) - res.len_f;
+			// printf("\nres.len apres = %d\n", res.len);
 			ft_putstr_fd(res.res, 1);
 		}
 		res.len++;
 		len++;
 	}
-	res.len++;
+	if (res.len_f == 1)
+		res.len -= 2;
+	res.len--;
 	// printf("\nres.len_f = %d\n", res.len_f);
 	// printf("res.len = %d\n\n", res.len);
 	// printf("len = %d\n\n", len);
