@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 12:03:14 by mechard           #+#    #+#              #
-#    Updated: 2023/11/30 19:22:43 by mechard          ###   ########.fr        #
+#    Updated: 2023/12/01 16:06:51 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ PATH_LIB 	= libft/
 
 SRCS		= ft_printf.c ft_parse.c ft_convert.c \
 
-OBJS_B		= ft_putnbr_fd.o ft_putstr_fd.o ft_putchar_fd.o \
-				ft_nbrlen.o ft_itoa.o ft_strcmp.o ft_strdup.o \
-				ft_strlen.o ft_strdup.o ft_strcpy.o ft_strcat.o \
-				ft_strjoin.o ft_memmove.o ft_toupper.o
+OBJS_B		= ft_putnbr_fd.o ft_putstr_fd.o ft_putchar_fd.o ft_nbrlen.o \
+				ft_itoa.o ft_strcmp.o ft_strdup.o ft_strlen.o ft_strdup.o \
+				ft_strcpy.o ft_strcat.o ft_strjoin.o ft_memmove.o ft_toupper.o \
+				ft_isdigit.o ft_atoi.o
 OBJS_LIB 	= $(addprefix libft/, $(OBJS_B))
 
 OBJS		= $(SRCS:.c=.o)

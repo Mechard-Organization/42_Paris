@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:31:48 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/30 19:19:26 by mechard          ###   ########.fr       */
+/*   Updated: 2023/12/01 15:44:49 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_res
 	char	*res;
 	int		len;
 	int		len_f;
+	size_t	space_id;
 }					t_res;
 
 int					ft_printf(const char *str, ...);

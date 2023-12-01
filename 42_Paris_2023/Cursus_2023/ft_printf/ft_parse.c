@@ -6,17 +6,14 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:49:58 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/30 19:19:21 by mechard          ###   ########.fr       */
+/*   Updated: 2023/12/01 16:14:25 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-t_res	ft_rules(size_t ev, va_list arg)
+t_res	ft_rules(size_t ev, t_res res, va_list arg)
 {
-	t_res	res;
-
-	res.res = (char *)malloc(sizeof(char *) * 2);
 	if (ev == 'c')
 		res.res[0] = (char)va_arg(arg, int);
 	else if (ev == 'd' || ev == 'i')
@@ -35,17 +32,15 @@ t_res	ft_rules(size_t ev, va_list arg)
 		res.res = ft_convert_base(arg, "HEX");
 	else if (ev == '%')
 		res.res[0] = '%';
-	res.len_f = 1;
+	if (!res.res)
+		res.res = "(null)";
 	return (res);
 }
 
-t_res	ft_brules(va_list arg, const char *str, size_t i)
+t_res	ft_brules(va_list arg, const char *str, t_res res, size_t i)
 {
 	int		nb;
-	t_res	res;
-
-	res.res = NULL;
-	res.len_f = 1;
+	
 	if (str[i] == '#')
 	{
 		if (str[i + res.len_f] == 'x')
@@ -65,6 +60,21 @@ t_res	ft_brules(va_list arg, const char *str, size_t i)
 		res.len_f++;
 	return (res);
 }
+t_res	ft_space(const char *str, t_res res)
+{
+	int	i;
+
+	i = ft_atoi(str);
+	res.space_id = i;
+	while(ft_isdigit(str[i]) == 1)
+		i++;
+	while (i > 0)
+	{
+		res.res = ft_strjoin(res.res, " ");
+		i--;
+	}
+	return (res);
+}
 
 t_res	ft_parse(const char *str, int len, va_list arg)
 {
@@ -74,8 +84,10 @@ t_res	ft_parse(const char *str, int len, va_list arg)
 	char	*bonus;
 
 	ev = 0;
+	res.len_f = 1;
 	bonus = "# +";
 	flags = "cdipPsuxX%";
+	res.res = (char *)malloc(sizeof(char *) * 2);
 	while (str[len + 1])
 	{
 		ev = 0;
@@ -83,12 +95,11 @@ t_res	ft_parse(const char *str, int len, va_list arg)
 		while (flags[ev])
 		{
 			if (str[len] == flags[ev])
-				return (ft_rules(flags[ev], arg));
+				return (ft_rules(flags[ev], res, arg));
 			else if (str[len] == bonus[ev])
-				return (ft_brules(arg, str, len));
+				return (ft_brules(arg, str, res, len));
 			ev++;
 		}
 	}
-	res.res = NULL;
 	return (res);
 }
