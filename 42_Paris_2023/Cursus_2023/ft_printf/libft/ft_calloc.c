@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 11:50:33 by abutet            #+#    #+#             */
-/*   Updated: 2023/11/14 16:06:04 by mechard          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:25:47 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*r;
 
 	if (!nmemb || !size)
-		return (malloc(1));
+		return (malloc(0));
 	if (SIZE_MAX / nmemb < size)
 	{
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 16:34:29 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/15 10:24:25 by mechard          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:24:59 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char	*ft_strchr(char *s, int c)
 
 	i = -1;
 	while (s[++i])
-		if (s[i] == c % 256)
-			return (s + i);
-	if (c == '\0' && s[i] == '\0')
-		return (s + i);
+		if (s[i] == (unsigned char)c % 256)
+			return ((char *)s + i);
+	if ((unsigned char)c == '\0' && s[i] == '\0')
+		return ((char *)s + i);
 	return (0);
 }

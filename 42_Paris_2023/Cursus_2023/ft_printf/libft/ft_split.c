@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 16:19:43 by mechard           #+#    #+#             */
-/*   Updated: 2023/11/15 14:29:55 by mechard          ###   ########.fr       */
+/*   Updated: 2023/12/08 17:48:12 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ int	count_word(const char *str, char c)
 	}
 	return (count);
 }
+void	ft_strdel(char **ap)
+{
+	int	i;
+
+	i = -1;
+	while (ap[++i])
+		free(ap[i]);
+	free(ap);
+}
 
 char	**ft_split(const char *s, char c)
 {
@@ -53,6 +62,11 @@ char	**ft_split(const char *s, char c)
 			while (*s && *s != c && ++j)
 				s++;
 			res[i++] = ft_substr(s - j, 0, j);
+			if (!res[i])
+			{
+				ft_strdel(res);
+				return (NULL);
+			}
 		}
 		else
 			s++;
