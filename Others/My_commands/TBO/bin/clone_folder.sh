@@ -15,7 +15,9 @@ clone_all_folders() {
 	        clone_folder -g "$folder"
 	    done
 	elif [[ " ${intra[@]} " =~ " $1 " ]]; then
-		echo "Flag non dev"
+		for folder in "${github_folder[@]}"; do
+	        clone_folder -g "$folder"
+	    done
 	else
 		echo "\033[31mUne erreur est survenue !\033[0m"
 	fi
@@ -24,7 +26,7 @@ clone_all_folders() {
 # Fonction pour cloner un dossier avec choix
 clone_selected_folder() {
     
-	source "$HOME/Documents/42_Paris/Others/My_commands/TBO/data/conf"
+	source "$TBO/data/conf"
 	local github=("-g" "-github")
     local intra=("-i" "-intra")
 

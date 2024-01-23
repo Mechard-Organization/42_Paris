@@ -35,7 +35,7 @@ function tbo {
     ######### AUTRES VARIABLES #########
 
     ## LOCAL ##
-	source /home/mechard/Documents/42_Paris/Others/My_commands/TBO/bin/path_tbo
+	source /home/mechard/.TBO/bin/path_tbo
 
 	. $TBO_bin/verif_answer.sh
 	. $TBO_bin/path_tbo
@@ -83,7 +83,6 @@ function tbo {
 		elif [[ " ${var_del[@]} " =~ " $2 " ]]; then
 			if [[ " ${var_all[@]} " =~ " $3 " ]]; then
             	delete_all_folders -g
-           		echo "Tous les dossiers ont été supprimés et la variable github_folder a été réinitialisée."
         	elif [[ " ${var_choose[@]} " =~ " $3 " ]]; then
 				if [[ $4 ]]; then
 					delete_selected_folder -g $4
@@ -96,49 +95,49 @@ function tbo {
 			echo "Veuillez reessayer !"
         fi
     elif [[ " ${var_intra[@]} " =~ " $1 " ]]; then
-        if [[ " ${var_all[@]} " =~ " $2 " ]]; then
-			if [[ "$3" == "$var_project_mc" || "$3" == "$var_project_stud" ]]; then	
-				local previous_location=$(pwd)
-				cd /home/$var_usr/Downloads/.42_github/$3
-				git add *
-				git commit -m "update of $date" --quiet
-				git push --quiet
-				cd $previous_location
-			elif [[ !$3 ]]; then
-				local previous_location=$(pwd)
-				cd /home/$var_usr/Downloads/.42_github/$var_project_stud
-				git add *
-				git commit -m "update of $date" --quiet
-				git push --quiet
-				cd /home/$var_usr/Downloads/.42_github/$var_project_mc
-				git add *
-				git commit -m "update of $date" --quiet
-				git push --quiet
-			elif [[ $3 ]]; then
-				local previous_location=$(pwd)
-				cd /home/$var_usr/Downloads/$3
-				git add *
-				git commit -m "update of $date" --quiet
-				git push --quiet
-				cd $previous_location
+		if [[ ( "$path_folder_intra" && "$path_folder_intra" != "$(pwd)/" ) || " ${var_move[@]} " =~ " $2 " ]]; then
+        	if [[ " ${var_all[@]} " =~ " $2 " ]]; then
+				move_to -i
 			fi
-		elif [[ "$2" == "$var_42_git" ]]; then
-            if [[ $3 ]]; then
-				local previous_location=$(pwd)
-				cd /home/$var_usr/Documents/$var_project_stud/$3
-				git add *
-            	git commit -m "update of $date"
-            	git push
-				echo -e "\033[32mYour project was push\033[0m"
-				cd $previous_location
-			elif [[ !$3 || "$3" == "-currentlocation" ]]; then
-				git add *
-				git commit -m "update of $date"
-				git push
-				echo -e "\033[32mYour project was push\033[0m"
+		fi
+		if [[ " ${var_update[@]} " =~ " $2 " ]]; then
+			previous_location=$(pwd)
+	        if [[ " ${var_all[@]} " =~ " $3 " || -z "$3" ]]; then
+	           	update_all_folders -i
+	    	elif [[ " ${var_choose[@]} " =~ " $3 " ]]; then
+	        	if [[ $4 ]]; then
+					update_selected_folder -i $4
+				else
+					update_selected_folder -i
+				fi
+	        fi
+		elif [[ " ${var_clone[@]} " =~ " $2 " ]]; then
+			if [[ " ${var_all[@]} " =~ " $3 " ]]; then
+        		if [[ -z $github_folder ]]; then
+					echo "Aucun folder n'as ete enregistre ! Veuillez utiliser la commande tbo -g -cl -c !"
+				else
+        			clone_all_folders -i
+				fi
+    		elif [[ " ${var_choose[@]} " =~ " $3 " ]]; then
+				if [[ $4 ]]; then
+					clone_selected_folder -i $4
+				else
+					clone_selected_folder -i
+				fi
+			fi
+		elif [[ " ${var_del[@]} " =~ " $2 " ]]; then
+			if [[ " ${var_all[@]} " =~ " $3 " ]]; then
+            	delete_all_folders -i
+        	elif [[ " ${var_choose[@]} " =~ " $3 " ]]; then
+				if [[ $4 ]]; then
+					delete_selected_folder -i $4
+				else
+					delete_selected_folder -i
+				fi
 			fi
 		else
-            echo -e "\033[31mYou need an argument to push your project !\033[0m"
+            echo "\033[31mUne erreur est survenue !\033[0m"
+			echo "Veuillez reessayer !"
         fi
 	###############ARGUMENT_INVALIDE###############
     else

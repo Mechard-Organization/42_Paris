@@ -1,23 +1,24 @@
 #!/bin/bash
 
+
 # Inclusion du script de vérification des réponses
-. $HOME/Documents/42_Paris/Others/My_commands/TBO/bin/verif_answer.sh
+. $HOME/.TBO/bin/verif_answer.sh
 
 variable_conf_usr() {
 
     local i=0
     local var_answer
-	source /home/mechard/Documents/42_Paris/Others/My_commands/TBO/bin/path_tbo
 
+	source /home/mechard/.TBO/bin/path_tbo
     read -rp "Quel est votre login ? (en minuscule) " var_login
     read -rp "Quel est le login de votre GitHub ? " var_github_login
 	var_github_link="git@github.com:$var_github_login"
 	read -rp "Voulez-vous utilisez ce repertoire pour cloner vos dossier github ? " var_answer
 	verif_answer "$var_answer"
-	if [[ "$?" == 1 ]]; then
+	if [[ "$?" == 0 ]]; then
 		path_folder_github="$(pwd)/"
 	fi
-	while [[ "$?" == 0 ]]; do
+	while [[ "$?" == 1 ]]; do
 		read -rp "Quel repertoire voulez-vous utilisez ? (le chemin absolu sans /home/$var_login/) " path_github
 		path_folder_github=/home/$var_login/$path_github/
 		echo "Le chemin absolu du repertoire sera : $path_folder_github"
@@ -44,7 +45,7 @@ variable_conf_usr() {
         verif_answer "$var_answer"
         if [[ "$?" == 0 || -z "$var_answer" ]]; then
             read -rp "Attention : les noms des projets sont sensibles a la casse !\nQuel est le nom du dossier ? " var_folder_name
-            var_folder_intra+=("$var_folder_name")
+            intra_folder+=("$var_folder_name")
 			read -rp "Quel est le lien intra du projet intra? " var_intra_link
             var_links_intra+=("$var_intra_link")
             ((i++))

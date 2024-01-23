@@ -15,6 +15,7 @@ delete_all_folders() {
     	done
     	github_folder=()  # Réinitialise la variable github_folder
 		write_to_param_file
+		echo "Tous les dossiers ont été supprimés"
 	elif [[ " ${intra[@]} " =~ " $1 " ]]; then
 		echo "Flag non dev"
 	else
@@ -27,7 +28,7 @@ delete_selected_folder() {
     
 	local github=("-g" "-github")
     local intra=("-i" "-intra")
-	source "$HOME/Documents/42_Paris/Others/My_commands/TBO/data/conf"
+	source "$TBO_param"
 
 	if [[ " ${github[@]} " =~ " $1 " ]]; then
     	if [[ $2 ]]; then

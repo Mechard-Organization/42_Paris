@@ -15,7 +15,7 @@ update_all_folders() {
 
 	if [[ " ${github[@]} " =~ " $1 " ]]; then
 		for folder in "${github_folder[@]}"; do
-    	    cd "$path_folder_github/$folder"
+    	    cd "$path_folder_github$folder"
      	   	update_folder -g "$folder"
     	done
 	elif [[ " ${intra[@]} " =~ " $1 " ]]; then
@@ -70,9 +70,9 @@ update_folder() {
 		cd $path_folder_github/$folder
 		echo "Pour le dossier $folder :"
 		echo -n "	"
-		git add . > /dev/null
-	    git commit -m "Projet : $folder - Mise à jour du $date" > /dev/null
-	    git push
+		git add * > /dev/null 2>&1
+	    git commit -m "Projet : $folder - Mise à jour du $date" > /dev/null 2>&1
+	    git push > /dev/null 2>&1
 	    pull_output=$(git pull)
 	    if [[ "$pull_output" != *"Already up to date."* ]]; then
     	    echo "$pull_output"

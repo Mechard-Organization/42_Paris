@@ -29,8 +29,8 @@ verif_answer() {
 # Fonction pour écrire les variables dans le fichier de paramètres
 write_to_param_file() {
     # Écriture des variables dans le fichier de paramètres
-    printf "var_login=\"%s\"\nvar_github_link=\"%s\"\npath_folder_github=\"%s\"\ngithub_folder=(%s)\nvar_folder_intra=(%s)\nvar_links_intra=(%s)\n" \
-        "$var_login" "$var_github_link" "$path_folder_github" "$(IFS=' '; echo "${github_folder[*]}")" "$(IFS=,; echo "${var_folder_intra[*]}")" \
+    printf "var_login=\"%s\"\nvar_github_link=\"%s\"\npath_folder_github=\"%s\"\ngithub_folder=(%s)\nintra_folder=(%s)\nvar_links_intra=(%s)\n" \
+        "$var_login" "$var_github_link" "$path_folder_github" "$(IFS=' '; echo "${github_folder[*]}")" "$(IFS=,; echo "${intra_folder[*]}")" \
         "$(IFS=,; echo "${var_links_intra[*]}")" > "$TBO_param"
     
     # Modification des permissions du fichier de paramètres
