@@ -69,15 +69,16 @@ update_folder() {
 	if [[ " ${github[@]} " =~ " $1 " ]]; then
 		cd $path_folder_github/$folder
 		echo "Pour le dossier $folder :"
-		echo -n "	"
 		git add * > /dev/null 2>&1
 	    git commit -m "Projet : $folder - Mise à jour du $date" > /dev/null 2>&1
-	    git push > /dev/null 2>&1
-	    pull_output=$(git pull)
-	    if [[ "$pull_output" != *"Already up to date."* ]]; then
-    	    echo "$pull_output"
+		pull_output=$(git push 2>&1)
+	    if [[ "$pull_output" != "Everything up-to-date" ]]; then
+    	    echo "\033[33mUn push est en cours\033[0m"
+			echo -n "$pull_output"
+			echo -e "\033[32mPush termine !\033[0m"
     	else
-    	    echo -e "\033[32m$pull_output\033[0m"
+    	    echo -n "	"
+			echo -e "\033[32mEverything up-to-date\033[0m"
     	fi
 		cd "$previous_location"
 	elif [[ " ${intra[@]} " =~ " $1 " ]]; then
