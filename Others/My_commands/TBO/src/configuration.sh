@@ -1,10 +1,12 @@
 #!/bin/bash
 
-
-# Inclusion du script de vérification des réponses
-. $HOME/.TBO/bin/verif_answer.sh
-
 variable_conf_usr() {
+
+	# Inclusion des chemins d'acces a TBO
+	. ~/.TBO/bin/path_tbo
+
+	# Inclusion du script de vérification des réponses
+	. $TBO_bin/tools_tbo.sh
 
     local i=0
     local var_answer
@@ -13,46 +15,14 @@ variable_conf_usr() {
     read -rp "Quel est votre login ? (en minuscule) " var_login
     read -rp "Quel est le login de votre GitHub ? " var_github_login
 	var_github_link="git@github.com:$var_github_login"
+	
 	read -rp "Voulez-vous utilisez ce repertoire pour cloner vos dossier github ? " var_answer
-	verif_answer "$var_answer"
-	if [[ "$?" == 0 ]]; then
-		path_folder_github="$(pwd)/"
-	fi
-	while [[ "$?" == 1 ]]; do
-		read -rp "Quel repertoire voulez-vous utilisez ? (le chemin absolu sans /home/$var_login/) " path_github
-		path_folder_github=/home/$var_login/$path_github/
-		echo "Le chemin absolu du repertoire sera : $path_folder_github"
-		read -rp "Etes-vous sur de votre reponse ? " var_confirmation
-		verif_answer "$var_confirmation"
-		if [[ "$?" == 0 ]]; then
-			break
-		fi
-	done
-	while true; do
-        read -rp "Voulez-vous ajouter un dossier GitHub ? (Yes/No) " var_answer
-        verif_answer "$var_answer"
-        if [[ "$?" == 0 || -z "$var_answer" ]]; then
-            read -rp "Attention : les noms doivent être identiques à ceux de votre GitHub !\nQuel est le nom du dossier ? " var_folder_name
-            github_folder+=("\"$var_folder_name\"")
-            ((i++))
-        else
-            break
-        fi
-    done
-	i=0
-	while true; do
-        read -rp "Voulez-vous ajouter un projet intra ? (Yes/No) " var_answer
-        verif_answer "$var_answer"
-        if [[ "$?" == 0 || -z "$var_answer" ]]; then
-            read -rp "Attention : les noms des projets sont sensibles a la casse !\nQuel est le nom du dossier ? " var_folder_name
-            intra_folder+=("$var_folder_name")
-			read -rp "Quel est le lien intra du projet intra? " var_intra_link
-            var_links_intra+=("$var_intra_link")
-            ((i++))
-        else
-            break
-        fi
-    done
+	get_folder -g "$var_answer"
+	add_folder -g
+	
+	read -rp "Voulez-vous utilisez ce repertoire pour cloner vos dossier intra ? " var_answer
+	get_folder -i "$var_answer"
+	add_folder -i
 
     write_to_param_file
 }
@@ -60,7 +30,14 @@ variable_conf_usr() {
 
 # Fonction pour gérer la configuration
 configuration() {
-    local var_answer
+    
+	# Inclusion des chemins d'acces a TBO
+	. ~/.TBO/bin/path_tbo
+
+	# Inclusion du script de vérification des réponses
+	. $TBO_bin/tools_tbo.sh
+
+	local var_answer
 
     # Demande à l'utilisateur s'il souhaite reconfigurer la commande
     read -rp "Il semble que vous ayez déjà configuré cette commande ! Voulez-vous reconfigurer votre commande ? (Yes/No) " var_answer
