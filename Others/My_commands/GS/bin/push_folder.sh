@@ -135,7 +135,7 @@ push_folder() {
 
 		git add *
 
-		git commit -m "PUSH_GS | Update of $folder - DATE : $(date)" | { head -n 1 && tail -n 1; }
+		git commit -m "PUSH_GS | Update of $folder - DATE : $(date)" | { head -n 1 && tail -n 2; }
 
 
         # Pousser les modifications vers le dépôt distant
