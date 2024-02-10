@@ -157,13 +157,18 @@ pull_folder() {
         cd "$path_folder_intra/$folder" || return  
 
         # Pull depuis le dépôt distant
-        git pull origin main > /dev/null 2>&1
+        output=$(git pull origin main > /dev/null 2>&1)
 
 		# Vérifie si le pull a réussi
-        if [ $? -eq 0 ]; then
+        if [[ "$output" == "Already up to date." ]]; then
             
-			# Afficher un message de réussite
-			echo -e "\033[32mLe dossier a été pull avec succès.\033[0m\n"
+			# Afficher $output en vert
+			echo -e "\033[32m$output\033[0m\n"
+
+		elif [[ -n "$output" ]]; then
+
+			# Afficher $output en blanc
+			echo "$output"
 
         else
             
