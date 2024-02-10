@@ -138,12 +138,12 @@ pull_folder() {
         if [ $? -eq 0 ]; then
             
 			# Afficher un message de réussite
-			echo -e "\n\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m"
+			echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m\n"
 			
         else
 
 			# Afficher un message d'échec
-            echo -e "\033[31mÉchec du push pour $folder.\033[0m"
+            echo -e "\033[31mÉchec du push pour $folder.\033[0m\n"
 
         fi
     # Vérifier si l'option spécifiée est Intra
@@ -160,12 +160,12 @@ pull_folder() {
         if [ $? -eq 0 ]; then
             
 			# Afficher un message de réussite
-			echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m"
+			echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m\n"
 
         else
             
 			# Afficher un message d'échec
-			echo -e "\033[31mÉchec du push pour $folder.\033[0m"
+			echo -e "\033[31mÉchec du push pour $folder.\033[0m\n"
 
         fi
 
