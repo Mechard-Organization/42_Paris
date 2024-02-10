@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maechard <maechard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 03:47:36 by maechard          #+#    #+#             */
-/*   Updated: 2017/11/27 03:47:38 by maechard         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:06:23 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include "libft/includes/libft.h"
-# include "./minilibx/mlx.h"
+# include "./minilibx-linux/mlx.h"
 
 typedef struct		s_all
 {

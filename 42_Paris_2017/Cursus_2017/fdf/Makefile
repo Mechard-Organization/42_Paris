@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tarchen <tarchen@student.42.fr>            +#+  +:+       +#+         #
+#    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 05:07:51 by tarchen           #+#    #+#              #
-#    Updated: 2017/11/21 00:51:06 by tarchen          ###   ########.fr        #
+#    Updated: 2024/02/01 14:03:47 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(SRC)
 	@$(CC) $(CFLAGS) -c $(SRC)
-	@$(CC) -o $(NAME) $(OBJ) $(PATH_LIBFT) -I /usr/local/include -L /usr/local/lib -lmlx -framework OpenGL -framework AppKit
+	@$(CC) -o $(NAME) $(OBJ) $(PATH_LIBFT) -I /usr/local/include -L /usr/local/lib -lmlx -lXext -lX11 -lm -ldl -lglfw
 	@echo "\033[36mrule \033[32mall:	Done.\033[0m"
 
 clean:
