@@ -32,7 +32,7 @@ function git_simple {
     # Options pour le push
     local var_push=("-p" "-push")
 	# Options pour le pull
-    local var_pull=("-u" "-update" "-push")
+    local var_pull=("-u" "-update" "-pull")
     # Options pour l'ajout
     local var_add=("-a" "-add")
 	# Options pour la suppression
