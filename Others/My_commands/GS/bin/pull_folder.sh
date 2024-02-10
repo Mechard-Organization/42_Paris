@@ -138,7 +138,7 @@ pull_folder() {
         if [ $? -eq 0 ]; then
             
 			# Afficher un message de réussite
-			echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m\n"
+			echo -e "\033[32mLe dossier a été pull avec succès.\033[0m\n"
 			
         else
 
@@ -160,7 +160,7 @@ pull_folder() {
         if [ $? -eq 0 ]; then
             
 			# Afficher un message de réussite
-			echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m\n"
+			echo -e "\033[32mLe dossier a été pull avec succès.\033[0m\n"
 
         else
             
