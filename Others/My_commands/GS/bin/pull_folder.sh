@@ -78,6 +78,7 @@ pull_selected_folder() {
 	# Vérifier si l'option spécifiée est Intra
 	elif [[ " ${intra[@]} " =~ " $1 " ]]; then
 		
+		echo "ok"
 		# Vérifier si un nom de dossier est fourni en argument
         if [[ $2 ]]; then
             var_pull_folder=$2

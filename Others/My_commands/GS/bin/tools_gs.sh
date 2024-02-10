@@ -49,6 +49,7 @@ move_to() {
     local intra=("-i" "-intra")     # Options pour les dossiers Intra
 
     # Vérifier si l'option spécifiée est GitHub
+	echo "pwd = $(pwd)"
     if [[ " ${github[@]} " =~ " $1 " ]]; then
         
         # Demander à l'utilisateur s'il souhaite se déplacer vers un dossier GitHub
@@ -75,7 +76,7 @@ move_to() {
         verif_answer "$var_answer"  # Appel à la fonction de vérification de la réponse
 
         # Vérifier si la réponse est négative
-        if [[ "$?" == 0 ]]; then
+        if [[ "$?" == 1 ]]; then
             
             previous_location=$(pwd)  # Enregistrer l'emplacement précédent
 			cd $path_folder_intra  # Se déplacer vers le dossier Intra
