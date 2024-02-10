@@ -136,6 +136,7 @@ push_folder() {
 		git add -A *
 
 		output=$(git commit -m "PUSH_GS | Update of $folder - DATE : $(date)")
+		echo $output
 		echo "$output" | sed -n '1p;$p'
 
         # Pousser les modifications vers le dépôt distant
