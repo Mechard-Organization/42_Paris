@@ -130,12 +130,13 @@ push_folder() {
     # Vérifier si l'option spécifiée est GitHub
     if [[ " ${github[@]} " =~ " $1 " ]]; then
 
-        echo -e "\033[33mPousser $folder vers son dépôt distant...\033[0m"
+        echo -e "\033[33mPousser $folder vers son dépôt distant...\033[0m\n"
         cd "$path_folder_github/$folder" || return  # Se déplacer vers le dossier GitHub
 
 		git add *
 
-		git commit -m "PUSH_GS | Update of $folder - DATE : $(date)"
+		git commit -m "PUSH_GS | Update of $folder - DATE : $(date)" | { head -n 1 && tail -n 1; }
+
 
         # Pousser les modifications vers le dépôt distant
         git push > /dev/null 2>&1
@@ -144,7 +145,7 @@ push_folder() {
         if [ $? -eq 0 ]; then
             
 			# Afficher un message de réussite
-			echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m"
+			echo -e "\n\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m"
 			
         else
 
