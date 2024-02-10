@@ -49,7 +49,6 @@ move_to() {
     local intra=("-i" "-intra")     # Options pour les dossiers Intra
 
     # Vérifier si l'option spécifiée est GitHub
-	echo "pwd = $(pwd)"
     if [[ " ${github[@]} " =~ " $1 " ]]; then
         
         # Demander à l'utilisateur s'il souhaite se déplacer vers un dossier GitHub
