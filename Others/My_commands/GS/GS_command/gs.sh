@@ -140,7 +140,6 @@ function git_simple {
             
 			# Deplacement vers Github ou l'Intra : cas Github
             move_to -g
-			return
 
         fi
 		
@@ -277,7 +276,6 @@ function git_simple {
             
 			# Exécute le script de deplacement vers le dossier Intra
             move_to -i
-			return
 
         fi
 
