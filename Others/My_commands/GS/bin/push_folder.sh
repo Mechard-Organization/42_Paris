@@ -70,9 +70,6 @@ push_selected_folder() {
             # Pousser le dossier vers son dépôt distant
             push_folder -g "$var_push_folder"  # Appel à la fonction push_folder pour pousser le dossier vers son dépôt distant
 
-            # Afficher un message de réussite
-            echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m"
-
         else
 
             # Afficher un message d'échec
@@ -107,9 +104,6 @@ push_selected_folder() {
             # Pousser le dossier vers son dépôt distant
             push_folder -i "$var_push_folder"  # Appel à la fonction push_folder pour pousser le dossier vers son dépôt distant
 
-            # Afficher un message de réussite
-            echo -e "\033[32mLe dossier a été poussé vers son dépôt distant avec succès.\033[0m"
-
         else
 
             # Afficher un message d'échec
@@ -128,6 +122,7 @@ push_selected_folder() {
 push_folder() {
     
     local folder="$2"
+	local previous_location=$(pwd)
 
     local github=("-g" "-github")  # Options pour les dossiers GitHub
     local intra=("-i" "-intra")     # Options pour les dossiers Intra
@@ -138,8 +133,12 @@ push_folder() {
         echo -e "\033[33mPousser $folder vers son dépôt distant...\033[0m"
         cd "$path_folder_github/$folder" || return  # Se déplacer vers le dossier GitHub
 
+		git add *
+
+		git commit -m "PUSH_GS | Update of $folder - DATE : $(date)"
+
         # Pousser les modifications vers le dépôt distant
-        git push origin main > /dev/null 2>&1
+        git push > /dev/null 2>&1
 
 		# Vérifie si le push a réussi
         if [ $? -eq 0 ]; then
@@ -160,8 +159,10 @@ push_folder() {
         # Se déplacer vers le dossier Intra
         cd "$path_folder_intra/$folder" || return  
 
+		git add *
+
         # Pousser les modifications vers le dépôt distant
-        git push origin main > /dev/null 2>&1
+        git push > /dev/null 2>&1
 
 		# Vérifie si le push a réussi
         if [ $? -eq 0 ]; then
@@ -182,4 +183,6 @@ push_folder() {
         echo "\033[31mUne erreur est survenue !\033[0m"
 
     fi
+
+	cd $previous_location
 }
