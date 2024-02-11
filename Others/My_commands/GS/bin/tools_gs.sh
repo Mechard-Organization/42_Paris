@@ -79,7 +79,7 @@ move_to() {
         
         # Demander à l'utilisateur s'il souhaite se déplacer vers un dossier GitHub
         echo -en "Voulez-vous vous déplacer dans votre dossier \033[33mGitHub ?\033[32m "
-        read -e -r var_answer
+        read -r var_answer
         echo -en "\033[0m"  # Réinitialiser les couleurs de la console
         verif_answer "$var_answer"  # Appel à la fonction de vérification de la réponse
 
@@ -96,7 +96,7 @@ move_to() {
         
         # Demander à l'utilisateur s'il souhaite se déplacer vers un dossier Intra
         echo -en "Voulez-vous vous déplacer dans votre dossier \033[33mIntra ?\033[32m "
-        read -e -r var_answer
+        read -r var_answer
         echo -en "\033[0m"  # Réinitialiser les couleurs de la console
         verif_answer "$var_answer"  # Appel à la fonction de vérification de la réponse
 
