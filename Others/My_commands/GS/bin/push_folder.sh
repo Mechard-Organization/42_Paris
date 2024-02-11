@@ -145,8 +145,7 @@ push_folder() {
 			last_line=$(echo "$output" | tail -n 1)
 
 			# Afficher les lignes avec la couleur souhaitée
-			echo ""
-			echo -e "\033[36m$first_line$last_line"
+			echo -e "\033[36m$first_line\n$last_line"
 
 		fi
 
@@ -184,8 +183,7 @@ push_folder() {
 			last_line=$(echo "$output" | tail -n 1)
 
 			# Afficher les lignes avec la couleur souhaitée
-			echo ""
-			echo -e "\033[36m$first_line$last_line"
+			echo -e "\033[36m$first_line\n$last_line"
 
 		fi
 
