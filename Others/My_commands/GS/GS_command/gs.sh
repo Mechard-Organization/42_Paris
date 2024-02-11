@@ -11,7 +11,7 @@ alias gspl="git_simple"
 
 function git_simple {
 
-	source ~/.GS/bin/path_gs
+	source /home/mechard/.GS/bin/path_gs
 
     ######### VARIABLES NIVEAU 1 #########
 
@@ -56,9 +56,7 @@ function git_simple {
 
     ## LOCAL ##
     # Chargement des fonctions auxiliaires
-	source /home/mechard/.GS/bin/path_gs
 	. $GS_bin/tools_gs.sh
-	. $GS_bin/path_gs
 	. $GS_bin/push_folder.sh
 	. $GS_bin/clone_folder.sh
 	. $GS_bin/delete_folder.sh
