@@ -12,21 +12,17 @@ variable_conf_usr() {
     local i=0
     local var_answer
 
-    # Demander le login de l'utilisateur et le login GitHub
-    read -rp "Quel est votre login ? (en minuscule) " var_login
-    read -rp "Quel est le login de votre GitHub ? " var_github_login
-    var_github_link="git@github.com:$var_github_login"
-    
+ 	# Demander à l'utilisateur s'il souhaite utiliser un répertoire pour cloner ses dossiers Intra
+    read -rp "Voulez-vous utiliser ce répertoire pour cloner vos dossiers Intra ? " var_answer
+    get_folder -i "$var_answer"  # Appel à la fonction pour récupérer le dossier Intra
+    add_folder -i  # Appel à la fonction pour ajouter le dossier Intra
+
+	read -rp "Quel est le login de votre GitHub ? " var_github_login
+	var_github_link="git@github.com:$var_github_login"
     # Demander à l'utilisateur s'il souhaite utiliser un répertoire pour cloner ses dossiers GitHub
     read -rp "Voulez-vous utiliser ce répertoire pour cloner vos dossiers GitHub ? " var_answer
     get_folder -g "$var_answer"  # Appel à la fonction pour récupérer le dossier GitHub
     add_folder -g  # Appel à la fonction pour ajouter le dossier GitHub
-
-    # Demander à l'utilisateur s'il souhaite utiliser un répertoire pour cloner ses dossiers Intra
-    read -rp "Voulez-vous utiliser ce répertoire pour cloner vos dossiers Intra ? " var_answer
-    get_folder -i "$var_answer"  # Appel à la fonction pour récupérer le dossier Intra
-	get_project -i
-    add_folder -i  # Appel à la fonction pour ajouter le dossier Intra
 
     write_to_param_file  # Appel à la fonction pour écrire dans le fichier de paramètres
 }
