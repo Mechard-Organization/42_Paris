@@ -176,6 +176,8 @@ push_folder() {
 		output=$(git commit -m "PUSH_GS | Update of $folder - DATE : $(date)")
 		if [[ "$output" == *"On branch main"* && "$output" == *"Your branch is up to date with 'origin/main'."* && "$output" == *"nothing to commit, working tree clean"* ]]; then
 			echo -e "\033[32mYour branch is up to date with 'origin/main'.\033[0m"
+		elif [[ "$output" == *"Gitea: Unauthorized"* ]]; then
+			echo -e "\033[33mVous ne pouvez pas push ce projet !\033[0m"
 		else
 
 			# Récupérer la première et la dernière ligne
