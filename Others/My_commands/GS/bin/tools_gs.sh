@@ -6,7 +6,17 @@ write_to_param_file() {
 	source ~/.GS/bin/path_gs
 
     # Écriture des variables dans le fichier de paramètres
-    printf "var_login=\"%s\"\nvar_github_link=\"%s\"\npath_folder_github=\"%s\"\ngithub_folder=(%s)\npath_folder_intra=\"%s\"\nintra_folder=(%s)\nvar_links_intra=(%s)\n" "$var_login" "$var_github_link" "$path_folder_github" "$(IFS=' '; echo "${github_folder[*]}")" "$path_folder_intra" "$(IFS=' '; echo "${intra_folder[*]}")" "$(IFS=' '; echo "${var_links_intra[*]}")" > "$GS_param"
+    printf "#=============== LOGIN ==============\
+	\n\nvar_login=\"%s\" \
+	\n\n#=============== GITHUB ==============\
+	\n\nvar_github_link=\"%s\" \
+	\npath_folder_github=\"%s\" \
+	\ngithub_folder=(%s)\
+	\n\n#=============== INTRA ==============\
+	\n\npath_folder_intra=\"%s\" \
+	\nintra_folder=(%s)\
+	\nvar_links_intra=(%s)\n"\
+	 "$var_login" "$var_github_link" "$path_folder_github" "$(IFS=' '; echo "${github_folder[*]}")" "$path_folder_intra" "$(IFS=' '; echo "${intra_folder[*]}")" "$(IFS=' '; echo "${var_links_intra[*]}")" > "$GS_param"
     
     # Modification des permissions du fichier de paramètres
     chmod 777 "$GS_param"
