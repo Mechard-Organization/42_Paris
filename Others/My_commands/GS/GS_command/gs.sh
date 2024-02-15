@@ -11,8 +11,6 @@ alias gspl="git_simple"
 
 function git_simple {
 
-	source /home/mechard/.GS/bin/path_gs
-
     ######### VARIABLES NIVEAU 1 #########
 
     # Options de configuration
@@ -23,8 +21,8 @@ function git_simple {
     local var_intra=("-i" "-intra")
 	# Options pour spécifier le chemin
 	local var_path=("-p" "-path")
-	# Options pour mettre a jour les dossiers
-	local var_update=("-u" "-update" "-a" "-add" )
+	# Options pour spécifier le dossier
+	local var_update=("-u" "-update" "-f")
 
     ######### VARIABLES NIVEAU 2 #########
 
@@ -56,7 +54,9 @@ function git_simple {
 
     ## LOCAL ##
     # Chargement des fonctions auxiliaires
+	source /home/mechard/.GS/bin/path_gs
 	. $GS_bin/tools_gs.sh
+	. $GS_bin/path_gs
 	. $GS_bin/push_folder.sh
 	. $GS_bin/clone_folder.sh
 	. $GS_bin/delete_folder.sh
@@ -106,7 +106,7 @@ function git_simple {
 
         fi
 
-	# Commandes concernant la maj des dossiers
+	# Commandes concernant l'ajout un dossier
     elif [[ " ${var_update[@]} " =~ " $1 " ]]; then
 
         # Ajoute les dossiers GitHub et Intra
@@ -140,9 +140,6 @@ function git_simple {
             
 			# Deplacement vers Github ou l'Intra : cas Github
 			move_to -g
-			if [[ " ${var_move[@]} " =~ " $2 " ]]; then
-				return
-			fi
 
         fi
 		
@@ -305,7 +302,7 @@ function git_simple {
         	echo "\033[31mUne erreur est survenue !\033[0m"
 			return
         fi
-	
+
 	# Commandes concernant les dossiers de l'Intra
 	elif [[ " ${var_intra[@]} " =~ " $1 " ]]; then
 
@@ -314,9 +311,6 @@ function git_simple {
             
 			# Exécute le script de deplacement vers le dossier Intra
 			move_to -i
-			if [[ " ${var_move[@]} " =~ " $2 " ]]; then
-				return
-			fi
 
         fi
 

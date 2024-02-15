@@ -1,30 +1,5 @@
 #!/bin/bash
 
-# Fonction pour écrire les variables dans le fichier de paramètres
-write_to_param_file() {
-
-	source ~/.GS/bin/path_gs
-
-    # Écriture des variables dans le fichier de paramètres
-    printf "#=============== LOGIN ==============\
-	\n\nvar_login=\"%s\" \
-	\n\n#=============== GITHUB ==============\
-	\n\nvar_github_link=\"%s\" \
-	\npath_folder_github=\"%s\" \
-	\ngithub_folder=(%s)\
-	\n\n#=============== INTRA ==============\
-	\n\npath_folder_intra=\"%s\" \
-	\nintra_folder=(%s)\
-	\nvar_links_intra=(%s)\n"\
-	 "$var_login" "$var_github_link" "$path_folder_github" "$(IFS=' '; echo "${github_folder[*]}")" "$path_folder_intra" "$(IFS=' '; echo "${intra_folder[*]}")" "$(IFS=' '; echo "${var_links_intra[*]}")" > "$GS_param"
-    
-    # Modification des permissions du fichier de paramètres
-    chmod 777 "$GS_param"
-    
-    # Sourcing du fichier de paramètres pour mettre à jour les variables dans le script
-    source "$GS_param"
-}
-
 # Fonction pour vérifier la réponse (Yes/No)
 verif_answer() {
     # Récupérer la réponse passée en argument
@@ -60,7 +35,7 @@ intra_connection(){
 
 	# Demande le login à l'utilisateur puis fait une mise à jour des variables dans log.txt
 	echo -en "\nLogin        : \033[32m"
-	read -e var_login || write_to_param_file
+	read login || write_to_param_file
 	echo -en "\033[0m"
 
 	# Demande le mot de passe de l'utilisateur en remplaçant les caractères par des "*" et en terminant par un \n
@@ -69,13 +44,28 @@ intra_connection(){
 	    if [[ -z $char ]]; then
 	        break
 	    fi
-
-		echo -n "*"
+	    echo -n "*"
 	    password+="$char"
 	done
 	echo -e "\033[0m\n"
+	
 	# Connecte l'utilisateur et sauvegarde ces cookies pour permettre la récupération des projets Intra
-	curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" -b "$GS_data/cookie.out" -d "username=${var_login}&password=${password}" -c "$GS_data/cookie_sessions.out" -b "$GS_data/cookie.out" -L --max-redirs 2 -o /dev/null $post_link
+	curl -s -X POST -H "Content-Type: application/x-www-form-urlencoded" -b "$GS_data/cookie.out" -d "username=${login}&password=${password}" -c "$GS_data/cookie_sessions.out" -b "$LI_data/cookie.out" -L --max-redirs 2 -o /dev/null $post_link
+}
+
+
+# Fonction pour écrire les variables dans le fichier de paramètres
+write_to_param_file() {
+    # Écriture des variables dans le fichier de paramètres
+    printf "var_login=\"%s\"\nvar_github_link=\"%s\"\npath_folder_github=\"%s\"\ngithub_folder=(%s)\npath_folder_intra=\"%s\"\nintra_folder=(%s)\nvar_links_intra=(%s)\n" \
+        "$var_login" "$var_github_link" "$path_folder_github" "$(IFS=' '; echo "${github_folder[*]}")" "$path_folder_intra" "$(IFS=' '; echo "${intra_folder[*]}")" \
+        "$(IFS=' '; echo "${var_links_intra[*]}")" > "$GS_param"
+    
+    # Modification des permissions du fichier de paramètres
+    chmod 777 "$GS_param"
+    
+    # Sourcing du fichier de paramètres pour mettre à jour les variables dans le script
+    source "$GS_param"
 }
 
 # Fonction pour déplacer vers un dossier GitHub ou Intra
@@ -111,7 +101,7 @@ move_to() {
         verif_answer "$var_answer"  # Appel à la fonction de vérification de la réponse
 
         # Vérifier si la réponse est négative
-        if [[ "$?" == 0 ]]; then
+        if [[ "$?" == 1 ]]; then
             
             previous_location=$(pwd)  # Enregistrer l'emplacement précédent
 			cd $path_folder_intra  # Se déplacer vers le dossier Intra
@@ -125,10 +115,10 @@ move_to() {
 
 }
 
+
+
 # Fonction pour obtenir le chemin du répertoire à utiliser pour le clonage de dossiers GitHub ou Intra.
 get_folder() {
-
-	source "$GS_param"
 
     # Définition des options pour GitHub et Intra.
     local github=("-g" "-github")
@@ -174,11 +164,11 @@ get_folder() {
 					return
 				fi
 			fi
-            echo -ne "Quel repertoire voulez-vous utilisez ? \033[33m$HOME/"
-            read -e -r path_github
+            echo -ne "Quel repertoire voulez-vous utilisez ? \033[33m/home/$var_login/"
+            read -r path_github
 			echo -en "\033[0m"
             if [[ -n "$path_github" ]]; then
-                path_folder_github=$HOME/$path_github/
+                path_folder_github=/home/$var_login/$path_github/
             else
                 echo -e "\033[31mUne erreur est survenue ! Veuillez recommencer\033[0m"
             fi
@@ -198,11 +188,11 @@ get_folder() {
 					return
 				fi
 			fi
-            echo -ne "Quel repertoire voulez-vous utilisez ? \033[33m$HOME/"
-            read -e -r path_intra
+            echo -ne "Quel repertoire voulez-vous utilisez ? \033[33m/home/$var_login/"
+            read -r path_intra
 			echo -en "\033[0m"
             if [[ -n "$path_intra" ]]; then
-                path_folder_intra=$HOME/$path_intra/
+                path_folder_intra=/home/$var_login/$path_intra/
             else
 				echo -e "\033[31mUne erreur est survenue ! Veuillez recommencer\033[0m"
             fi
@@ -245,6 +235,9 @@ get_project () {
     # Extraction des projets terminés
 	n_line=$(echo "$response" | cat -n | grep ">finish" | awk '{print $1}')
 	for i in $n_line; do
+
+		echo "bjr2"
+
 		# Extraction de la partie du HTML contenant le lien du projet
 		rsp=$(echo "$response" | head -n $(($i + 6)) | tail -n 7 | grep "<a href=" | cut -c 24-)
 		
@@ -336,11 +329,10 @@ get_project () {
 	write_to_param_file
 }
 
+
 # Fonction pour ajouter un dossier GitHub ou Intra
 add_folder() {
-
-	source "$GS_param"
-
+    
     local github=("-g" "-github")  # Options pour les dossiers GitHub
     local intra=("-i" "-intra")     # Options pour les dossiers Intra
 
@@ -351,7 +343,7 @@ add_folder() {
         while true; do
             
             # Demander à l'utilisateur s'il souhaite ajouter un dossier GitHub
-            echo -en "Voulez-vous ajouter un dossier GitHub ? \033[33m(Yes/No)\033[0m "
+            echo -n "Voulez-vous ajouter un dossier GitHub ? \033[33m(Yes/No)\033[0m "
             read -r var_answer
             verif_answer "$var_answer"  # Appel à la fonction de vérification de la réponse
 
