@@ -1,0 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/16 15:23:35 by mechard           #+#    #+#             */
+/*   Updated: 2024/02/22 16:03:26 by mechard          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PIPEX_H
+# define PIPEX_H
+# include "../tools/ft_printf/ft_printf.h"
+# include "../tools/get_next_line/get_next_line.h"
+# include "../tools/libft/libft.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <sys/wait.h>
+# include <unistd.h>
+
+# ifndef PATH
+#  define PATH "PATH="
+# endif
+
+# ifndef PATH_SIZE
+#  define PATH_SIZE 5
+# endif
+
+# ifndef PATH_ENV_SEPARATOR
+#  define PATH_ENV_SEPARATOR ':'
+# endif
+
+typedef struct s_cmd
+{
+	char	*path;
+	char	**cmd;
+}			t_cmd;
+
+typedef struct s_pipex
+{
+	char	*outfile;
+	char	*infile;
+	char	**path;
+	char	**env;
+	int		prev_pipe;
+	t_cmd	cmd;
+	int		pipefd[2];
+	int		pids[1024];
+	int		size;
+}			t_pipex;
+
+int			open_fd(t_pipex *pipex, int i);
+int			wait_pids(int *pids);
+
+char		*find_path(char **possible_path, char *cmd);
+char		**get_env_path(char **env);
+char		*build_cmd(char *path, char *cmd);
+char		**build_argv(t_pipex *pipex);
+
+void		child_process(t_pipex *pipex, char *cmd, int i);
+void		init_pipex(t_pipex *pipex, int ac, char **av, char **env);
+void		free_dstr(char **dstr);
+
+#endif
