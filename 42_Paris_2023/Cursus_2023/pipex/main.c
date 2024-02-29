@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 12:38:53 by mechard           #+#    #+#             */
-/*   Updated: 2024/02/22 16:03:25 by mechard          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:24:12 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,6 @@ int	wait_pids(int *pids)
 	return (1);
 }
 
-void	init_pipex(t_pipex *pipex, int ac, char **av, char **env)
-{
-	pipex->env = env;
-	pipex->size = ac - 3;
-	pipex->infile = av[1];
-	pipex->outfile = av[ac - 1];
-	pipex->path = get_env_path(env);
-	pipex->prev_pipe = -1;
-}
-
 int	main(int ac, char **av, char **env)
 {
 	t_pipex	pipex;
@@ -66,15 +56,15 @@ int	main(int ac, char **av, char **env)
 
 	if (ac < 5 || ac > 1024)
 		return (ft_printf("Il faut entre 5 et 1024 arguments\n"), EXIT_FAILURE);
-	init_pipex(&pipex, ac, av, env);
+	ft_init(&pipex, ac, av, env);
 	i = 0;
-	while (i < (ac - 3))
+	while (i < (ac - (1 + pipex.j)))
 	{
-		if (i < (ac - 4))
+		if (i < (ac - (2 + pipex.j)))
 			pipe(pipex.pipefd);
 		pipex.pids[i] = fork();
 		if (pipex.pids[i] == 0)
-			child_process(&pipex, av[2 + i], i);
+			child_process(&pipex, av[pipex.j + i], i);
 		if (pipex.prev_pipe != -1)
 			close(pipex.prev_pipe);
 		pipex.prev_pipe = pipex.pipefd[0];

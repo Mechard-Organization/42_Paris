@@ -6,36 +6,36 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:28:26 by mechard           #+#    #+#             */
-/*   Updated: 2024/02/22 11:39:43 by mechard          ###   ########.fr       */
+/*   Updated: 2024/02/28 11:03:00 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-// char	*ft_strjoin_gnl(char *s1, const char *s2)
-// {
-// 	size_t	s1_len;
-// 	size_t	s2_len;
-// 	size_t	s_len;
-// 	char	*r;
+char	*ft_strjoin_gnl(char *s1, const char *s2)
+{
+	size_t	s1_len;
+	size_t	s2_len;
+	size_t	s_len;
+	char	*r;
 
-// 	if (!s1 && !s2)
-// 		return (ft_strdup(""));
-// 	if (s1 && !s2)
-// 		return (ft_strdup(s1));
-// 	if (!s1 && s2)
-// 		return (ft_strdup(s2));
-// 	s1_len = ft_strlen(s1);
-// 	s2_len = ft_strlen(s2);
-// 	s_len = s1_len + s2_len + 1;
-// 	r = malloc(sizeof(char) * s_len);
-// 	if (!r)
-// 		return (0);
-// 	ft_memmove(r, (void *)s1, s1_len);
-// 	ft_memmove(r + s1_len, (void *)s2, s2_len);
-// 	r[s_len - 1] = '\0';
-// 	return (free(s1), r);
-// }
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
+	if (!s1 && s2)
+		return (ft_strdup(s2));
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	s_len = s1_len + s2_len + 1;
+	r = malloc(sizeof(char) * s_len);
+	if (!r)
+		return (0);
+	ft_memmove(r, (void *)s1, s1_len);
+	ft_memmove(r + s1_len, (void *)s2, s2_len);
+	r[s_len - 1] = '\0';
+	return (free(s1), r);
+}
 
 size_t	ft_strlen_gnl(char *s)
 {

@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/02/22 16:21:49 by mechard          ###   ########.fr        #
+#    Updated: 2024/02/28 12:30:22 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME			= pipex
 HEADER			= inc/pipex.h
-SRC_PIPEX		= pipex.c main.c
+SRC_PIPEX		= pipex.c main.c tools_pipex.c
 
 CC 				= cc
 CFLAGS			= -Wall -Wextra -Werror -g3
@@ -27,8 +27,8 @@ LIB				= $(addprefix $(TOOLS), libft/)
 NAME_LIB		= libft.a
 LIB_A			= $(addprefix $(LIB), $(NAME_LIB))
 
-SRC_L			= ft_putchar_fd.c ft_strlen.c ft_putstr_fd.c ft_putnbr_fd.c ft_strjoin.c\
-				ft_strdup.c
+SRC_L			= ft_putchar_fd.c ft_strlen.c ft_putstr_fd.c ft_putnbr_fd.c ft_strjoin.c \
+				ft_strdup.c ft_strncmp.c
 SRC_LIB			= $(addprefix $(LIB), $(SRC_L))
 
 #==================FT_PRINTF==================
@@ -46,7 +46,7 @@ SRC_GNL			= $(addprefix $(GNL), $(SRC_G))
 
 #===================SRC_GBL===================
 
-SRCS			= $(SRC_PIPEX) $(SRC_GNL)
+SRCS			= $(SRC_PIPEX) $(SRC_GNL) $(LIB_A) $(LIB_PRTF_A)
 
 #====================COLOR====================
 
@@ -78,15 +78,15 @@ GREY2	= \033[47m
 
 #====================RULES====================
 
-$(NAME) : $(SRC_MAN)
-	@$(CC) $(CFLAGS) $(SRCS) $(LIB_A) $(LIB_PRTF_A) -o $(NAME)
+$(NAME) : $(SRCS)
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
 all : $(NAME)
 	@echo "==========$(BLUE1)LIBFT$(D_COLOR)==========\n"
-	@ make --no-print-directory -C $(LIB)
+	@ make --no-print-directory -C $(LIB) re
 	@echo "Libft : $(GREEN1)Ok$(D_COLOR)\n"
 	@echo "==========$(BLUE1)FT_PRINTF$(D_COLOR)=======\n"
-	@ make --no-print-directory -C $(LIB_PRTF)
+	@ make --no-print-directory -C $(LIB_PRTF) re
 	@echo "ft_printf : $(GREEN1)Ok$(D_COLOR)\n"
 	@echo "==========$(YELLOW1)PIPEX$(D_COLOR)==========\n"
 	@echo "./pipex : $(GREEN1)Ok$(D_COLOR)\n"

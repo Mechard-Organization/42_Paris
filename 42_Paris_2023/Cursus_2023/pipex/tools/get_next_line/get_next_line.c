@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:28:12 by mechard           #+#    #+#             */
-/*   Updated: 2024/02/22 12:05:51 by mechard          ###   ########.fr       */
+/*   Updated: 2024/02/28 11:41:00 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_next_line(int fd)
 
 	nbytes = 1;
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
-		return (NULL);
+		return (free(line), NULL);
 	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
@@ -53,11 +53,12 @@ char	*get_next_line(int fd)
 		if (nbytes == -1)
 			return (free(buff), NULL);
 		buff[nbytes] = '\0';
-		line = ft_strjoin(line, buff);
+		line = ft_strjoin_gnl(line, buff);
+		free(buff);
 		if (!line)
 			return (free(buff), NULL);
 	}
 	res = ft_get_line(line);
 	line = ft_next_line(line);
-	return (free(buff), res);
+	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:23:35 by mechard           #+#    #+#             */
-/*   Updated: 2024/02/22 16:03:26 by mechard          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:29:04 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,23 @@ typedef struct s_pipex
 	int		pipefd[2];
 	int		pids[1024];
 	int		size;
+	int		j;
 }			t_pipex;
 
 int			open_fd(t_pipex *pipex, int i);
 int			wait_pids(int *pids);
+int			ft_read_user(char *av1, char *av2);
 
 char		*find_path(char **possible_path, char *cmd);
-char		**get_env_path(char **env);
 char		*build_cmd(char *path, char *cmd);
+char		*ft_reader(char *av2, char *res);
+char		**get_env_path(char **env);
 char		**build_argv(t_pipex *pipex);
 
 void		child_process(t_pipex *pipex, char *cmd, int i);
-void		init_pipex(t_pipex *pipex, int ac, char **av, char **env);
+void		ft_init(t_pipex *pipex, int ac, char **av, char **env);
+void		init_pipex_no_hd(t_pipex *pipex, int ac, char **av, char **env);
+void		init_pipex_w_hd(t_pipex *pipex, int ac, char **av, char **env);
 void		free_dstr(char **dstr);
 
 #endif
