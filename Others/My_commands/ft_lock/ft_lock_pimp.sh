@@ -11,6 +11,7 @@ screen_height=$(echo $screen_info | cut -d 'x' -f 2)
 choice=$(zenity --list --title="Lock select" --column="gifs" \
 	"Smoking" \
     "Manger" \
+	"Bubble_tea" \
 	"Star !" \
 	"R2D2" \
 	"Colored stars" \
@@ -33,6 +34,9 @@ if [ "$screen_info" == "1920x1080" ]; then
 	            ;;
     	    "Manger")
     	        /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Eat.gif' $((screen_width / 2 - 90)) $((screen_height / 2 - 25)) 180 180
+    	        ;;
+			"Bubble_tea")
+    	        /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Bubble_Tea.gif' $((screen_width / 2 - 85)) $((screen_height / 2 - 25)) 150 150
     	        ;;
 			"Star !")
 	            /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Stars.gif' $((screen_width / 2 - 85)) $((screen_height / 2 - 30)) 170 170
@@ -71,6 +75,9 @@ else
 	            ;;
     	    "Manger")
     	        /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Eat.gif' $((screen_width / 2 - 115)) $((screen_height / 2 - 31)) 240 240
+    	        ;;
+			"Bubble_tea")
+    	        /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Bubble_Tea.gif.gif' $((screen_width / 2 - 110)) $((screen_height / 2 - 31)) 210 210
     	        ;;
 			"Star !")
 	            /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Stars.gif' $((screen_width / 2 - 120)) $((screen_height / 2 - 40)) 230 230

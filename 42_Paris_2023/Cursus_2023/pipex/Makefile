@@ -6,47 +6,30 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/02/28 12:30:22 by mechard          ###   ########.fr        #
+#    Updated: 2024/03/04 16:25:32 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #===================VAR_GBL===================
 
 NAME			= pipex
-HEADER			= inc/pipex.h
-SRC_PIPEX		= pipex.c main.c tools_pipex.c
+HEADER			= -Iinc -Iinc/libft/inc
+SRC_PIPEX		= src/pipex.c src/main.c src/tools_pipex.c
 
 CC 				= cc
 CFLAGS			= -Wall -Wextra -Werror -g3
 
-TOOLS			= tools/
+INC				= inc/
 
 #====================LIBFT====================
 
-LIB				= $(addprefix $(TOOLS), libft/)
-NAME_LIB		= libft.a
-LIB_A			= $(addprefix $(LIB), $(NAME_LIB))
-
-SRC_L			= ft_putchar_fd.c ft_strlen.c ft_putstr_fd.c ft_putnbr_fd.c ft_strjoin.c \
-				ft_strdup.c ft_strncmp.c
-SRC_LIB			= $(addprefix $(LIB), $(SRC_L))
-
-#==================FT_PRINTF==================
-
-LIB_PRTF		= $(addprefix $(TOOLS), ft_printf/)
-NAME_PRTF		= libftprintf.a
-LIB_PRTF_A		= $(addprefix $(LIB_PRTF), $(NAME_PRTF))
-
-#================GET_NEXT_LINE================
-
-GNL				= $(addprefix $(TOOLS), get_next_line/)
-SRC_G			= get_next_line.c get_next_line_utils.c
-
-SRC_GNL			= $(addprefix $(GNL), $(SRC_G))
+LIB				= libft.a
+LIB_DIR			= $(addprefix $(INC), libft/)
+LIB_A			= $(addprefix $(LIB_DIR), $(LIB))
 
 #===================SRC_GBL===================
 
-SRCS			= $(SRC_PIPEX) $(SRC_GNL) $(LIB_A) $(LIB_PRTF_A)
+SRCS			= $(SRC_PIPEX) $(LIB_A)
 
 #====================COLOR====================
 
@@ -79,34 +62,28 @@ GREY2	= \033[47m
 #====================RULES====================
 
 $(NAME) : $(SRCS)
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+	@echo "==========$(YELLOW1)PIPEX$(D_COLOR)==========\n"
+	@$(CC) $(CFLAGS) $(SRCS) $(HEADER) -o $(NAME)
+	@echo "./pipex : $(GREEN1)Ok$(D_COLOR)\n"
+
+$(LIB_A) :
+	@ make --no-print-directory -C $(LIB_DIR) $(LIB) 
 
 all : $(NAME)
-	@echo "==========$(BLUE1)LIBFT$(D_COLOR)==========\n"
-	@ make --no-print-directory -C $(LIB) re
-	@echo "Libft : $(GREEN1)Ok$(D_COLOR)\n"
-	@echo "==========$(BLUE1)FT_PRINTF$(D_COLOR)=======\n"
-	@ make --no-print-directory -C $(LIB_PRTF) re
-	@echo "ft_printf : $(GREEN1)Ok$(D_COLOR)\n"
-	@echo "==========$(YELLOW1)PIPEX$(D_COLOR)==========\n"
-	@echo "./pipex : $(GREEN1)Ok$(D_COLOR)\n"
 
 bonus : all
 
-clean : aclean
-	@ make --no-print-directory -C $(LIB) clean
-	@ make --no-print-directory -C $(LIB_PRTF) clean
+clean :
 
-aclean :
+clean_lib :
+	@ make --no-print-directory -C $(LIB_DIR) clean
 
 fclean : clean
-	@ rm -rf $(NAME)
+	@ make --no-print-directory -C $(LIB_DIR) fclean
+	@echo "==========$(CYAN1)EXEC$(D_COLOR)===========\n"
+	@rm -rf $(NAME)
+	@echo "$(RED1)supprime !$(D_COLOR)\n"
 	
-afclean : fclean
-	@ make --no-print-directory -C $(LIB) fclean > /dev/null 2>&1
-	@ make --no-print-directory -C $(LIB_PRTF) fclean > /dev/null 2>&1
-	
-
 re : fclean all
 
 .PHONY : all, clean, fclean, re, bonus

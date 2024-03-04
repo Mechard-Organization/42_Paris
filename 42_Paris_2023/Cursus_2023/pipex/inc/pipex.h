@@ -6,15 +6,15 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:23:35 by mechard           #+#    #+#             */
-/*   Updated: 2024/02/28 12:29:04 by mechard          ###   ########.fr       */
+/*   Updated: 2024/03/04 11:40:21 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
-# include "../tools/ft_printf/ft_printf.h"
-# include "../tools/get_next_line/get_next_line.h"
-# include "../tools/libft/libft.h"
+
+# include "ft_printf.h"
+
 # include <fcntl.h>
 # include <stdio.h>
 # include <sys/wait.h>
