@@ -5,61 +5,76 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 13:03:08 by mechard           #+#    #+#             */
-/*   Updated: 2024/02/15 14:12:31 by mechard          ###   ########.fr       */
+/*   Created: 2024/03/26 18:27:01 by mechard           #+#    #+#             */
+/*   Updated: 2024/03/26 19:28:14 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <commons.h>
 
-typedef enum e_caseno
+# include "libft.h"
+# include <stdbool.h>
+
+typedef struct s_stack
 {
-	CASE_A,
-	CASE_B,
-	CASE_C,
-	CASE_D
-}			t_caseno;
+	int				cost;
+	int				nb;
+	int				index;
+	bool			cheap;
+	bool			under_moyenne;
+	struct s_stack	*next;
+	struct s_stack	*closest;
+}					t_stack;
 
-typedef struct s_case
-{
-	int		value;
-	int		caseno;
-	int		nb_op;
-	int		i;
-	int		j;
-	int		size_a;
-	int		size_b;
-	int		half_a;
-	int		half_b;
-}			t_case;
+// UTILS
+t_stack				*ft_last(t_stack *stack);
+void				ft_stackadd_back(t_stack **stack, int nbr);
+int					is_sorted_stack(t_stack **stack);
+int					stack_len(t_stack *stack);
+t_stack				*ft_highest(t_stack *stack);
+t_stack				*ft_lowest(t_stack *stack);
+t_stack				*ft_cheapest(t_stack *stack);
+int					ft_find_index(t_stack *stack, int nb);
+char				**ft_split_argv(const char *str, char charset);
+void				ft_cost(t_stack *stack_1, t_stack *stack_2);
 
-typedef struct s_marks_ret
-{
-	t_stack	*s;
-	int		n;
-}			t_marks_ret;
+// FREE
+void				free_stack(t_stack **stack);
+void				free_split(char **split);
 
-t_stack		*get_stack_min(t_stack *s);
-t_stack		*get_stack_max(t_stack *s);
-t_stack		*get_best_mark_start(t_stack *s);
-t_marks_ret	get_best_mark(t_stack *s);
+// ERROR
+int					error_repetition(t_stack *a, int nbr);
+void				error_free(t_stack **a, char **split, int flag);
 
-int			get_index(t_stack *s, int value);
-int			get_next_index(t_stack *s, int value);
-int			fill_case(t_all *all, int value, t_case *c);
-int			only_marks(t_stack *s);
-int			get_best_mark_count(t_stack *s);
+// ACTION
+void				sa(t_stack **stack_a);
+void				sb(t_stack **stack_b);
+void				ss(t_stack **stack_a, t_stack **stack_b);
+void				pa(t_stack **stack_a, t_stack **stack_b);
+void				pb(t_stack **stack_a, t_stack **stack_b);
+void				ra(t_stack **stack_a);
+void				rb(t_stack **stack_b);
+void				rr(t_stack **stack_a, t_stack **stack_b);
+void				rra(t_stack **stack_a);
+void				rrb(t_stack **stack_b);
+void				rrr(t_stack **stack_a, t_stack **stack_b);
 
-void		align_a(t_all *all);
-void		handle_5(t_all *all);
-void		init_case(t_all *all, int value, t_case *c);
-void		apply_marks(t_stack *s);
-void		swap_if_better(t_all *all, t_stack **s);
-void		process_alpha(t_all *all);
-void		get_best_case(t_all *all, t_case *c);
-void		apply_best_case(t_all *all, t_case *c);
-void		process_beta(t_all *all);
+// SORT
+void				sort_three(t_stack **stack_a);
+void				sort(t_stack **a, t_stack **b);
+void				calculate_cost_a(t_stack **a, t_stack **b);
+void				calculate_cost_b(t_stack **a, t_stack **b);
+void				a_to_b(t_stack **a, t_stack **b);
+void				b_to_a(t_stack **a, t_stack **b);
+void				reverse_both(t_stack **stack_a, t_stack **stack_b,
+						t_stack *cheap);
+void				rotate_both(t_stack **stack_a, t_stack **stack_b,
+						t_stack *cheap);
+void				node_to_topa(t_stack **a, t_stack *node);
+void				node_to_topb(t_stack **b, t_stack *node);
+void				cost_a(t_stack *a, t_stack *b);
+void				set_index(t_stack **a);
+void				set_cheapest(t_stack **a);
 
 #endif

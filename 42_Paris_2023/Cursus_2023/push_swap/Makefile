@@ -5,150 +5,92 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/15 12:50:56 by mechard           #+#    #+#              #
-#    Updated: 2024/02/15 12:52:43 by mechard          ###   ########.fr        #
+#    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
+#    Updated: 2024/03/26 19:33:01 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-UNAME_S					=	$(shell uname -s)
+#===================VAR_GBL===================
 
-NAME_PUSH_SWAP			=	push_swap
+NAME			= push_swap
+HEADER			= -Iinc -Iinc/libft/inc
 
-ifeq ($(UNAME_S),Linux)
-	CC					=	clang-9
-else
-	CC					=	clang
-endif
+CC 				= cc
+CFLAGS			= -Wall -Wextra -Werror -g3
 
-FLAGS					=	-Wall -Wextra -Werror -O3
-# FLAGS					=	-Wall -Wextra -Werror -g3 -fsanitize=address
+INC				= inc/
 
-# *** PROJECT HEADER ********************************************************* #
+SRC				= src/main.c src/sort/set_a.c src/sort/set_b.c src/sort/sort.c \
+					src/sort/sort3.c src/tools/ft_splitav.c src/tools/error/error.c \
+					src/tools/free/free.c src/tools/moove/push.c \
+					src/tools/moove/reverse_rotate.c src/tools/moove/rotate.c \
+					src/tools/moove/swap.c src/tools/stack/search.c \
+					src/tools/stack/utils.c
 
-HDIR					=	$(addprefix -I, $(HEADER_DIR))
+#====================LIBFT====================
 
-HEAD					=	$(addprefix $(HEADER_DIR), $(HEADER))
+LIB				= libft.a #inclu Libft, ft_printf, get_next_line et pipex
+LIB_DIR			= $(addprefix $(INC), libft/)
+LIB_PLACE		= $(addprefix $(LIB_DIR), exec/)
+LIB_A			= $(addprefix $(LIB_PLACE), $(LIB))
 
-HEADER_DIR				=	\
-							./includes/
+#===================SRC_GBL===================
 
-HEADER					=	\
-							commons.h \
-							color_shell.h \
-							mmalloc.h \
-							double_linked.h \
-							utils.h \
-							get_next_line.h \
+SRC_ALL			= $(SRC) $(LIB_A)
 
-# *** SRCS ******************************************************************* #
+#====================COLOR====================
 
-SRCS_DIR				=	./srcs/
+#_________RESET_COLOR__________
 
-SRCS_LIBLIST			=	\
-							lists/ft_add_node_end_np.c \
-							lists/ft_add_node_f_nextto_np.c \
-							lists/ft_add_node_f_prevto_np.c \
-							lists/ft_add_node_nextto_np.c \
-							lists/ft_add_node_prevto_np.c \
-							lists/ft_add_node_start_np.c \
-							lists/ft_del_list_np.c \
-							lists/ft_del_node_end_np.c \
-							lists/ft_del_node_np.c \
-							lists/ft_del_node_start_np.c \
-							lists/ft_foreach_node_f_np.c \
-							lists/ft_new_node.c \
-							lists/ft_swap_node_np.c \
-							lists/ft_transfere_node_np.c \
-							lists/ft_quicksort_list_np.c \
-							lists/ft_listjoin_np.c \
-							lists/ft_grab_node_np.c \
+D_COLOR = \033[0m
 
-SRCS_UTILS				=	\
-							utils/ft_atol.c \
-							utils/ft_itoa.c \
-							utils/ft_strcpy.c \
-							utils/ft_strfind.c \
-							utils/ft_strlen.c \
-							utils/ft_strncpy.c \
-							utils/ft_strsplit.c \
-							utils/ft_strsub.c \
-							utils/isnumber.c \
-							utils/try_malloc.c \
-							utils/ft_strjoin.c \
-							utils/ft_strcmp.c \
-							utils/ft_strdel.c \
-							utils/ft_strdup.c \
-							utils/ft_memcpy.c \
-							utils/nbrlen.c \
-							utils/get_next_line.c \
-							utils/quicksort.c \
-							utils/get_min_max.c \
-							utils/ft_putstr_fd.c \
-							utils/ft_putnbr.c \
+#__________COLOR_TEXT__________
 
-SRCS_OPS				=	\
-							ops/rotate.c \
-							ops/push.c \
-							ops/rrotate.c \
-							ops/swap.c \
+BLACK1	= \033[30m
+RED1	= \033[31m
+GREEN1	= \033[32m
+YELLOW1	= \033[33m
+BLUE1	= \033[34m
+PINK1	= \033[35m
+CYAN1	= \033[36m
+GREY1	= \033[37m
 
-SRCS_LIST_COMMONS		=	\
-							$(SRCS_LIBLIST) \
-							$(SRCS_UTILS) \
-							$(SRCS_OPS) \
-							error.c \
-							get_stack.c \
-							get_size_stack.c \
+#_______COLOR_BACKGROUND_______
 
-SRCS_DIR_PUSH_SWAP		=	push_swap/
+BLACK2	= \033[40m
+RED2	= \033[41m
+GREEN2	= \033[42m
+YELLOW2	= \033[43m
+BLUE2	= \033[44m
+PINK2	= \033[45m
+CYAN2	= \033[46m
+GREY2	= \033[47m
 
-SRCS_LIST_PUSH_SWAP_BRUT	=	\
-								get_stack_limits.c \
-								main.c \
-								marks_handle.c \
-								process_alpha.c \
-								process_beta.c \
+#====================RULES====================
 
-SRCS_LIST_PUSH_SWAP_P	=	$(addprefix $(SRCS_DIR_PUSH_SWAP), $(SRCS_LIST_PUSH_SWAP_BRUT))
+$(NAME) : $(SRC_ALL)
+	@echo "========$(YELLOW1)PUSH_SWAP$(D_COLOR)========\n"
+	@$(CC) $(CFLAGS) $(SRC_ALL) $(HEADER) -o $(NAME)
+	@echo "./push_swap : $(GREEN1)Ok$(D_COLOR)\n"
 
-SRCS_LIST_PUSH_SWAP		=	\
-							$(SRCS_LIST_COMMONS) \
-							$(SRCS_LIST_PUSH_SWAP_P) \
+$(LIB_A) :
+	@ make --no-print-directory -C $(LIB_DIR) $(LIB) 
 
-SRCS_PUSH_SWAP			=	$(addprefix $(SRCS_DIR), $(SRCS_LIST_PUSH_SWAP))
+all : $(NAME)
 
-# *** OBJS ******************************************************************* #
+bonus : all
 
-OBJS_DIR				=	./objs/
+clean : clean_lib
 
-OBJS_DIR_PUSH_SWAP		=	$(addprefix $(OBJS_DIR), push_swap/)
+clean_lib :
+	@make --no-print-directory -C $(LIB_DIR) clean
 
-OBJS_LIST_PUSH_SWAP		=	$(patsubst %.c, %.o, $(SRCS_LIST_PUSH_SWAP))
+fclean : clean
+	@make --no-print-directory -C $(LIB_DIR) fclean
+	@echo "==========$(CYAN1)EXEC$(D_COLOR)===========\n"
+	@rm -rf $(NAME)
+	@echo "$(RED1)supprime !$(D_COLOR)\n"
+	
+re : fclean all
 
-OBJS_PUSH_SWAP			=	$(addprefix $(OBJS_DIR), $(OBJS_LIST_PUSH_SWAP))
-
-# *** RULES ****************************************************************** #
-
-.PHONY: clean fclean all re norm fclean_push_swap re_push_swap
-
-all:
-	@ make $(NAME_PUSH_SWAP) -j
-
-$(NAME_PUSH_SWAP): $(SRCS_PUSH_SWAP)
-	@ $(CC) $(FLAGS) $(HDIR) $(SRCS_PUSH_SWAP) -o $@
-	@ printf "\033[31m Program \033[32m$(NAME_PUSH_SWAP) : \033[34mCompilation succeed\033[0m                           \n"; \
-
-norm:
-	@ norminette $(HEADER_DIR) $(SRCS_PUSH_SWAP)
-
-clean:
-	@ rm -rf $(OBJS_DIR)
-
-fclean: clean
-	@ rm -f $(NAME_PUSH_SWAP)
-	@ rm -rf $(NAME_PUSH_SWAP).dSYM
-
-
-re: fclean all
-
-.PHONY : all, clean, fclean, re
+.PHONY : all, clean, fclean, re, bonus
