@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:37:42 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/26 19:26:20 by mechard          ###   ########.fr       */
+/*   Updated: 2024/03/27 09:54:56 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ static void	fill_dest(const char *str, char charset, char **dest,
 	}
 	dest[k] = NULL;
 }
-
-
 
 char	**ft_split_argv(const char *str, char charset)
 {

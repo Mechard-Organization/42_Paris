@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/03/26 19:33:01 by mechard          ###   ########.fr        #
+#    Updated: 2024/04/01 21:15:47 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,23 +20,31 @@ CFLAGS			= -Wall -Wextra -Werror -g3
 
 INC				= inc/
 
-SRC				= src/main.c src/sort/set_a.c src/sort/set_b.c src/sort/sort.c \
-					src/sort/sort3.c src/tools/ft_splitav.c src/tools/error/error.c \
-					src/tools/free/free.c src/tools/moove/push.c \
-					src/tools/moove/reverse_rotate.c src/tools/moove/rotate.c \
-					src/tools/moove/swap.c src/tools/stack/search.c \
-					src/tools/stack/utils.c
+TOOLS			= ft_splitav.c error.c free.c push.c reverse_rotate.c rotate.c \
+					swap.c search.c utils.c
+TOOLS_PLACE		= $(addprefix tools/, $(TOOLS)) #chemin de tout les outils (les mooves, les free, les erreurs,... etc)
+
+SORT			= set_a.c set_b.c sort.c sort3.c
+SORT_PLACE		= $(addprefix sort/, $(SORT)) #chemin des fonstions de tri
+
+FILES			= main.c $(TOOLS_PLACE) $(SORT_PLACE)
+SRC				= $(addprefix src/, $(FILES)) #chemin complet pour tout les SRCS
+
+SUCCESS	= Ok
+DELETED	= supprime !
+SILENCE	= > /dev/null 2>&1
 
 #====================LIBFT====================
 
-LIB				= libft.a #inclu Libft, ft_printf, get_next_line et pipex
+LIB				= libft
+LIB_A			= $(addprefix $(LIB), .a) #inclu Libft, ft_printf, get_next_line et pipex
 LIB_DIR			= $(addprefix $(INC), libft/)
 LIB_PLACE		= $(addprefix $(LIB_DIR), exec/)
-LIB_A			= $(addprefix $(LIB_PLACE), $(LIB))
+LIB_EXEC		= $(addprefix $(LIB_PLACE), $(LIB_A)) #chemin complet pour libft.a
 
 #===================SRC_GBL===================
 
-SRC_ALL			= $(SRC) $(LIB_A)
+SRC_ALL			= $(SRC) $(LIB_EXEC) #variable pour tout les SRC et libft.a
 
 #====================COLOR====================
 
@@ -69,12 +77,13 @@ GREY2	= \033[47m
 #====================RULES====================
 
 $(NAME) : $(SRC_ALL)
-	@echo "========$(YELLOW1)PUSH_SWAP$(D_COLOR)========\n"
+	@echo "========$(YELLOW1)PUSH_SWAP$(D_COLOR)========"
+	@make --no-print-directory -C ./ norminette
 	@$(CC) $(CFLAGS) $(SRC_ALL) $(HEADER) -o $(NAME)
 	@echo "./push_swap : $(GREEN1)Ok$(D_COLOR)\n"
 
-$(LIB_A) :
-	@ make --no-print-directory -C $(LIB_DIR) $(LIB) 
+$(LIB_EXEC) :
+	@make --no-print-directory -C $(LIB_DIR) $(LIB_A) 
 
 all : $(NAME)
 
@@ -90,7 +99,23 @@ fclean : clean
 	@echo "==========$(CYAN1)EXEC$(D_COLOR)===========\n"
 	@rm -rf $(NAME)
 	@echo "$(RED1)supprime !$(D_COLOR)\n"
-	
+
+norminette :
+	-@norminette src/ > res_cmd || true
+	-@grep 'Error' res_cmd > norminette || true
+	-@norminette inc/push_swap.h > res_cmd || true
+	-@grep "Error" res_cmd >> norminette || true
+	@rm res_cmd
+	@if [ ! -s norminette ]; then \
+    	rm norminette; \
+		echo "\nnorminette des .c de $(NAME) : $(GREEN1)OK!$(D_COLOR)\n"; \
+	else \
+   		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur!$(D_COLOR)\n"; \
+		cat norminette; \
+		echo "\n"; \
+		rm norminette; \
+	fi
+
 re : fclean all
 
 .PHONY : all, clean, fclean, re, bonus

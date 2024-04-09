@@ -28,7 +28,7 @@ if [ "$screen_info" == "1920x1080" ]; then
 	    # Exécuter la commande en fonction du choix de l'utilisateur
 	    case "$choice" in
 			"BDE")
-				/sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Affiche_Ecran_Blackout_2.png' $((screen_width / 2 - 65)) $((screen_height / 2 - 5)) $((screen_width / 2)) $((screen_height / 2))
+				/sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Affiche_Ecran_Blackout_2.png' 0 0 100% 100%
 				;;
 	        "One piece")
 	            /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Hat_Luffy.gif' $((screen_width / 2 - 65)) $((screen_height / 2 - 5)) 130 130
@@ -72,7 +72,7 @@ else
 	    # Exécuter la commande en fonction du choix de l'utilisateur
 	    case "$choice" in
 			"BDE")
-				/sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Affiche_Ecran_Blackout_2.png' $((screen_width / 2 - 65)) $((screen_height / 2 - 5)) 130 130
+				/sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Affiche_Ecran_Blackout_2.png' 0 0 100% 100%
 				;;
 	        "One piece")
 	            /sgoinfre/goinfre/Perso/jmaia/Public/pimp_my_lock_v2/pimp_my_lock '/home/mechard/Pictures/.Pictures/Lock_screen/Hat_Luffy.gif' $((screen_width / 2 - 65)) $((screen_height / 2 + 10)) 130 130

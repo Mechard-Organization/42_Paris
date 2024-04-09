@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:27:59 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/26 19:25:52 by mechard          ###   ########.fr       */
+/*   Updated: 2024/03/27 09:55:49 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "get_next_line.h"
+# include "ft_printf.h"
+# include "pipex.h"
 
 typedef struct s_list
 {
@@ -81,9 +84,5 @@ t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
-
-# include "get_next_line.h"
-# include "ft_printf.h"
-# include "pipex.h"
 
 #endif

@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/03/26 19:26:06 by mechard          ###   ########.fr        #
+#    Updated: 2024/04/01 21:09:38 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,8 @@ GREY2	= \033[47m
 #====================RULES====================
 
 $(OBJS): $(SRCS)
-	@echo "==========$(YELLOW1)LIBFT$(D_COLOR)==========\n"
+	@echo "==========$(YELLOW1)LIBFT$(D_COLOR)=========="
+	@make --no-print-directory -C ./ norminette
 	@$(CC) $(TO_OBJ) $(SRCS)
 	@mkdir -p $(OBJ_DIR)
 	@mv $(OBJ) $(OBJ_DIR)
@@ -109,6 +110,22 @@ fclean : clean
 	@echo "=========$(CYAN1)LIBFT.A$(D_COLOR)=========\n"
 	@rm -rf $(EXEC_DIR) $(SILENCE)
 	@echo "$(RED1)$(DELETED)$(D_COLOR)\n"
+
+norminette : $(SRCS)
+	-@norminette src/ > res_cmd || true
+	-@grep 'Error' res_cmd > norminette || true
+	-@norminette inc/ > res_cmd || true
+	-@grep "Error" res_cmd >> norminette || true
+	@rm res_cmd
+	@if [ ! -s norminette ]; then \
+    	rm norminette; \
+		echo "\nnorminette des .c de $(NAME) : $(GREEN1)OK!$(D_COLOR)\n"; \
+	else \
+   		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur!$(D_COLOR)\n"; \
+		cat norminette; \
+		echo "\n"; \
+		rm norminette; \
+	fi
 
 re : fclean all
 

@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:01 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/26 19:28:14 by mechard          ###   ########.fr       */
+/*   Updated: 2024/03/27 09:41:54 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,27 +27,18 @@ typedef struct s_stack
 	struct s_stack	*closest;
 }					t_stack;
 
-// UTILS
-t_stack				*ft_last(t_stack *stack);
-void				ft_stackadd_back(t_stack **stack, int nbr);
 int					is_sorted_stack(t_stack **stack);
 int					stack_len(t_stack *stack);
-t_stack				*ft_highest(t_stack *stack);
-t_stack				*ft_lowest(t_stack *stack);
-t_stack				*ft_cheapest(t_stack *stack);
 int					ft_find_index(t_stack *stack, int nb);
-char				**ft_split_argv(const char *str, char charset);
-void				ft_cost(t_stack *stack_1, t_stack *stack_2);
+int					error_repetition(t_stack *a, int nbr);
 
-// FREE
+char				**ft_split_argv(const char *str, char charset);
+
+void				ft_stackadd_back(t_stack **stack, int nbr);
+void				ft_cost(t_stack *stack_1, t_stack *stack_2);
 void				free_stack(t_stack **stack);
 void				free_split(char **split);
-
-// ERROR
-int					error_repetition(t_stack *a, int nbr);
 void				error_free(t_stack **a, char **split, int flag);
-
-// ACTION
 void				sa(t_stack **stack_a);
 void				sb(t_stack **stack_b);
 void				ss(t_stack **stack_a, t_stack **stack_b);
@@ -59,8 +50,6 @@ void				rr(t_stack **stack_a, t_stack **stack_b);
 void				rra(t_stack **stack_a);
 void				rrb(t_stack **stack_b);
 void				rrr(t_stack **stack_a, t_stack **stack_b);
-
-// SORT
 void				sort_three(t_stack **stack_a);
 void				sort(t_stack **a, t_stack **b);
 void				calculate_cost_a(t_stack **a, t_stack **b);
@@ -76,5 +65,10 @@ void				node_to_topb(t_stack **b, t_stack *node);
 void				cost_a(t_stack *a, t_stack *b);
 void				set_index(t_stack **a);
 void				set_cheapest(t_stack **a);
+
+t_stack				*ft_last(t_stack *stack);
+t_stack				*ft_highest(t_stack *stack);
+t_stack				*ft_lowest(t_stack *stack);
+t_stack				*ft_cheapest(t_stack *stack);
 
 #endif
