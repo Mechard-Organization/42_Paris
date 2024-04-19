@@ -21,27 +21,26 @@ t_stack	*ft_last(t_stack *stack)
 	return (stack);
 }
 
-void	ft_stackadd_back(t_stack **stack, int nbr)
+int	ft_stackadd_back(t_stack **stack, int nbr)
 {
 	t_stack	*new;
 	t_stack	*last;
 
 	if (stack == NULL)
-		return ;
+		return (1);
 	new = malloc(sizeof(t_stack));
-	if (new == NULL)
-		return ;
+	if (!new)
+		return (1);
 	new->nb = nbr;
 	new->next = NULL;
-	if (*stack == NULL)
-	{
+	if (!*stack)
 		*stack = new;
-	}
 	else
 	{
 		last = ft_last(*stack);
 		last->next = new;
 	}
+	return (0);
 }
 
 int	stack_len(t_stack *stack)

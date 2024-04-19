@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:27:01 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/27 09:41:54 by mechard          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:50:53 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int					is_sorted_stack(t_stack **stack);
 int					stack_len(t_stack *stack);
 int					ft_find_index(t_stack *stack, int nb);
 int					error_repetition(t_stack *a, int nbr);
+int					ft_stackadd_back(t_stack **stack, int nbr);
 
 char				**ft_split_argv(const char *str, char charset);
 
-void				ft_stackadd_back(t_stack **stack, int nbr);
 void				ft_cost(t_stack *stack_1, t_stack *stack_2);
 void				free_stack(t_stack **stack);
 void				free_split(char **split);

@@ -20,6 +20,8 @@ static char	**allocate_dest(int word_count)
 	if (!dest)
 		return (NULL);
 	dest[0] = ft_strdup("./push_swap");
+	if (!dest[0])
+		return (0);
 	return (dest);
 }
 

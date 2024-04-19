@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 19:08:24 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/26 19:15:16 by mechard          ###   ########.fr       */
+/*   Updated: 2024/04/19 15:44:28 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ long long	ft_atol(const char *str)
 			sign = -sign;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
+		if (res > (2147483647 - (str[i] - '0')) / 10)
+			return (LLONG_MAX);
 		res = res * 10 + (str[i] - 48);
 		i++;
 	}

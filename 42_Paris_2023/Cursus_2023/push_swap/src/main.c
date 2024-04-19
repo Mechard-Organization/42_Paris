@@ -6,11 +6,20 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:44 by mechard           #+#    #+#             */
-/*   Updated: 2024/04/01 21:09:24 by mechard          ###   ########.fr       */
+/*   Updated: 2024/04/19 17:54:37 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_verif_argc(int argc, char **argv)
+{
+	if (argc == 1)
+		return (0);
+	else if (argc == 2 && !argv[1][0])
+		return (ft_printf("Error\n"), 1);
+	return (2);
+}
 
 void	ft_arg_to_stack(t_stack **stack, char **argv, int flag)
 {
@@ -27,7 +36,8 @@ void	ft_arg_to_stack(t_stack **stack, char **argv, int flag)
 			error_free(stack, argv, flag);
 		if (error_repetition(*stack, (int)nbr))
 			error_free(stack, argv, flag);
-		ft_stackadd_back(stack, (int)nbr);
+		if (ft_stackadd_back(stack, (int)nbr) == 1)
+			error_free(stack, argv, flag);
 		++i;
 	}
 	if (flag)
@@ -41,12 +51,12 @@ int	main(int argc, char **argv)
 
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc == 1)
-		return (0);
-	else if (argc == 2 && !argv[1][0])
-		return (ft_printf("Error\n"), 1);
+	if (argc < 2)
+		return (ft_verif_argc(argc, argv));
 	else if (argc == 2)
 		argv = ft_split_argv(argv[1], ' ');
+	if (!argv)
+		return (0);
 	ft_arg_to_stack(&stack_a, argv, argc == 2);
 	stack_b = NULL;
 	if (!is_sorted_stack(&stack_a))

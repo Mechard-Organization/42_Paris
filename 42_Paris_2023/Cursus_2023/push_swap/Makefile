@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/04/01 21:15:47 by mechard          ###   ########.fr        #
+#    Updated: 2024/04/11 14:54:18 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@
 
 NAME			= push_swap
 HEADER			= -Iinc -Iinc/libft/inc
+TESTER			= complexity
 
 CC 				= cc
 CFLAGS			= -Wall -Wextra -Werror -g3
@@ -80,7 +81,7 @@ $(NAME) : $(SRC_ALL)
 	@echo "========$(YELLOW1)PUSH_SWAP$(D_COLOR)========"
 	@make --no-print-directory -C ./ norminette
 	@$(CC) $(CFLAGS) $(SRC_ALL) $(HEADER) -o $(NAME)
-	@echo "./push_swap : $(GREEN1)Ok$(D_COLOR)\n"
+	@echo "./$(NAME) : $(GREEN1)Ok$(D_COLOR)\n"
 
 $(LIB_EXEC) :
 	@make --no-print-directory -C $(LIB_DIR) $(LIB_A) 
@@ -98,7 +99,19 @@ fclean : clean
 	@make --no-print-directory -C $(LIB_DIR) fclean
 	@echo "==========$(CYAN1)EXEC$(D_COLOR)===========\n"
 	@rm -rf $(NAME)
-	@echo "$(RED1)supprime !$(D_COLOR)\n"
+	@echo "./push_swap : $(RED1)$(DELETED)$(D_COLOR)\n"
+
+fclean_all : fclean
+	@if [ -s push_swap_tester/complexity ]; then \
+		echo "==========$(CYAN1)Complexity$(D_COLOR)===========\n"; \
+		rm -rf push_swap_tester/; \
+		echo "./$(TESTER) : $(RED1)$(DELETED)$(D_COLOR)\n"; \
+	fi
+	@if [ -s checker_linux ]; then \
+		echo "==========$(CYAN1)Checker_linux$(D_COLOR)===========\n"; \
+		rm -f ./checker_linux; \
+		echo "./checker_linux : $(RED1)$(DELETED)$(D_COLOR)\n"; \
+	fi	
 
 norminette :
 	-@norminette src/ > res_cmd || true
