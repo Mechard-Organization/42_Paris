@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_push_swap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 18:25:44 by mechard           #+#    #+#             */
-/*   Updated: 2024/04/19 18:05:10 by mechard          ###   ########.fr       */
+/*   Updated: 2024/04/25 12:07:25 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	ft_push_swap(int argc, char **argv)
 		return (0);
 	ft_arg_to_stack(&stack_a, argv, argc == 2);
 	stack_b = NULL;
-	if (!is_sorted_stack(&stack_a))
+	if (stack_a && !is_sorted_stack(&stack_a))
 	{
 		if (stack_len(stack_a) == 2)
 			sa(&stack_a);
@@ -68,7 +68,5 @@ int	ft_push_swap(int argc, char **argv)
 		else
 			sort(&stack_a, &stack_b);
 	}
-	free_stack(&stack_a);
-	free_stack(&stack_b);
-	return (0);
+	return (free_stack(&stack_a), free_stack(&stack_b), 0);
 }
