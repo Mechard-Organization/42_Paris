@@ -6,16 +6,16 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/04/25 15:14:12 by mechard          ###   ########.fr        #
+#    Updated: 2024/04/26 18:22:49 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
 EXEC_DIR	= exec/
 
-SUCCESS	= Ok
+SUCCESS	= ✅
 PREVIOUS_CONTENT := 0
-DELETED	= supprime !
+DELETED	= 💥
 SILENCE	= > /dev/null 2>&1
 MAKE	= make --no-print-directory -C ./
 FIN		= ===========END===========
@@ -101,43 +101,53 @@ GREY2	= \033[47m
 all : $(NAME)
 
 $(OBJS): $(SRCS)
+	@$(MAKE) previous_line
 	@if [ "$(PREVIOUS_CONTENT)" = "1" ]; then \
 		$(MAKE) clear_pline; \
 		echo "0" > .prev_content; \
 		$(eval PREVIOUS_CONTENT = $(shell cat .prev_content)) \
 	fi
-	@echo "==========$(YELLOW1)LIBFT$(D_COLOR)==========\n"
+	@echo "===========$(YELLOW1)ALL$(D_COLOR)==========="
 	@$(MAKE) norminette
 	@$(MAKE) lib_creation
 	@$(MAKE) end
 
 $(NAME) : $(OBJS)
 
-clean :
+clean : previous_line
 	@if [ -d "./obj" ]; then \
 		if [ "$(PREVIOUS_CONTENT)" = "1" ]; then \
 			$(MAKE) clear_pline; \
 			echo "0" > .prev_content; \
 			$(eval PREVIOUS_CONTENT = $(shell cat .prev_content)) \
 		fi; \
-		echo "========$(CYAN1)OBJ_LIBFT$(D_COLOR)========\n"; \
+		echo "==========$(CYAN1)CLEAN$(D_COLOR)=========\n"; \
 		rm -rf $(OBJ_DIR) $(SILENCE); \
-		echo "$(RED1)$(DELETED)$(D_COLOR)\n"; \
+		echo "Les .o ont ete -> $(RED1)$(DELETED)$(D_COLOR)\n"; \
 		$(MAKE) end; \
 	else \
 		echo "\rmake: Nothing to be done for 'clean'."; \
 	fi
 
 fclean : clean
+	@$(MAKE) previous_line
 	@if [ -d "./exec" ]; then \
 		if [ "$(PREVIOUS_CONTENT)" = "1" ]; then \
 			$(MAKE) clear_pline; \
+			$(MAKE) clear_pline; \
+			$(MAKE) clear_pline; \
+			$(MAKE) clear_pline; \
+			$(MAKE) clear_pline; \
+			$(MAKE) clear_pline; \
+			echo "=========$(CYAN1)FCLEAN$(D_COLOR)=========="; \
+			echo "\nLes .o ont ete -> $(RED1)$(DELETED)$(D_COLOR)"; \
 			echo "0" > .prev_content; \
 			$(eval PREVIOUS_CONTENT = $(shell cat .prev_content)) \
+		else \
+			echo "=========$(CYAN1)FCLEAN$(D_COLOR)==========\n"; \
 		fi; \
-		echo "=========$(CYAN1)LIBFT.A$(D_COLOR)=========\n"; \
 		rm -rf $(EXEC_DIR) $(SILENCE); \
-		echo "$(RED1)$(DELETED)$(D_COLOR)\n"; \
+		echo "libft.a a ete -> $(RED1)$(DELETED)$(D_COLOR)"; \
 		$(MAKE) end; \
 	else \
 		$(MAKE) clear_pline; \
@@ -152,9 +162,9 @@ norminette : $(SRCS)
 	@rm res_cmd
 	@if [ ! -s norminette ]; then \
     	rm norminette; \
-		echo "\nnorminette des .c de $(NAME) : $(GREEN1)OK!$(D_COLOR)\n"; \
+		echo "\nnorminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)"; \
 	else \
-   		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur!$(D_COLOR)\n"; \
+   		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur!$(D_COLOR)"; \
 		cat norminette; \
 		echo "\n"; \
 		rm norminette; \
@@ -166,7 +176,7 @@ lib_creation :
 	@mv $(OBJ) $(OBJ_DIR)
 	@ar rcs $(NAME) $(OBJS) $(SILENCE)
 	@ranlib $(NAME) $(SILENCE)
-	@echo "$(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)\n"
+	@echo "$(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)"
 	@mkdir -p $(EXEC_DIR)
 	@mv $(NAME) $(EXEC_DIR)
 
@@ -174,13 +184,18 @@ clear_pline :
 	@printf "\033[1A"
 	@printf "\033[K"
 
+previous_line :
+	@if [ ! -s .prev_content ]; then \
+		echo "1" > .prev_content; \
+	fi
+
 end :
 	@if [ "$(PREVIOUS_CONTENT)" = "0" ]; then \
-		echo "===========$(GREEN1)END$(D_COLOR)==========="; \
+		echo "\n===========$(GREEN1)END$(D_COLOR)==========="; \
 		echo "1" > .prev_content; \
 		$(eval PREVIOUS_CONTENT = $(shell cat .prev_content)) \
 	fi
 	
 re : fclean all
 
-.PHONY : all, clean, fclean, re, bonus
+.PHONY : all, clean, fclean, re
