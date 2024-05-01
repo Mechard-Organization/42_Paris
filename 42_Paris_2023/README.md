@@ -4,6 +4,9 @@ Folder for Cursus 2023 and the Pool at 42.
 Contain subject and code for validate the Pool in 2023.
 
 *42_Paris_2023* <br />
+[Association_2023](https://github.com/M1000-93/42_Paris/tree/main/42_Paris_2023/Association_2023) <br />
+&nbsp;&nbsp;&nbsp;[Blackout](https://github.com/M1000-93/42_Paris/tree/main/42_Paris_2023/Association_2023/Blackout) <br />
+&nbsp;&nbsp;&nbsp;[BDE](https://github.com/M1000-93/42_Paris/tree/main/42_Paris_2023/Association_2023/BDE) <br />
 [Cursus_2023](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023) <br />
 &nbsp;&nbsp;&nbsp;[libft](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023/libft) 2023 (validate) <br />
 &nbsp;&nbsp;&nbsp;[get_next_line](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023/get_next_line) 2023 (on going) <br />
