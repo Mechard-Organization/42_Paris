@@ -6,32 +6,48 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:29:38 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/21 12:44:20 by mechard          ###   ########.fr       */
+/*   Updated: 2024/05/20 12:15:18 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	close_window()
+int		close_window(void *param)
 {
-	exit(0);
-	return (0);
-}
-
-int		create_map(char **str)
-{
+	t_game *game;
 	
+	game = (t_game *)param;
+	game->is_running = 0;
+	return (0);
 }
 
-int		open_windows()
+int		key_press(int keycode, void *param)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	// printf("keycode = %d\n", keycode);
+    if (keycode == 65307 || keycode == 99)
+		close_window(param);
+    return (0);
+}	
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 800, 600, "so_long");
-	mlx_hook(win_ptr, 17, 0, close_window, NULL);
+// int		create_map(char **str)
+// {
+	
+// }
 
-	mlx_loop(mlx_ptr);
-	return (0);
+void		*open_windows()
+{
+	t_game game;
+	
+	game.is_running = 1;
+	game.mlx_ptr = mlx_init();
+	game.win_ptr = mlx_new_window(game.mlx_ptr, 800, 600, "so_long");
+	
+	printf ("mlx_hook = %d\n", mlx_hook(game.win_ptr, 17, 0, close_window, &game));
+	printf ("mlx_hook = %d\n", mlx_hook(game.win_ptr, 2, 1L<<0, key_press, &game));
+	while (game.is_running)
+	{
+		printf("ici");
+		mlx_loop(game.mlx_ptr);
+	}
+	return (game.win_ptr);
 }

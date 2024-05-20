@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:31:48 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/18 10:50:44 by mechard          ###   ########.fr       */
+/*   Updated: 2024/03/06 12:25:24 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include <unistd.h>
 
 # define UINT_PERSO_MAX 4294967295
 # define INT_PERSO_MAX 2147483647

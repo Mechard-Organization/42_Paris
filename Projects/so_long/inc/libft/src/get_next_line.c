@@ -6,11 +6,11 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:28:12 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/18 12:28:40 by mechard          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:32:20 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line.h"
 
 char	*ft_next_line(char *str)
 {
@@ -44,11 +44,11 @@ char	*get_next_line(int fd)
 	nbytes = 1;
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (free(line), NULL);
-	buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!buff)
-		return (NULL);
 	while (nbytes && !ft_new_line(line))
 	{
+		buff = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+		if (!buff)
+			return (NULL);
 		nbytes = read(fd, buff, BUFFER_SIZE);
 		if (nbytes == -1)
 			return (free(buff), NULL);
@@ -56,8 +56,9 @@ char	*get_next_line(int fd)
 		line = ft_strjoin_gnl(line, buff);
 		if (!line)
 			return (free(buff), NULL);
+		free(buff);
 	}
 	res = ft_get_line(line);
 	line = ft_next_line(line);
-	return (free(buff), res);
+	return (res);
 }
