@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:25:38 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/21 12:25:13 by mechard          ###   ########.fr       */
+/*   Updated: 2024/04/23 17:33:21 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ char	**recup_map(char *str)
 
 int	check_cara(char **map, char *cara, t_map coor, t_so_long *nb)
 {
-	while (map[coor.y])
+	while (map && map[coor.y])
 	{
 		coor.x = 0;
 		while (map[coor.y][coor.x] != '\n' && map[coor.y][coor.x])

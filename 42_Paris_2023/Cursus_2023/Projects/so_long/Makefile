@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/03/21 12:41:19 by mechard          ###   ########.fr        #
+#    Updated: 2024/05/20 13:06:11 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 NAME			= so_long
 HEADER			= -Iinc -Iinc/libft/inc -Iinc/minilibx/
 LIB_X11			= -lXext -lX11 -lm
-SRC				= so_long.c verif_map.c game.c
+SRC				= so_long.c verif_map.c game.c key.c
 SRC_PIPEX		= $(addprefix src/, $(SRC))
 
 CC 				= cc

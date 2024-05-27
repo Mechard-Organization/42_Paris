@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:37:22 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/21 12:32:59 by mechard          ###   ########.fr       */
+/*   Updated: 2024/05/27 15:49:56 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_dfree(char **str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str && str[i])
 		free(str[i++]);
 	free(str);
 }
@@ -35,17 +35,19 @@ int	verif_name(char *str)
 int	main(int ac, char **av)
 {
 	char	**map;
-	int		i;
+	t_game 	*game;
 
 	map = NULL;
 	if (ac != 2)
 		return (ft_printf("Il n'y a pas le bon nombre d'arguments\n"), 0);
 	map = verif_map(av[1], map);
-	i = 0;
-	while (map[i])
-		ft_printf("%s", map[i++]);
-	ft_printf("\n");
-	open_windows();
+	if (!map)
+		return (printf("ici"), 0);
+	game = malloc(sizeof(t_game));
+	if (!game)
+		return (0);
+	game->map = map;
 	ft_dfree(map);
+	open_windows(game);				// Fonction d'ouverture de la fenetre ! Aucun leak avant ! Fonction dans game.c
 	return (0);
 }
