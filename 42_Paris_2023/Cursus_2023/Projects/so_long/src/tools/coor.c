@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   coor.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/28 22:29:03 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/13 13:51:36 by mechard          ###   ########.fr       */
+/*   Created: 2024/06/11 09:47:35 by mechard           #+#    #+#             */
+/*   Updated: 2024/06/13 15:50:55 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_coor(int x, int y, t_map *coor)
 {
-	size_t	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	while (s[i])
-		i++;
-	return (i);
+	coor->Player_x = x;
+	coor->Player_y = y;
+	coor->nb_P++;
 }

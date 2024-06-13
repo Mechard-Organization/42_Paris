@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/05/20 13:06:11 by mechard          ###   ########.fr        #
+#    Updated: 2024/06/11 09:52:59 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,14 @@
 NAME			= so_long
 HEADER			= -Iinc -Iinc/libft/inc -Iinc/minilibx/
 LIB_X11			= -lXext -lX11 -lm
-SRC				= so_long.c verif_map.c game.c key.c
-SRC_PIPEX		= $(addprefix src/, $(SRC))
+
+MAIN_FILE		= so_long.c game.c
+
+TOOLS_FILE		= verif_map.c key.c free.c init.c image.c coor.c
+TOOLS_PLACE		= $(addprefix tools/, $(TOOLS_FILE))
+
+
+SRC_SL			= $(addprefix src/, $(MAIN_FILE)) $(addprefix src/, $(TOOLS_PLACE))
 
 CC 				= cc
 CFLAGS			= -Wall -Wextra -Werror -g3
@@ -38,7 +44,7 @@ MLX_A			= $(addprefix $(MLX_DIR), $(MLX))
 
 #===================SRC_GBL===================
 
-SRCS			= $(SRC_PIPEX) $(LIB_A) $(MLX_A)
+SRCS			= $(SRC_SL) $(LIB_A) $(MLX_A)
 
 #====================COLOR====================
 
