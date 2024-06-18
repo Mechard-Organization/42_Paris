@@ -6,13 +6,11 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 12:29:38 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/13 15:50:41 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/18 12:13:44 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	draw_sprite(t_game *game, t_img *img, int x, int y);
 
 void	close_window(t_game *game)
 {

@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/06/11 09:52:59 by mechard          ###   ########.fr        #
+#    Updated: 2024/06/18 12:03:33 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIB_X11			= -lXext -lX11 -lm
 
 MAIN_FILE		= so_long.c game.c
 
-TOOLS_FILE		= verif_map.c key.c free.c init.c image.c coor.c
+TOOLS_FILE		= verif_map.c key.c free.c init.c image.c coor.c moove.c
 TOOLS_PLACE		= $(addprefix tools/, $(TOOLS_FILE))
 
 
@@ -88,7 +88,7 @@ all : $(NAME)
 
 bonus : all
 
-clean :
+clean : clean_lib
 
 clean_lib :
 	@ make --no-print-directory -C $(LIB_DIR) clean

@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 09:47:35 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/13 15:50:55 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/18 11:57:34 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_coor(int x, int y, t_map *coor)
 {
-	coor->Player_x = x;
-	coor->Player_y = y;
-	coor->nb_P++;
+	coor->player_x = x;
+	coor->player_y = y;
+	coor->nb_p++;
 }

@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:25:38 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/13 14:16:55 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/18 11:56:05 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int	check_cara(char **map, char *cara, t_map *coor)
 			if (map[coor->y][coor->x] == 'P')
 				ft_coor(coor->x, coor->y, coor);
 			else if (map[coor->y][coor->x] == 'E')
-				coor->nb_E++;
+				coor->nb_e++;
 			else if (map[coor->y][coor->x] == 'C')
-				coor->nb_C++;
+				coor->nb_c++;
 			if (map[coor->y][coor->x] == '\0' || coor->x > (coor->len - 1))
 				return (ft_printf(INVALID_MAP), 1);
 			coor->x++;
@@ -70,9 +70,9 @@ int	verif_cara(char **map, t_map *coor)
 	cara = VALID_CARA;
 	if (check_cara(map, cara, coor) == 1)
 		return (1);
-	if (coor->nb_C < 1)
+	if (coor->nb_c < 1)
 		return (ft_printf(INVALID_COL), 1);
-	if (coor->nb_P != 1 || coor->nb_E != 1)
+	if (coor->nb_p != 1 || coor->nb_e != 1)
 		return (ft_printf(INVALID_NB), 1);
 	return (0);
 }
@@ -103,9 +103,9 @@ char	**verif_map(char *str, char **map, t_game *game)
 	t_map	coor;
 
 	coor.y = 0;
-	coor.nb_P = 0;
-	coor.nb_C = 0;
-	coor.nb_E = 0;
+	coor.nb_p = 0;
+	coor.nb_c = 0;
+	coor.nb_e = 0;
 	map = recup_map(str);
 	if (!map)
 		return (0);
@@ -115,8 +115,8 @@ char	**verif_map(char *str, char **map, t_game *game)
 		return (ft_printf(INVALID_MAP), ft_dfree(map), NULL);
 	game->len = coor.len;
 	game->width = coor.width;
-	game->nb_collectibles = coor.nb_C;
-	game->Player_x = coor.Player_x * 64;
-	game->Player_y = coor.Player_y * 64;
+	game->nb_collectibles = coor.nb_c;
+	game->player_x = coor.player_x * 64;
+	game->player_y = coor.player_y * 64;
 	return (map);
 }

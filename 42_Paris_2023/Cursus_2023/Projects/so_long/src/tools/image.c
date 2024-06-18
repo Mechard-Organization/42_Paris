@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:19:05 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/13 15:51:05 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/18 11:57:10 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	ft_set_img(t_game *game)
 		}
 		i++;
 	}
-	draw_sprite(game, game->pla, game->Player_x, game->Player_y);
+	draw_sprite(game, game->pla, game->player_x, game->player_y);
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->canva, 0, 0);
 	ft_finish(game);
 	return (0);
