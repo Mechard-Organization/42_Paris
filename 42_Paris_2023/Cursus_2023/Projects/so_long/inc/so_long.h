@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:38:25 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/18 12:14:40 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/20 14:07:09 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ void		*open_windows(t_game *game);
 void		close_window(t_game *game);
 void		ft_coor(int x, int y, t_map *coor);
 void		draw_sprite(t_game *game, t_img *img, int x, int y);
-void		move_player(int keycode, t_game *game);
+void		ft_moove(int keycode, t_game *game);
+void		ft_collect(t_game *game);
 void		ft_finish(t_game *game);
 
 #endif
