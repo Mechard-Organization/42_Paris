@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:38:25 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/20 14:07:09 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/21 14:28:18 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@
 
 # ifndef INVALID_MAP
 #  define INVALID_MAP "Error\nLa map n'est pas valide\n"
+# endif
+
+# ifndef INVALID_ROAD
+#  define INVALID_ROAD "Error\nIl n'y a pas de chemin valide\n"
 # endif
 
 # ifndef INVALID_NB
@@ -87,6 +91,7 @@ typedef struct s_map
 	int		i;
 	int		width;
 	int		len;
+	char	**map;
 
 	int		nb_p;
 	int		nb_c;
@@ -100,6 +105,7 @@ int			verif_cara(char **map, t_map *coor);
 int			key_press(int keycode, t_game *game);
 int			key_release(int keycode, t_game *game);
 int			ft_init_sprites(t_game *game);
+int			map_comp(t_game *game, char *str);
 int			ft_set_img(t_game *game);
 
 char		**recup_map(char *str);
@@ -108,6 +114,7 @@ char		**verif_map(char *str, char **map, t_game *game);
 void		ft_dfree(char **str);
 void		free_game(t_game *game);
 void		ft_init_null(t_game *game);
+void		map_init(t_map *map, char *str);
 void		*open_windows(t_game *game);
 void		close_window(t_game *game);
 void		ft_coor(int x, int y, t_map *coor);

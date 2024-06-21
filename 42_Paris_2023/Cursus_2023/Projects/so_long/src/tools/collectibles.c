@@ -6,86 +6,23 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:53:56 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/20 14:11:26 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/21 14:35:13 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_collect_up(t_game *game)
+void	ft_col(t_game *game, int y, int x)
 {
-	if (game->player_x % 64 == 0)
-	{
-		game->map[game->player_y / 64][game->player_x / 64] = '1';
-		game->collectibles++;
-	}
-	else if (game->map[(game->player_y - 8) / 64][(game->player_x / 64)
-		+ 1] != 'C')
-	{
-		game->map[game->player_y / 64][(game->player_x / 64) + 1] = '1';
-		game->collectibles++;
-	}
+	game->map[y / 64][x / 64] = '1';
+	game->collectibles++;
 }
 
-void	ft_collect_down(t_game *game)
+void	ft_end(t_game *game)
 {
-	if (game->player_x % 64 == 0)
-	{
-		game->map[game->player_y / 64][game->player_x / 64] = '1';
-		game->collectibles++;
-	}
-	else if (game->map[(game->player_y + 64) / 64][(game->player_x / 64)
-		+ 1] != '0')
-	{
-		game->map[game->player_y / 64][(game->player_x / 64)
-		+ 1] = '1';
-		game->collectibles++;
-	}
-}
-
-void	ft_collect_left(t_game *game)
-{
-	if (game->player_y % 64 == 0)
-	{
-		game->map[game->player_y / 64][game->player_x / 64] = '1';
-		game->collectibles++;
-	}
-	else if (game->map[(game->player_y / 64) + 1][(game->player_x - 8)
-		/ 64] != '0')
-	{
-		game->map[(game->player_y / 64) + 1][game->player_x / 64] = '1';
-		game->collectibles++;
-	}
-}
-
-void	ft_collect_right(t_game *game)
-{
-	if (game->player_y % 64 == 0)
-	{
-		game->map[game->player_y / 64][game->player_x / 64] = '1';
-		game->collectibles++;
-	}
-	else if (game->map[(game->player_y / 64) + 1][(game->player_x + 64)
-		/ 64] != '0')
-	{
-		game->map[(game->player_y / 64) + 1][game->player_x / 64] = '1';
-		game->collectibles++;
-	}
-}
-
-void	ft_collect(t_game *game)
-{
-	int taille;
+	int		taille;
 
 	taille = 64;
-	if (game->map[(game->player_y - 8) / 64][game->player_x / 64] != 'C')
-		ft_collect_up(game);
-	if (game->map[(game->player_y + 64) / 64][game->player_x / 64] != 'C')
-		ft_collect_down(game);
-	if (game->map[game->player_y / 64][(game->player_x - 8) / 64] != 'C')
-		ft_collect_left(game);
-	if (game->map[game->player_y / 64][(game->player_x + 64) / 64] != 'C')
-		ft_collect_right(game);
 	if (game->collectibles == game->nb_collectibles)
 	{
 		mlx_destroy_image(game->mlx_ptr, game->exi);
@@ -98,4 +35,21 @@ void	ft_collect(t_game *game)
 		}
 		game->exit = 1;
 	}
+}
+
+void	ft_collect(t_game *game)
+{
+	if (game->map[(game->player_y) / 64][game->player_x / 64] == 'C')
+		ft_col(game, game->player_y, game->player_x);
+	if (game->player_y % 64 != 0 && game->map[(game->player_y + 64)
+			/ 64][game->player_x / 64] == 'C')
+		ft_col(game, game->player_y + 64, game->player_x);
+	if (game->player_x % 64 != 0 && game->map[(game->player_y)
+			/ 64][(game->player_x / 64) + 1] == 'C')
+		ft_col(game, game->player_y, game->player_x + 64);
+	if (game->player_y % 64 != 0 && game->player_x % 64 != 0
+		&& game->map[(game->player_y + 64) / 64][(game->player_x / 64)
+		+ 1] == 'C')
+		ft_col(game, game->player_y + 64, game->player_x + 64);
+	ft_end(game);
 }

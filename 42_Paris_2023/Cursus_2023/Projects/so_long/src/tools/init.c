@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 12:49:47 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/13 12:41:23 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/21 14:28:39 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,19 @@ void	ft_init_null(t_game *game)
 	game->keycode_prev = 0;
 	game->collectibles = 0;
 	game->nb_collectibles = 0;
+}
+
+void	map_init(t_map *map, char *str)
+{
+	map->map = recup_map(str);
+	map->player_x = 0;
+	map->player_y = 0;
+	map->x = 0;
+	map->y = 0;
+	map->i = 0;
+	map->width = 0;
+	map->len = 0;
+	map->nb_p = 0;
+	map->nb_c = 0;
+	map->nb_e = 0;
 }

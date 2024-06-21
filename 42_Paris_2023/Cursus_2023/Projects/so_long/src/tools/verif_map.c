@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:25:38 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/18 11:56:05 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/21 13:38:57 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,7 @@ char	**verif_map(char *str, char **map, t_game *game)
 	game->nb_collectibles = coor.nb_c;
 	game->player_x = coor.player_x * 64;
 	game->player_y = coor.player_y * 64;
+	if (!map_comp(game, str))
+		return (ft_printf(INVALID_ROAD), ft_dfree(map), NULL);
 	return (map);
 }
