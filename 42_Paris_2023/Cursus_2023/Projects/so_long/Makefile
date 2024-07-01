@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/07/01 15:26:17 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/01 15:42:18 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,9 +109,6 @@ bonus : all
 clean : clean_lib
 
 clean_lib :
-ifeq ($(MAKECMDGOALS),clean)
-	@ make --no-print-directory -C $(LIB_DIR) clean
-endif
 	@echo "==========$(CYAN1)MLX$(D_COLOR)==========\n"
 	@if [ -d "$(MLX_DIR)" ]; then \
 		make --no-print-directory -C $(MLX_DIR) clean $(SILENCE); \
@@ -119,6 +116,9 @@ endif
 	else \
 		echo "$(PINK1)La suppression du superflu dans le dossier $(MIN) est impossible ! $(D_COLOR)\n"; \
 	fi
+ifeq ($(MAKECMDGOALS),clean)
+	@ make --no-print-directory -C $(LIB_DIR) clean
+endif
 
 fclean : clean
 	@ make --no-print-directory -C $(LIB_DIR) fclean
