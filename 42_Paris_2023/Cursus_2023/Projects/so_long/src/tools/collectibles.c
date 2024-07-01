@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:53:56 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/21 14:35:13 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/01 15:31:37 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	ft_end(t_game *game)
 
 void	ft_collect(t_game *game)
 {
-	if (game->map[(game->player_y) / 64][game->player_x / 64] == 'C')
-		ft_col(game, game->player_y, game->player_x);
-	if (game->player_y % 64 != 0 && game->map[(game->player_y + 64)
+	if (game->map[(game->player_y + 48) / 64][game->player_x / 64] == 'C')
+		ft_col(game, game->player_y + 48, game->player_x);
+	if (game->player_y % 64 != 0 && game->map[(game->player_y + 48)
 			/ 64][game->player_x / 64] == 'C')
-		ft_col(game, game->player_y + 64, game->player_x);
+		ft_col(game, game->player_y + 48, game->player_x);
 	if (game->player_x % 64 != 0 && game->map[(game->player_y)
-			/ 64][(game->player_x / 64) + 1] == 'C')
-		ft_col(game, game->player_y, game->player_x + 64);
+			/ 64][(game->player_x + 48) / 64] == 'C')
+		ft_col(game, game->player_y, game->player_x + 48);
 	if (game->player_y % 64 != 0 && game->player_x % 64 != 0
-		&& game->map[(game->player_y + 64) / 64][(game->player_x / 64)
-		+ 1] == 'C')
-		ft_col(game, game->player_y + 64, game->player_x + 64);
+		&& game->map[(game->player_y + 48) / 64][(game->player_x + 48)
+		/ 64] == 'C')
+		ft_col(game, game->player_y + 48, game->player_x + 48);
 	ft_end(game);
 }

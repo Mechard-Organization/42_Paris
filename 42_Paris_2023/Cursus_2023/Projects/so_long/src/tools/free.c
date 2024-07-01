@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:48:59 by mechard           #+#    #+#             */
-/*   Updated: 2024/05/30 15:40:26 by mechard          ###   ########.fr       */
+/*   Updated: 2024/06/25 12:32:20 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	ft_dfree(char **str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return ;
 	while (str && str[i])
 		free(str[i++]);
 	free(str);

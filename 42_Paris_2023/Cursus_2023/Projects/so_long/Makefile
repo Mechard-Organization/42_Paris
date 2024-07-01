@@ -6,14 +6,14 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/06/21 13:31:03 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/01 15:26:17 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #===================VAR_GBL===================
 
 NAME			= so_long
-HEADER			= -Iinc -Iinc/libft/inc -Iinc/minilibx/
+HEADER			= -Iinc -Iinc/libft/inc -Iinc/minilibx-linux/
 LIB_X11			= -lXext -lX11 -lm
 
 MAIN_FILE		= so_long.c game.c
@@ -29,6 +29,11 @@ CC 				= cc
 CFLAGS			= -Wall -Wextra -Werror -g3
 
 INC				= inc/
+#===================MESSAGE===================
+
+SUCCESS	= Ok
+DELETED	= supprime !
+SILENCE	= > /dev/null 2>&1
 
 #====================LIBFT====================
 
@@ -40,12 +45,13 @@ LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
 #=====================MLX=====================
 
 MLX				= libmlx.a
-MLX_DIR			= $(addprefix $(INC), minilibx/)
+MIN				= minilibx-linux
+MLX_DIR			= $(addprefix $(INC), $(MIN)/)
 MLX_A			= $(addprefix $(MLX_DIR), $(MLX))
 
 #===================SRC_GBL===================
 
-SRCS			= $(SRC_SL) $(LIB_A) $(MLX_A)
+SRCS			= $(SRC_SL) $(LIB_A)
 
 #====================COLOR====================
 
@@ -77,10 +83,21 @@ GREY2	= \033[47m
 
 #====================RULES====================
 
-$(NAME) : $(SRCS)
+$(NAME) : $(SRCS) inc/so_long.h
 	@echo "===========$(YELLOW1)MLX$(D_COLOR)==========\n"
-	@$(CC) $(CFLAGS) -IX11 $(SRCS) $(HEADER) $(LIB_X11) -o $(NAME)
-	@echo "./so_long : $(GREEN1)Ok$(D_COLOR)\n"
+	@if [ -d "$(MLX_DIR)" ]; then \
+		make --no-print-directory -C $(MLX_DIR) all $(SILENCE); \
+		echo "./minilibx : $(GREEN1)$(SUCCESS)$(D_COLOR)\n"; \
+	else \
+		echo "$(PINK1)Veuillez placer le dossier $(MIN) dans le dossier $(INC) !$(D_COLOR)\n"; \
+	fi
+	@echo "=========$(YELLOW1)SO_LONG$(D_COLOR)========\n"
+	@if [ -d "$(MLX_DIR)" ]; then \
+		$(CC) $(CFLAGS) -IX11 $(SRCS) $(MLX_A) $(HEADER) $(LIB_X11) -o $(NAME); \
+		echo "./so_long : $(GREEN1)$(SUCCESS)$(D_COLOR)\n"; \
+	else \
+		echo "$(YELLOW1)Sans le dossier $(MIN), la compilation est impossible !\n$(D_COLOR)"; \
+	fi
 
 $(LIB_A) :
 	@ make --no-print-directory -C $(LIB_DIR) $(LIB) 
@@ -92,13 +109,22 @@ bonus : all
 clean : clean_lib
 
 clean_lib :
+ifeq ($(MAKECMDGOALS),clean)
 	@ make --no-print-directory -C $(LIB_DIR) clean
+endif
+	@echo "==========$(CYAN1)MLX$(D_COLOR)==========\n"
+	@if [ -d "$(MLX_DIR)" ]; then \
+		make --no-print-directory -C $(MLX_DIR) clean $(SILENCE); \
+		echo "$(RED1)$(DELETED)$(D_COLOR)\n"; \
+	else \
+		echo "$(PINK1)La suppression du superflu dans le dossier $(MIN) est impossible ! $(D_COLOR)\n"; \
+	fi
 
 fclean : clean
 	@ make --no-print-directory -C $(LIB_DIR) fclean
 	@echo "==========$(CYAN1)EXEC$(D_COLOR)===========\n"
 	@rm -rf $(NAME)
-	@echo "$(RED1)supprime !$(D_COLOR)\n"
+	@echo "$(RED1)$(DELETED)$(D_COLOR)\n"
 	
 re : fclean all
 

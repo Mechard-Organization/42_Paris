@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 15:25:38 by mechard           #+#    #+#             */
-/*   Updated: 2024/06/21 13:38:57 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/01 12:52:37 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,14 @@ int	verif_border(char **map, t_map *coor)
 	while (map[0][i] && map[0][i] != '\n')
 	{
 		if (map[0][i] != '0' || map[coor->width - 1][i] != '0')
-			return (1);
+			return (ft_printf(INVALID_MAP), 1);
 		i++;
 	}
 	i = 0;
 	while (map[i])
 	{
 		if (map[i][0] != '0' || map[i][coor->len - 1] != '0')
-			return (1);
+			return (ft_printf(INVALID_MAP), 1);
 		i++;
 	}
 	return (0);
@@ -108,17 +108,17 @@ char	**verif_map(char *str, char **map, t_game *game)
 	coor.nb_e = 0;
 	map = recup_map(str);
 	if (!map)
-		return (0);
+		return (ft_printf(ERROR_REC), NULL);
 	coor.len = ft_strlen(map[0]) - 1;
 	if (verif_name(str) == 1 || verif_cara(map, &coor) == 1 || verif_border(map,
 			&coor))
-		return (ft_printf(INVALID_MAP), ft_dfree(map), NULL);
+		return (ft_dfree(map), NULL);
 	game->len = coor.len;
 	game->width = coor.width;
 	game->nb_collectibles = coor.nb_c;
 	game->player_x = coor.player_x * 64;
 	game->player_y = coor.player_y * 64;
-	if (!map_comp(game, str))
+	if (!map_comp(game, map))
 		return (ft_printf(INVALID_ROAD), ft_dfree(map), NULL);
 	return (map);
 }
