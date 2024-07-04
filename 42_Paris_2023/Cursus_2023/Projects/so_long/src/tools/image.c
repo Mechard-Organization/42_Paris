@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:19:05 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/04 12:41:28 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/04 12:50:50 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ int	ft_init_sprites(t_game *game)
 	int	taille;
 
 	taille = 64;
-	game->col = mlx_xpm_file_to_image(game->mlx_ptr, "sprites/Jack/col.xpm", &taille,
+	game->col = mlx_xpm_file_to_image(game->mlx_ptr, COL, &taille,
 			&taille);
 	if (!game->col)
 		return (1);
-	game->exi = mlx_xpm_file_to_image(game->mlx_ptr, "sprites/Jack/exi.xpm", &taille,
+	game->exi = mlx_xpm_file_to_image(game->mlx_ptr, EXI, &taille,
 			&taille);
 	if (!game->exi)
 		return (1);
-	game->roc = mlx_xpm_file_to_image(game->mlx_ptr, "sprites/Jack/roc.xpm", &taille,
+	game->roc = mlx_xpm_file_to_image(game->mlx_ptr, ROC, &taille,
 			&taille);
 	if (!game->roc)
 		return (1);
-	game->sol = mlx_xpm_file_to_image(game->mlx_ptr, "sprites/Jack/sol.xpm", &taille,
+	game->sol = mlx_xpm_file_to_image(game->mlx_ptr, SOL, &taille,
 			&taille);
 	if (!game->sol)
 		return (1);
-	game->pla = mlx_xpm_file_to_image(game->mlx_ptr, "sprites/Jack/pla.xpm", &taille,
+	game->pla = mlx_xpm_file_to_image(game->mlx_ptr, PLA, &taille,
 			&taille);
 	if (!game->pla)
 		return (1);

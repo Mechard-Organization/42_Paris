@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:53:56 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/04 12:43:02 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/04 12:47:35 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_end(t_game *game)
 	if (game->collectibles == game->nb_collectibles)
 	{
 		mlx_destroy_image(game->mlx_ptr, game->exi);
-		game->exi = mlx_xpm_file_to_image(game->mlx_ptr, "sprites/Jack/fin.xpm",
+		game->exi = mlx_xpm_file_to_image(game->mlx_ptr, FIN,
 				&taille, &taille);
 		if (!game->exi)
 		{

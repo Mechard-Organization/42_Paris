@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:38:25 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/02 16:15:26 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/04 12:50:03 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,30 @@ recuperation des collectibles\n"
 # ifndef SUCCESS
 #  define SUCCESS "\r\033[1;32mBravo \033[0m! Vous avez gagne la partie !\nLe \
 nombre de pas pendant cette partie est de %d\n"
+# endif
+
+# ifndef FIN
+#  define FIN "sprites/Jack/fin.xpm"
+# endif
+
+# ifndef COL
+#  define COL "sprites/Jack/col.xpm"
+# endif
+
+# ifndef EXI
+#  define EXI "sprites/Jack/exi.xpm"
+# endif
+
+# ifndef PLA
+#  define PLA "sprites/Jack/pla.xpm"
+# endif
+
+# ifndef ROC
+#  define ROC "sprites/Jack/roc.xpm"
+# endif
+
+# ifndef SOL
+#  define SOL "sprites/Jack/sol.xpm"
 # endif
 
 typedef struct s_game
