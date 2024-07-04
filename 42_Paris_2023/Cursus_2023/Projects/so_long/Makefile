@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/07/01 15:42:18 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/03 17:44:12 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
 
 MLX				= libmlx.a
 MIN				= minilibx-linux
+LINK_MLX		= https://cdn.intra.42.fr/document/document/21439/minilibx-linux.tgz
 MLX_DIR			= $(addprefix $(INC), $(MIN)/)
 MLX_A			= $(addprefix $(MLX_DIR), $(MLX))
 
@@ -58,6 +59,10 @@ SRCS			= $(SRC_SL) $(LIB_A)
 #_________RESET_COLOR__________
 
 D_COLOR = \033[0m
+
+#__________TEXT_STYLE__________
+
+BOLD = \033[1m
 
 #__________COLOR_TEXT__________
 
@@ -85,12 +90,17 @@ GREY2	= \033[47m
 
 $(NAME) : $(SRCS) inc/so_long.h
 	@echo "===========$(YELLOW1)MLX$(D_COLOR)==========\n"
-	@if [ -d "$(MLX_DIR)" ]; then \
-		make --no-print-directory -C $(MLX_DIR) all $(SILENCE); \
-		echo "./minilibx : $(GREEN1)$(SUCCESS)$(D_COLOR)\n"; \
-	else \
-		echo "$(PINK1)Veuillez placer le dossier $(MIN) dans le dossier $(INC) !$(D_COLOR)\n"; \
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "$(PINK1)Le dossier $(MIN) n'existe pas, téléchargement...$(D_COLOR)$(BOLD)$(GREY2)$(BLACK1)\n"; \
+		mkdir -p $(MLX_DIR); \
+		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX); \
+		echo "$(D_COLOR)"; \
+		tar -xzf $(INC)/minilibx-linux.tgz -C $(INC); \
+		rm $(INC)/minilibx-linux.tgz; \
+		echo "Le dossier a ete telecharge depuis ->\n$(GREEN1)$(BLACK2)$(LINK_MLX)$(D_COLOR)\n"; \
 	fi
+	@ make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
+	@echo "./minilibx : $(GREEN1)$(SUCCESS)$(D_COLOR)\n"
 	@echo "=========$(YELLOW1)SO_LONG$(D_COLOR)========\n"
 	@if [ -d "$(MLX_DIR)" ]; then \
 		$(CC) $(CFLAGS) -IX11 $(SRCS) $(MLX_A) $(HEADER) $(LIB_X11) -o $(NAME); \
@@ -109,14 +119,28 @@ bonus : all
 clean : clean_lib
 
 clean_lib :
+ifeq ($(MAKECMDGOALS),fclean)
 	@echo "==========$(CYAN1)MLX$(D_COLOR)==========\n"
 	@if [ -d "$(MLX_DIR)" ]; then \
 		make --no-print-directory -C $(MLX_DIR) clean $(SILENCE); \
+		rm -rf $(MLX_DIR); \
 		echo "$(RED1)$(DELETED)$(D_COLOR)\n"; \
 	else \
 		echo "$(PINK1)La suppression du superflu dans le dossier $(MIN) est impossible ! $(D_COLOR)\n"; \
 	fi
+endif
 ifeq ($(MAKECMDGOALS),clean)
+	@ make --no-print-directory -C $(LIB_DIR) clean
+	@echo "==========$(CYAN1)MLX$(D_COLOR)==========\n"
+	@if [ -d "$(MLX_DIR)" ]; then \
+		make --no-print-directory -C $(MLX_DIR) clean $(SILENCE); \
+		rm -rf $(MLX_DIR); \
+		echo "$(RED1)$(DELETED)$(D_COLOR)\n"; \
+	else \
+		echo "$(PINK1)La suppression du dossier $(MIN) est impossible car il n'existe pas !$(D_COLOR)\n"; \
+	fi
+endif
+ifeq ($(MAKECMDGOALS),clean_lib)
 	@ make --no-print-directory -C $(LIB_DIR) clean
 endif
 
@@ -125,7 +149,7 @@ fclean : clean
 	@echo "==========$(CYAN1)EXEC$(D_COLOR)===========\n"
 	@rm -rf $(NAME)
 	@echo "$(RED1)$(DELETED)$(D_COLOR)\n"
-	
+
 re : fclean all
 
 .PHONY : all, clean, fclean, re, bonus
