@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/04/19 18:16:56 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/01 14:45:22 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,7 @@ GREY2	= \033[47m
 #====================RULES====================
 
 $(OBJS): $(SRCS)
-	@echo "==========$(YELLOW1)LIBFT$(D_COLOR)==========\n"
+	@echo "==========$(YELLOW1)LIBFT$(D_COLOR)=========\n"
 	@$(CC) $(TO_OBJ) $(SRCS)
 	@mkdir -p $(OBJ_DIR)
 	@mv $(OBJ) $(OBJ_DIR)

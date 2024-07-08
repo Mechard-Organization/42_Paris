@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 14:31:17 by mechard           #+#    #+#             */
-/*   Updated: 2024/04/22 14:21:55 by mechard          ###   ########.fr       */
+/*   Updated: 2024/03/06 12:26:36 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	ft_printf(const char *s, ...)
 	int		len;
 
 	str = ft_strdup(s);
-	if (!str)
-		return (0);
 	va_start(args, s);
 	len = 0;
 	i = 0;

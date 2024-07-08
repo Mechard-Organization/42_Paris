@@ -6,19 +6,20 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:27:59 by mechard           #+#    #+#             */
-/*   Updated: 2024/03/27 09:55:49 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/08 14:01:37 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdint.h>
-# include <stdlib.h>
-# include <unistd.h>
 # include "get_next_line.h"
 # include "ft_printf.h"
 # include "pipex.h"
+# include "so_long.h"
+# include <stdint.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -37,10 +38,6 @@ int					ft_strncmp(const char *s1, const char *s2, size_t n);
 int					ft_atoi(const char *str);
 int					ft_memcmp(void *s1, void *s2, size_t n);
 int					ft_lstsize(t_list *lst);
-int					count_word(const char *str, char c);
-int					ft_isnumeric(char *str);
-int					ft_next_separator(int i, const char *str, char charset);
-long long			ft_atol(const char *str);
 size_t				ft_nbrlen(long n, int base);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -58,16 +55,14 @@ char				*ft_strjoin(const char *s1, const char *s2);
 char				*ft_itoa(int n);
 char				*ft_strtrim(char const *s1, char const *student);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_strncpy(int i, int len, const char *str);
 char				**ft_split(const char *s, char c);
 
 void				*ft_memset(void *s, int c, size_t len);
+void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memmove(void *dst, void *src, size_t len);
 void				*ft_memchr(void *s, int c, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);
-void				*ft_dstrclean(char **dest, int stop);
-void				ft_bzero(void *s, size_t n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
