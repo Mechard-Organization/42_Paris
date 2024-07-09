@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/07/08 15:30:52 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/09 14:31:15 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,13 +117,13 @@ all : $(NAME)
 
 $(OBJS): $(SRCS) $(H_PLACE)
 ifeq ($(MAKECMDGOALS), all)
-	@echo "\n==================$(PINK1)ALL$(D_COLOR)================"
+	@echo "\n=================$(PINK1)ALL$(D_COLOR)================="
 endif
 ifeq ($(MAKECMDGOALS), $(NAME))
-	@echo "\n================$(PINK1)LIBFT.A$(D_COLOR)=============="
+	@echo "\n===============$(PINK1)LIBFT.A$(D_COLOR)==============="
 endif
 ifeq ($(MAKECMDGOALS), )
-	@echo "\n=================$(PINK1)\" \"$(D_COLOR)==============="
+	@echo "\n=================$(PINK1)\" \"$(D_COLOR)================="
 endif
 	@echo "|  =========$(YELLOW1)MLX$(D_COLOR)========             |"
 	@if [ ! -d "$(MLX_DIR)" ]; then \
@@ -137,21 +137,25 @@ endif
 	@ make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
 	@echo "|./minilibx                   : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
 	@echo "|  ========$(YELLOW1)LIBFT$(D_COLOR)========            |"
-	@$(MAKE) norminette $(SILENCE)
-	@if [ ! -s norminette ]; then \
-		$(CC) $(TO_OBJ) $(SRCS); \
-		mkdir -p $(OBJ_DIR); \
-		mv $(OBJ) $(OBJ_DIR); \
-		ar rcs $(NAME) $(OBJS) $(SILENCE); \
-		ranlib $(NAME) $(SILENCE); \
-		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-		mkdir -p $(EXEC_DIR); \
-		mv $(NAME) $(EXEC_DIR); \
+	@$(CC) $(TO_OBJ) $(SRCS)
+	@mkdir -p $(OBJ_DIR)
+	@mv $(OBJ) $(OBJ_DIR)
+	@ar rcs $(NAME) $(OBJS) $(SILENCE)
+	@ranlib $(NAME) $(SILENCE)
+	@mkdir -p $(EXEC_DIR)
+	@mv $(NAME) $(EXEC_DIR)
+	@$(MAKE) check_norme
+	@if [ -s norminette ]; then \
+		echo "|                                   |"; \
+		echo "|$(RED1)Erreur de norme !!$(D_COLOR)                 |"; \
+		echo "|$(YELLOW1)Consultez les commandes            $(D_COLOR)|"; \
+		echo "|$(YELLOW1)\"make norminette\" ou \"norminette\"  $(D_COLOR)|"; \
+		echo "|$(YELLOW1)pour plus de details !$(D_COLOR)             |"; \
+		echo "|                                   |"; \
+		rm -rf $(EXEC_DIR); \
+		exit 0; \
 	else \
-		echo "$(RED1)Erreur de norme !!$(D_COLOR)"; \
-		echo "$(YELLOW1)Consulter \"make norminette\" ou \"norminette\" pour plus de details !\n$(D_COLOR)"; \
-		rm norminette; \
-		exit 1; \
+		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	fi
 ifeq ($(MAKECMDGOALS), all)
 	@echo "$(FIN)"
@@ -166,11 +170,17 @@ ifeq ($(MAKECMDGOALS), re)
 	@echo "$(FIN)"
 endif
 
+	@if [ -s norminette ]; then \
+		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
+		cat norminette; \
+		rm -rf norminette; \
+	fi
+
 $(NAME) : $(OBJS)
 
 clean :
 ifeq ($(MAKECMDGOALS), clean)
-	@echo "\n=================$(PINK1)CLEAN$(D_COLOR)==============="
+	@echo "\n================$(PINK1)CLEAN$(D_COLOR)================"
 endif
 ifeq ($(MAKECMDGOALS), fclean)
 	@echo "\n================$(PINK1)FCLEAN$(D_COLOR)==============="
@@ -195,6 +205,10 @@ fclean : clean
 	@echo "|  ======$(CYAN1)LIBFT.A$(D_COLOR)======              |"
 	@rm -rf $(EXEC_DIR) $(SILENCE)
 	@echo "|$(NAME)                      : $(RED1)$(DELETED)$(D_COLOR)  |"
+	@if [ -f norminette ]; then \
+		rm norminette; \
+		echo "|trace norminette             : 💥  |"; \
+	fi
 ifeq ($(MAKECMDGOALS), fclean)
 	@echo "$(FIN)"
 endif
@@ -228,7 +242,19 @@ ifeq ($(MAKECMDGOALS), minilibx)
 	@echo "$(FIN)"
 endif
 
-norminette : $(SRCS)
+check_norme :
+	-@norminette src/ > res_cmd || true
+	-@grep 'Error' res_cmd > norminette || true
+	-@norminette $(H_PLACE) > res_cmd || true
+	-@grep "Error" res_cmd >> norminette || true
+	@rm res_cmd
+	@if [ ! -s norminette ]; then \
+    	rm norminette; \
+		echo "|norminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+	fi
+
+norminette :
+	@echo "\n================$(PINK1)NORME$(D_COLOR)================"
 	-@norminette src/ > res_cmd || true
 	-@grep 'Error' res_cmd > norminette || true
 	-@norminette $(H_PLACE) > res_cmd || true
@@ -238,7 +264,9 @@ norminette : $(SRCS)
     	rm norminette; \
 		echo "|norminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	else \
-   		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
+		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
 		cat norminette; \
-		echo "\n"; \
+		echo; \
+		rm norminette; \
 	fi
+	@echo "$(FIN)"
