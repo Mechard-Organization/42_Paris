@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/07/09 14:31:15 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/17 14:04:42 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ LIB_X11				= -lXext -lX11 -lm
 
 MLX					= libmlx.a
 MIN					= minilibx-linux
-LINK_MLX			= https://cdn.intra.42.fr/document/document/21439/minilibx-linux.tgz
+LINK_MLX			= https://cdn.intra.42.fr/document/document/26792/minilibx-linux.tgz
 MLX_DIR				= $(addprefix $(INC), $(MIN)/)
 MLX_A				= $(addprefix $(MLX_DIR), $(MLX))
 
@@ -116,21 +116,24 @@ GREY2				= \033[47m
 all : $(NAME)
 
 $(OBJS): $(SRCS) $(H_PLACE)
-ifeq ($(MAKECMDGOALS), all)
-	@echo "\n=================$(PINK1)ALL$(D_COLOR)================="
+ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
+	@if [ -z "$(MAKECMDGOALS)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(MAKECMDGOALS) | tr 'a-z' 'A-Z'); fi; \
+	len=$$(echo -n "$$upper_makecmd" | wc -c); \
+	eq_len=$$(( (37 - len) / 2 )); \
+	left_len=$$(( eq_len )); \
+	right_len=$$(( 37 - len - left_len )); \
+	printf "\n"; \
+	for _ in $$(seq 1 $$left_len); do printf "="; done; \
+	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
+	for _ in $$(seq 1 $$right_len); do printf "="; done; \
+	printf "\n"
 endif
-ifeq ($(MAKECMDGOALS), $(NAME))
-	@echo "\n===============$(PINK1)LIBFT.A$(D_COLOR)==============="
-endif
-ifeq ($(MAKECMDGOALS), )
-	@echo "\n=================$(PINK1)\" \"$(D_COLOR)================="
-endif
+
 	@echo "|  =========$(YELLOW1)MLX$(D_COLOR)========             |"
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
 		mkdir -p $(MLX_DIR); \
 		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
-		tar -xzf $(INC)/minilibx-linux.tgz -C $(INC); \
 		rm $(INC)/minilibx-linux.tgz; \
 		echo "$(GREEN1)|Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
 	fi
@@ -157,18 +160,6 @@ endif
 	else \
 		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	fi
-ifeq ($(MAKECMDGOALS), all)
-	@echo "$(FIN)"
-endif
-ifeq ($(MAKECMDGOALS), $(NAME))
-	@echo "$(FIN)"
-endif
-ifeq ($(MAKECMDGOALS), )
-	@echo "$(FIN)"
-endif
-ifeq ($(MAKECMDGOALS), re)
-	@echo "$(FIN)"
-endif
 
 	@if [ -s norminette ]; then \
 		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
@@ -176,21 +167,30 @@ endif
 		rm -rf norminette; \
 	fi
 
+ifeq ($(filter-out all $(NAME) re, $(MAKECMDGOALS)), )
+	@echo "$(FIN)"
+endif
+
 $(NAME) : $(OBJS)
 
 clean :
-ifeq ($(MAKECMDGOALS), clean)
-	@echo "\n================$(PINK1)CLEAN$(D_COLOR)================"
+ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
+	@if [ -z "$(MAKECMDGOALS)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(MAKECMDGOALS) | tr 'a-z' 'A-Z'); fi; \
+	len=$$(echo -n "$$upper_makecmd" | wc -c); \
+	eq_len=$$(( (37 - len) / 2 )); \
+	left_len=$$(( eq_len )); \
+	right_len=$$(( 37 - len - left_len )); \
+	printf "\n"; \
+	for _ in $$(seq 1 $$left_len); do printf "="; done; \
+	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
+	for _ in $$(seq 1 $$right_len); do printf "="; done; \
+	printf "\n"
 endif
-ifeq ($(MAKECMDGOALS), fclean)
-	@echo "\n================$(PINK1)FCLEAN$(D_COLOR)==============="
-endif
-ifeq ($(MAKECMDGOALS), re)
-	@echo "\n==================$(PINK1)RE$(D_COLOR)================="
-endif
+
 	@echo "|  =====$(CYAN1)OBJ_LIBFT$(D_COLOR)=====              |"
 	@rm -rf $(OBJ_DIR) $(SILENCE)
 	@echo "|Le dossier \"obj\"             : $(RED1)$(DELETED)$(D_COLOR)  |"
+	
 ifeq ($(MAKECMDGOALS), clean)
 	@echo "$(FIN)"
 endif
@@ -217,7 +217,7 @@ re : fclean all
 
 .PHONY : all, clean, fclean, re, bonus
 
-#_________OTHER_RULES___________
+#________OTHER_RULES___________
 
 minilibx :
 ifeq ($(MAKECMDGOALS),minilibx)

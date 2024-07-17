@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/15 12:44:13 by mechard           #+#    #+#              #
-#    Updated: 2024/07/04 12:52:12 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/12 14:19:34 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ CC 				= cc
 CFLAGS			= -Wall -Wextra -Werror -g3
 
 INC				= inc/
+
 #===================MESSAGE===================
 
 SUCCESS	= Ok
