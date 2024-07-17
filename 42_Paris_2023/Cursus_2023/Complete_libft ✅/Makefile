@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/07/17 14:04:42 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/17 14:46:09 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,7 @@ LIB_X11				= -lXext -lX11 -lm
 
 MLX					= libmlx.a
 MIN					= minilibx-linux
-LINK_MLX			= https://cdn.intra.42.fr/document/document/26792/minilibx-linux.tgz
+LINK_MLX			= https://raw.githubusercontent.com/M1000-93/minilibx-linux/master/minilibx-linux.tgz
 MLX_DIR				= $(addprefix $(INC), $(MIN)/)
 MLX_A				= $(addprefix $(MLX_DIR), $(MLX))
 
@@ -133,7 +133,9 @@ endif
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
 		mkdir -p $(MLX_DIR); \
-		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
+		curl -O $(LINK_MLX) $(SILENCE); \
+		mv minilibx-linux.tgz $(INC); \
+		tar -xvzf $(INC)minilibx-linux.tgz -C $(INC) $(SILENCE); \
 		rm $(INC)/minilibx-linux.tgz; \
 		echo "$(GREEN1)|Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
 	fi
@@ -159,12 +161,6 @@ endif
 		exit 0; \
 	else \
 		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-	fi
-
-	@if [ -s norminette ]; then \
-		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
-		cat norminette; \
-		rm -rf norminette; \
 	fi
 
 ifeq ($(filter-out all $(NAME) re, $(MAKECMDGOALS)), )
@@ -209,6 +205,7 @@ fclean : clean
 		rm norminette; \
 		echo "|trace norminette             : 💥  |"; \
 	fi
+	
 ifeq ($(MAKECMDGOALS), fclean)
 	@echo "$(FIN)"
 endif
@@ -223,6 +220,7 @@ minilibx :
 ifeq ($(MAKECMDGOALS),minilibx)
 	@echo "===============$(GREEN1)MINILIBX$(D_COLOR)=============="
 endif
+
 	@echo "|  =========$(YELLOW1)MLX$(D_COLOR)========             |"
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
@@ -238,6 +236,7 @@ endif
 	else \
 		echo "|./$(MLX) : $(YELLOW1)$(PRESENT)$(D_COLOR)"; \
 	fi
+	
 ifeq ($(MAKECMDGOALS), minilibx)
 	@echo "$(FIN)"
 endif
