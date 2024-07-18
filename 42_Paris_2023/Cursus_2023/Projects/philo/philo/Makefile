@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 14:03:29 by mechard           #+#    #+#              #
-#    Updated: 2024/07/17 15:18:16 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/18 16:56:43 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,9 +27,14 @@ CC 					= cc $(CFLAGS)
 
 SUCCESS				= ✅
 DELETED				= 💥
+COMPILATION			= 🔽🔁
+
+SILENCE				= > /dev/null 2>&1
+MAKE				= make --no-print-directory -C ./
 
 #____________OTHER_____________
 
+ARG3 				= $(word 2, $(MAKECMDGOALS))
 COMPI				= all $(NAME)
 SUPPR				= clean fclean re
 
@@ -40,15 +45,11 @@ FIN					= =================$(GREEN1)END$(D_COLOR)=================\n
 
 #____________FILE_C____________
 
-SRCS				= main.c tools_philo.c
+SRCS				= main.c ft_str.c ft_parse.c
 
 #____________FILE_H____________
 
 HEADERS				= philo.h
-
-#____________FILE_O____________
-
-OBJ_DIR				= obj
 
 #====================COLOR====================
 
@@ -90,60 +91,46 @@ all : $(NAME)
 
 $(NAME) : $(SRCS) $(HEADERS)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
-	@if [ -z "$(MAKECMDGOALS)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(MAKECMDGOALS) | tr 'a-z' 'A-Z'); fi; \
-	len=$$(echo -n "$$upper_makecmd" | wc -c); \
-	eq_len=$$(( (37 - len) / 2 )); \
-	left_len=$$(( eq_len )); \
-	right_len=$$(( 37 - len - left_len )); \
-	printf "\n"; \
-	for _ in $$(seq 1 $$left_len); do printf "="; done; \
-	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
-	for _ in $$(seq 1 $$right_len); do printf "="; done; \
-	printf "\n"
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 
 	@$(CC) $(SRCS) -o $(NAME)
-	@$(MAKE) check_norme $(SILENCE)
+	@$(MAKE) check_norme
 	@if [ -s norminette ]; then \
-		echo "|                                   |"; \
 		echo "|$(RED1)Erreur de norme !!$(D_COLOR)                 |"; \
 		echo "|$(YELLOW1)Consultez les commandes            $(D_COLOR)|"; \
-		echo "|$(YELLOW1)\"make norminette\" ou \"norminette\"  $(D_COLOR)|"; \
+		echo "|$(YELLOW1)\"make norme\" ou \"norminette\"       $(D_COLOR)|"; \
 		echo "|$(YELLOW1)pour plus de details !$(D_COLOR)             |"; \
-		echo "|                                   |"; \
-		rm -rf $(EXEC_DIR); \
+		rm -rf $(NAME); \
 		exit 0; \
 	else \
 		echo "|$(NAME)                        : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	fi
 
 ifeq ($(filter-out all $(NAME) re, $(MAKECMDGOALS)), )
-	@echo "$(FIN)"
+	@$(MAKE) end
 endif
 
 clean :
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
-	@if [ -z "$(MAKECMDGOALS)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(MAKECMDGOALS) | tr 'a-z' 'A-Z'); fi; \
-	len=$$(echo -n "$$upper_makecmd" | wc -c); \
-	eq_len=$$(( (37 - len) / 2 )); \
-	left_len=$$(( eq_len )); \
-	right_len=$$(( 37 - len - left_len )); \
-	printf "\n"; \
-	for _ in $$(seq 1 $$left_len); do printf "="; done; \
-	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
-	for _ in $$(seq 1 $$right_len); do printf "="; done; \
-	printf "\n"
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 
+	@if [ -s norminette ]; then \
+		rm norminette; \
+	fi
+
 ifeq ($(MAKECMDGOALS), clean)
-	@echo "$(FIN)"
+	@$(MAKE) end
 endif
 
 fclean : clean
-	@rm -rf $(NAME)
-	@echo "|$(NAME)                        : $(RED1)$(DELETED)$(D_COLOR)  |"
+	@if [ -f $(NAME) ]; then \
+		rm -rf $(NAME); \
+		echo "|$(NAME)                        : $(RED1)$(DELETED)$(D_COLOR)  |";\
+	fi
 ifeq ($(MAKECMDGOALS), fclean)
-	@echo "$(FIN)"
+	@$(MAKE) end
 endif
 
 re : fclean all
@@ -152,31 +139,40 @@ re : fclean all
 
 #________OTHER_RULES___________
 
+begin :
+	@if [ -z "$(ARG3)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(ARG3) | tr 'a-z' 'A-Z'); fi; \
+	len=$$(echo -n "$$upper_makecmd" | wc -c); \
+	eq_len=$$(( (37 - len) / 2 )); \
+	left_len=$$(( eq_len )); \
+	right_len=$$(( 37 - len - left_len )); \
+	printf "\n"; \
+	for _ in $$(seq 1 $$left_len); do printf "="; done; \
+	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
+	for _ in $$(seq 1 $$right_len); do printf "="; done; \
+	printf "\n"; \
+	printf "|                                   |\n"
+
+end :
+	@printf "|                                   |\n"
+	@echo "$(FIN)"
+
 check_norme :
-	-@norminette src/ > res_cmd || true
+	-@norminette $(SRCS) > res_cmd || true
 	-@grep 'Error' res_cmd > norminette || true
 	-@norminette $(H_PLACE) > res_cmd || true
 	-@grep "Error" res_cmd >> norminette || true
 	@rm res_cmd
 	@if [ ! -s norminette ]; then \
     	rm norminette; \
-		echo "|norminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		echo "|norminette des .c de $(NAME) :   $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	fi
 
-norminette :
-	@echo "\n================$(PINK1)NORME$(D_COLOR)================"
-	-@norminette src/ > res_cmd || true
-	-@grep 'Error' res_cmd > norminette || true
-	-@norminette $(H_PLACE) > res_cmd || true
-	-@grep "Error" res_cmd >> norminette || true
-	@rm res_cmd
-	@if [ ! -s norminette ]; then \
-    	rm norminette; \
-		echo "|norminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-	else \
-		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
-		cat norminette; \
-		echo; \
-		rm norminette; \
+norme :
+	
+	@if [ -s ./norminette ]; then \
+		$(MAKE) begin ARG3="$(MAKECMDGOALS)"; \
+		norminette; \
+		echo -n; \
 	fi
+	@echo "|                                   |"
 	@echo "$(FIN)"

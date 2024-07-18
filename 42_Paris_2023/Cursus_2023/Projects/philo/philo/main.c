@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:34:09 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/17 15:15:05 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/18 16:38:53 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	main(int ac, char **av)
 {
-	(void)av;
-	if (ac != 4)
-		return (ft_putstr_fd("le nombre d'arguments est invalide !", 1), 1);
-	ft_putstr_fd("BG", 1);
+	t_philo	philo;
+
+	if (ac < 5 || ac > 6)
+		return (ft_putstr_fd(INVALID_NB_ARGS, 1), 1);
+	philo = ft_parse_arg(ac, av);
 	return (0);
 }
