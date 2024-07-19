@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:04:18 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/18 16:57:01 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/19 15:41:22 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,17 @@ size_t	ft_atoi(const char *str)
 	return (res * sign);
 }
 
-t_philo	ft_parse_arg(int ac, char **av)
+t_philos	ft_parse_arg(int ac, char **av)
 {
-	t_philo	res;
+	t_philos	res;
 
 	res.number_of_philo = ft_atoi(av[1]);
 	res.time_to_die = ft_atoi(av[2]);
 	res.time_to_eat = ft_atoi(av[3]);
 	res.time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-		res.number_of_times_each_philosopher_must_eat = ft_atoi(av[5]);
+		res.number_of_times_eat = ft_atoi(av[5]);
+	else
+		res.number_of_times_eat = -1;
 	return (res);
 }

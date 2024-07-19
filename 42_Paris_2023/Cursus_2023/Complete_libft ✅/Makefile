@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/07/17 14:46:09 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/19 15:16:45 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,31 +117,23 @@ all : $(NAME)
 
 $(OBJS): $(SRCS) $(H_PLACE)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
-	@if [ -z "$(MAKECMDGOALS)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(MAKECMDGOALS) | tr 'a-z' 'A-Z'); fi; \
-	len=$$(echo -n "$$upper_makecmd" | wc -c); \
-	eq_len=$$(( (37 - len) / 2 )); \
-	left_len=$$(( eq_len )); \
-	right_len=$$(( 37 - len - left_len )); \
-	printf "\n"; \
-	for _ in $$(seq 1 $$left_len); do printf "="; done; \
-	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
-	for _ in $$(seq 1 $$right_len); do printf "="; done; \
-	printf "\n"
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 
 	@echo "|  =========$(YELLOW1)MLX$(D_COLOR)========             |"
 	@if [ ! -d "$(MLX_DIR)" ]; then \
-		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
+		echo -n "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
 		mkdir -p $(MLX_DIR); \
+		sleep 3 ;\
 		curl -O $(LINK_MLX) $(SILENCE); \
 		mv minilibx-linux.tgz $(INC); \
 		tar -xvzf $(INC)minilibx-linux.tgz -C $(INC) $(SILENCE); \
 		rm $(INC)/minilibx-linux.tgz; \
-		echo "$(GREEN1)|Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
+		echo "\r$(GREEN1)|Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
 	fi
 	@ make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
 	@echo "|./minilibx                   : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
-	@echo "|  ========$(YELLOW1)LIBFT$(D_COLOR)========            |"
+	@echo "|  =======$(YELLOW1)LIBFT$(D_COLOR)========             |"
 	@$(CC) $(TO_OBJ) $(SRCS)
 	@mkdir -p $(OBJ_DIR)
 	@mv $(OBJ) $(OBJ_DIR)
@@ -154,41 +146,34 @@ endif
 		echo "|                                   |"; \
 		echo "|$(RED1)Erreur de norme !!$(D_COLOR)                 |"; \
 		echo "|$(YELLOW1)Consultez les commandes            $(D_COLOR)|"; \
-		echo "|$(YELLOW1)\"make norminette\" ou \"norminette\"  $(D_COLOR)|"; \
+		echo "|$(YELLOW1)\"make norme\" ou \"norminette\"       $(D_COLOR)|"; \
 		echo "|$(YELLOW1)pour plus de details !$(D_COLOR)             |"; \
 		echo "|                                   |"; \
 		rm -rf $(EXEC_DIR); \
 		exit 0; \
 	else \
-		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		echo "|$(NAME)                       : $(GREEN1)$(SUCCESS)$(D_COLOR) |"; \
 	fi
 
 ifeq ($(filter-out all $(NAME) re, $(MAKECMDGOALS)), )
-	@echo "$(FIN)"
+	@$(MAKE) end
 endif
 
 $(NAME) : $(OBJS)
 
 clean :
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
-	@if [ -z "$(MAKECMDGOALS)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(MAKECMDGOALS) | tr 'a-z' 'A-Z'); fi; \
-	len=$$(echo -n "$$upper_makecmd" | wc -c); \
-	eq_len=$$(( (37 - len) / 2 )); \
-	left_len=$$(( eq_len )); \
-	right_len=$$(( 37 - len - left_len )); \
-	printf "\n"; \
-	for _ in $$(seq 1 $$left_len); do printf "="; done; \
-	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
-	for _ in $$(seq 1 $$right_len); do printf "="; done; \
-	printf "\n"
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 
-	@echo "|  =====$(CYAN1)OBJ_LIBFT$(D_COLOR)=====              |"
-	@rm -rf $(OBJ_DIR) $(SILENCE)
-	@echo "|Le dossier \"obj\"             : $(RED1)$(DELETED)$(D_COLOR)  |"
+	@if [ -d "$(OBJ_DIR)" ]; then \
+		echo "|  =====$(CYAN1)OBJ_LIBFT$(D_COLOR)=====              |"; \
+		rm -rf $(OBJ_DIR) $(SILENCE); \
+		echo "|Le dossier \"obj\"             : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+	fi
 	
 ifeq ($(MAKECMDGOALS), clean)
-	@echo "$(FIN)"
+	@$(MAKE) end
 endif
 
 fclean : clean
@@ -198,16 +183,18 @@ fclean : clean
 		rm -rf $(MLX_DIR); \
 		echo "|Le dossier de la mlx         : $(RED1)$(DELETED)$(D_COLOR)  |"; \
 	fi
-	@echo "|  ======$(CYAN1)LIBFT.A$(D_COLOR)======              |"
-	@rm -rf $(EXEC_DIR) $(SILENCE)
-	@echo "|$(NAME)                      : $(RED1)$(DELETED)$(D_COLOR)  |"
+	@if [ -d "$(EXEC_DIR)" ]; then \
+		echo "|  ======$(CYAN1)LIBFT.A$(D_COLOR)======              |"; \
+		rm -rf $(EXEC_DIR) $(SILENCE); \
+		echo "|$(NAME)                      : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+	fi
 	@if [ -f norminette ]; then \
 		rm norminette; \
 		echo "|trace norminette             : 💥  |"; \
 	fi
 	
 ifeq ($(MAKECMDGOALS), fclean)
-	@echo "$(FIN)"
+	@$(MAKE) end
 endif
 
 re : fclean all
@@ -215,6 +202,23 @@ re : fclean all
 .PHONY : all, clean, fclean, re, bonus
 
 #________OTHER_RULES___________
+
+begin :
+	@if [ -z "$(ARG3)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(ARG3) | tr 'a-z' 'A-Z'); fi; \
+	len=$$(echo -n "$$upper_makecmd" | wc -c); \
+	eq_len=$$(( (37 - len) / 2 )); \
+	left_len=$$(( eq_len )); \
+	right_len=$$(( 37 - len - left_len )); \
+	printf "\n"; \
+	for _ in $$(seq 1 $$left_len); do printf "="; done; \
+	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
+	for _ in $$(seq 1 $$right_len); do printf "="; done; \
+	printf "\n"; \
+	printf "|                                   |\n"
+
+end :
+	@printf "|                                   |\n"
+	@echo "$(FIN)"
 
 minilibx :
 ifeq ($(MAKECMDGOALS),minilibx)
@@ -242,30 +246,21 @@ ifeq ($(MAKECMDGOALS), minilibx)
 endif
 
 check_norme :
-	-@norminette src/ > res_cmd || true
+	-@norminette $(SRCS) > res_cmd || true
 	-@grep 'Error' res_cmd > norminette || true
 	-@norminette $(H_PLACE) > res_cmd || true
 	-@grep "Error" res_cmd >> norminette || true
 	@rm res_cmd
 	@if [ ! -s norminette ]; then \
     	rm norminette; \
-		echo "|norminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		echo "|norminette des .c de $(NAME)  : $(GREEN1)$(SUCCESS)$(D_COLOR) |"; \
 	fi
 
-norminette :
-	@echo "\n================$(PINK1)NORME$(D_COLOR)================"
-	-@norminette src/ > res_cmd || true
-	-@grep 'Error' res_cmd > norminette || true
-	-@norminette $(H_PLACE) > res_cmd || true
-	-@grep "Error" res_cmd >> norminette || true
-	@rm res_cmd
-	@if [ ! -s norminette ]; then \
-    	rm norminette; \
-		echo "|norminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-	else \
-		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
-		cat norminette; \
-		echo; \
-		rm norminette; \
+norme :
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
+	@if [ -s ./norminette ]; then \
+		norminette; \
+		echo -n; \
 	fi
+	@echo "|                                   |"
 	@echo "$(FIN)"

@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 14:03:29 by mechard           #+#    #+#              #
-#    Updated: 2024/07/18 16:56:43 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/19 15:44:14 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,7 +104,7 @@ endif
 		rm -rf $(NAME); \
 		exit 0; \
 	else \
-		echo "|$(NAME)                        : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR) |"; \
 	fi
 
 ifeq ($(filter-out all $(NAME) re, $(MAKECMDGOALS)), )
@@ -127,11 +127,9 @@ endif
 fclean : clean
 	@if [ -f $(NAME) ]; then \
 		rm -rf $(NAME); \
-		echo "|$(NAME)                        : $(RED1)$(DELETED)$(D_COLOR)  |";\
+		echo "|$(NAME)                         : $(RED1)$(DELETED)$(D_COLOR) |";\
+		$(MAKE) end; \
 	fi
-ifeq ($(MAKECMDGOALS), fclean)
-	@$(MAKE) end
-endif
 
 re : fclean all
 
@@ -164,13 +162,12 @@ check_norme :
 	@rm res_cmd
 	@if [ ! -s norminette ]; then \
     	rm norminette; \
-		echo "|norminette des .c de $(NAME) :   $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		echo "|norminette des .c de $(NAME)    : $(GREEN1)$(SUCCESS)$(D_COLOR) |"; \
 	fi
 
 norme :
-	
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 	@if [ -s ./norminette ]; then \
-		$(MAKE) begin ARG3="$(MAKECMDGOALS)"; \
 		norminette; \
 		echo -n; \
 	fi
