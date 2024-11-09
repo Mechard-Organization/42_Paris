@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
+#    By: mechard@student.42.fr <mechard>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/12 14:03:29 by mechard           #+#    #+#              #
-#    Updated: 2024/07/19 15:44:14 by mechard          ###   ########.fr        #
+#    Updated: 2024/07/24 20:03:27 by mechard@stu      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ FIN					= =================$(GREEN1)END$(D_COLOR)=================\n
 
 #____________FILE_C____________
 
-SRCS				= main.c ft_str.c ft_parse.c
+SRCS				= main.c ft_str.c ft_parse.c ft_state.c ft_thread.c ft_utils.c
 
 #____________FILE_H____________
 
@@ -128,8 +128,11 @@ fclean : clean
 	@if [ -f $(NAME) ]; then \
 		rm -rf $(NAME); \
 		echo "|$(NAME)                         : $(RED1)$(DELETED)$(D_COLOR) |";\
-		$(MAKE) end; \
 	fi
+
+ifeq ($(MAKECMDGOALS), fclean)
+	@$(MAKE) end
+endif
 
 re : fclean all
 
@@ -168,7 +171,7 @@ check_norme :
 norme :
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 	@if [ -s ./norminette ]; then \
-		norminette; \
+		cat norminette; \
 		echo -n; \
 	fi
 	@echo "|                                   |"

@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:02:35 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/19 15:46:25 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/24 16:46:11 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, s, ft_strlen(s));
 }
 
-void	ft_putnbr_fd(size_t n, int fd)
+void	ft_putnbr_fd(ssize_t n, int fd)
 {
 	size_t	nb;
 

@@ -3,34 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mechard@student.42.fr <mechard>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:34:09 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/19 15:44:34 by mechard          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:02:43 by mechard@stu      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+int	ft_exit(char *str)
 {
-	t_philos	philo;
-
-	if (ac < 5 || ac > 6)
-		return (ft_putstr_fd(INVALID_NB_ARGS, 1), 1);
-	philo = ft_parse_arg(ac, av);
-	ft_putstr_fd("Number.s ofphilo.s = ", 1);
-	ft_putnbr_fd(philo.number_of_philo, 1);
-	ft_putstr_fd("\nTime to die = ", 1);
-	ft_putnbr_fd(philo.time_to_die, 1);
-	ft_putstr_fd("\nTime to eat = ", 1);
-	ft_putnbr_fd(philo.time_to_eat, 1);
-	ft_putstr_fd("\nTime to sleep = ", 1);
-	ft_putnbr_fd(philo.time_to_sleep, 1);
-	if (ac == 6)
-	{
-		ft_putstr_fd("\nNumber of times each philosopher must eat = ", 1);
-		ft_putnbr_fd(philo.number_of_times_eat, 1);
-	}
+	ft_putstr_fd("Error : ", 2);
+	ft_putstr_fd(str, 2);
 	return (0);
+}
+
+int	check_death2(t_p *p)
+{
+	pthread_mutex_lock(&p->a.dead);
+	if (p->a.stop)
+	{
+		pthread_mutex_unlock(&p->a.dead);
+		return (1);
+	}
+	pthread_mutex_unlock(&p->a.dead);
+	return (0);
+}
+
+void	stop(t_p *p)
+{
+	int	i;
+
+	i = -1;
+	while (!check_death2(p))
+		ft_usleep(1);
+	while (++i < p->a.total)
+		pthread_join(p->ph[i].thread_id, NULL);
+	pthread_mutex_destroy(&p->a.write_mutex);
+	i = -1;
+	while (++i < p->a.total)
+		pthread_mutex_destroy(&p->ph[i].l_f);
+	if (p->a.stop == 2)
+		printf("Each philosopher ate %d time(s)\n", p->a.m_eat);
+	free(p->ph);
+}
+
+int	main(int argc, char **argv)
+{
+	t_p		p;
+
+	if (!(ft_parse(argc, argv, &p)))
+		return (ft_exit("Invalid Arguments\n"));
+	p.ph = malloc(sizeof(t_philo) * p.a.total);
+	if (!p.ph)
+		return (ft_exit("Malloc returned NULL\n"));
+	if (!initialize(&p) || !threading(&p))
+	{
+		free(p.ph);
+		return (0);
+	}
+	stop(&p);
 }
