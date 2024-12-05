@@ -3,62 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   ft_state.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mechard@student.42.fr <mechard>            +#+  +:+       +#+        */
+/*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 19:45:04 by mechard@stu       #+#    #+#             */
-/*   Updated: 2024/07/24 20:03:43 by mechard@stu      ###   ########.fr       */
+/*   Updated: 2024/12/05 15:13:50 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	write_status(char *str, t_philo *ph)
+void	write_status(char *status_message, t_philo *philosopher)
 {
-	long int		time;
+	long int	current_time;
 
-	time = -1;
-	time = actual_time() - ph->pa->start_t;
-	if (time >= 0 && time <= 2147483647 && !check_death(ph, 0))
+	current_time = -1;
+	current_time = actual_time() - philosopher->pa->start_t;
+	if (current_time >= 0 && current_time <= 2147483647
+		&& !check_death(philosopher, 0))
 	{
-		printf("%ld ", time);
-		printf("Philo %d %s", ph->id, str);
+		printf("%ld ", current_time);
+		printf("Philosopher %d %s", philosopher->id, status_message);
 	}
 }
 
-void	sleep_think(t_philo *ph)
+void	sleep_think(t_philo *philosopher)
 {
-	pthread_mutex_lock(&ph->pa->write_mutex);
-	write_status("is sleeping\n", ph);
-	pthread_mutex_unlock(&ph->pa->write_mutex);
-	ft_usleep(ph->pa->sleep);
-	pthread_mutex_lock(&ph->pa->write_mutex);
-	write_status("is thinking\n", ph);
-	pthread_mutex_unlock(&ph->pa->write_mutex);
+	pthread_mutex_lock(&philosopher->pa->write_mutex);
+	write_status("is sleeping\n", philosopher);
+	pthread_mutex_unlock(&philosopher->pa->write_mutex);
+	ft_usleep(philosopher->pa->sleep);
+	pthread_mutex_lock(&philosopher->pa->write_mutex);
+	write_status("is thinking\n", philosopher);
+	pthread_mutex_unlock(&philosopher->pa->write_mutex);
 }
 
-void	ft_state(t_philo *ph)
+void	ft_state(t_philo *philosopher)
 {
-	pthread_mutex_lock(&ph->l_f);
-	pthread_mutex_lock(&ph->pa->write_mutex);
-	write_status("has taken a fork\n", ph);
-	pthread_mutex_unlock(&ph->pa->write_mutex);
-	if (!ph->r_f)
+	pthread_mutex_lock(&philosopher->l_f);
+	pthread_mutex_lock(&philosopher->pa->write_mutex);
+	write_status("has taken a fork\n", philosopher);
+	pthread_mutex_unlock(&philosopher->pa->write_mutex);
+	if (!philosopher->r_f)
 	{
-		ft_usleep(ph->pa->die * 2);
+		ft_usleep(philosopher->pa->die * 2);
 		return ;
 	}
-	pthread_mutex_lock(ph->r_f);
-	pthread_mutex_lock(&ph->pa->write_mutex);
-	write_status("has taken a fork\n", ph);
-	pthread_mutex_unlock(&ph->pa->write_mutex);
-	pthread_mutex_lock(&ph->pa->write_mutex);
-	write_status("is eating\n", ph);
-	pthread_mutex_lock(&ph->pa->time_eat);
-	ph->ms_eat = actual_time();
-	pthread_mutex_unlock(&ph->pa->time_eat);
-	pthread_mutex_unlock(&ph->pa->write_mutex);
-	ft_usleep(ph->pa->eat);
-	pthread_mutex_unlock(ph->r_f);
-	pthread_mutex_unlock(&ph->l_f);
-	sleep_think(ph);
+	pthread_mutex_lock(philosopher->r_f);
+	pthread_mutex_lock(&philosopher->pa->write_mutex);
+	write_status("has taken a fork\n", philosopher);
+	pthread_mutex_unlock(&philosopher->pa->write_mutex);
+	pthread_mutex_lock(&philosopher->pa->write_mutex);
+	write_status("is eating\n", philosopher);
+	pthread_mutex_lock(&philosopher->pa->time_eat);
+	philosopher->ms_eat = actual_time();
+	pthread_mutex_unlock(&philosopher->pa->time_eat);
+	pthread_mutex_unlock(&philosopher->pa->write_mutex);
+	ft_usleep(philosopher->pa->eat);
+	pthread_mutex_unlock(philosopher->r_f);
+	pthread_mutex_unlock(&philosopher->l_f);
+	sleep_think(philosopher);
 }

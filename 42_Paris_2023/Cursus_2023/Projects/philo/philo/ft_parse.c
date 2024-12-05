@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parse.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mechard@student.42.fr <mechard>            +#+  +:+       +#+        */
+/*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/18 16:04:18 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/24 20:00:10 by mechard@stu      ###   ########.fr       */
+/*   Updated: 2024/12/05 15:14:27 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,96 +14,99 @@
 
 size_t	ft_atoi(const char *str)
 {
-	size_t	i;
-	size_t	res;
+	size_t	index;
+	size_t	result;
 	size_t	sign;
 
-	i = 0;
+	index = 0;
 	sign = 1;
-	res = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	result = 0;
+	while (str[index] == ' ' || (str[index] >= '\t' && str[index] <= '\r'))
+		index++;
+	if (str[index] == '-' || str[index] == '+')
 	{
-		if (str[i] == '-')
+		if (str[index] == '-')
 			sign = -sign;
-		i++;
+		index++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[index] >= '0' && str[index] <= '9')
 	{
-		res = res * 10 + (str[i] - 48);
-		i++;
+		result = result * 10 + (str[index] - '0');
+		index++;
 	}
-	return (res * sign);
+	return (result * sign);
 }
 
-int	ft_isnum(char **argv, int i, int j)
+int	ft_isnum(char **arguments, int inner_index, int outer_index)
 {
-	while (argv[j])
+	while (arguments[outer_index])
 	{
-		while (argv[j][i])
+		while (arguments[outer_index][inner_index])
 		{
-			if (argv[j][i] < '0' || argv[j][i] > '9' || ft_strlen(argv[j]) > 10)
+			if (arguments[outer_index][inner_index] < '0'
+				|| arguments[outer_index][inner_index] > '9'
+				|| ft_strlen(arguments[outer_index]) > 10)
 				return (0);
-			i++;
+			inner_index++;
 		}
-		i = 0;
-		j++;
+		inner_index = 0;
+		outer_index++;
 	}
 	return (1);
 }
 
-int	ft_parse(int argc, char **argv, t_p *p)
+int	ft_parse(int argument_count, char **arguments, t_p *params)
 {
-	if ((argc == 5 || argc == 6) && ft_isnum(argv, 0, 1))
+	if ((argument_count == 5 || argument_count == 6) && ft_isnum(arguments, 0,
+			1))
 	{
-		p->a.total = ft_atoi(argv[1]);
-		p->a.die = ft_atoi(argv[2]);
-		p->a.eat = ft_atoi(argv[3]);
-		p->a.sleep = ft_atoi(argv[4]);
-		p->a.m_eat = -1;
-		if (argc == 6)
-			p->a.m_eat = ft_atoi(argv[5]);
-		if (p->a.total <= 0 || p->a.die <= 0 || p->a.eat <= 0 \
-			|| p->a.sleep <= 0)
+		params->a.total = ft_atoi(arguments[1]);
+		params->a.die = ft_atoi(arguments[2]);
+		params->a.eat = ft_atoi(arguments[3]);
+		params->a.sleep = ft_atoi(arguments[4]);
+		params->a.m_eat = -1;
+		if (argument_count == 6)
+			params->a.m_eat = ft_atoi(arguments[5]);
+		if (params->a.total <= 0 || params->a.die <= 0 || params->a.eat <= 0
+			|| params->a.sleep <= 0)
 			return (0);
 		return (1);
 	}
 	return (0);
 }
 
-void	init_mutex(t_p *p)
+void	init_mutex(t_p *params)
 {
-	pthread_mutex_init(&p->a.write_mutex, NULL);
-	pthread_mutex_init(&p->a.dead, NULL);
-	pthread_mutex_init(&p->a.time_eat, NULL);
-	pthread_mutex_init(&p->a.finish, NULL);
+	pthread_mutex_init(&params->a.write_mutex, NULL);
+	pthread_mutex_init(&params->a.dead, NULL);
+	pthread_mutex_init(&params->a.time_eat, NULL);
+	pthread_mutex_init(&params->a.finish, NULL);
 }
 
-int	initialize(t_p *p)
+int	initialize(t_p *params)
 {
-	int	i;
+	int	index;
 
-	i = 0;
-	p->a.start_t = actual_time();
-	p->a.stop = 0;
-	p->a.nb_p_finish = 0;
-	init_mutex(p);
-	while (i < p->a.total)
+	index = 0;
+	params->a.start_t = actual_time();
+	params->a.stop = 0;
+	params->a.nb_p_finish = 0;
+	init_mutex(params);
+	while (index < params->a.total)
 	{
-		p->ph[i].id = i + 1;
-		p->ph[i].ms_eat = p->a.start_t;
-		p->ph[i].nb_eat = 0;
-		p->ph[i].finish = 0;
-		p->ph[i].r_f = NULL;
-		pthread_mutex_init(&p->ph[i].l_f, NULL);
-		if (p->a.total == 1)
+		params->ph[index].id = index + 1;
+		params->ph[index].ms_eat = params->a.start_t;
+		params->ph[index].nb_eat = 0;
+		params->ph[index].finish = 0;
+		params->ph[index].r_f = NULL;
+		pthread_mutex_init(&params->ph[index].l_f, NULL);
+		if (params->a.total == 1)
 			return (1);
-		if (i == p->a.total - 1)
-			p->ph[i].r_f = &p->ph[0].l_f;
+		if (index == params->a.total - 1)
+			params->ph[index].r_f = &params->ph[0].l_f;
 		else
-			p->ph[i].r_f = &p->ph[i + 1].l_f;
-		i++;
+			params->ph[index].r_f = &params->ph[index + 1].l_f;
+		index++;
 	}
 	return (1);
 }
