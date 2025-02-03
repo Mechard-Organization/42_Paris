@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <unistd.h>
+
 #include "get_next_line.h"
 
 char    *ft_strdup(char *src)
@@ -48,9 +47,6 @@ char    *get_next_line(int fd)
         return (NULL);
     return (ft_strdup(line));
 }
-
-#include <fcntl.h>
-#include <stdio.h>
 
 int    main(void)
 {
