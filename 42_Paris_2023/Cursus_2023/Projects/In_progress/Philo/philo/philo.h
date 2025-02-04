@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:34:06 by mechard           #+#    #+#             */
-/*   Updated: 2025/02/01 18:17:26 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/04 07:52:59 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void				error_msg(int code);
 void				destory_all(char *str, t_principal *principal);
 void				init_program(t_principal *principal);
 void				init_input(t_principal *principal, int i);
-void				*monitor(void *pointer);
-void				*philo_routine(void *pointer);
+void				*monitor(void *data);
+void				*philo_routine(void *data);
 void				ft_eating(t_philo *philo);
 void				ft_eating_two(t_philo *philo);
 void				ft_sleeping(t_philo *philo);

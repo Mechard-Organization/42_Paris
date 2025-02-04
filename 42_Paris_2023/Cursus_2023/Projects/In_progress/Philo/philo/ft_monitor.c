@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:52:41 by mechard           #+#    #+#             */
-/*   Updated: 2025/02/01 15:26:20 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/04 07:52:46 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,16 @@ int	check_if_all_ate(t_philo *philos)
 	return (0);
 }
 
-void	*monitor(void *pointer)
+void	*monitor(void *data)
 {
 	t_philo	*philos;
 
-	philos = (t_philo *)pointer;
+	philos = (t_philo *)data;
 	while (1)
 	{
 		if (check_if_dead(philos) == 1 || check_if_all_ate(philos) == 1)
 			break ;
 		ft_usleep(1);
 	}
-	return (pointer);
+	return (data);
 }

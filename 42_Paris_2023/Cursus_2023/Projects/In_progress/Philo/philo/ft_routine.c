@@ -6,14 +6,15 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 15:02:35 by mechard           #+#    #+#             */
-/*   Updated: 2025/02/01 18:08:11 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/04 08:08:09 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	time_to_think(t_philo *philo)
+void	ft_thinking(t_philo *philo)
 {
+	message(THINK, philo, philo->id);
 	if (philo->num_of_philos % 2 == 1)
 	{
 		if (((philo->time_to_eat * 2) - philo->time_to_sleep) > 0)
@@ -21,12 +22,6 @@ static void	time_to_think(t_philo *philo)
 	}
 	else if ((philo->time_to_eat - philo->time_to_sleep) > 0)
 		ft_usleep(philo->time_to_eat - philo->time_to_sleep);
-}
-
-void	ft_thinking(t_philo *philo)
-{
-	message(THINK, philo, philo->id);
-	time_to_think(philo);
 }
 
 void	ft_sleeping(t_philo *philo)
