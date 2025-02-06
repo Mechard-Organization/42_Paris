@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 14:14:16 by mechard           #+#    #+#             */
-/*   Updated: 2025/02/01 14:58:20 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/06 10:20:39 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,28 @@ ber_of_times_each_philosopher_must_eat]\n"
 # endif
 
 # ifndef ERROR_ALPH
-#  define ERROR_ALPH "Error, none numeric argument found in parsing\n"
+#  define ERROR_ALPH "Error, none numeric or negative argument\
+ found in parsing\n"
 # endif
 
 # ifndef ERROR_0_PHILO
-#  define ERROR_0_PHILO "Error, number of philos set to zero\n"
+#  define ERROR_0_PHILO "Error, number of philos set to zero or overflow !\n"
 # endif
 
 # ifndef ERROR_0_TTD
-#  define ERROR_0_TTD "Error, time to die set to zero\n"
+#  define ERROR_0_TTD "Error, time to die set to zero or overflow !\n"
 # endif
 
 # ifndef ERROR_0_TTE
-#  define ERROR_0_TTE "Error, time to eat set to zero\n"
+#  define ERROR_0_TTE "Error, time to eat set to zero or overflow !\n"
 # endif
 
 # ifndef ERROR_0_TTS
-#  define ERROR_0_TTS "Error, time to sleep set to zero\n"
+#  define ERROR_0_TTS "Error, time to sleep set to zero or overflow !\n"
 # endif
 
 # ifndef ERROR_0_TMD
-#  define ERROR_0_TMD "Error, time must die set to zero\n"
+#  define ERROR_0_TMD "Error, time must die set to zero or overflow !\n"
 # endif
 
 /*_______________MSGS_ERROR_______________*/

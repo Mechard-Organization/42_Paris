@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 19:42:19 by mechard@stu       #+#    #+#             */
-/*   Updated: 2025/02/01 15:29:06 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/06 09:52:05 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ void	*philo_routine(void *data)
 	t_philo	*philo;
 
 	philo = (t_philo *)data;
-	if (philo->id % 2 == 0 || (philo->num_of_philos % 2 == 1
-			&& philo->id == philo->num_of_philos))
-		ft_thinking(philo);
 	while (!dead_check(philo))
 	{
 		ft_eating(philo);

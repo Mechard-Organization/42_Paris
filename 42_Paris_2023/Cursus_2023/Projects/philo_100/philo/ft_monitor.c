@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 10:52:41 by mechard           #+#    #+#             */
-/*   Updated: 2025/02/04 07:52:46 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/06 09:45:18 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	message(char *str, t_philo *philo, int id)
 	pthread_mutex_lock(philo->write_lock);
 	time = get_current_time() - philo->start_time;
 	if (!dead_check(philo))
-		printf("%zu Philosopher %d %s\n", time, id, str);
+		printf("%zu %d %s\n", time, id, str);
 	pthread_mutex_unlock(philo->write_lock);
 }
 

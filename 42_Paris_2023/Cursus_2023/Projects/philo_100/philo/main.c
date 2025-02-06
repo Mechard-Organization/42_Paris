@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 14:34:09 by mechard           #+#    #+#             */
-/*   Updated: 2025/02/04 07:55:49 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/06 10:13:08 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	check_basic_value(char **argv)
 	int	i;
 
 	i = 0;
-	if (ft_atoll(argv[1]) == 0)
+	if (ft_atoll(argv[1]) <= 0 || ft_atoll(argv[1]) > 2147483647)
 		(error_msg(2), i++);
-	if (ft_atoll(argv[2]) == 0)
+	if (ft_atoll(argv[2]) <= 0 || ft_atoll(argv[2]) > 2147483647)
 		(error_msg(3), i++);
-	if (ft_atoll(argv[3]) == 0)
+	if (ft_atoll(argv[3]) <= 0 || ft_atoll(argv[3]) > 2147483647)
 		(error_msg(4), i++);
-	if (ft_atoll(argv[4]) == 0)
+	if (ft_atoll(argv[4]) <= 0 || ft_atoll(argv[4]) > 2147483647)
 		(error_msg(5), i++);
-	if (argv[5] && ft_atoll(argv[5]) == 0)
+	if (argv[5] && (ft_atoll(argv[5]) <= 0 || ft_atoll(argv[5]) > 2147483647))
 		(error_msg(6), i++);
 	return (i);
 }
