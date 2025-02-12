@@ -35,7 +35,8 @@ int exec(char **argv, char **envp, int i)
     if (has_pipe && pipe(fd) == -1) return err("error: fatal\n"); // Crée un pipe si nécessaire et retourne une erreur en cas d'échec
 
     int pid = fork(); // Crée un processus enfant
-    if (!pid) { // Dans le processus enfant
+    if (!pid) // Dans le processus enfant
+    {
         argv[i] = 0;
         if (has_pipe && (dup2(fd[1], 1) == -1 || close(fd[0]) || close(fd[1]))) return err("error: fatal\n"); // Configure le pipe si nécessaire et retourne une erreur en cas d'échec
         execve(*argv, argv, envp); // Exécute la commande et retourne une erreur si l'exécution échoue
@@ -50,7 +51,8 @@ int exec(char **argv, char **envp, int i)
 int main(int argc, char **argv, char **envp)
 {
     int i = 0, status = 0;
-    while (argc > 1 && argv[i] && argv[++i]) { // Boucle tant qu'il y a des arguments à traiter
+    while (argc > 1 && argv[i] && argv[++i]) // Boucle tant qu'il y a des arguments à traiter
+    {
         argv += i; i = 0;
         while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";")) i++; // Parcourt les arguments jusqu'à trouver un pipe '|' ou un point-virgule ';'
         if (!strcmp(*argv, "cd")) status = cd(argv, i); // Exécute 'cd' ou une autre commande en fonction de l'argument actuel
