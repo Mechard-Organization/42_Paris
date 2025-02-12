@@ -6,13 +6,13 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/02/12 14:08:18 by mechard          ###   ########.fr        #
+#    Updated: 2025/02/12 14:55:29 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #==================VAR_GBL==================
 
-NAME			= minishell
+NAME			= megaphone
 INC				= inc/
 
 #===================FLAG====================
@@ -32,6 +32,7 @@ FIN				= =================$(GREEN1)END$(D_COLOR)=================\n
 
 #==================SOURCES==================
 
+SRCS			= megaphone.cpp
 
 #====================COLOR====================
 
@@ -78,7 +79,6 @@ endif
 		rm -rf res_cmp; \
 	fi
 	@if [ ! -s res_cmp ]; then \
-		echo "|                                   |"; \
 		echo "|  =======$(YELLOW1)CPP00$(D_COLOR)========             |"; \
 		echo "|                                   |"; \
 		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)|"; \
