@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/02/12 14:05:30 by mechard          ###   ########.fr        #
+#    Updated: 2025/02/12 14:08:06 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,8 @@ INC				= inc/
 
 #===================FLAG====================
 
-CFLAG				= -Wall -Wextra -Werror -std=c++98 -g3
-CXX					= c++ $(CFLAG) $(HEADERS)
+CXXFLAGS			= -Wall -Wextra -Werror -std=c++98 -g3
+CXX					= c++ $(CXXFLAGS) $(HEADERS)
 
 #===================OTHERS==================
 
