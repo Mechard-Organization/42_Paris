@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:20:23 by mechard           #+#    #+#             */
-/*   Updated: 2025/02/12 15:21:40 by mechard          ###   ########.fr       */
+/*   Updated: 2025/02/13 14:45:43 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <cctype>
+#include <cstdlib>
 
 class   Contact
 {

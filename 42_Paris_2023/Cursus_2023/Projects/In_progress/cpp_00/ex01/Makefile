@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/02/12 15:36:28 by mechard          ###   ########.fr        #
+#    Updated: 2025/02/13 14:45:59 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,6 @@ endif
 		rm -rf res_cmp; \
 	fi
 	@if [ ! -s res_cmp ]; then \
-		echo "|                                   |"; \
 		echo "|  =======$(YELLOW1)CPP01$(D_COLOR)========             |"; \
 		echo "|                                   |"; \
 		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)|"; \
