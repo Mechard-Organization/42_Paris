@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
+#    By: sgoigoux <sgoigoux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/02/17 13:21:56 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/15 18:13:30 by sgoigoux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ FIN				= =================$(GREEN1)END$(D_COLOR)=================\n
 
 #==================SOURCES==================
 
-SRCS			= main.cpp Zombie.cpp zombieHorde.cpp
+SRCS			= main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 
 #====================COLOR====================
 
@@ -81,7 +81,7 @@ endif
 	@if [ ! -s res_cmp ]; then \
 		echo "|  =======$(YELLOW1)CPP01$(D_COLOR)========             |"; \
 		echo "|                                   |"; \
-		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)|"; \
+		echo "|$(NAME)                  : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	elif [ -s res_cmp ]; then \
 		echo "|                                   |"; \
 		echo "|$(RED1)Erreur de compilation !!$(D_COLOR)           |"; \
@@ -114,7 +114,7 @@ fclean : clean
 	fi
 	@if [ -f "$(NAME)" ]; then \
 		rm -rf $(NAME) $(SILENCE); \
-		echo "|$(NAME)                    : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+		echo "|$(NAME)                  : $(RED1)$(DELETED)$(D_COLOR)  |"; \
 	fi
 
 ifeq ($(MAKECMDGOALS), fclean)
