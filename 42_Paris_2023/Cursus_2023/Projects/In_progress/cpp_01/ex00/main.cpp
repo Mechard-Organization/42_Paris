@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sgoigoux <sgoigoux@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 13:22:09 by mechard           #+#    #+#             */
-/*   Updated: 2025/03/15 18:10:53 by sgoigoux         ###   ########.fr       */
+/*   Updated: 2025/03/15 18:57:19 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-// Déclaration des fonctions externes
 Zombie* newZombie(std::string name);
 void randomChump(std::string name);
 
