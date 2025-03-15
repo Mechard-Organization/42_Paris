@@ -20,14 +20,18 @@ int main()
     std::string* stringPTR = &brain;
     
     std::string& stringREF = brain;
-    
+
+	std::cout << std::endl;
     std::cout << "Adresse de brain : " << &brain << std::endl;
     std::cout << "Adresse contenue dans stringPTR : " << stringPTR << std::endl;
     std::cout << "Adresse contenue dans stringREF : " << &stringREF << std::endl;
-    
+
+	std::cout << std::endl;
+
     std::cout << "Valeur de brain : " << brain << std::endl;
     std::cout << "Valeur pointée par stringPTR : " << *stringPTR << std::endl;
     std::cout << "Valeur pointée par stringREF : " << stringREF << std::endl;
+	std::cout << std::endl;
     
     return 0;
 }
