@@ -6,13 +6,13 @@
 #    By: sgoigoux <sgoigoux@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/15 18:13:30 by sgoigoux         ###   ########.fr        #
+#    Updated: 2025/03/15 18:34:33 by sgoigoux         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #==================VAR_GBL==================
 
-NAME			= zombieHorde
+NAME			= randomChump
 INC				= inc/
 
 #===================FLAG====================
@@ -33,6 +33,7 @@ FIN				= =================$(GREEN1)END$(D_COLOR)=================\n
 #==================SOURCES==================
 
 SRCS			= main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
+SRCS_LOCATION	= $(addprefix ./, $(SRCS))
 
 #====================COLOR====================
 
