@@ -6,13 +6,13 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/18 11:26:58 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/18 11:24:59 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #==================VAR_GBL==================
 
-NAME			= a.out
+NAME			= cub3d
 INC				= inc/
 
 #===================FLAG====================
@@ -32,7 +32,7 @@ FIN				= =================$(GREEN1)END$(D_COLOR)=================\n
 
 #==================SOURCES==================
 
-SRCS			= main.cpp Fixed.cpp
+SRCS			= 
 SRCS_LOCATION	= $(addprefix ./, $(SRCS))
 
 #====================COLOR====================
@@ -80,9 +80,9 @@ endif
 		rm -rf res_cmp; \
 	fi
 	@if [ ! -s res_cmp ]; then \
-		echo "|  =======$(YELLOW1)CPP02$(D_COLOR)========             |"; \
+		echo "|  =======$(YELLOW1)CUB3D$(D_COLOR)========             |"; \
 		echo "|                                   |"; \
-		echo "|$(NAME)                        : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	elif [ -s res_cmp ]; then \
 		echo "|                                   |"; \
 		echo "|$(RED1)Erreur de compilation !!$(D_COLOR)           |"; \
@@ -115,7 +115,7 @@ fclean : clean
 	fi
 	@if [ -f "$(NAME)" ]; then \
 		rm -rf $(NAME) $(SILENCE); \
-		echo "|$(NAME)                        : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+		echo "|$(NAME)                         : $(RED1)$(DELETED)$(D_COLOR)  |"; \
 	fi
 
 ifeq ($(MAKECMDGOALS), fclean)
