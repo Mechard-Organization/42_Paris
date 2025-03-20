@@ -16,7 +16,17 @@ Zombie* zombieHorde(int N, std::string name);
 
 int main(int ac, char **av)
 {
-    if (ac != 3)
+	if (ac == 1)
+	{
+		Zombie* horde = zombieHorde(5, "zombie_test");
+    	for (int i = 0; i < 5; i++)
+		{
+        	horde[i].announce();
+		}
+		delete [] horde;
+		return 0;
+	}
+    if (ac == 2 || ac > 3)
 	{
         std::cerr << "Usage: " << av[0] << " <nombre_de_zombies> <nom_du_zombie>" << std::endl;
         return 1;

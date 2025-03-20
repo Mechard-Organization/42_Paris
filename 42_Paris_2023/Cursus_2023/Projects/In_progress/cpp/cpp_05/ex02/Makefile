@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_C++                                       :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/20 18:28:08 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/20 22:44:33 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = cpp01
+PROJECT         = cpp05
 NAME            = ex02
 
 #------------------------------------------------------
@@ -32,10 +32,12 @@ CXX             = c++ $(CXXFLAGS)
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRC             = main.cpp
+SRC             = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
 SRCS            = $(addprefix ./, $(SRC))
-HDR             = 
+HDR             = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
 HDRS            = $(addprefix ./, $(HDR))
+INC				=
+INCS			= -I$(addprefix ./, $(INC)) -I$(addprefix ./, $(LIB_INC))
 SRCS_LOCATION   = $(SRCS) $(HDRS)
 
 #------------------------------------------------------

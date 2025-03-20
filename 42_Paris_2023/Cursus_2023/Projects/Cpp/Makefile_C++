@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/20 18:28:08 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/20 22:48:37 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,24 +18,30 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = cpp01
-NAME            = ex02
+PROJECT         = 
+NAME            = 
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
 #------------------------------------------------------
 
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
-CXX             = c++ $(CXXFLAGS)
+CXX             = c++ $(CXXFLAGS) 
+CXXCOMPI		= $(CXX) $(HDRS) $(SRCS) -o $(NAME)
+CFLAGS			= -Wall -Wextra -Werror -g3
+C				= cc $(CFLAGS)
+CCOMPI			= $(C) $(HDRS) $(SRCS) -o $(NAME)
 
 #------------------------------------------------------
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRC             = main.cpp
+SRC             = 
 SRCS            = $(addprefix ./, $(SRC))
 HDR             = 
 HDRS            = $(addprefix ./, $(HDR))
+INC				=
+INCS			= -I$(addprefix ./, $(INC)) -I$(addprefix ./, $(LIB_INC))
 SRCS_LOCATION   = $(SRCS) $(HDRS)
 
 #------------------------------------------------------
@@ -89,9 +95,13 @@ END_SPACES      = 12
 # (Optionnel) Variables pour la librairie
 #------------------------------------------------------
 
-LIB_A           =
-LIB_DIR         =
-LIB             =
+LIB				= libft.a
+LIB_DIR			= $(addprefix $(INC), libft/)
+LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
+LIB_INC			= $(addprefix $(LIB_DIR), inc/)
+LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
+LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
+LIBRARY			= -lreadline -lncurses
 
 #======================================================
 #                   RÈGLES PRINCIPALES
@@ -108,7 +118,7 @@ ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 	@-$(MAKE) under_begin ARG3="$(NAME)"
-	@-$(CXX) $(HDRS) $(SRCS) -o $(NAME) > res_cmp
+	@-$(CXXCOMPI) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
 		echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \

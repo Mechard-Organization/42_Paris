@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_C++                                       :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/20 18:28:08 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/20 17:39:49 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = cpp01
-NAME            = ex02
+PROJECT         = cpp05
+NAME            = ex01
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
@@ -32,9 +32,9 @@ CXX             = c++ $(CXXFLAGS)
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRC             = main.cpp
+SRC				= main.cpp Bureaucrat.cpp Form.cpp
 SRCS            = $(addprefix ./, $(SRC))
-HDR             = 
+HDR             = Bureaucrat.hpp Form.hpp
 HDRS            = $(addprefix ./, $(HDR))
 SRCS_LOCATION   = $(SRCS) $(HDRS)
 

@@ -6,82 +6,111 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/17 22:41:09 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/20 17:38:57 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-#==================VAR_GBL==================
+#======================================================
+#                   VARIABLES
+#======================================================
 
-NAME			= ex02
-INC				= inc/
+#------------------------------------------------------
+# Variables globales
+#------------------------------------------------------
 
-#===================FLAG====================
+PROJECT         = cpp04
+NAME            = ex02
 
-CXXFLAGS			= -Wall -Wextra -Werror -std=c++98 -g3
-CXX					= c++ $(CXXFLAGS) $(HEADERS)
+#------------------------------------------------------
+# Flags de compilation et compilateur
+#------------------------------------------------------
 
-#===================OTHERS==================
+CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
+CXX             = c++ $(CXXFLAGS)
 
-SUCCESS			= ✅
-TELECHARGEMENT	= 🔽🔁
-DL_FINISH		= 🔽✅
-DELETED			= 💥
-SILENCE			= > /dev/null 2>&1
-MAKE			= make --no-print-directory -C ./
-FIN				= =================$(GREEN1)END$(D_COLOR)=================\n
+#------------------------------------------------------
+# Fichiers sources et headers
+#------------------------------------------------------
 
-#==================SOURCES==================
+SRC             = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+SRCS            = $(addprefix ./, $(SRC))
+HDR             = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
+HDRS            = $(addprefix ./, $(HDR))
+SRCS_LOCATION   = $(SRCS) $(HDRS)
 
-SRCS			= main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
-SRCS_LOCATION	= $(addprefix ./, $(SRCS))
+#------------------------------------------------------
+# Couleurs, symboles et autres variables d'affichage
+#------------------------------------------------------
 
-#====================COLOR====================
+# Reset & style
+D_COLOR         = \033[0m
+BOLD            = \033[1m
 
-#_________RESET_COLOR__________
+# Couleurs texte
+BLACK1          = \033[30m
+RED1            = \033[31m
+GREEN1          = \033[32m
+YELLOW1         = \033[33m
+BLUE1           = \033[34m
+PINK1           = \033[35m
+CYAN1           = \033[36m
+GREY1           = \033[37m
 
-D_COLOR = \033[0m
+# Couleurs de fond
+BLACK2          = \033[40m
+RED2            = \033[41m
+GREEN2          = \033[42m
+YELLOW2         = \033[43m
+BLUE2           = \033[44m
+PINK2           = \033[45m
+CYAN2           = \033[46m
+GREY2           = \033[47m
 
-#__________TEXT_STYLE__________
+# Symboles
+SUCCESS         = ✅
+TELECHARGEMENT  = 🔽🔁
+DL_FINISH       = 🔽✅
+DELETED         = 💥
 
-BOLD = \033[1m
+# Autres variables
+SILENCE         = > /dev/null 2>&1
+MAKE            = make --no-print-directory -C ./
+FIN             = =================$(GREEN1)END$(D_COLOR)=================\n
 
-#__________COLOR_TEXT__________
+#------------------------------------------------------
+# Variables d'affichage (pour les règles begin et under_begin)
+#------------------------------------------------------
 
-BLACK1	= \033[30m
-RED1	= \033[31m
-GREEN1	= \033[32m
-YELLOW1	= \033[33m
-BLUE1	= \033[34m
-PINK1	= \033[35m
-CYAN1	= \033[36m
-GREY1	= \033[37m
+LINE_WIDTH      = 37
+BLOCK_SIZE      = 21
+END_SPACES      = 12
 
-#_______COLOR_BACKGROUND_______
+#------------------------------------------------------
+# (Optionnel) Variables pour la librairie
+#------------------------------------------------------
 
-BLACK2	= \033[40m
-RED2	= \033[41m
-GREEN2	= \033[42m
-YELLOW2	= \033[43m
-BLUE2	= \033[44m
-PINK2	= \033[45m
-CYAN2	= \033[46m
-GREY2	= \033[47m
+LIB_A           =
+LIB_DIR         =
+LIB             =
 
-#====================RULES====================
+#======================================================
+#                   RÈGLES PRINCIPALES
+#======================================================
 
-all : $(NAME)
+all: $(NAME)
 
-$(NAME) : $(SRCS_LOCATION)
+#------------------------------------------------------
+# Compilation de l'exécutable
+#------------------------------------------------------
+
+$(NAME): $(SRCS_LOCATION)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@-$(CXX) $(SRCS) -o $(NAME)
+	@-$(MAKE) under_begin ARG3="$(NAME)"
+	@-$(CXX) $(HDRS) $(SRCS) -o $(NAME) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
-	fi
-	@if [ ! -s res_cmp ]; then \
-		echo "|  =======$(YELLOW1)CPP04$(D_COLOR)========             |"; \
-		echo "|                                   |"; \
 		echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 	elif [ -s res_cmp ]; then \
 		echo "|                                   |"; \
@@ -89,60 +118,147 @@ endif
 		echo "|$(YELLOW1)Consultez les commandes \"make cmp\" $(D_COLOR)|"; \
 		echo "|$(YELLOW1)ou le fichier \"cmp_res\"            $(D_COLOR)|"; \
 		echo "|$(YELLOW1)pour plus de details !$(D_COLOR)             |"; \
-		echo "|                                   |"; \
 	fi
-
-ifeq ($(filter-out all $(NAME) re, $(MAKECMDGOALS)), )
 	@$(MAKE) end
-endif
 
-$(LIB_A) :
-	@make --no-print-directory -C $(LIB_DIR) $(LIB) 
+#------------------------------------------------------
+# Nettoyage (fichiers temporaires)
+#------------------------------------------------------
 
-clean :
+clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-
+	@if [ -s Home_shrubbery ]; then \
+		$(MAKE) under_begin ARG3="CLEAN"; \
+		rm Home_shrubbery; \
+		echo "|Home_shrubbery               : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+		if [ "$(MAKECMDGOALS)" != "clean" ]; then \
+			echo "|                                   |"; \
+		fi; \
+	fi
 ifeq ($(MAKECMDGOALS), clean)
 	@$(MAKE) end
 endif
 
-fclean : clean
-	@if [ -f "$(LIB_A)" ]; then \
-		$(MAKE)$(LIB_DIR) fclean $(SILENCE); \
-		echo "|$(LIB)                      : $(RED1)$(DELETED)$(D_COLOR)  |"; \
-	fi
+#------------------------------------------------------
+# Nettoyage complet (exécutable, etc.)
+#------------------------------------------------------
+
+fclean: clean
 	@if [ -f "$(NAME)" ]; then \
+		$(MAKE) under_begin ARG3="FCLEAN"; \
 		rm -rf $(NAME) $(SILENCE); \
 		echo "|$(NAME)                         : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+		if [ "$(MAKECMDGOALS)" != "fclean" ]; then \
+			echo "|                                   |"; \
+		fi; \
 	fi
-
 ifeq ($(MAKECMDGOALS), fclean)
 	@$(MAKE) end
-else
-	@echo "|                                   |"	
 endif
 
-re : fclean all
+#------------------------------------------------------
+# Recompilation totale
+#------------------------------------------------------
 
-.PHONY : all, clean, fclean, re
+re: fclean all
 
-#________OTHER_RULES___________
+#======================================================
+#                 AUTRES RÈGLES
+#======================================================
 
-begin :
-	@if [ -z "$(ARG3)" ]; then upper_makecmd="\" \""; else upper_makecmd=$$(echo $(ARG3) | tr 'a-z' 'A-Z'); fi; \
-	len=$$(echo -n "$$upper_makecmd" | wc -c); \
-	eq_len=$$(( (37 - len) / 2 )); \
-	left_len=$$(( eq_len )); \
-	right_len=$$(( 37 - len - left_len )); \
-	printf "\n"; \
-	for _ in $$(seq 1 $$left_len); do printf "="; done; \
-	printf "$(PINK1)$$upper_makecmd$(D_COLOR)"; \
-	for _ in $$(seq 1 $$right_len); do printf "="; done; \
-	printf "\n"; \
-	printf "|                                   |\n"
+#------------------------------------------------------
+# Compilation de la librairie statique (exemple)
+#------------------------------------------------------
 
-end :
+$(LIB_A):
+	@$(MAKE) $(LIB) -C $(LIB_DIR)
+
+#------------------------------------------------------
+# Règle d'affichage "begin"
+# Affiche 37 caractères : "=" + bloc central (35) + "="
+# Tronque ARG3 (34 + ".") si > 35, " " => "\" \"", 
+# puis on centre
+#------------------------------------------------------
+
+begin:
+	@if [ -z "$(ARG3)" ]; then \
+		upper_arg3="\" \""; \
+	elif [ "$(ARG3)" = " " ]; then \
+		upper_arg3="\" \""; \
+	else \
+		upper_arg3=$$(echo "$(ARG3)" | tr '[:lower:]' '[:upper:]'); \
+	fi; \
+	arg_len=$$(echo -n "$$upper_arg3" | wc -c); \
+	if [ $$arg_len -gt 35 ]; then \
+		truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-34).; \
+		printf "\n="; \
+		printf "$(PINK1)$$truncated_arg3$(D_COLOR)"; \
+		printf "=\n|                                   |\n"; \
+	else \
+		leftover=$$(( 35 - arg_len )); \
+		left_equals=$$(( leftover / 2 )); \
+		right_equals=$$(( leftover - left_equals )); \
+		printf "\n="; \
+		for _ in $$(seq 1 $$left_equals); do printf "="; done; \
+		printf "$(PINK1)$$upper_arg3$(D_COLOR)"; \
+		for _ in $$(seq 1 $$right_equals); do printf "="; done; \
+		printf "=\n|                                   |\n"; \
+	fi
+	@-$(MAKE) under_begin ARG3="$(PROJECT)"
+
+#------------------------------------------------------
+# Règle d'affichage "under_begin"
+# Affiche une ligne de 37 caractères :
+# |  + bloc central de 21 caractères + 12 espaces + |
+# Bloc central : si ARG3 > 19 caractères, on tronque à 18 caractères et on ajoute un point.
+# Sinon, on centre ARG3 en entourant de '=' pour atteindre 21 caractères.
+#------------------------------------------------------
+
+under_begin:
+	@if [ -z "$(ARG3)" ]; then \
+		upper_arg3=" "; \
+	else \
+		upper_arg3=$$(echo "$(ARG3)" | tr '[:lower:]' '[:upper:]'); \
+	fi; \
+	upper_project=$$(echo "$(PROJECT)" | tr '[:lower:]' '[:upper:]'); \
+	if [ "$$upper_arg3" = "$$upper_project" ]; then \
+	    block_size=31; \
+	    spaces_after=2; \
+		color=$(BLUE1); \
+	else \
+	    block_size=21; \
+	    spaces_after=12; \
+		color=$(YELLOW1); \
+	fi; \
+	arg_len=$$(echo -n "$$upper_arg3" | wc -c); \
+	printf "|  "; \
+	threshold=$$(( block_size - 2 )); \
+	if [ $$arg_len -gt $$threshold ]; then \
+	    truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-$$(( block_size - 3 ))).; \
+	    printf "=%s=" "\\$$color$$truncated_arg3$(D_COLOR)"; \
+	else \
+	    leftover=$$(( block_size - arg_len )); \
+	    left_equals=$$(( leftover / 2 )); \
+	    right_equals=$$(( leftover - left_equals )); \
+	    for _ in $$(seq 1 $$left_equals); do printf "="; done; \
+	    printf "\\$$color$$upper_arg3$(D_COLOR)"; \
+	    for _ in $$(seq 1 $$right_equals); do printf "="; done; \
+	fi; \
+	for _ in $$(seq 1 $$spaces_after); do printf " "; done; \
+	printf "|\n|                                   |\n";
+
+#------------------------------------------------------
+# Règle d'affichage "end"
+#------------------------------------------------------
+
+end:
 	@printf "|                                   |\n"
 	@echo "$(FIN)"
+
+#======================================================
+#              RÈGLES PHONY (obligatoires)
+#======================================================
+
+.PHONY: all clean fclean re $(NAME) $(LIB_A) begin under_begin end
