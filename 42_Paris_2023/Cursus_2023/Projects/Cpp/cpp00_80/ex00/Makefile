@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/02/12 14:55:29 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 15:28:20 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,7 +70,7 @@ GREY2	= \033[47m
 
 all : $(NAME)
 
-$(NAME) : $(SRCS_LOCATION)
+$(NAME) : $(SRCS)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif

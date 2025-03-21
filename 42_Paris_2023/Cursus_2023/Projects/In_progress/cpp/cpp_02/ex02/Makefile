@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_C++                                       :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/20 18:59:41 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 18:06:22 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -261,4 +261,4 @@ end:
 #              RÈGLES PHONY (obligatoires)
 #======================================================
 
-.PHONY: all clean fclean re $(NAME) $(LIB_A) begin under_begin end
+.PHONY: all clean fclean re begin under_begin suppr_line end

@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/21 15:10:25 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 18:34:41 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,30 +25,41 @@ NAME            = ex03
 # Flags de compilation et compilateur
 #------------------------------------------------------
 
-# Flag pour inclure les headers depuis leur dossier
-
-HDRFLAG			= -I$(HDR_LOCATION)
-
 # Compilationpour le c++
 
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
-CXX             = c++ $(CXXFLAGS)
-CXXCOMPI		= $(CXX) $(SRCS) -o $(NAME)
+CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
+CXXHDRFLAG		= -I$(CXXHDR_LOCATION)
+CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
 
 # Compilationpour le c
 
 CFLAGS			= -Wall -Wextra -Werror -g3
-C				= cc $(CFLAGS) $(HDRFLAG)
-CCOMPI			= $(C) $(SRCS) -o $(NAME)
+C				= cc $(CFLAGS) $(CHDRFLAG)
+CHDRFLAG		= -I$(CHDR_LOCATION)
+CCOMPI			= $(C) $(CSRCS) -o $(NAME)
 
 #------------------------------------------------------
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRCS            = $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
-HDRS            = $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
-HDR_LOCATION	= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
-ALL				= $(SRCS) $(HDRS)
+# Fichiers sources pour le c++
+
+CXXSRCS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
+CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
+CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CXX_SRC_LOCATION	= $(CXXSRCS) $(CXXHDRS)
+
+# Fichiers sources pour le c
+
+CSRCS				= 
+CHDRS				= 
+CHDR_LOCATION		= 
+C_SRC_LOCATION		= $(CSRCS) $(CHDRS)
+
+# Tout les fichiers sources en une seule variables
+
+ALL					= $(C_SRC_LOCATION) $(CXX_SRC_LOCATION)
 
 #------------------------------------------------------
 # Couleurs, symboles et autres variables d'affichage
@@ -124,7 +135,7 @@ ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 	@-$(MAKE) under_begin ARG3="$(NAME)"
-	@-$(CXX) $(HDRS) $(SRCS) -o $(NAME) > res_cmp
+	@-$(CXXCOMPI) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
 		if [ -s $(NAME) ]; then \
@@ -143,7 +154,7 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@allowed="$(HDRS) $(SRCS) $(NAME) Makefile"; \
+	@allowed="$5$(ALL) $(NAME) Makefile"; \
 	deleted=0; \
 	for file in $$(find . -type f); do \
 		keep=no; \
@@ -319,4 +330,4 @@ end:
 #              RÈGLES PHONY (obligatoires)
 #======================================================
 
-.PHONY: all clean fclean re $(NAME) $(LIB_A) begin under_begin suppr_line end
+.PHONY: all clean fclean re begin under_begin suppr_line end

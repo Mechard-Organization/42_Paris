@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    Makefile_standard                                  :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/21 18:07:04 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 18:42:00 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,25 +18,48 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = cpp04
-NAME            = ex01
+PROJECT         =
+NAME            = 
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
 #------------------------------------------------------
 
+# Compilationpour le c++
+
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
-CXX             = c++ $(CXXFLAGS)
+CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
+CXXHDRFLAG		= -I$(CXXHDR_LOCATION)
+CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
+
+# Compilationpour le c
+
+CFLAGS			= -Wall -Wextra -Werror -g3
+C				= cc $(CFLAGS) $(CHDRFLAG)
+CHDRFLAG		= -I$(CHDR_LOCATION)
+CCOMPI			= $(C) $(CSRCS) -o $(NAME)
 
 #------------------------------------------------------
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRC             = main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
-SRCS            = $(addprefix ./, $(SRC))
-HDR             = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
-HDRS            = $(addprefix ./, $(HDR))
-SRCS_LOCATION   = $(SRCS) $(HDRS)
+# Fichiers sources pour le c++
+
+CXXSRCS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
+CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
+CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
+
+# Fichiers sources pour le c
+
+CSRCS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
+CHDRS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
+CHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CSRC_LOCATION		= $(CSRCS) $(CHDRS)
+
+# Tout les fichiers sources en une seule variables
+
+ALL					= $(CSRC_LOCATION) $(CXXSRC_LOCATION)
 
 #------------------------------------------------------
 # Couleurs, symboles et autres variables d'affichage
@@ -89,9 +112,13 @@ END_SPACES      = 12
 # (Optionnel) Variables pour la librairie
 #------------------------------------------------------
 
-LIB_A           =
-LIB_DIR         =
-LIB             =
+LIB				= libft.a
+LIB_DIR			= $(addprefix $(INC), libft/)
+LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
+LIB_INC			= $(addprefix $(LIB_DIR), inc/)
+LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
+LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
+LIBRARY			= -lreadline -lncurses
 
 #======================================================
 #                   RÈGLES PRINCIPALES
@@ -103,7 +130,7 @@ all: $(NAME)
 # Compilation de l'exécutable
 #------------------------------------------------------
 
-$(NAME): $(SRCS_LOCATION)
+$(NAME): $(ALL)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
@@ -111,13 +138,11 @@ endif
 	@-$(CXX) $(HDRS) $(SRCS) -o $(NAME) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
-		echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		if [ -s $(NAME) ]; then \
+			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		fi; \
 	elif [ -s res_cmp ]; then \
-		echo "|                                   |"; \
-		echo "|$(RED1)Erreur de compilation !!$(D_COLOR)           |"; \
-		echo "|$(YELLOW1)Consultez les commandes \"make cmp\" $(D_COLOR)|"; \
-		echo "|$(YELLOW1)ou le fichier \"cmp_res\"            $(D_COLOR)|"; \
-		echo "|$(YELLOW1)pour plus de details !$(D_COLOR)             |"; \
+		$(MAKE) error_compi; \
 	fi
 	@$(MAKE) end
 
@@ -129,17 +154,31 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@if [ -s Home_shrubbery ]; then \
-		$(MAKE) under_begin ARG3="CLEAN"; \
-		rm Home_shrubbery; \
-		echo "|Home_shrubbery               : $(RED1)$(DELETED)$(D_COLOR)  |"; \
-		if [ "$(MAKECMDGOALS)" != "clean" ]; then \
-			echo "|                                   |"; \
+	@allowed="$5$(ALL) $(NAME) Makefile"; \
+	deleted=0; \
+	for file in $$(find . -type f); do \
+		keep=no; \
+		for a in $$allowed; do \
+			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
+				keep=yes; \
+			fi; \
+		done; \
+		if [ "$$keep" = "no" ]; then \
+			if [ $$deleted -eq 0 ]; then \
+				$(MAKE) under_begin ARG3="CLEAN"; \
+				deleted=1; \
+			fi; \
+			rm -f $$file; \
+			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
+	done; \
+	if [ "$(MAKECMDGOALS)" != "clean" ] && [ $$deleted -eq 1 ]; then \
+		printf "|                                   |\n"; \
 	fi
 ifeq ($(MAKECMDGOALS), clean)
 	@$(MAKE) end
 endif
+
 
 #------------------------------------------------------
 # Nettoyage complet (exécutable, etc.)
@@ -248,6 +287,36 @@ under_begin:
 	fi; \
 	for _ in $$(seq 1 $$spaces_after); do printf " "; done; \
 	printf "|\n|                                   |\n";
+
+#------------------------------------------------------
+# Règle d'affichage "error_line"
+# Affiche une ligne de 37 caractères contenant ARG3 ajusté
+# sur 29 caractères (tronqué ou complété) suivi de " : 💥  "
+# pour signaler la suppression d'un fichier.
+#------------------------------------------------------
+
+suppr_line:
+	@{ \
+		if [ -z "$(ARG3)" ]; then \
+			display_arg3="\" \""; \
+		else \
+			display_arg3="$(ARG3)"; \
+		fi; \
+		arg_len=$$(echo -n "$$display_arg3" | wc -c); \
+		if [ $$arg_len -gt 28 ]; then \
+			truncated=$$(echo -n "$$display_arg3" | cut -c1-27); \
+			field="$$truncated."; \
+		else \
+			field="$$display_arg3"; \
+			pad=$$((28 - arg_len)); \
+			i=1; \
+			while [ $$i -le $$pad ]; do \
+				field="$$field "; \
+				i=$$(( i + 1 )); \
+			done; \
+		fi; \
+		printf "|%s : 💥  |\n" "$$field"; \
+	}
 
 #------------------------------------------------------
 # Règle d'affichage "end"

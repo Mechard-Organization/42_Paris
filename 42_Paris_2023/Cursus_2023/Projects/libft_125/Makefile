@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2023/11/15 14:50:55 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 15:50:42 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJSB 	= $(SRCSB:.c=.o)
 OBJS	= $(SRCS:.c=.o)
 OBJ		= $(SRC:.c=.o)
 
-HEADERS	= libft.h/
+HEADERS	= libft.h
 
 NAME	= libft.a
 
@@ -69,7 +69,7 @@ CYAN2	= \033[46m
 GREY2	= \033[47m
 
 %.o: %.c
-	@cc -Wall -Wextra -Werror -I $(HEADERS) -c $< -o $@
+	@cc -Wall -Wextra -Werror -I./ -c $< -o $@
 
 $(NAME) : $(OBJS)
 	@echo "\n<----------------------$(BLUE1)LIBFT$(D_COLOR)-------------------->\n"

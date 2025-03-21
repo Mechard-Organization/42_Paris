@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/21 13:44:16 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 18:48:30 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,37 +18,49 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = 
+PROJECT         =
 NAME            = 
+PCOMPI			=
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
 #------------------------------------------------------
 
-# Flag pour inclure les headers depuis leur dossier
-
-HDRFLAG			= -I$(HDR_LOCATION)
-
 # Compilationpour le c++
 
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
-CXX             = c++ $(CXXFLAGS) $(HDRFLAG)
-CXXCOMPI		= $(CXX) $(SRCS) -o $(NAME)
+CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
+CXXHDRFLAG		= -I$(CXXHDR_LOCATION)
+CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
 
 # Compilationpour le c
 
 CFLAGS			= -Wall -Wextra -Werror -g3
-C				= cc $(CFLAGS) $(HDRFLAG)
-CCOMPI			= $(C) $(SRCS) -o $(NAME)
+C				= cc $(CFLAGS) $(CHDRFLAG)
+CHDRFLAG		= -I$(CHDR_LOCATION)
+CCOMPI			= $(C) $(CSRCS) -o $(NAME)
 
 #------------------------------------------------------
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRCS            = $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
-HDRS            = $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
-HDR_LOCATION	= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
-ALL				= $(SRCS) $(HDRS)
+# Fichiers sources pour le c++
+
+CXXSRCS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
+CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
+CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
+
+# Fichiers sources pour le c
+
+CSRCS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
+CHDRS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
+CHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CSRC_LOCATION		= $(CSRCS) $(CHDRS)
+
+# Tout les fichiers sources en une seule variables
+
+ALL					= $(CSRC_LOCATION) $(CXXSRC_LOCATION)
 
 #------------------------------------------------------
 # Couleurs, symboles et autres variables d'affichage
@@ -119,12 +131,12 @@ all: $(NAME)
 # Compilation de l'exécutable
 #------------------------------------------------------
 
-$(NAME): $(SRCS_LOCATION)
+$(NAME): $(ALL)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 	@-$(MAKE) under_begin ARG3="$(NAME)"
-	@-$(CXX) $(HDRS) $(SRCS) -o $(NAME) > res_cmp
+	@-$(PCOMPI) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
 		if [ -s $(NAME) ]; then \
@@ -143,8 +155,8 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@$(MAKE) under_begin ARG3="CLEAN"
-	@allowed="$(HDRS) $(SRCS) $(NAME) Makefile"; \
+	@allowed="$(ALL) $(NAME) Makefile"; \
+	deleted=0; \
 	for file in $$(find . -type f); do \
 		keep=no; \
 		for a in $$allowed; do \
@@ -153,14 +165,24 @@ endif
 			fi; \
 		done; \
 		if [ "$$keep" = "no" ]; then \
+			if [ $$deleted -eq 0 ]; then \
+				$(MAKE) under_begin ARG3="CLEAN"; \
+				deleted=1; \
+			fi; \
 			rm -f $$file; \
-			echo "|$$file               : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
-	done
+	done; \
+	for dir in $$(find . -type f -name "*.o" -exec dirname {} \; | sort -u); do \
+		$(MAKE) suppr_line ARG3=Directory $$dir; \
+		rm -rf $$dir; \
+	done; \
+	if [ "$(MAKECMDGOALS)" != "clean" ] && [ $$deleted -eq 1 ]; then \
+		printf "|                                   |\n"; \
+	fi
 ifeq ($(MAKECMDGOALS), clean)
 	@$(MAKE) end
 endif
-
 
 #------------------------------------------------------
 # Nettoyage complet (exécutable, etc.)
@@ -271,6 +293,36 @@ under_begin:
 	printf "|\n|                                   |\n";
 
 #------------------------------------------------------
+# Règle d'affichage "error_line"
+# Affiche une ligne de 37 caractères contenant ARG3 ajusté
+# sur 29 caractères (tronqué ou complété) suivi de " : 💥  "
+# pour signaler la suppression d'un fichier.
+#------------------------------------------------------
+
+suppr_line:
+	@{ \
+		if [ -z "$(ARG3)" ]; then \
+			display_arg3="\" \""; \
+		else \
+			display_arg3="$(ARG3)"; \
+		fi; \
+		arg_len=$$(echo -n "$$display_arg3" | wc -c); \
+		if [ $$arg_len -gt 28 ]; then \
+			truncated=$$(echo -n "$$display_arg3" | cut -c1-27); \
+			field="$$truncated."; \
+		else \
+			field="$$display_arg3"; \
+			pad=$$((28 - arg_len)); \
+			i=1; \
+			while [ $$i -le $$pad ]; do \
+				field="$$field "; \
+				i=$$(( i + 1 )); \
+			done; \
+		fi; \
+		printf "|%s : 💥  |\n" "$$field"; \
+	}
+
+#------------------------------------------------------
 # Règle d'affichage "end"
 #------------------------------------------------------
 
@@ -282,4 +334,4 @@ end:
 #              RÈGLES PHONY (obligatoires)
 #======================================================
 
-.PHONY: all clean fclean re $(NAME) $(LIB_A) begin under_begin end
+.PHONY: all clean fclean re begin under_begin suppr_line end
