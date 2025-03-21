@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_C++                                       :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/20 22:48:37 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 15:10:25 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,31 +18,37 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = 
-NAME            = 
+PROJECT         = cpp05
+NAME            = ex03
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
 #------------------------------------------------------
 
+# Flag pour inclure les headers depuis leur dossier
+
+HDRFLAG			= -I$(HDR_LOCATION)
+
+# Compilationpour le c++
+
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
-CXX             = c++ $(CXXFLAGS) 
-CXXCOMPI		= $(CXX) $(HDRS) $(SRCS) -o $(NAME)
+CXX             = c++ $(CXXFLAGS)
+CXXCOMPI		= $(CXX) $(SRCS) -o $(NAME)
+
+# Compilationpour le c
+
 CFLAGS			= -Wall -Wextra -Werror -g3
-C				= cc $(CFLAGS)
-CCOMPI			= $(C) $(HDRS) $(SRCS) -o $(NAME)
+C				= cc $(CFLAGS) $(HDRFLAG)
+CCOMPI			= $(C) $(SRCS) -o $(NAME)
 
 #------------------------------------------------------
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRC             = 
-SRCS            = $(addprefix ./, $(SRC))
-HDR             = 
-HDRS            = $(addprefix ./, $(HDR))
-INC				=
-INCS			= -I$(addprefix ./, $(INC)) -I$(addprefix ./, $(LIB_INC))
-SRCS_LOCATION   = $(SRCS) $(HDRS)
+SRCS            = $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
+HDRS            = $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
+HDR_LOCATION	= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+ALL				= $(SRCS) $(HDRS)
 
 #------------------------------------------------------
 # Couleurs, symboles et autres variables d'affichage
@@ -113,21 +119,19 @@ all: $(NAME)
 # Compilation de l'exécutable
 #------------------------------------------------------
 
-$(NAME): $(SRCS_LOCATION)
+$(NAME): $(ALL)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 	@-$(MAKE) under_begin ARG3="$(NAME)"
-	@-$(CXXCOMPI) > res_cmp
+	@-$(CXX) $(HDRS) $(SRCS) -o $(NAME) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
-		echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		if [ -s $(NAME) ]; then \
+			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		fi; \
 	elif [ -s res_cmp ]; then \
-		echo "|                                   |"; \
-		echo "|$(RED1)Erreur de compilation !!$(D_COLOR)           |"; \
-		echo "|$(YELLOW1)Consultez les commandes \"make cmp\" $(D_COLOR)|"; \
-		echo "|$(YELLOW1)ou le fichier \"cmp_res\"            $(D_COLOR)|"; \
-		echo "|$(YELLOW1)pour plus de details !$(D_COLOR)             |"; \
+		$(MAKE) error_compi; \
 	fi
 	@$(MAKE) end
 
@@ -139,17 +143,31 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@if [ -s Home_shrubbery ]; then \
-		$(MAKE) under_begin ARG3="CLEAN"; \
-		rm Home_shrubbery; \
-		echo "|Home_shrubbery               : $(RED1)$(DELETED)$(D_COLOR)  |"; \
-		if [ "$(MAKECMDGOALS)" != "clean" ]; then \
-			echo "|                                   |"; \
+	@allowed="$(HDRS) $(SRCS) $(NAME) Makefile"; \
+	deleted=0; \
+	for file in $$(find . -type f); do \
+		keep=no; \
+		for a in $$allowed; do \
+			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
+				keep=yes; \
+			fi; \
+		done; \
+		if [ "$$keep" = "no" ]; then \
+			if [ $$deleted -eq 0 ]; then \
+				$(MAKE) under_begin ARG3="CLEAN"; \
+				deleted=1; \
+			fi; \
+			rm -f $$file; \
+			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
+	done; \
+	if [ "$(MAKECMDGOALS)" != "clean" ] && [ $$deleted -eq 1 ]; then \
+		printf "|                                   |\n"; \
 	fi
 ifeq ($(MAKECMDGOALS), clean)
 	@$(MAKE) end
 endif
+
 
 #------------------------------------------------------
 # Nettoyage complet (exécutable, etc.)
@@ -260,6 +278,36 @@ under_begin:
 	printf "|\n|                                   |\n";
 
 #------------------------------------------------------
+# Règle d'affichage "error_line"
+# Affiche une ligne de 37 caractères contenant ARG3 ajusté
+# sur 29 caractères (tronqué ou complété) suivi de " : 💥  "
+# pour signaler la suppression d'un fichier.
+#------------------------------------------------------
+
+suppr_line:
+	@{ \
+		if [ -z "$(ARG3)" ]; then \
+			display_arg3="\" \""; \
+		else \
+			display_arg3="$(ARG3)"; \
+		fi; \
+		arg_len=$$(echo -n "$$display_arg3" | wc -c); \
+		if [ $$arg_len -gt 28 ]; then \
+			truncated=$$(echo -n "$$display_arg3" | cut -c1-27); \
+			field="$$truncated."; \
+		else \
+			field="$$display_arg3"; \
+			pad=$$((28 - arg_len)); \
+			i=1; \
+			while [ $$i -le $$pad ]; do \
+				field="$$field "; \
+				i=$$(( i + 1 )); \
+			done; \
+		fi; \
+		printf "|%s : 💥  |\n" "$$field"; \
+	}
+
+#------------------------------------------------------
 # Règle d'affichage "end"
 #------------------------------------------------------
 
@@ -271,4 +319,4 @@ end:
 #              RÈGLES PHONY (obligatoires)
 #======================================================
 
-.PHONY: all clean fclean re $(NAME) $(LIB_A) begin under_begin end
+.PHONY: all clean fclean re $(NAME) $(LIB_A) begin under_begin suppr_line end

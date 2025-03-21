@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/20 22:44:33 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/21 12:58:30 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,10 +32,8 @@ CXX             = c++ $(CXXFLAGS)
 # Fichiers sources et headers
 #------------------------------------------------------
 
-SRC             = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
-SRCS            = $(addprefix ./, $(SRC))
-HDR             = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
-HDRS            = $(addprefix ./, $(HDR))
+SRCS            = $(shell find . -maxdepth 1 -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
+HDRS            = $(shell find . -maxdepth 1 -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
 INC				=
 INCS			= -I$(addprefix ./, $(INC)) -I$(addprefix ./, $(LIB_INC))
 SRCS_LOCATION   = $(SRCS) $(HDRS)
@@ -113,7 +111,9 @@ endif
 	@-$(CXX) $(HDRS) $(SRCS) -o $(NAME) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
-		echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		if [ -s $(NAME) ]; then \
+			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		fi; \
 	elif [ -s res_cmp ]; then \
 		echo "|                                   |"; \
 		echo "|$(RED1)Erreur de compilation !!$(D_COLOR)           |"; \
@@ -185,30 +185,28 @@ $(LIB_A):
 #------------------------------------------------------
 
 begin:
-	@if [ -z "$(ARG3)" ]; then \
-		upper_arg3="\" \""; \
-	elif [ "$(ARG3)" = " " ]; then \
-		upper_arg3="\" \""; \
-	else \
-		upper_arg3=$$(echo "$(ARG3)" | tr '[:lower:]' '[:upper:]'); \
-	fi; \
-	arg_len=$$(echo -n "$$upper_arg3" | wc -c); \
-	if [ $$arg_len -gt 35 ]; then \
-		truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-34).; \
-		printf "\n="; \
-		printf "$(PINK1)$$truncated_arg3$(D_COLOR)"; \
-		printf "=\n|                                   |\n"; \
-	else \
-		leftover=$$(( 35 - arg_len )); \
-		left_equals=$$(( leftover / 2 )); \
-		right_equals=$$(( leftover - left_equals )); \
-		printf "\n="; \
-		for _ in $$(seq 1 $$left_equals); do printf "="; done; \
-		printf "$(PINK1)$$upper_arg3$(D_COLOR)"; \
-		for _ in $$(seq 1 $$right_equals); do printf "="; done; \
-		printf "=\n|                                   |\n"; \
-	fi
-	@-$(MAKE) under_begin ARG3="$(PROJECT)"
+	@{ \
+		if [ -z "$(ARG3)" ] || [ "$(ARG3)" = " " ]; then \
+			upper_arg3="\" \""; \
+		else \
+			upper_arg3=$$(echo "$(ARG3)" | tr '[:lower:]' '[:upper:]'); \
+		fi; \
+		arg_len=$$(echo -n "$$upper_arg3" | wc -c); \
+		if [ $$arg_len -gt 35 ]; then \
+			truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-34).; \
+			printf "\n=%s=\n|                                   |\n" "$(PINK1)$$truncated_arg3$(D_COLOR)"; \
+		else \
+			leftover=$$(( 35 - arg_len )); \
+			left_equals=$$(( leftover / 2 )); \
+			right_equals=$$(( leftover - left_equals )); \
+			printf "\n="; \
+			for _ in $$(seq 1 $$left_equals); do printf "="; done; \
+			printf "$(PINK1)$$upper_arg3$(D_COLOR)"; \
+			for _ in $$(seq 1 $$right_equals); do printf "="; done; \
+			printf "=\n|                                   |\n"; \
+		fi; \
+		$(MAKE) under_begin ARG3="$(PROJECT)"; \
+	}
 
 #------------------------------------------------------
 # Règle d'affichage "under_begin"
@@ -226,19 +224,16 @@ under_begin:
 	fi; \
 	upper_project=$$(echo "$(PROJECT)" | tr '[:lower:]' '[:upper:]'); \
 	if [ "$$upper_arg3" = "$$upper_project" ]; then \
-	    block_size=31; \
-	    spaces_after=2; \
-		color=$(BLUE1); \
+	    block_size=31; spaces_after=2; color=$(BLUE1); \
 	else \
-	    block_size=21; \
-	    spaces_after=12; \
-		color=$(YELLOW1); \
+	    block_size=21; spaces_after=12; color=$(YELLOW1); \
 	fi; \
 	arg_len=$$(echo -n "$$upper_arg3" | wc -c); \
 	printf "|  "; \
 	threshold=$$(( block_size - 2 )); \
 	if [ $$arg_len -gt $$threshold ]; then \
-	    truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-$$(( block_size - 3 ))).; \
+	    range=$$(( block_size - 3 )); \
+	    truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-$$range).; \
 	    printf "=%s=" "\\$$color$$truncated_arg3$(D_COLOR)"; \
 	else \
 	    leftover=$$(( block_size - arg_len )); \
