@@ -5,230 +5,329 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/23 20:03:06 by abutet            #+#    #+#              #
-#    Updated: 2024/07/08 15:30:52 by mechard          ###   ########.fr        #
+#    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
+#    Updated: 2025/03/23 19:21:27 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME				= libft.a
-EXEC_DIR			= exec/
-INC					= inc/
+#======================================================
+#                   VARIABLES
+#======================================================
 
-SUCCESS				= ✅
-TELECHARGEMENT		= 🔽🔁
-DL_FINISH			= 🔽✅
-PRESENT				= Deja present !
-DELETED				= 💥
-SILENCE				= > /dev/null 2>&1
-MAKE				= make --no-print-directory -C ./
-FIN					= =================$(GREEN1)END$(D_COLOR)=================\n
+#------------------------------------------------------
+# Variables globales
+#------------------------------------------------------
 
-#==================SOURCES==================
+PROJECT         = LIBFT
+NAME            = libft.a
+LANG			= c
 
-#_________MAIN_FOLDER__________
+#------------------------------------------------------
+# Flags de compilation et compilateur
+#------------------------------------------------------
 
-SRC					= ft_atoi.c ft_isalpha.c ft_lstadd_back.c ft_lstlast.c ft_memcmp.c \
-						ft_nbrlen.c ft_putnbr_fd.c ft_strcmp.c ft_strlcat.c ft_strnstr.c \
-						ft_toupper.c ft_bzero.c ft_isascii.c ft_lstadd_front.c ft_lstmap.c \
-						ft_memcpy.c ft_printf.c ft_putstr_fd.c ft_strcpy.c ft_strlcpy.c \
-						ft_strrchr.c get_next_line.c ft_calloc.c ft_isdigit.c ft_lstclear.c \
-						ft_lstnew.c ft_memdel.c ft_print_mand.c ft_split.c ft_strdup.c \
-						ft_strlen.c ft_strtrim.c get_next_line_utils.c ft_check.c \
-						ft_isprint.c ft_lstdelone.c ft_lstsize.c ft_memmove.c \
-						ft_putchar_fd.c ft_strcat.c ft_striteri.c ft_strmapi.c ft_substr.c \
-						ft_isalnum.c ft_itoa.c ft_lstiter.c ft_memchr.c ft_memset.c \
-						ft_putendl_fd.c ft_strchr.c ft_strjoin.c ft_strncmp.c ft_tolower.c \
-						ft_pipex.c pipex.c tools_pipex.c game.c so_long.c
-SRC_DIR				= src/
+# Compilation pour le c++
 
-#________SO_LONG_FOLDER________
+CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
+CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
+CXXHDRFLAG		= -I$(CXXHDR_LOCATION)
+CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
 
-TOOLS_SO_LONG		= verif_map.c key.c free.c init.c image.c coor.c moove.c \
-					collectibles.c ff.c
-TOOLS_DIR			= $(addprefix tools_so_long/, $(TOOLS_SO_LONG))
+# Compilation pour le c
 
-#=====================MLX=====================
+CFLAGS			= -Wall -Wextra -Werror -g3
+C				= gcc $(CFLAGS) $(CHDRFLAG)
+CHDRFLAG		= -I$(CHDR_LOCATION)
+CCOMPI			= $(C) $(CSRCS) -o $(NAME)
 
-LIB_X11				= -lXext -lX11 -lm
+# Compilation pour la libft
 
+LFLAG				= -Wall -Wextra -Werror -g3
+XPM_FLAG 			= -I/usr/include/X11
+LHEADERS		 	= -I$(INC) -I$(MLX_DIR) $(XPM_FLAG)
+LCC					= cc $(LCFLAG) $(LHEADERS)
+LTO_OBJ				= -c
+LSRCS 				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
+
+# Compilateur
+
+ifeq ($(LANG), c++)
+	COMPILATION	= $(CXXCOMPI)
+else ifeq ($(LANG), c)
+	COMPILATION	= $(CCOMPI)
+endif
+
+ifeq ($(PROJECT), LIBFT)
+	COMPILATION	= $(LCC) $(LIBRARY) $(LTO_OBJ) $(LSRCS)
+endif
+
+#------------------------------------------------------
+# Fichiers sources et headers
+#------------------------------------------------------
+
+# Fichiers sources pour le c++
+
+CXXSRCS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
+CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
+CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
+
+# Fichiers sources pour le c
+
+CSRCS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
+COBJS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".o" { print }')
+CHDRS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
+CHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CSRC_LOCATION		= $(CSRCS) $(CHDRS) $(COBJS)
+
+# Tout les fichiers sources en une seule variables
+
+ALL					= $(CSRC_LOCATION) $(CXXSRC_LOCATION)
+
+ifeq ($(LANG), c++)
+	FILES			= $(CXXSRC_LOCATION)
+else ifeq ($(LANG), c)
+	FILES			= $(CSRC_LOCATION)
+endif
+
+ifeq ($(PROJECT), LIBFT)
+	FILES			= $(CSRCS) $(CHDRS)
+endif
+
+#------------------------------------------------------
+# Couleurs, symboles et autres variables d'affichage
+#------------------------------------------------------
+
+# Reset & style
+D_COLOR         = \033[0m
+BOLD            = \033[1m
+
+# Couleurs texte
+BLACK1          = \033[30m
+RED1            = \033[31m
+GREEN1          = \033[32m
+YELLOW1         = \033[33m
+BLUE1           = \033[34m
+PINK1           = \033[35m
+CYAN1           = \033[36m
+GREY1           = \033[37m
+
+# Couleurs de fond
+BLACK2          = \033[40m
+RED2            = \033[41m
+GREEN2          = \033[42m
+YELLOW2         = \033[43m
+BLUE2           = \033[44m
+PINK2           = \033[45m
+CYAN2           = \033[46m
+GREY2           = \033[47m
+
+# Symboles
+SUCCESS         = ✅
+TELECHARGEMENT  = 🔽🔁
+DL_FINISH       = 🔽✅
+DELETED         = 💥
+
+# Autres variables
+SILENCE         = > /dev/null 2>&1
+MAKE            = make --no-print-directory -C ./
+FIN             = =================$(GREEN1)END$(D_COLOR)=================\n
+
+#------------------------------------------------------
+# Variables d'affichage (pour les règles begin et under_begin)
+#------------------------------------------------------
+
+LINE_WIDTH      = 37
+BLOCK_SIZE      = 21
+END_SPACES      = 12
+
+#------------------------------------------------------
+# Variables pour la librairie
+#------------------------------------------------------
+
+# Variables globales pour la librairie
+
+INC				= inc/
+EXEC_DIR		= exec/
+OBJ_DIR			= obj/
+LIB				= libft.a
+LIB_DIR			= $(addprefix $(INC), libft/)
+LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
+LIB_INC			= $(addprefix $(LIB_DIR), inc/)
+LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
+LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
+LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm
+
+# Variable pour la Minilibx
+
+MLX_TITLE			= Minilibx
 MLX					= libmlx.a
 MIN					= minilibx-linux
-LINK_MLX			= https://cdn.intra.42.fr/document/document/21439/minilibx-linux.tgz
+LINK_MLX			= https://cdn.intra.42.fr/document/document/26792/minilibx-linux.tgz
 MLX_DIR				= $(addprefix $(INC), $(MIN)/)
 MLX_A				= $(addprefix $(MLX_DIR), $(MLX))
 
-#===================OBJETS===================
+#======================================================
+#                   RÈGLES PRINCIPALES
+#======================================================
 
-OBJ					= $(SRC:.c=.o) $(TOOLS_SO_LONG:.c=.o)
-OBJ_DIR				= obj/
+all: $(NAME)
 
-#===================HEADER====================
-
-HEAD_DIR			= inc/
-HEADER				= ft_printf.h get_next_line.h libft.h pipex.h so_long.h
-H_PLACE				= $(addprefix inc/, $(HEADER))
-
-#===================VAR_GBL===================
-
-SRCS				= $(addprefix $(SRC_DIR), $(SRC)) $(addprefix $(SRC_DIR), $(TOOLS_DIR))
-OBJS				= $(addprefix $(OBJ_DIR), $(OBJ))
-
-#====================FLAG=====================
-
-CFLAG				= -Wall -Wextra -Werror -g3
-HEADERS				= -I$(HEAD_DIR) -I$(MLX_DIR)
-CC					= cc $(CFLAG) $(HEADERS)
-TO_OBJ				= -c
-
-#====================COLOR=====================
-
-#_________RESET_COLOR__________
-
-D_COLOR 			= \033[0m
-
-#__________TEXT_STYLE__________
-
-BOLD 				= \033[1m
-#__________COLOR_TEXT__________
-
-BLACK1				= \033[30m
-RED1				= \033[31m
-GREEN1				= \033[32m
-YELLOW1				= \033[33m
-BLUE1				= \033[34m
-PINK1				= \033[35m
-CYAN1				= \033[36m
-GREY1				= \033[37m
-
-#_______COLOR_BACKGROUND_______
-
-BLACK2				= \033[40m
-RED2				= \033[41m
-GREEN2				= \033[42m
-YELLOW2				= \033[43m
-BLUE2				= \033[44m
-PINK2				= \033[45m
-CYAN2				= \033[46m
-GREY2				= \033[47m
-
-#====================RULES====================
-
-all : $(NAME)
-
-$(OBJS): $(SRCS) $(H_PLACE)
-ifeq ($(MAKECMDGOALS), all)
-	@echo "\n==================$(PINK1)ALL$(D_COLOR)================"
+#------------------------------------------------------
+# Compilation de l'exécutable
+#------------------------------------------------------
+$(NAME): $(FILES)
+ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-ifeq ($(MAKECMDGOALS), $(NAME))
-	@echo "\n================$(PINK1)LIBFT.A$(D_COLOR)=============="
+	@-$(MAKE) under_begin ARG3="$(NAME)"
+ifeq ($(LANG), c++)
+ifneq ($(PROJECT), LIBFT)
+	@-$(MAKE) c++
 endif
-ifeq ($(MAKECMDGOALS), )
-	@echo "\n=================$(PINK1)\" \"$(D_COLOR)==============="
+else ifeq ($(LANG), c)
+ifeq ($(PROJECT), LIBFT)
+	@-$(MAKE) compi_libft
+else
+	@-$(MAKE) c
 endif
-	@echo "|  =========$(YELLOW1)MLX$(D_COLOR)========             |"
-	@if [ ! -d "$(MLX_DIR)" ]; then \
-		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
-		mkdir -p $(MLX_DIR); \
-		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
-		tar -xzf $(INC)/minilibx-linux.tgz -C $(INC); \
-		rm $(INC)/minilibx-linux.tgz; \
-		echo "$(GREEN1)|Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
+endif
+	@$(MAKE) end
+
+#------------------------------------------------------
+# Nettoyage (fichiers temporaires)
+#------------------------------------------------------
+
+clean:
+ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
+	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
+endif
+	@allowed="$(FILES) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
+	deleted=0; \
+	for file in $$(find . -type f -not -path "./src/*"); do \
+		keep=no; \
+		for a in $$allowed; do \
+			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
+				keep=yes; \
+			fi; \
+		done; \
+		if [ "$$keep" = "no" ]; then \
+			if [ $$deleted -eq 0 ]; then \
+				$(MAKE) under_begin ARG3="CLEAN"; \
+				deleted=1; \
+			fi; \
+			rm -f $$file; \
+			$(MAKE) suppr_line ARG3=$$file; \
+		fi; \
+	done; \
+	for dir in $$(find . -type f -name "*.o" -not -path "./src/*" -exec dirname {} \; | sort -u); do \
+	    if [ "$$dir" != "." ]; then \
+		    rm -rf $$dir; \
+		    $(MAKE) suppr_line ARG3="Directory $$dir"; \
+	    fi; \
+	done; \
+	if [ "$(MAKECMDGOALS)" != "clean" ] && [ $$deleted -eq 1 ]; then \
+		printf "|                                   |\n"; \
 	fi
-	@ make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
+ifeq ($(MAKECMDGOALS), clean)
+	@$(MAKE) end
+endif
+
+
+
+#------------------------------------------------------
+# Nettoyage complet (exécutable, etc.)
+#------------------------------------------------------
+
+fclean: clean
+	@if [ -f "$(NAME)" ]; then \
+		$(MAKE) under_begin ARG3="FCLEAN"; \
+		rm -rf $(NAME) $(SILENCE); \
+		$(MAKE) suppr_line ARG3=$(NAME); \
+		if [ "$(MAKECMDGOALS)" != "fclean" ]; then \
+			echo "|                                   |"; \
+		fi; \
+	fi
+	@rm -rf $(EXEC_DIR)
+	@-$(MAKE) suppr_line ARG3=$(EXEC_DIR)
+ifeq ($(MAKECMDGOALS), fclean)
+	@$(MAKE) end
+endif
+
+#------------------------------------------------------
+# Recompilation totale
+#------------------------------------------------------
+
+re: fclean all
+
+#======================================================
+#                 AUTRES RÈGLES
+#======================================================
+
+#------------------------------------------------------
+# Compilation de la librairie statique
+#------------------------------------------------------
+
+compi_libft:
+	@-$(MAKE) under_begin ARG3="$(MLX_TITLE)"
+	@echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"
+	@mkdir -p $(MLX_DIR)
+	@curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE)
+	@tar -xzvf $(INC)/minilibx-linux.tgz -C $(INC) $(SILENCE)
+	@rm $(INC)/minilibx-linux.tgz
+	@echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"
+	@make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
 	@echo "|./minilibx                   : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
-	@echo "|  ========$(YELLOW1)LIBFT$(D_COLOR)========            |"
-	@$(MAKE) norminette $(SILENCE)
+	@printf "|                                   |\n"
+	@-$(MAKE) under_begin ARG3="$(PROJECT)"
 	@if [ ! -s norminette ]; then \
-		$(CC) $(TO_OBJ) $(SRCS); \
 		mkdir -p $(OBJ_DIR); \
-		mv $(OBJ) $(OBJ_DIR); \
-		ar rcs $(NAME) $(OBJS) $(SILENCE); \
+		$(COMPILATION); \
+		mv $(COBJS) $(OBJ_DIR); \
+		ar rcs $(NAME) $(COBJS) $(SILENCE); \
 		ranlib $(NAME) $(SILENCE); \
+		printf "|                                   |\n"; \
 		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
 		mkdir -p $(EXEC_DIR); \
 		mv $(NAME) $(EXEC_DIR); \
 	else \
 		echo "$(RED1)Erreur de norme !!$(D_COLOR)"; \
-		echo "$(YELLOW1)Consulter \"make norminette\" ou \"norminette\" pour plus de details !\n$(D_COLOR)"; \
+		echo "$(YELLOW1)Consulter \"make norminette\" ou \"norminette\" pour plus de details !$(D_COLOR)"; \
 		rm norminette; \
 		exit 1; \
 	fi
-ifeq ($(MAKECMDGOALS), all)
-	@echo "$(FIN)"
-endif
-ifeq ($(MAKECMDGOALS), $(NAME))
-	@echo "$(FIN)"
-endif
-ifeq ($(MAKECMDGOALS), )
-	@echo "$(FIN)"
-endif
-ifeq ($(MAKECMDGOALS), re)
-	@echo "$(FIN)"
-endif
 
-$(NAME) : $(OBJS)
+#------------------------------------------------------
+# Règle de compilation
+#------------------------------------------------------
 
-clean :
-ifeq ($(MAKECMDGOALS), clean)
-	@echo "\n=================$(PINK1)CLEAN$(D_COLOR)==============="
-endif
-ifeq ($(MAKECMDGOALS), fclean)
-	@echo "\n================$(PINK1)FCLEAN$(D_COLOR)==============="
-endif
-ifeq ($(MAKECMDGOALS), re)
-	@echo "\n==================$(PINK1)RE$(D_COLOR)================="
-endif
-	@echo "|  =====$(CYAN1)OBJ_LIBFT$(D_COLOR)=====              |"
-	@rm -rf $(OBJ_DIR) $(SILENCE)
-	@echo "|Le dossier \"obj\"             : $(RED1)$(DELETED)$(D_COLOR)  |"
-ifeq ($(MAKECMDGOALS), clean)
-	@echo "$(FIN)"
-endif
-
-fclean : clean
-	@if [ -d "$(MLX_DIR)" ]; then \
-		echo "|  ========$(CYAN1)MLX$(D_COLOR)========              |"; \
-		make --no-print-directory -C $(MLX_DIR) clean $(SILENCE); \
-		rm -rf $(MLX_DIR); \
-		echo "|Le dossier de la mlx         : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+c :
+	@-$(COMPILATION) > res_cmp
+	@if [ ! -s res_cmp ]; then \
+		rm -rf res_cmp; \
+		if [ -s $(NAME) ]; then \
+			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		fi; \
+	elif [ -s res_cmp ]; then \
+		$(MAKE) error_compi; \
 	fi
-	@echo "|  ======$(CYAN1)LIBFT.A$(D_COLOR)======              |"
-	@rm -rf $(EXEC_DIR) $(SILENCE)
-	@echo "|$(NAME)                      : $(RED1)$(DELETED)$(D_COLOR)  |"
-ifeq ($(MAKECMDGOALS), fclean)
-	@echo "$(FIN)"
-endif
 
-re : fclean all
-
-.PHONY : all, clean, fclean, re, bonus
-
-#_________OTHER_RULES___________
-
-minilibx :
-ifeq ($(MAKECMDGOALS),minilibx)
-	@echo "===============$(GREEN1)MINILIBX$(D_COLOR)=============="
-endif
-	@echo "|  =========$(YELLOW1)MLX$(D_COLOR)========             |"
-	@if [ ! -d "$(MLX_DIR)" ]; then \
-		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
-		mkdir -p $(MLX_DIR); \
-		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
-		tar -xzf $(INC)/minilibx-linux.tgz -C $(INC); \
-		rm $(INC)/minilibx-linux.tgz; \
-		echo "|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
+c++ :
+	@-$(COMPILATION) > res_cmp
+	@if [ ! -s res_cmp ]; then \
+		rm -rf res_cmp; \
+		if [ -s $(NAME) ]; then \
+			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		fi; \
+	elif [ -s res_cmp ]; then \
+		$(MAKE) error_compi; \
 	fi
-	@if [ ! -f "$(MLX_A)" ]; then \
-		make --no-print-directory -C $(MLX_DIR) all $(SILENCE); \
-		echo "|./minilibx                   : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-	else \
-		echo "|./$(MLX) : $(YELLOW1)$(PRESENT)$(D_COLOR)"; \
-	fi
-ifeq ($(MAKECMDGOALS), minilibx)
-	@echo "$(FIN)"
-endif
 
-norminette : $(SRCS)
+#------------------------------------------------------
+# Règle de vérification de la norme 42
+#------------------------------------------------------
+
+verif_norme :
 	-@norminette src/ > res_cmd || true
 	-@grep 'Error' res_cmd > norminette || true
 	-@norminette $(H_PLACE) > res_cmd || true
@@ -242,3 +341,126 @@ norminette : $(SRCS)
 		cat norminette; \
 		echo "\n"; \
 	fi
+
+#------------------------------------------------------
+# Règle d'affichage "begin"
+# Affiche 37 caractères : "=" + bloc central (35) + "="
+# Tronque ARG3 (34 + ".") si > 35, " " => "\" \"", 
+# puis on centre
+#------------------------------------------------------
+
+begin:
+	@if [ -z "$(ARG3)" ]; then \
+		upper_arg3="\" \""; \
+	elif [ "$(ARG3)" = " " ]; then \
+		upper_arg3="\" \""; \
+	else \
+		upper_arg3=$$(echo "$(ARG3)" | tr '[:lower:]' '[:upper:]'); \
+	fi; \
+	arg_len=$$(echo -n "$$upper_arg3" | wc -c); \
+	if [ $$arg_len -gt 35 ]; then \
+		truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-34).; \
+		printf "\n="; \
+		printf "$(PINK1)$$truncated_arg3$(D_COLOR)"; \
+		printf "=\n|                                   |\n"; \
+	else \
+		leftover=$$(( 35 - arg_len )); \
+		left_equals=$$(( leftover / 2 )); \
+		right_equals=$$(( leftover - left_equals )); \
+		printf "\n="; \
+		for _ in $$(seq 1 $$left_equals); do printf "="; done; \
+		printf "$(PINK1)$$upper_arg3$(D_COLOR)"; \
+		for _ in $$(seq 1 $$right_equals); do printf "="; done; \
+		printf "=\n|                                   |\n"; \
+	fi
+	@-$(MAKE) under_begin ARG3="$(PROJECT)"
+	@-$(MAKE) under_begin ARG3="$(LANG)"
+
+#------------------------------------------------------
+# Règle d'affichage "under_begin"
+# Affiche une ligne de 37 caractères :
+# |  + bloc central de 21 caractères + 12 espaces + |
+# Bloc central : si ARG3 > 19 caractères, on tronque à 18 caractères et on ajoute un point.
+# Sinon, on centre ARG3 en entourant de '=' pour atteindre 21 caractères.
+#------------------------------------------------------
+
+under_begin:
+	@if [ -z "$(ARG3)" ]; then \
+		upper_arg3=" "; \
+	else \
+		upper_arg3=$$(echo "$(ARG3)" | tr '[:lower:]' '[:upper:]'); \
+	fi; \
+	upper_project=$$(echo "$(PROJECT)" | tr '[:lower:]' '[:upper:]'); \
+	upper_lang=$$(echo "$(LANG)" | tr '[:lower:]' '[:upper:]'); \
+	if [ "$$upper_arg3" = "$$upper_project" ] || [ "$$upper_arg3" = "$$upper_lang" ]; then \
+	    block_size=31; \
+	    spaces_after=2; \
+		color=$(BLUE1); \
+	else \
+	    block_size=21; \
+	    spaces_after=12; \
+		color=$(YELLOW1); \
+	fi; \
+	arg_len=$$(echo -n "$$upper_arg3" | wc -c); \
+	printf "|  "; \
+	threshold=$$(( block_size - 2 )); \
+	if [ $$arg_len -gt $$threshold ]; then \
+	    truncated_arg3=$$(echo -n "$$upper_arg3" | cut -c1-$$(( block_size - 3 ))).; \
+	    printf "=%s=" "\\$$color$$truncated_arg3$(D_COLOR)"; \
+	else \
+	    leftover=$$(( block_size - arg_len )); \
+	    left_equals=$$(( leftover / 2 )); \
+	    right_equals=$$(( leftover - left_equals )); \
+	    for _ in $$(seq 1 $$left_equals); do printf "="; done; \
+	    printf "\\$$color$$upper_arg3$(D_COLOR)"; \
+	    for _ in $$(seq 1 $$right_equals); do printf "="; done; \
+	fi; \
+	for _ in $$(seq 1 $$spaces_after); do printf " "; done; \
+	if [ "$$upper_arg3" != "$$upper_project" ]; then \
+	    printf "|\n|                                   "; \
+	fi; \
+	printf "|\n";
+
+#------------------------------------------------------
+# Règle d'affichage "error_line"
+# Affiche une ligne de 37 caractères contenant ARG3 ajusté
+# sur 29 caractères (tronqué ou complété) suivi de " : 💥  "
+# pour signaler la suppression d'un fichier.
+#------------------------------------------------------
+
+suppr_line:
+	@{ \
+		if [ -z "$(ARG3)" ]; then \
+			display_arg3="\" \""; \
+		else \
+			display_arg3="$(ARG3)"; \
+		fi; \
+		arg_len=$$(echo -n "$$display_arg3" | wc -c); \
+		if [ $$arg_len -gt 28 ]; then \
+			truncated=$$(echo -n "$$display_arg3" | cut -c1-25); \
+			field="$$truncated..."; \
+		else \
+			field="$$display_arg3"; \
+			pad=$$((28 - arg_len)); \
+			i=1; \
+			while [ $$i -le $$pad ]; do \
+				field="$$field "; \
+				i=$$(( i + 1 )); \
+			done; \
+		fi; \
+		printf "|$(RED2)%s$(D_COLOR) : 💥  |\n" "$$field"; \
+	}
+
+#------------------------------------------------------
+# Règle d'affichage "end"
+#------------------------------------------------------
+
+end:
+	@printf "|                                   |\n"
+	@echo "$(FIN)"
+
+#======================================================
+#              RÈGLES PHONY (obligatoires)
+#======================================================
+
+.PHONY: all clean fclean re begin under_begin suppr_line end

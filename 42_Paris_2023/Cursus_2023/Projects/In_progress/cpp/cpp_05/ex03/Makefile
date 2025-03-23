@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/21 18:34:41 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/22 15:54:31 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,24 +20,33 @@
 
 PROJECT         = cpp05
 NAME            = ex03
+LANG			= c++
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
 #------------------------------------------------------
 
-# Compilationpour le c++
+# Compilation pour le c++
 
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
 CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
 CXXHDRFLAG		= -I$(CXXHDR_LOCATION)
 CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
 
-# Compilationpour le c
+# Compilation pour le c
 
 CFLAGS			= -Wall -Wextra -Werror -g3
 C				= cc $(CFLAGS) $(CHDRFLAG)
 CHDRFLAG		= -I$(CHDR_LOCATION)
 CCOMPI			= $(C) $(CSRCS) -o $(NAME)
+
+# Compilateur
+
+ifeq ($(LANG), c++)
+	COMPILATION	= $(CXXCOMPI)
+else ifeq ($(LANG), c)
+	COMPILATION	= $(CCOMPI)
+endif
 
 #------------------------------------------------------
 # Fichiers sources et headers
@@ -48,18 +57,25 @@ CCOMPI			= $(C) $(CSRCS) -o $(NAME)
 CXXSRCS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
 CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
 CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
-CXX_SRC_LOCATION	= $(CXXSRCS) $(CXXHDRS)
+CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
 
 # Fichiers sources pour le c
 
-CSRCS				= 
-CHDRS				= 
-CHDR_LOCATION		= 
-C_SRC_LOCATION		= $(CSRCS) $(CHDRS)
+CSRCS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
+COBJS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".o" { print }')
+CHDRS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
+CHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+CSRC_LOCATION		= $(CSRCS) $(CHDRS) $(COBJS)
 
 # Tout les fichiers sources en une seule variables
 
-ALL					= $(C_SRC_LOCATION) $(CXX_SRC_LOCATION)
+ALL					= $(CSRC_LOCATION) $(CXXSRC_LOCATION)
+
+ifeq ($(LANG), c++)
+	FILES			= $(CXXSRC_LOCATION)
+else ifeq ($(LANG), c)
+	FILES			= $(CSRC_LOCATION)
+endif
 
 #------------------------------------------------------
 # Couleurs, symboles et autres variables d'affichage
@@ -130,20 +146,16 @@ all: $(NAME)
 # Compilation de l'exécutable
 #------------------------------------------------------
 
-$(NAME): $(ALL)
+$(NAME): $(FILES)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 	@-$(MAKE) under_begin ARG3="$(NAME)"
-	@-$(CXXCOMPI) > res_cmp
-	@if [ ! -s res_cmp ]; then \
-		rm -rf res_cmp; \
-		if [ -s $(NAME) ]; then \
-			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-		fi; \
-	elif [ -s res_cmp ]; then \
-		$(MAKE) error_compi; \
-	fi
+ifeq ($(LANG), c++)
+	@-$(MAKE) c++
+else ifeq ($(LANG), c)
+	FILES			= $(CSRC_LOCATION)
+endif
 	@$(MAKE) end
 
 #------------------------------------------------------
@@ -154,7 +166,7 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@allowed="$5$(ALL) $(NAME) Makefile"; \
+	@allowed="$(FILES) $(OBJS) $(NAME) Makefile"; \
 	deleted=0; \
 	for file in $$(find . -type f); do \
 		keep=no; \
@@ -171,6 +183,12 @@ endif
 			rm -f $$file; \
 			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
+	done; \
+	for dir in $$(find . -type f -name "*.o" -exec dirname {} \; | sort -u); do \
+	    if [ "$$dir" != "." ]; then \
+		    rm -rf $$dir; \
+		    $(MAKE) suppr_line ARG3="Directory $$dir"; \
+	    fi; \
 	done; \
 	if [ "$(MAKECMDGOALS)" != "clean" ] && [ $$deleted -eq 1 ]; then \
 		printf "|                                   |\n"; \
@@ -208,11 +226,37 @@ re: fclean all
 #======================================================
 
 #------------------------------------------------------
-# Compilation de la librairie statique (exemple)
+# Compilation de la librairie statique
 #------------------------------------------------------
 
 $(LIB_A):
 	@$(MAKE) $(LIB) -C $(LIB_DIR)
+
+#------------------------------------------------------
+# Règle de compilation
+#------------------------------------------------------
+
+c :
+	@-$(COMPILATION) > res_cmp
+	@if [ ! -s res_cmp ]; then \
+		rm -rf res_cmp; \
+		if [ -s $(NAME) ]; then \
+			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		fi; \
+	elif [ -s res_cmp ]; then \
+		$(MAKE) error_compi; \
+	fi
+
+c++ :
+	@-$(COMPILATION) > res_cmp
+	@if [ ! -s res_cmp ]; then \
+		rm -rf res_cmp; \
+		if [ -s $(NAME) ]; then \
+			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+		fi; \
+	elif [ -s res_cmp ]; then \
+		$(MAKE) error_compi; \
+	fi
 
 #------------------------------------------------------
 # Règle d'affichage "begin"
@@ -246,6 +290,7 @@ begin:
 		printf "=\n|                                   |\n"; \
 	fi
 	@-$(MAKE) under_begin ARG3="$(PROJECT)"
+	@-$(MAKE) under_begin ARG3="$(LANG)"
 
 #------------------------------------------------------
 # Règle d'affichage "under_begin"
@@ -262,7 +307,8 @@ under_begin:
 		upper_arg3=$$(echo "$(ARG3)" | tr '[:lower:]' '[:upper:]'); \
 	fi; \
 	upper_project=$$(echo "$(PROJECT)" | tr '[:lower:]' '[:upper:]'); \
-	if [ "$$upper_arg3" = "$$upper_project" ]; then \
+	upper_lang=$$(echo "$(LANG)" | tr '[:lower:]' '[:upper:]'); \
+	if [ "$$upper_arg3" = "$$upper_project" ] || [ "$$upper_arg3" = "$$upper_lang" ]; then \
 	    block_size=31; \
 	    spaces_after=2; \
 		color=$(BLUE1); \
@@ -286,7 +332,10 @@ under_begin:
 	    for _ in $$(seq 1 $$right_equals); do printf "="; done; \
 	fi; \
 	for _ in $$(seq 1 $$spaces_after); do printf " "; done; \
-	printf "|\n|                                   |\n";
+	if [ "$$upper_arg3" != "$$upper_project" ]; then \
+	    printf "|\n|                                   "; \
+	fi; \
+	printf "|\n";
 
 #------------------------------------------------------
 # Règle d'affichage "error_line"
@@ -304,8 +353,8 @@ suppr_line:
 		fi; \
 		arg_len=$$(echo -n "$$display_arg3" | wc -c); \
 		if [ $$arg_len -gt 28 ]; then \
-			truncated=$$(echo -n "$$display_arg3" | cut -c1-27); \
-			field="$$truncated."; \
+			truncated=$$(echo -n "$$display_arg3" | cut -c1-25); \
+			field="$$truncated..."; \
 		else \
 			field="$$display_arg3"; \
 			pad=$$((28 - arg_len)); \
@@ -315,7 +364,7 @@ suppr_line:
 				i=$$(( i + 1 )); \
 			done; \
 		fi; \
-		printf "|%s : 💥  |\n" "$$field"; \
+		printf "|$(RED2)%s$(D_COLOR) : 💥  |\n" "$$field"; \
 	}
 
 #------------------------------------------------------
