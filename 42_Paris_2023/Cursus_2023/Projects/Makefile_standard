@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/22 15:56:09 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/24 17:22:49 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = 
-NAME            = 
-LANG			= 
+PROJECT         = LIBFT
+NAME            = libft.a
+LANG			= c
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
@@ -36,7 +36,7 @@ CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
 # Compilation pour le c
 
 CFLAGS			= -Wall -Wextra -Werror -g3
-C				= cc $(CFLAGS) $(CHDRFLAG)
+C				= gcc $(CFLAGS) $(CHDRFLAG)
 CHDRFLAG		= -I$(CHDR_LOCATION)
 CCOMPI			= $(C) $(CSRCS) -o $(NAME)
 
@@ -75,6 +75,10 @@ ifeq ($(LANG), c++)
 	FILES			= $(CXXSRC_LOCATION)
 else ifeq ($(LANG), c)
 	FILES			= $(CSRC_LOCATION)
+endif
+
+ifeq ($(PROJECT), LIBFT)
+	FILES			= $(CSRCS) $(CHDRS)
 endif
 
 #------------------------------------------------------
@@ -125,16 +129,44 @@ BLOCK_SIZE      = 21
 END_SPACES      = 12
 
 #------------------------------------------------------
-# (Optionnel) Variables pour la librairie
+# Variables pour la librairie
 #------------------------------------------------------
 
+# Variables globales pour la librairie
+
+LSRCS 			= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
+LOBJS 			= $(patsubst %.c,%.o,$(notdir $(LSRCS)))
+INC				= inc/
+EXEC_DIR		= exec/
+OBJ_DIR			= obj/
 LIB				= libft.a
 LIB_DIR			= $(addprefix $(INC), libft/)
 LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
 LIB_INC			= $(addprefix $(LIB_DIR), inc/)
 LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
 LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
-LIBRARY			= -lreadline -lncurses
+LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm
+
+ifeq ($(PROJECT), LIBFT)
+	NAME		= $(addprefix exec/, $(LIB))
+endif
+
+# Variable pour la Minilibx
+
+MLX_TITLE			= Minilibx
+MLX					= libmlx.a
+MIN					= minilibx-linux
+LINK_MLX			= https://cdn.intra.42.fr/document/document/26792/minilibx-linux.tgz
+MLX_DIR				= $(addprefix $(INC), $(MIN)/)
+MLX_A				= $(addprefix $(MLX_DIR), $(MLX))
+
+# Compilation pour la libft
+
+XPM_FLAG 			= -I/usr/include/X11
+LHEADERS		 	= -I$(INC) -I$(MLX_DIR) $(XPM_FLAG)
+LCC					= cc $(LCFLAG) $(LHEADERS)
+LTO_OBJ				= -c
+LCOMPI				= $(LCC) $(LIBRARY) $(LTO_OBJ) $(LSRCS)
 
 #======================================================
 #                   RÈGLES PRINCIPALES
@@ -145,16 +177,23 @@ all: $(NAME)
 #------------------------------------------------------
 # Compilation de l'exécutable
 #------------------------------------------------------
-
 $(NAME): $(FILES)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@-$(MAKE) under_begin ARG3="$(NAME)"
+ifneq ($(PROJECT), LIBFT)
+	@-$(MAKE) under_begin ARG3="$(PROJECT)"
+endif
 ifeq ($(LANG), c++)
+ifneq ($(PROJECT), LIBFT)
 	@-$(MAKE) c++
+endif
 else ifeq ($(LANG), c)
-	FILES			= $(CSRC_LOCATION)
+ifeq ($(PROJECT), LIBFT)
+	@-$(MAKE) compi_libft
+else
+	@-$(MAKE) c
+endif
 endif
 	@$(MAKE) end
 
@@ -166,9 +205,9 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@allowed="$(FILES) $(OBJS) $(NAME) Makefile"; \
+	@allowed="$(FILES) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
 	deleted=0; \
-	for file in $$(find . -type f); do \
+	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*"); do \
 		keep=no; \
 		for a in $$allowed; do \
 			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
@@ -184,7 +223,7 @@ endif
 			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
 	done; \
-	for dir in $$(find . -type f -name "*.o" -exec dirname {} \; | sort -u); do \
+	for dir in $$(find . -type f -name "*.o" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -exec dirname {} \; | sort -u); do \
 	    if [ "$$dir" != "." ]; then \
 		    rm -rf $$dir; \
 		    $(MAKE) suppr_line ARG3="Directory $$dir"; \
@@ -198,6 +237,7 @@ ifeq ($(MAKECMDGOALS), clean)
 endif
 
 
+
 #------------------------------------------------------
 # Nettoyage complet (exécutable, etc.)
 #------------------------------------------------------
@@ -205,8 +245,17 @@ endif
 fclean: clean
 	@if [ -f "$(NAME)" ]; then \
 		$(MAKE) under_begin ARG3="FCLEAN"; \
-		rm -rf $(NAME) $(SILENCE); \
-		echo "|$(NAME)                         : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+		if [ -d "$(EXEC_DIR)" ]; then \
+			rm -rf $(EXEC_DIR); \
+			$(MAKE) suppr_line ARG3="$(EXEC_DIR)"; \
+		elif [ -f "$(NAME)" ]; then \
+			rm -rf $(NAME) $(SILENCE); \
+			$(MAKE) suppr_line ARG3=$(NAME); \
+		fi; \
+		if [ -d $(OBJ_DIR) ]; then \
+			rm -rf $(OBJ_DIR); \
+			$(MAKE) suppr_line ARG3="$(OBJ_DIR)"; \
+		fi; \
 		if [ "$(MAKECMDGOALS)" != "fclean" ]; then \
 			echo "|                                   |"; \
 		fi; \
@@ -229,8 +278,28 @@ re: fclean all
 # Compilation de la librairie statique
 #------------------------------------------------------
 
-$(LIB_A):
-	@$(MAKE) $(LIB) -C $(LIB_DIR)
+compi_libft:
+	@-$(MAKE) under_begin ARG3="$(MLX_TITLE)"
+	@mkdir -p $(OBJ_DIR)
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
+		mkdir -p $(MLX_DIR); \
+		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
+		tar -xzvf $(INC)/minilibx-linux.tgz -C $(INC) $(SILENCE); \
+		rm $(INC)/minilibx-linux.tgz; \
+		echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
+	fi
+	@make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
+	@echo "|./minilibx                   : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
+	@printf "|                                   |\n"
+	@-$(MAKE) under_begin ARG3="$(LIB)"
+	@$(LCOMPI)
+	@ar rcs $(LIB) $(LOBJS) $(SILENCE)
+	@ranlib $(LIB) $(SILENCE)
+	@echo "|$(LIB)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
+	@mkdir -p $(EXEC_DIR)
+	@mv $(LOBJS) $(OBJ_DIR)
+	@mv $(LIB) $(EXEC_DIR)
 
 #------------------------------------------------------
 # Règle de compilation
@@ -256,6 +325,25 @@ c++ :
 		fi; \
 	elif [ -s res_cmp ]; then \
 		$(MAKE) error_compi; \
+	fi
+
+#------------------------------------------------------
+# Règle de vérification de la norme 42
+#------------------------------------------------------
+
+verif_norme :
+	-@norminette src/ > res_cmd || true
+	-@grep 'Error' res_cmd > norminette || true
+	-@norminette $(H_PLACE) > res_cmd || true
+	-@grep "Error" res_cmd >> norminette || true
+	@rm res_cmd
+	@if [ ! -s norminette ]; then \
+    	rm norminette; \
+		echo "|norminette des .c de $(NAME) : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+	else \
+   		echo "\nnorminette des .c de $(NAME) : $(RED1)Erreur ‼️$(D_COLOR)"; \
+		cat norminette; \
+		echo "\n"; \
 	fi
 
 #------------------------------------------------------
