@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/23 19:21:27 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/24 17:21:28 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,25 +40,12 @@ C				= gcc $(CFLAGS) $(CHDRFLAG)
 CHDRFLAG		= -I$(CHDR_LOCATION)
 CCOMPI			= $(C) $(CSRCS) -o $(NAME)
 
-# Compilation pour la libft
-
-LFLAG				= -Wall -Wextra -Werror -g3
-XPM_FLAG 			= -I/usr/include/X11
-LHEADERS		 	= -I$(INC) -I$(MLX_DIR) $(XPM_FLAG)
-LCC					= cc $(LCFLAG) $(LHEADERS)
-LTO_OBJ				= -c
-LSRCS 				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
-
 # Compilateur
 
 ifeq ($(LANG), c++)
 	COMPILATION	= $(CXXCOMPI)
 else ifeq ($(LANG), c)
 	COMPILATION	= $(CCOMPI)
-endif
-
-ifeq ($(PROJECT), LIBFT)
-	COMPILATION	= $(LCC) $(LIBRARY) $(LTO_OBJ) $(LSRCS)
 endif
 
 #------------------------------------------------------
@@ -147,6 +134,8 @@ END_SPACES      = 12
 
 # Variables globales pour la librairie
 
+LSRCS 			= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
+LOBJS 			= $(patsubst %.c,%.o,$(notdir $(LSRCS)))
 INC				= inc/
 EXEC_DIR		= exec/
 OBJ_DIR			= obj/
@@ -158,6 +147,10 @@ LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
 LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
 LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm
 
+ifeq ($(PROJECT), LIBFT)
+	NAME		= $(addprefix exec/, $(LIB))
+endif
+
 # Variable pour la Minilibx
 
 MLX_TITLE			= Minilibx
@@ -166,6 +159,14 @@ MIN					= minilibx-linux
 LINK_MLX			= https://cdn.intra.42.fr/document/document/26792/minilibx-linux.tgz
 MLX_DIR				= $(addprefix $(INC), $(MIN)/)
 MLX_A				= $(addprefix $(MLX_DIR), $(MLX))
+
+# Compilation pour la libft
+
+XPM_FLAG 			= -I/usr/include/X11
+LHEADERS		 	= -I$(INC) -I$(MLX_DIR) $(XPM_FLAG)
+LCC					= cc $(LCFLAG) $(LHEADERS)
+LTO_OBJ				= -c
+LCOMPI				= $(LCC) $(LIBRARY) $(LTO_OBJ) $(LSRCS)
 
 #======================================================
 #                   RÈGLES PRINCIPALES
@@ -180,7 +181,9 @@ $(NAME): $(FILES)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@-$(MAKE) under_begin ARG3="$(NAME)"
+ifneq ($(PROJECT), LIBFT)
+	@-$(MAKE) under_begin ARG3="$(PROJECT)"
+endif
 ifeq ($(LANG), c++)
 ifneq ($(PROJECT), LIBFT)
 	@-$(MAKE) c++
@@ -204,7 +207,7 @@ ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 endif
 	@allowed="$(FILES) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
 	deleted=0; \
-	for file in $$(find . -type f -not -path "./src/*"); do \
+	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*"); do \
 		keep=no; \
 		for a in $$allowed; do \
 			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
@@ -220,7 +223,7 @@ endif
 			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
 	done; \
-	for dir in $$(find . -type f -name "*.o" -not -path "./src/*" -exec dirname {} \; | sort -u); do \
+	for dir in $$(find . -type f -name "*.o" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -exec dirname {} \; | sort -u); do \
 	    if [ "$$dir" != "." ]; then \
 		    rm -rf $$dir; \
 		    $(MAKE) suppr_line ARG3="Directory $$dir"; \
@@ -242,14 +245,21 @@ endif
 fclean: clean
 	@if [ -f "$(NAME)" ]; then \
 		$(MAKE) under_begin ARG3="FCLEAN"; \
-		rm -rf $(NAME) $(SILENCE); \
-		$(MAKE) suppr_line ARG3=$(NAME); \
+		if [ -d "$(EXEC_DIR)" ]; then \
+			rm -rf $(EXEC_DIR); \
+			$(MAKE) suppr_line ARG3="$(EXEC_DIR)"; \
+		elif [ -f "$(NAME)" ]; then \
+			rm -rf $(NAME) $(SILENCE); \
+			$(MAKE) suppr_line ARG3=$(NAME); \
+		fi; \
+		if [ -d $(OBJ_DIR) ]; then \
+			rm -rf $(OBJ_DIR); \
+			$(MAKE) suppr_line ARG3="$(OBJ_DIR)"; \
+		fi; \
 		if [ "$(MAKECMDGOALS)" != "fclean" ]; then \
 			echo "|                                   |"; \
 		fi; \
 	fi
-	@rm -rf $(EXEC_DIR)
-	@-$(MAKE) suppr_line ARG3=$(EXEC_DIR)
 ifeq ($(MAKECMDGOALS), fclean)
 	@$(MAKE) end
 endif
@@ -270,32 +280,26 @@ re: fclean all
 
 compi_libft:
 	@-$(MAKE) under_begin ARG3="$(MLX_TITLE)"
-	@echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"
-	@mkdir -p $(MLX_DIR)
-	@curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE)
-	@tar -xzvf $(INC)/minilibx-linux.tgz -C $(INC) $(SILENCE)
-	@rm $(INC)/minilibx-linux.tgz
-	@echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"
+	@mkdir -p $(OBJ_DIR)
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
+		mkdir -p $(MLX_DIR); \
+		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
+		tar -xzvf $(INC)/minilibx-linux.tgz -C $(INC) $(SILENCE); \
+		rm $(INC)/minilibx-linux.tgz; \
+		echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
+	fi
 	@make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
 	@echo "|./minilibx                   : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
 	@printf "|                                   |\n"
-	@-$(MAKE) under_begin ARG3="$(PROJECT)"
-	@if [ ! -s norminette ]; then \
-		mkdir -p $(OBJ_DIR); \
-		$(COMPILATION); \
-		mv $(COBJS) $(OBJ_DIR); \
-		ar rcs $(NAME) $(COBJS) $(SILENCE); \
-		ranlib $(NAME) $(SILENCE); \
-		printf "|                                   |\n"; \
-		echo "|$(NAME)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-		mkdir -p $(EXEC_DIR); \
-		mv $(NAME) $(EXEC_DIR); \
-	else \
-		echo "$(RED1)Erreur de norme !!$(D_COLOR)"; \
-		echo "$(YELLOW1)Consulter \"make norminette\" ou \"norminette\" pour plus de details !$(D_COLOR)"; \
-		rm norminette; \
-		exit 1; \
-	fi
+	@-$(MAKE) under_begin ARG3="$(LIB)"
+	@$(LCOMPI)
+	@ar rcs $(LIB) $(LOBJS) $(SILENCE)
+	@ranlib $(LIB) $(SILENCE)
+	@echo "|$(LIB)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
+	@mkdir -p $(EXEC_DIR)
+	@mv $(LOBJS) $(OBJ_DIR)
+	@mv $(LIB) $(EXEC_DIR)
 
 #------------------------------------------------------
 # Règle de compilation
