@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 18:08:27 by mafritz           #+#    #+#             */
-/*   Updated: 2025/01/26 13:38:28 by mechard          ###   ########.fr       */
+/*   Updated: 2025/03/24 17:57:44 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ int	no_str_found(t_token	*token)
 
 	error = EXIT_FAILURE;
 	if (!token->str)
-		return (print_token_err("<<", EXIT_FAILURE));
+		return (print_token_err("<<", error));
 	else if (!token->next)
-		return (print_token_err("newline", EXIT_FAILURE));
+		return (print_token_err("newline", error));
 	else if (token->next->type != TOK_TEXT)
-		return (print_token_err(token->next->str, EXIT_FAILURE));
+		return (print_token_err(token->next->str, error));
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/24 17:22:49 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/24 17:47:59 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = LIBFT
-NAME            = libft.a
-LANG			= c
+PROJECT         = 
+NAME            = 
+LANG			= 
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
