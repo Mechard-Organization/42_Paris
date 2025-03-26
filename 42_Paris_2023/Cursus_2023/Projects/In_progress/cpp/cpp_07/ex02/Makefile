@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/27 02:19:01 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/27 06:45:00 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ LANG			= c++
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
 CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
 CXXHDRFLAG		= $(addprefix -I, $(CHDR_LOCATION))
-CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
+CXXCOMPI		= $(CXX) $(CXXSRCS) -I./ -o $(NAME)
 
 # Compilation pour le c
 
@@ -42,9 +42,9 @@ LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm -pthread #-fsanitize=add
 LIBFT_EXIST		= $(shell find . -type d -name "libft" -print -quit)
 
 ifeq ($(LIBFT_EXIST),)
-	CCOMPI		= $(C) $(CSRCS) $(LIBRARY) -o $(NAME)
+	CCOMPI		= $(C) $(CSRCS) -I./ $(LIBRARY) -o $(NAME)
 else
-	CCOMPI		= $(C) $(CSRCS) $(LIBRARY) $(LIB_A) -o $(NAME)
+	CCOMPI		= $(C) $(CSRCS) -I./ $(LIBRARY) $(LIB_A) -o $(NAME)
 endif
 
 # Compilateur
@@ -63,8 +63,9 @@ endif
 
 CXXSRCS				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
 CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
+CXXTPPS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".tpp" { print }')
 CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
-CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
+CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS) $(CXXTPPS)
 
 # Fichiers sources pour le c
 
