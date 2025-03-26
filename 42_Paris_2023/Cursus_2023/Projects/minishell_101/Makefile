@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/26 23:22:50 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/26 23:59:35 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,14 @@ CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
 CFLAGS			= -Wall -Wextra -Werror -g3
 C				= gcc $(CFLAGS) $(CHDRFLAG)
 CHDRFLAG		= $(addprefix -I, $(CHDR_LOCATION))
-CCOMPI			= $(C) $(CSRCS) $(LIBRARY) $(LIB_A) -o $(NAME)
+LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm -pthread #-fsanitize=address -fsanitize=undefined
+LIBFT_EXIST		= $(shell find . -type d -name "libft" -print -quit)
+
+ifeq ($(LIBFT_EXIST),)
+	CCOMPI		= $(C) $(CSRCS) $(LIBRARY) -o $(NAME)
+else
+	CCOMPI		= $(C) $(CSRCS) $(LIBRARY) $(LIB_A) -o $(NAME)
+endif
 
 # Compilateur
 
@@ -146,7 +153,6 @@ LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
 LIB_INC			= $(addprefix $(LIB_DIR), inc/)
 LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
 LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
-LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm #-fsanitize=address -fsanitize=undefined
 
 ifeq ($(PROJECT), LIBFT)
 	NAME		= $(addprefix exec/, $(LIB))
@@ -253,6 +259,9 @@ endif
 	fi; \
 	if [ $$deleted -eq 0 ]; then \
 		echo "|Nothing to be done for 'clean'     |"; \
+		if [ -f "$(NAME)" ]; then \
+			printf "|                                   |\n"; \
+		fi; \
 	fi
 ifeq ($(MAKECMDGOALS), clean)
 	@$(MAKE) end
@@ -335,7 +344,7 @@ compi_libft:
 
 c :
 	@$(MAKE) under_begin ARG3="$(NAME)"
-	@if [ ! -f "$(LIB_A)" ]; then \
+	@if [ ! -f "$(LIB_A)" ] && [ $(LIBFT_EXIST) ]; then \
 		$(LMAKE) all $(SILENCE); \
 		$(MAKE) success ARG3="$(LIB)"; \
 	fi
