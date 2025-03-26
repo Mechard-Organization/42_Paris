@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/27 07:04:47 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/27 07:07:46 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = 
-NAME            = 
-LANG			= 
+PROJECT         = cpp08
+NAME            = ex01
+LANG			= c++
 
 #------------------------------------------------------
 # Flags de compilation et compilateur
