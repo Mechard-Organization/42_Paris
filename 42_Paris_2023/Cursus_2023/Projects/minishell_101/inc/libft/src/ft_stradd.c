@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 14:02:54 by mechard           #+#    #+#             */
-/*   Updated: 2025/01/26 14:03:09 by mechard          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:08:30 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ void	ft_dstradd(char	***dstr, char	*str)
 	i = 0;
 	if (!dstr)
 		return ;
-	alloc_if_needed(dstr);
 	if (!*dstr)
-		return ;
+	{
+		*dstr = malloc(sizeof(char *));
+		if (!*dstr)
+			return;
+		(*dstr)[0] = NULL;
+	}
 	i = ft_dstrlen(*dstr);
 	new_dstr = malloc(sizeof(char *) * (i + 2));
 	if (!new_dstr)

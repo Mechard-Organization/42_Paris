@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/24 17:51:10 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/26 19:00:15 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,15 +30,15 @@ LANG			= c
 
 CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
 CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
-CXXHDRFLAG		= -I$(CXXHDR_LOCATION)
+CXXHDRFLAG		= $(addprefix -I, $(CHDR_LOCATION))
 CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
 
 # Compilation pour le c
 
 CFLAGS			= -Wall -Wextra -Werror -g3
 C				= gcc $(CFLAGS) $(CHDRFLAG)
-CHDRFLAG		= -I$(CHDR_LOCATION)
-CCOMPI			= $(C) $(CSRCS) -o $(NAME)
+CHDRFLAG		= $(addprefix -I, $(CHDR_LOCATION))
+CCOMPI			= $(C) $(CSRCS) $(LIBRARY) $(LIB_A) -o $(NAME)
 
 # Compilateur
 
@@ -54,18 +54,17 @@ endif
 
 # Fichiers sources pour le c++
 
-CXXSRCS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
+CXXSRCS				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
 CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
 CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
 CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
 
 # Fichiers sources pour le c
 
-CSRCS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
-COBJS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".o" { print }')
+CSRCS				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
 CHDRS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
 CHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
-CSRC_LOCATION		= $(CSRCS) $(CHDRS) $(COBJS)
+CSRC_LOCATION		= $(CSRCS) $(CHDRS)
 
 # Tout les fichiers sources en une seule variables
 
@@ -117,7 +116,9 @@ DELETED         = 💥
 
 # Autres variables
 SILENCE         = > /dev/null 2>&1
-MAKE            = make --no-print-directory -C ./
+M           	= make --no-print-directory -C
+MAKE			= $(M) ./
+LMAKE			= $(M) $(LIB_DIR)
 FIN             = =================$(GREEN1)END$(D_COLOR)=================\n
 
 #------------------------------------------------------
@@ -145,7 +146,7 @@ LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
 LIB_INC			= $(addprefix $(LIB_DIR), inc/)
 LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
 LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
-LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm
+LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm #-fsanitize=address -fsanitize=undefined
 
 ifeq ($(PROJECT), LIBFT)
 	NAME		= $(addprefix exec/, $(LIB))
@@ -181,9 +182,6 @@ $(NAME): $(FILES)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-ifneq ($(PROJECT), LIBFT)
-	@-$(MAKE) under_begin ARG3="$(PROJECT)"
-endif
 ifeq ($(LANG), c++)
 ifneq ($(PROJECT), LIBFT)
 	@-$(MAKE) c++
@@ -207,7 +205,13 @@ ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 endif
 	@allowed="$(FILES) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
 	deleted=0; \
-	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*"); do \
+	if [ -d "$(LIB_OBJ)" ]; then \
+		$(MAKE) under_begin ARG3="CLEAN"; \
+		deleted=1; \
+		$(LMAKE) clean $(SILENCE); \
+		$(MAKE) suppr_line ARG3=".o dans libft"; \
+	fi; \
+	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./obj/*" -not -name ".gitignore"); do \
 		keep=no; \
 		for a in $$allowed; do \
 			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
@@ -223,6 +227,22 @@ endif
 			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
 	done; \
+	if [ -d $(OBJ_DIR) ]; then \
+		if [ $$deleted -eq 0 ]; then \
+			$(MAKE) under_begin ARG3="CLEAN"; \
+			deleted=1; \
+		fi; \
+		rm -rf $(OBJ_DIR); \
+		$(MAKE) suppr_line ARG3="$(OBJ_DIR)"; \
+	fi; \
+	if [ -d $(MLX_DIR) ]; then \
+		if [ $$deleted -eq 0 ]; then \
+			$(MAKE) under_begin ARG3="CLEAN"; \
+			deleted=1; \
+		fi; \
+		rm -rf $(MLX_DIR); \
+		$(MAKE) suppr_line ARG3="$(MLX_DIR)"; \
+	fi; \
 	for dir in $$(find . -type f -name "*.o" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -exec dirname {} \; | sort -u); do \
 	    if [ "$$dir" != "." ]; then \
 		    rm -rf $$dir; \
@@ -252,15 +272,16 @@ fclean: clean
 			rm -rf $(NAME) $(SILENCE); \
 			$(MAKE) suppr_line ARG3=$(NAME); \
 		fi; \
-		if [ -d $(OBJ_DIR) ]; then \
-			rm -rf $(OBJ_DIR); \
-			$(MAKE) suppr_line ARG3="$(OBJ_DIR)"; \
-		fi; \
 		if [ "$(MAKECMDGOALS)" != "fclean" ]; then \
 			echo "|                                   |"; \
 		fi; \
 	fi
 ifeq ($(MAKECMDGOALS), fclean)
+	@if [ -d $(LIB_DIR) ]; then \
+		$(MAKE) under_begin ARG3="FCLEAN"; \
+		$(LMAKE) fclean $(SILENCE); \
+		$(MAKE) suppr_line ARG3="inc/libft/exec/"; \
+	fi
 	@$(MAKE) end
 endif
 
@@ -278,9 +299,19 @@ re: fclean all
 # Compilation de la librairie statique
 #------------------------------------------------------
 
-compi_libft:
-	@-$(MAKE) under_begin ARG3="$(MLX_TITLE)"
+compi_libft: inc/minilibx-linux/mlx.h
 	@mkdir -p $(OBJ_DIR)
+	@-$(MAKE) under_begin ARG3="$(LIB)"
+	@$(LCOMPI)
+	@ar rcs $(LIB) $(LOBJS) $(SILENCE)
+	@ranlib $(LIB) $(SILENCE)
+	@$(MAKE) success ARG3="$(LIB)"
+	@mkdir -p $(EXEC_DIR)
+	@mv $(LOBJS) $(OBJ_DIR)
+	@mv $(LIB) $(EXEC_DIR)
+
+inc/minilibx-linux/mlx.h :
+	@-$(MAKE) under_begin ARG3="$(MLX_TITLE)"
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
 		mkdir -p $(MLX_DIR); \
@@ -289,28 +320,27 @@ compi_libft:
 		rm $(INC)/minilibx-linux.tgz; \
 		echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
 	fi
-	@make --no-print-directory -C $(MLX_DIR) all $(SILENCE)
-	@echo "|./minilibx                   : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
+	@$(M) $(MLX_DIR) all $(SILENCE)
+	@$(MAKE) success ARG3="./minilibx"
 	@printf "|                                   |\n"
-	@-$(MAKE) under_begin ARG3="$(LIB)"
-	@$(LCOMPI)
-	@ar rcs $(LIB) $(LOBJS) $(SILENCE)
-	@ranlib $(LIB) $(SILENCE)
-	@echo "|$(LIB)                      : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"
-	@mkdir -p $(EXEC_DIR)
-	@mv $(LOBJS) $(OBJ_DIR)
-	@mv $(LIB) $(EXEC_DIR)
 
 #------------------------------------------------------
 # Règle de compilation
 #------------------------------------------------------
 
 c :
+	@if [ -s $(LIB_A) ]; then \
+		$(LMAKE) re $(SILENCE); \
+		$(MAKE) success ARG3="$(LIB)"; \
+	elif [ -d $(LIB_DIR) ]; then \
+		$(LMAKE) all $(SILENCE); \
+		$(MAKE) success ARG3="$(LIB)"; \
+	fi
 	@-$(COMPILATION) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
 		if [ -s $(NAME) ]; then \
-			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+			$(MAKE) success ARG3="$(NAME)"; \
 		fi; \
 	elif [ -s res_cmp ]; then \
 		$(MAKE) error_compi; \
@@ -321,7 +351,7 @@ c++ :
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
 		if [ -s $(NAME) ]; then \
-			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
+			$(MAKE) success ARG3="$(NAME)"; \
 		fi; \
 	elif [ -s res_cmp ]; then \
 		$(MAKE) error_compi; \
@@ -426,7 +456,7 @@ under_begin:
 	printf "|\n";
 
 #------------------------------------------------------
-# Règle d'affichage "error_line"
+# Règle d'affichage "suppr_line"
 # Affiche une ligne de 37 caractères contenant ARG3 ajusté
 # sur 29 caractères (tronqué ou complété) suivi de " : 💥  "
 # pour signaler la suppression d'un fichier.
@@ -452,7 +482,37 @@ suppr_line:
 				i=$$(( i + 1 )); \
 			done; \
 		fi; \
-		printf "|$(RED2)%s$(D_COLOR) : 💥  |\n" "$$field"; \
+		printf "|$(RED2)%s$(D_COLOR) : $(DELETED)  |\n" "$$field"; \
+	}
+
+#------------------------------------------------------
+# Règle d'affichage "success"
+# Affiche une ligne de 37 caractères contenant ARG3 ajusté
+# sur 29 caractères (tronqué ou complété) suivi de " : ✅  "
+# pour signaler la suppression d'un fichier.
+#------------------------------------------------------
+
+success :
+	@{ \
+		if [ -z "$(ARG3)" ]; then \
+			display_arg3="\" \""; \
+		else \
+			display_arg3="$(ARG3)"; \
+		fi; \
+		arg_len=$$(echo -n "$$display_arg3" | wc -c); \
+		if [ $$arg_len -gt 28 ]; then \
+			truncated=$$(echo -n "$$display_arg3" | cut -c1-25); \
+			field="$$truncated..."; \
+		else \
+			field="$$display_arg3"; \
+			pad=$$((28 - arg_len)); \
+			i=1; \
+			while [ $$i -le $$pad ]; do \
+				field="$$field "; \
+				i=$$(( i + 1 )); \
+			done; \
+		fi; \
+		printf "|%s$(D_COLOR) : $(SUCCESS)  |\n" "$$field"; \
 	}
 
 #------------------------------------------------------
