@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/26 19:00:15 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/26 23:23:52 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
 # Fichiers sources pour le c
 
 CSRCS				= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
-CHDRS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
+CHDRS				= $(shell find . -type f -not -path "./inc/libft/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
 CHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
 CSRC_LOCATION		= $(CSRCS) $(CHDRS)
 
@@ -178,14 +178,13 @@ all: $(NAME)
 #------------------------------------------------------
 # Compilation de l'exécutable
 #------------------------------------------------------
+
 $(NAME): $(FILES)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
 ifeq ($(LANG), c++)
-ifneq ($(PROJECT), LIBFT)
 	@-$(MAKE) c++
-endif
 else ifeq ($(LANG), c)
 ifeq ($(PROJECT), LIBFT)
 	@-$(MAKE) compi_libft
@@ -251,6 +250,9 @@ endif
 	done; \
 	if [ "$(MAKECMDGOALS)" != "clean" ] && [ $$deleted -eq 1 ]; then \
 		printf "|                                   |\n"; \
+	fi; \
+	if [ $$deleted -eq 0 ]; then \
+		echo "|Nothing to be done for 'clean'     |"; \
 	fi
 ifeq ($(MAKECMDGOALS), clean)
 	@$(MAKE) end
@@ -265,23 +267,28 @@ endif
 fclean: clean
 	@if [ -f "$(NAME)" ]; then \
 		$(MAKE) under_begin ARG3="FCLEAN"; \
+		if [ -d "$(LIB_EXEC)" ]; then \
+			rm -rf $(LIB_EXEC); \
+			$(MAKE) suppr_line ARG3="$(LIB_EXEC)"; \
+		fi; \
+		if [ -f "$(NAME)" ]; then \
+			rm -rf $(NAME) $(SILENCE); \
+			$(MAKE) suppr_line ARG3=$(NAME); \
+		fi; \
 		if [ -d "$(EXEC_DIR)" ]; then \
 			rm -rf $(EXEC_DIR); \
 			$(MAKE) suppr_line ARG3="$(EXEC_DIR)"; \
-		elif [ -f "$(NAME)" ]; then \
-			rm -rf $(NAME) $(SILENCE); \
-			$(MAKE) suppr_line ARG3=$(NAME); \
 		fi; \
 		if [ "$(MAKECMDGOALS)" != "fclean" ]; then \
 			echo "|                                   |"; \
 		fi; \
+	else \
+		echo "|Nothing to be done for 'fclean'    |"; \
+		if [ $(MAKECMDGOALS) != "fclean" ]; then \
+			echo "|                                   |"; \
+		fi; \
 	fi
 ifeq ($(MAKECMDGOALS), fclean)
-	@if [ -d $(LIB_DIR) ]; then \
-		$(MAKE) under_begin ARG3="FCLEAN"; \
-		$(LMAKE) fclean $(SILENCE); \
-		$(MAKE) suppr_line ARG3="inc/libft/exec/"; \
-	fi
 	@$(MAKE) end
 endif
 
@@ -299,7 +306,19 @@ re: fclean all
 # Compilation de la librairie statique
 #------------------------------------------------------
 
-compi_libft: inc/minilibx-linux/mlx.h
+compi_libft:
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		$(MAKE) under_begin ARG3="$(MLX_TITLE)"; \
+		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
+		mkdir -p $(MLX_DIR); \
+		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
+		tar -xzvf $(INC)/minilibx-linux.tgz -C $(INC) $(SILENCE); \
+		rm $(INC)/minilibx-linux.tgz; \
+		echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
+		$(M) $(MLX_DIR) all $(SILENCE); \
+		$(MAKE) success ARG3="./minilibx"; \
+		printf "|                                   |\n"; \
+	fi
 	@mkdir -p $(OBJ_DIR)
 	@-$(MAKE) under_begin ARG3="$(LIB)"
 	@$(LCOMPI)
@@ -310,29 +329,13 @@ compi_libft: inc/minilibx-linux/mlx.h
 	@mv $(LOBJS) $(OBJ_DIR)
 	@mv $(LIB) $(EXEC_DIR)
 
-inc/minilibx-linux/mlx.h :
-	@-$(MAKE) under_begin ARG3="$(MLX_TITLE)"
-	@if [ ! -d "$(MLX_DIR)" ]; then \
-		echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"; \
-		mkdir -p $(MLX_DIR); \
-		curl -o $(INC)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE); \
-		tar -xzvf $(INC)/minilibx-linux.tgz -C $(INC) $(SILENCE); \
-		rm $(INC)/minilibx-linux.tgz; \
-		echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"; \
-	fi
-	@$(M) $(MLX_DIR) all $(SILENCE)
-	@$(MAKE) success ARG3="./minilibx"
-	@printf "|                                   |\n"
-
 #------------------------------------------------------
 # Règle de compilation
 #------------------------------------------------------
 
 c :
-	@if [ -s $(LIB_A) ]; then \
-		$(LMAKE) re $(SILENCE); \
-		$(MAKE) success ARG3="$(LIB)"; \
-	elif [ -d $(LIB_DIR) ]; then \
+	@$(MAKE) under_begin ARG3="$(NAME)"
+	@if [ ! -f "$(LIB_A)" ]; then \
 		$(LMAKE) all $(SILENCE); \
 		$(MAKE) success ARG3="$(LIB)"; \
 	fi
@@ -347,6 +350,7 @@ c :
 	fi
 
 c++ :
+	@$(MAKE) under_begin ARG3="$(NAME)"
 	@-$(COMPILATION) > res_cmp
 	@if [ ! -s res_cmp ]; then \
 		rm -rf res_cmp; \
