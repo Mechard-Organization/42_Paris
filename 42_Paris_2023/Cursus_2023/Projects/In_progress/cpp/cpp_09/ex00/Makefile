@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_standard                                  :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/27 09:45:36 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/29 05:36:48 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@
 #------------------------------------------------------
 
 PROJECT         = cpp09
-NAME            = ex00
+NAME            = btc
 LANG			= c++
 
 #------------------------------------------------------
@@ -209,7 +209,7 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@allowed="$(FILES) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
+	@allowed="$(FILES) $(OBJS) $(NAME) data.csv Makefile Makefile_OLD"; \
 	deleted=0; \
 	if [ -d "$(LIB_OBJ)" ]; then \
 		$(MAKE) under_begin ARG3="CLEAN"; \
@@ -217,7 +217,7 @@ endif
 		$(LMAKE) clean $(SILENCE); \
 		$(MAKE) suppr_line ARG3=".o dans libft"; \
 	fi; \
-	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./obj/*" -not -name ".gitignore"); do \
+	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./obj/*" -not -name ".gitignore" -not -name "data.csv" -not -name "input.txt" ); do \
 		keep=no; \
 		for a in $$allowed; do \
 			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
