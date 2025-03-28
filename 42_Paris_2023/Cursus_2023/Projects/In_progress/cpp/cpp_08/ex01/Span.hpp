@@ -46,28 +46,28 @@ class Span
 {
 
 private:
-    unsigned int _maxSize;
-    std::vector<int> _numbers;
+	unsigned int _maxSize;
+	std::vector<int> _numbers;
 
 public:
-    Span(unsigned int N);
-    Span(const Span &other);
-    Span &operator=(const Span &other);
-    ~Span();
-    void addNumber(int num);
-    int shortestSpan() const;
-    int longestSpan() const;
-    template <typename Iterator>
-    void addNumbers(Iterator begin, Iterator end)
+	Span(unsigned int N);
+	Span(const Span &other);
+	Span &operator=(const Span &other);
+	~Span();
+	void addNumber(int num);
+	int shortestSpan() const;
+	int longestSpan() const;
+	template <typename Iterator>
+	void addNumbers(Iterator begin, Iterator end)
 	{
-        for (Iterator it = begin; it != end; ++it)
+		for (Iterator it = begin; it != end; ++it)
 		{
-            if (_numbers.size() >= _maxSize)
-                throw std::runtime_error("Capacité maximale atteinte lors de l'ajout de la plage d'itérateurs");
-            _numbers.push_back(*it);
-        }
-    }
-	
+			if (_numbers.size() >= _maxSize)
+				throw std::runtime_error("Capacité maximale atteinte lors de l'ajout de la plage d'itérateurs");
+			_numbers.push_back(*it);
+		}
+	}
+
 };
 
 #endif

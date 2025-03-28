@@ -13,36 +13,36 @@
 #include "PmergeMe.hpp"
 
 bool isPositiveNumber(const std::string &s) {
-    for (size_t i = 0; i < s.size(); ++i) {
-        if (!std::isdigit(s[i]))
-            return false;
-    }
-    return true;
+	for (size_t i = 0; i < s.size(); ++i) {
+		if (!std::isdigit(s[i]))
+			return false;
+	}
+	return true;
 }
 
 int main(int argc, char **argv) {
-    if (argc < 2) {
-        std::cerr << "Error" << std::endl;
-        return 1;
-    }
-    PmergeMe pm;
-    for (int i = 1; i < argc; ++i) {
-        std::string token = argv[i];
-        if (!isPositiveNumber(token)) {
-            std::cerr << "Error" << std::endl;
-            return 1;
-        }
-        if (!pm.addNumber(token)) {
-            std::cerr << "Error" << std::endl;
-            return 1;
-        }
-    }
-    pm.printBefore();
-    double timeVector = pm.sortVector();
-    double timeDeque = pm.sortDeque();
-    pm.printAfterVector();
-    std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << timeVector << " us" << std::endl;
-    std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque : " << timeDeque << " us" << std::endl;
+	if (argc < 2) {
+		std::cerr << "Error" << std::endl;
+		return 1;
+	}
+	PmergeMe pm;
+	for (int i = 1; i < argc; ++i) {
+		std::string token = argv[i];
+		if (!isPositiveNumber(token)) {
+			std::cerr << "Error" << std::endl;
+			return 1;
+		}
+		if (!pm.addNumber(token)) {
+			std::cerr << "Error" << std::endl;
+			return 1;
+		}
+	}
+	pm.printBefore();
+	double timeVector = pm.sortVector();
+	double timeDeque = pm.sortDeque();
+	pm.printAfterVector();
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::vector : " << timeVector << " us" << std::endl;
+	std::cout << "Time to process a range of " << argc - 1 << " elements with std::deque : " << timeDeque << " us" << std::endl;
 
-    return 0;
+	return 0;
 }
