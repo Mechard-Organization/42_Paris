@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile_standard                                  :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/27 09:47:22 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/29 08:50:28 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,13 +38,13 @@ CXXCOMPI		= $(CXX) $(CXXSRCS) -I./ -o $(NAME)
 CFLAGS			= -Wall -Wextra -Werror -g3
 C				= gcc $(CFLAGS) $(CHDRFLAG)
 CHDRFLAG		= $(addprefix -I, $(CHDR_LOCATION))
-LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm -pthread #-fsanitize=address -fsanitize=undefined
+LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm -pthread -lmlx #-fsanitize=address -fsanitize=undefined
 LIBFT_EXIST		= $(shell find . -type d -name "libft" -print -quit)
 
 ifeq ($(LIBFT_EXIST),)
 	CCOMPI		= $(C) $(CSRCS) -I./ $(LIBRARY) -o $(NAME)
 else
-	CCOMPI		= $(C) $(CSRCS) -I./ $(LIBRARY) $(LIB_A) -o $(NAME)
+	CCOMPI		= $(C) $(CSRCS) $(LMLX_A) $(LIB_A) -I./ $(LIBRARY) -o $(NAME)
 endif
 
 # Compilateur
@@ -154,6 +154,7 @@ LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
 LIB_INC			= $(addprefix $(LIB_DIR), inc/)
 LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
 LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
+LMLX_A			= $(addprefix $(LIB_DIR), $(MLX_A))
 
 ifeq ($(PROJECT), LIBFT)
 	NAME		= $(addprefix exec/, $(LIB))
