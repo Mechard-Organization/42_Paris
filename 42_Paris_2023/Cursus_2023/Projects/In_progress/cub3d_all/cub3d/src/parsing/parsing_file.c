@@ -14,9 +14,12 @@
 
 static int read_header(int fd, t_cub *cub)
 {
-	int header = 0;
+	int header;
 	char *line;
-	while (header < 6 && (line = get_next_line(fd)) != NULL)
+
+	header = 0;
+	line = get_next_line(fd);
+	while (header < 6 && line)
 	{
 		if (line[1] == '\n')
 			free(line);
@@ -27,7 +30,9 @@ static int read_header(int fd, t_cub *cub)
 			free(line);
 			header++;
 		}
+		line = get_next_line(fd);
 	}
+	get_next_line(-1);
 	if (header < 6)
 		return (ft_putendl_fd("Error\nIncomplete header", 2), 1);
 	return (0);
@@ -52,6 +57,7 @@ static int read_map(int fd, t_list **list)
 		ft_lstadd_back(list, tmp);
 		line = get_next_line(fd);
 	}
+	get_next_line(-1);
 	return (0);
 }
 
@@ -71,6 +77,7 @@ int parse_file(char *filename, t_cub *cub)
 	if (read_map(fd, &list))
 		return (close(fd), 1);
 	close(fd);
+	get_next_line(-1);
 	if (!list)
 		return (ft_putendl_fd("Error\nNo map found", 2), 1);
 	return (convert_map_list(list, cub));

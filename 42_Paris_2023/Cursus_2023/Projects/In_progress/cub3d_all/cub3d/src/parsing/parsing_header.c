@@ -74,7 +74,7 @@ static int elements_order(char *line, int expected)
 int parse_header_line(char *line, t_cub *cub, int expected)
 {
 	if (elements_order(line, expected))
-		return (1);
+		return (free_textures(cub), 1);
 	if (expected == 0)
 		cub->tex_no = ft_strdup(line + 3);
 	else if (expected == 1)
@@ -91,6 +91,6 @@ int parse_header_line(char *line, t_cub *cub, int expected)
 		(expected == 1 && check_texture_file(cub->tex_so)) ||
 		(expected == 2 && check_texture_file(cub->tex_we)) ||
 		(expected == 3 && check_texture_file(cub->tex_ea)))
-		return (1);
+		return (free_textures(cub), 1);
 	return (0);
 }

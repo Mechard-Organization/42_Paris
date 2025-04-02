@@ -31,5 +31,6 @@ int main(int argc, char **argv)
     }
 	else if (ret == 0)
 		ft_printf("parsing réussi !\n");
+	free_textures(&cub);
     return (EXIT_SUCCESS);
 }
