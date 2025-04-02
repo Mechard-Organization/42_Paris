@@ -53,14 +53,16 @@ static int read_map(int fd, t_list **list)
 	while (line)
 	{
 		if (ft_strlen(line) == 0)
-			return (free(line), 1);
+			return (ft_lstclear(list, free), free(line), 1);
 		tmp = ft_lstnew(ft_strdup(line));
 		if (!tmp)
-			return (free(line), 1);
+			return (ft_lstclear(list, free), free(line), 1);
 		free(line);
 		ft_lstadd_back(list, tmp);
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	return (0);
 }
 

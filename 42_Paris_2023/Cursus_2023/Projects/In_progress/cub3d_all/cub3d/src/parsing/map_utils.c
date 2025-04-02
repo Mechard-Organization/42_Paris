@@ -40,6 +40,7 @@ int convert_map_list(t_list *map_list, t_cub *cub)
 {
 	int count;
 	t_list *tmp;
+
 	count = ft_lstsize(map_list);
 	cub->map = malloc(sizeof(char *) * (count + 1));
 	if (!cub->map)
@@ -51,6 +52,7 @@ int convert_map_list(t_list *map_list, t_cub *cub)
 		tmp = map_list;
 		map_list = map_list->next, free(tmp);
 	}
+	ft_lstclear(&map_list, free);
 	cub->map[count] = NULL;
 	cub->map_rows = count;
 	if (!validate_map(cub->map))
