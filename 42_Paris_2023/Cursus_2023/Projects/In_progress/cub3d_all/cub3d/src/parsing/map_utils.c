@@ -54,6 +54,6 @@ int convert_map_list(t_list *map_list, t_cub *cub)
 	cub->map[count] = NULL;
 	cub->map_rows = count;
 	if (!validate_map(cub->map))
-		return (1);
+		return (free_textures(cub), 1);
 	return (0);
 }

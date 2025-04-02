@@ -32,6 +32,8 @@ static int read_header(int fd, t_cub *cub)
 		}
 		line = get_next_line(fd);
 	}
+	if (line)
+		free(line);
 	if (header < 6)
 		return (ft_putendl_fd("Error\nIncomplete header", 2), 1);
 	return (0);
