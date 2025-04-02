@@ -12,11 +12,23 @@
 
 #include "cub3d.h"
 
+void	init_cub(t_cub *cub)
+{
+	cub->mlx = NULL;
+	cub->win = NULL;
+	cub->tex_no = NULL;
+	cub->tex_so = NULL;
+	cub->tex_we = NULL;
+	cub->tex_ea = NULL;
+	cub->map = NULL;
+}
+
 int main(int argc, char **argv)
 {
     t_cub cub;
     int ret;
 
+	init_cub(&cub);
     if (argc != 2)
     {
         ft_putendl_fd("Usage: ./cub3D <fichier.cub>", 2);
