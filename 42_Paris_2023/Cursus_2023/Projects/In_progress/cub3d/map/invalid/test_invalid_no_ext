@@ -1,14 +1,11 @@
 NO ./src/textures/roc.xpm
-
 SO ./src/textures/roc.xpm
-
 WE ./src/textures/roc.xpm
-
 EA ./src/textures/roc.xpm
 
 F 220,100,0
-
 C 225,30,0
+
 1111111111111111111111111
 1000000000110000000000001
 1011000001110000000000001

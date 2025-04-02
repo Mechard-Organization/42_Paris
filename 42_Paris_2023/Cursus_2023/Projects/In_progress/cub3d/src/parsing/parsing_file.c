@@ -21,22 +21,18 @@ static int read_header(int fd, t_cub *cub)
 	char *line;
 	while (header < 6 && (line = get_next_line(fd)) != NULL)
 	{
-		if (ft_strlen(line) == 2)
-		{
+		if (line[1] == '\n')
 			free(line);
-			continue;
-		}
-		if (parse_header_line(line, cub, header))
+		else
 		{
+			if (parse_header_line(line, cub, header))
+				return (free(line), 1);
 			free(line);
-			return (1);
+			header++;
 		}
-		free(line);
-		header++;
 	}
 	if (header < 6)
-		return (ft_putendl_fd("Error", 2),
-			ft_putendl_fd("Incomplete header", 2), 1);
+		return (ft_putendl_fd("Error\nIncomplete header", 2), 1);
 	return (0);
 }
 
@@ -47,21 +43,20 @@ static int read_map(int fd, t_list **list)
 {
 	char *line;
 	t_list *tmp;
-	while ((line = get_next_line(fd)) != NULL)
+
+	line = get_next_line(fd);
+	if (line[1] == '\n')
+		line = get_next_line(fd);
+	while (line)
 	{
 		if (ft_strlen(line) == 0)
-		{
-			free(line);
-			continue;
-		}
+			return (free(line), 1);
 		tmp = ft_lstnew(ft_strdup(line));
 		if (!tmp)
-		{
-			free(line);
-			return (1);
-		}
+			return (free(line), 1);
 		free(line);
 		ft_lstadd_back(list, tmp);
+		line = get_next_line(fd);
 	}
 	return (0);
 }
@@ -73,9 +68,7 @@ int parse_file(char *filename, t_cub *cub)
 {
 	int fd;
 	t_list *list;
-	int ret;
 
-	ret = 0;
 	list = NULL;
 	if (!is_valid_extension(filename))
 		return (ft_putendl_fd("Error", 2),
@@ -92,8 +85,5 @@ int parse_file(char *filename, t_cub *cub)
 	if (!list)
 		return (ft_putendl_fd("Error", 2),
 			ft_putendl_fd("No map found", 2), 1);
-	ft_printf("ret before = %d\n", ret);
-	ret = convert_map_list(list, cub);
-	ft_printf("ret after = %d\n", ret);
-	return (ret);
+	return (convert_map_list(list, cub));
 }

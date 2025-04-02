@@ -38,8 +38,14 @@ int is_header_line(const char *line)
 
 static int check_map_chars(char *line, int *start_count)
 {
-	int i = 0;
-	while (line[i])
+	size_t	i;
+	size_t	max;
+	
+	i = 0;
+	max = ft_strlen(line) - 1;
+	if (line[max] == '\n')
+		line[max - 1] = '\0';
+	while (line[i] && i < max)
 	{
 		if (line[i] != '0' && line[i] != '1' &&
 		    line[i] != 'N' && line[i] != 'S' &&
@@ -75,27 +81,30 @@ static int check_map_walls(char **map, int rows)
 
 int validate_map(char **map)
 {
-	int i, rows, start_count = 0;
+	int i;
+	int rows;
+	int start_count ;
+
+	start_count = 0;
+	rows = 0;
+	i = 0;
 	if (!map)
 		return (0);
-	for (rows = 0; map[rows]; rows++);
-	for (i = 0; i < rows; i++)
+	ft_printf("rows = %d\n", rows);
+	while (map[rows])
 	{
-		if (!check_map_chars(map[i], &start_count))
+		rows++;
+		while (i < rows)
+		{
+			if (!check_map_chars(map[i++], &start_count))
 			return (0);
+		}
 	}
+	ft_printf("\nProgram return :\n");
 	if (start_count != 1)
-	{
-		ft_putendl_fd("Error", 2);
-		ft_putendl_fd("Invalid starting position", 2);
-		return (0);
-	}
+		return (ft_putendl_fd("Error\nInvalid starting position", 2), 0);
 	if (!check_map_walls(map, rows))
-	{
-		ft_putendl_fd("Error", 2);
-		ft_putendl_fd("Map is not surrounded by walls", 2);
-		return (0);
-	}
+		return (ft_putendl_fd("Error\nMap is not surrounded by walls", 2), 0);
 	return (1);
 }
 
