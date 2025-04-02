@@ -31,7 +31,6 @@ typedef struct s_cub
 	int		color_ceiling[3];
 	char	**map;
 	int		map_rows;
-	int		map_cols;
 	double	posX;
 	double	posY;
 	double	dirX;
@@ -45,6 +44,7 @@ int	parse_file(char *filename, t_cub *cub);
 int	parse_header_line(char *line, t_cub *cub, int expected);
 int	is_valid_extension(const char *filename);
 int	is_header_line(const char *line);
+int validate_map(char **map);
 int	convert_map_list(t_list *map_list, t_cub *cub);
 
 /* Exécution */

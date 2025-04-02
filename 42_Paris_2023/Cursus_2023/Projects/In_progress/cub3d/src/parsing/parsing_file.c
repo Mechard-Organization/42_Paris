@@ -12,9 +12,6 @@
 
 #include "cub3d.h"
 
-/*
- * Lit 6 lignes d'en-tête pouvant être séparé par autant de ligne vide que voulu.
- */
 static int read_header(int fd, t_cub *cub)
 {
 	int header = 0;
@@ -36,9 +33,6 @@ static int read_header(int fd, t_cub *cub)
 	return (0);
 }
 
-/*
- * Lit les lignes non vides de la map et les ajoute à une liste.
- */
 static int read_map(int fd, t_list **list)
 {
 	char *line;
@@ -61,9 +55,6 @@ static int read_map(int fd, t_list **list)
 	return (0);
 }
 
-/*
- * parse_file: lit le fichier .cub et assemble header et map.
- */
 int parse_file(char *filename, t_cub *cub)
 {
 	int fd;

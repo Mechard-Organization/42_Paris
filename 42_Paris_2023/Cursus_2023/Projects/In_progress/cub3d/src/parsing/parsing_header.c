@@ -52,7 +52,7 @@ static int parse_color_line(char *line, int color[3])
 	return (0);
 }
 
-int elements_order(char *line, int expected)
+static int elements_order(char *line, int expected)
 {
 	char	*exp[6];
 

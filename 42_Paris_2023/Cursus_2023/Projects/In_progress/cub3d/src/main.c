@@ -30,7 +30,7 @@ int main(int argc, char **argv)
         return (EXIT_FAILURE);
     }
 	else if (ret == 0)
-		ft_printf("parsing réussi !");
+		ft_printf("parsing réussi !\n");
     // if (init_mlx(&cub) != 0)
     // {
     //     ft_putendl_fd("Erreur d'init mlx", 2);
