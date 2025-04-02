@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/29 08:50:28 by mechard          ###   ########.fr        #
+#    Updated: 2025/03/30 19:29:38 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -218,7 +218,7 @@ endif
 		$(LMAKE) clean $(SILENCE); \
 		$(MAKE) suppr_line ARG3=".o dans libft"; \
 	fi; \
-	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./obj/*" -not -name ".gitignore"); do \
+	for file in $$(find . -type f -not -path "./map/*" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./obj/*" -not -name ".gitignore"); do \
 		keep=no; \
 		for a in $$allowed; do \
 			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \

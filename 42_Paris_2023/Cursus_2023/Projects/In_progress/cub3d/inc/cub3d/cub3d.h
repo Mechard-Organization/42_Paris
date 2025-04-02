@@ -40,26 +40,18 @@ typedef struct s_cub
 	double	planeY;
 }	t_cub;
 
-/*
-** Fonctions de parsing publiques
-*/
-int		parse_file(char *filename, t_cub *cub);
-int		parse_header_line(char *line, t_cub *cub);
-int		is_header_line(const char *line);
+/* Parsing */
+int	parse_file(char *filename, t_cub *cub);
+int	parse_header_line(char *line, t_cub *cub, int expected);
+int	is_valid_extension(const char *filename);
+int	is_header_line(const char *line);
+int	convert_map_list(t_list *map_list, t_cub *cub);
 
-/*
-** Fonctions internes de parsing (utilisées dans parse_file)
-*/
-int		is_valid_extension(const char *filename);
-int		convert_map_list(t_list *map_list, t_cub *cub);
-
-/*
-** Fonctions d'initialisation et d'exécution
-*/
-int		init_mlx(t_cub *cub);
+/* Exécution */
+int	init_mlx(t_cub *cub);
 void	draw_scene(t_cub *cub);
-int		key_hook(int keycode, t_cub *cub);
-int		exit_hook(t_cub *cub);
+int	key_hook(int keycode, t_cub *cub);
+int	exit_hook(t_cub *cub);
 void	free_cub(t_cub *cub);
 
 #endif

@@ -13,80 +13,87 @@
 #include "cub3d.h"
 
 /*
- * Traite une ligne lue et met à jour la liste.
+ * Lit 6 lignes d'en-tête pouvant être séparé par autant de ligne vide que voulu.
  */
-static int process_line(char *line, t_cub *cub, t_list **list,
-                          int *reading_map, int *header_found)
+static int read_header(int fd, t_cub *cub)
 {
-    t_list *tmp;
-    if (!(*reading_map) && is_header_line(line))
-    {
-        *header_found = 1;
-        if (parse_header_line(line, cub)) {
-            free(line);
-            return (1);
-        }
-    }
-    else if (ft_strlen(line) > 0)
-    {
-        *reading_map = 1;
-        tmp = ft_lstnew(ft_strdup(line));
-        if (!tmp) {
-            free(line);
-            return (1);
-        }
-        ft_lstadd_back(list, tmp);
-    }
-    free(line);
-    return (0);
+	int header = 0;
+	char *line;
+	while (header < 6 && (line = get_next_line(fd)) != NULL)
+	{
+		if (ft_strlen(line) == 2)
+		{
+			free(line);
+			continue;
+		}
+		if (parse_header_line(line, cub, header))
+		{
+			free(line);
+			return (1);
+		}
+		free(line);
+		header++;
+	}
+	if (header < 6)
+		return (ft_putendl_fd("Error", 2),
+			ft_putendl_fd("Incomplete header", 2), 1);
+	return (0);
 }
 
 /*
- * Lit le fichier et remplit la liste de lignes.
+ * Lit les lignes non vides de la map et les ajoute à une liste.
  */
-static int read_file_lines(char *filename, t_cub *cub, 
-                             t_list **list, int *header_found)
+static int read_map(int fd, t_list **list)
 {
-    int     fd;
-    int     reading_map;
-    char    *line;
-
-    reading_map = 0;
-    *list = NULL;
-    *header_found = 0;
-    if (!is_valid_extension(filename))
-        return (ft_putendl_fd("Extension invalide", 2), 1);
-    fd = open(filename, O_RDONLY);
-    if (fd < 0)
-        return (ft_putendl_fd("Erreur d'ouverture", 2), 1);
-    while ((line = get_next_line(fd)) != NULL)
-    {
-        if (process_line(line, cub, list, &reading_map, header_found))
-        {
-            close(fd);
-            return (1);
-        }
-    }
-    close(fd);
-    return (0);
+	char *line;
+	t_list *tmp;
+	while ((line = get_next_line(fd)) != NULL)
+	{
+		if (ft_strlen(line) == 0)
+		{
+			free(line);
+			continue;
+		}
+		tmp = ft_lstnew(ft_strdup(line));
+		if (!tmp)
+		{
+			free(line);
+			return (1);
+		}
+		free(line);
+		ft_lstadd_back(list, tmp);
+	}
+	return (0);
 }
 
 /*
- * Parse le fichier .cub et construit la map.
+ * parse_file: lit le fichier .cub et assemble header et map.
  */
 int parse_file(char *filename, t_cub *cub)
 {
-    t_list *list;
-    int header_found;
-    int ret;
+	int fd;
+	t_list *list;
+	int ret;
 
-    ret = read_file_lines(filename, cub, &list, &header_found);
-    if (ret != 0)
-        return (ret);
-    if (!header_found && list == NULL)
-    {
-        ft_putendl_fd("Fichier vide ou mal formé", 2);
-        return (-1);
-    }
-    return (convert_map_list(list, cub));
+	ret = 0;
+	list = NULL;
+	if (!is_valid_extension(filename))
+		return (ft_putendl_fd("Error", 2),
+			ft_putendl_fd("Invalid file extension", 2), 1);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (ft_putendl_fd("Error", 2),
+			ft_putendl_fd("Cannot open file", 2), 1);
+	if (read_header(fd, cub))
+		return (close(fd), 1);
+	if (read_map(fd, &list))
+		return (close(fd), 1);
+	close(fd);
+	if (!list)
+		return (ft_putendl_fd("Error", 2),
+			ft_putendl_fd("No map found", 2), 1);
+	ft_printf("ret before = %d\n", ret);
+	ret = convert_map_list(list, cub);
+	ft_printf("ret after = %d\n", ret);
+	return (ret);
 }
