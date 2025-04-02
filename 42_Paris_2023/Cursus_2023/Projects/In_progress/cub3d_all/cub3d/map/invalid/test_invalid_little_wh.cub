@@ -1,10 +1,10 @@
-N ./src/textures/roc.xpm
+NO ./src/textures/roc.xpm
 SO ./src/textures/roc.xpm
-W ./src/textures/roc.xpm
+WE ./src/textures/roc.xpm
 EA ./src/textures/roc.xpm
 
-F 220,100,0
 C 225,30,0
+F 220,100,0
 
 11111111
 10001001

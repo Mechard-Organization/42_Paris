@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int free_textures(t_cub *cub)
+int	free_textures(t_cub *cub)
 {
 	if (cub->tex_no)
 		free(cub->tex_no);
@@ -22,5 +22,12 @@ int free_textures(t_cub *cub)
 		free(cub->tex_we);
 	if (cub->tex_ea)
 		free(cub->tex_ea);
+	return (0);
+}
+
+int	free_all_cub(t_cub *cub)
+{
+	ft_dfree(cub->map);
+	free_textures(cub);
 	return (0);
 }

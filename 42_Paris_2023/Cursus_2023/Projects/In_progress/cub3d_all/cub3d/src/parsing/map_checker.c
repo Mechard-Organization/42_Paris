@@ -12,56 +12,64 @@
 
 #include "cub3d.h"
 
-static int check_map_chars(char *line, int *start_count)
+static int	check_map_chars(char *line, int *start_count)
 {
 	size_t	i;
 	size_t	max;
-	
+
 	i = 0;
 	max = ft_strlen(line) - 1;
 	if (line[max] == '\n')
 		line[max - 1] = '\0';
 	while (line[i] && i < max)
 	{
-		if (line[i] != '0' && line[i] != '1' &&
-		    line[i] != 'N' && line[i] != 'S' &&
-		    line[i] != 'E' && line[i] != 'W' &&
-			line[i] != ' ')
+		if (line[i] != '0' && line[i] != '1'
+			&& line[i] != 'N' && line[i] != 'S'
+			&& line[i] != 'E' && line[i] != 'W'
+			&& line[i] != ' ')
 			return (ft_putendl_fd("Error\nMap invalid", 2), 0);
-		if (line[i] == 'N' || line[i] == 'S' ||
-		    line[i] == 'E' || line[i] == 'W')
+		if (line[i] == 'N' || line[i] == 'S'
+			|| line[i] == 'E' || line[i] == 'W')
 			(*start_count)++;
 		i++;
 	}
 	return (1);
 }
 
-static int check_surounded(char **map, int rows)
+static int	checking(char **map, int i, int j, int rows)
+{
+	int	len;
+
+	len = ft_strlen(map[i]);
+	if (map[i][j] == '0' || map[i][j] == 'N'
+		|| map[i][j] == 'S' || map[i][j] == 'E'
+		|| map[i][j] == 'W')
+	{
+		if (i == 0 || i == rows - 1 || j == 0 || j == len - 1)
+			return (1);
+		if (j >= (int)ft_strlen(map[i - 1]) || map[i - 1][j] == ' ')
+			return (1);
+		if (j >= (int)ft_strlen(map[i + 1]) || map[i + 1][j] == ' ')
+			return (1);
+		if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
+			return (1);
+	}
+	return (0);
+}
+
+static int	check_surounded(char **map, int rows)
 {
 	int	i;
 	int	j;
-	int	len;
 
 	i = 0;
 	while (i < rows)
 	{
-		len = ft_strlen(map[i]);
 		j = 0;
-		while (j < len)
+		while ((size_t)j < ft_strlen(map[i]))
 		{
-			if (map[i][j]=='0' || map[i][j]=='N' || 
-				map[i][j]=='S' || map[i][j]=='E' || 
-				map[i][j]=='W')
-			{
-				if (i==0 || i==rows-1 || j==0 || j==len-1)
-					return (0);
-				if (j >= (int)ft_strlen(map[i-1]) || map[i-1][j]==' ')
-					return (0);
-				if (j >= (int)ft_strlen(map[i+1]) || map[i+1][j]==' ')
-					return (0);
-				if (map[i][j-1]==' ' || map[i][j+1]==' ')
-					return (0);
-			}
+			if (checking(map, i, j, rows))
+				return (0);
 			j++;
 		}
 		i++;
@@ -69,7 +77,7 @@ static int check_surounded(char **map, int rows)
 	return (1);
 }
 
-int validate_map(char **map)
+int	validate_map(char **map)
 {
 	size_t	i;
 	size_t	rows;
@@ -84,10 +92,8 @@ int validate_map(char **map)
 	{
 		rows++;
 		while (i < rows)
-		{
 			if (!check_map_chars(map[i++], &start_count))
-			return (0);
-		}
+				return (0);
 	}
 	if (start_count != 1)
 		return (ft_putendl_fd("Error\nInvalid starting position", 2), 0);

@@ -17,6 +17,14 @@
 # include "libft.h"
 
 /*
+** Message d'erreur
+*/
+
+# define TEXT_EXT_ERROR "Error\nInvalid texture extension"
+
+# define TEXT_NOT_FOUND "Error\nTexture file not found"
+
+/*
 ** Structure principale du projet Cub3D
 */
 typedef struct s_cub
@@ -41,18 +49,22 @@ typedef struct s_cub
 
 /* Parsing */
 int		parse_file(char *filename, t_cub *cub);
-int		parse_header_line(char *line, t_cub *cub, int expected);
+int		parse_header_line(char *line, t_cub *cub);
 int		is_valid_extension(const char *filename);
 int		is_header_line(const char *line);
 int		validate_map(char **map);
 int		convert_map_list(t_list *map_list, t_cub *cub);
-int 	free_textures(t_cub *cub);
+int		elements_order(char *line);
 
 /* Exécution */
 int		init_mlx(t_cub *cub);
 void	draw_scene(t_cub *cub);
 int		key_hook(int keycode, t_cub *cub);
 int		exit_hook(t_cub *cub);
+
+/* Free */
+int		free_textures(t_cub *cub);
+int		free_all_cub(t_cub *cub);
 void	free_cub(t_cub *cub);
 
 #endif

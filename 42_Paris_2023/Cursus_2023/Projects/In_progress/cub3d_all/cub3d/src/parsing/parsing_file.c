@@ -12,20 +12,20 @@
 
 #include "cub3d.h"
 
-static int read_header(int fd, t_cub *cub)
+static int	read_header(int fd, t_cub *cub)
 {
-	int header;
-	char *line;
+	int		header;
+	char	*line;
 
 	header = 0;
 	line = get_next_line(fd);
-	while (header < 6 && line)
+	while (line)
 	{
 		if (line[1] == '\n')
 			free(line);
 		else
 		{
-			if (parse_header_line(line, cub, header))
+			if (parse_header_line(line, cub))
 				return (free(line), 1);
 			free(line);
 			header++;
@@ -39,12 +39,13 @@ static int read_header(int fd, t_cub *cub)
 	return (0);
 }
 
-static int read_map(int fd, t_list **list)
+static int	read_map(int fd, t_list **list)
 {
-	char *line;
-	t_list *tmp;
+	char	*line;
+	t_list	*tmp;
 
 	line = get_next_line(fd);
+	ft_printf("line = %s\n", line);
 	if (line[1] == '\n')
 	{
 		free(line);
@@ -66,10 +67,11 @@ static int read_map(int fd, t_list **list)
 	return (0);
 }
 
-int parse_file(char *filename, t_cub *cub)
+int	parse_file(char *filename, t_cub *cub)
 {
-	int fd;
-	t_list *list;
+	int		fd;
+	int		ret;
+	t_list	*list;
 
 	list = NULL;
 	if (!is_valid_extension(filename))
@@ -84,5 +86,6 @@ int parse_file(char *filename, t_cub *cub)
 	close(fd);
 	if (!list)
 		return (get_next_line(-1), ft_putendl_fd("Error\nNo map found", 2), 1);
-	return (get_next_line(-1), convert_map_list(list, cub));
+	ret = convert_map_list(list, cub);
+	return (get_next_line(-1), ft_lstclear(&list, free), ret);
 }
