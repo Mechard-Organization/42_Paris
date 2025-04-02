@@ -19,7 +19,7 @@ static int	read_header(int fd, t_cub *cub)
 
 	header = 0;
 	line = get_next_line(fd);
-	while (line)
+	while (line && header < 6)
 	{
 		if (line[1] == '\n')
 			free(line);
@@ -45,7 +45,6 @@ static int	read_map(int fd, t_list **list)
 	t_list	*tmp;
 
 	line = get_next_line(fd);
-	ft_printf("line = %s\n", line);
 	if (line[1] == '\n')
 	{
 		free(line);
