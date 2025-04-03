@@ -27,36 +27,52 @@ void	render_column_ray(t_render *r, t_ray_result *res)
 	compute_texture(r, res);
 }
 
-void	draw_column_pixels(t_render *r, t_ray_result *res)
+void	draw_upper_and_wall_pixels(t_render *r, t_ray_result *res, int *py)
 {
-	int	y;
-	int	color;
-	int	d;
-	int	texy;
+	int		color;
+	int		d;
+	int		texy;
+	int		tmp_y;
 
-	y = 0;
-	while (y < res->drawstart)
+	tmp_y = *py;
+	while (tmp_y < res->drawstart)
 	{
 		color = (r->cub->color_ceiling[0] << 16)
 			| (r->cub->color_ceiling[1] << 8)
 			| r->cub->color_ceiling[2];
-		put_pixel(r->data, r->x, y, color, r->size_line, r->bpp);
-		y = y + 1;
+		put_pixel(r, tmp_y, color);
+		tmp_y = tmp_y + 1;
 	}
-	while (y < res->drawend)
+	while (tmp_y < res->drawend)
 	{
-		d = y * 256 - WIN_HEIGHT * 128 + res->lineheight * 128;
+		d = tmp_y * 256 - WIN_HEIGHT * 128 + res->lineheight * 128;
 		texy = ((d * res->current_tex->height) / res->lineheight) / 256;
 		color = get_texture_pixel(res->current_tex, res->texx, texy);
-		put_pixel(r->data, r->x, y, color, r->size_line, r->bpp);
-		y = y + 1;
+		put_pixel(r, tmp_y, color);
+		tmp_y = tmp_y + 1;
 	}
-	while (y < WIN_HEIGHT)
+	*py = tmp_y;
+}
+
+void	draw_floor_pixels(t_render *r, int py)
+{
+	int	color;
+
+	while (py < WIN_HEIGHT)
 	{
 		color = (r->cub->color_floor[0] << 16)
 			| (r->cub->color_floor[1] << 8)
 			| r->cub->color_floor[2];
-		put_pixel(r->data, r->x, y, color, r->size_line, r->bpp);
-		y = y + 1;
+		put_pixel(r, py, color);
+		py = py + 1;
 	}
+}
+
+void	draw_column_pixels(t_render *r, t_ray_result *res)
+{
+	int	y;
+
+	y = 0;
+	draw_upper_and_wall_pixels(r, res, &y);
+	draw_floor_pixels(r, y);
 }

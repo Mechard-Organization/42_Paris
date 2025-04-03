@@ -35,29 +35,26 @@ void	run_dda(t_render *r, t_ray_result *res)
 
 void	draw_scene(t_cub *cub)
 {
-	void	*img;
-	char	*data;
-	int		bpp;
-	int		size_line;
-	int		x;
+	int				x;
+	t_exec			ex;
+	t_render		r;
+	t_ray_result	res;
 
 	x = 0;
-	img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (img == 0)
+	ex.img = mlx_new_image(cub->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (ex.img == 0)
 		return ;
-	data = mlx_get_data_addr(img, &bpp, &size_line, &(int){0});
+	ex.data = mlx_get_data_addr(ex.img, &ex.bpp, &ex.sl, &(int){0});
 	while (x < WIN_WIDTH)
 	{
-		t_render		r;
-		t_ray_result	res;
 		r.cub = cub;
 		r.x = x;
-		r.data = data;
-		r.bpp = bpp;
-		r.size_line = size_line;
+		r.data = ex.data;
+		r.bpp = ex.bpp;
+		r.size_line = ex.sl;
 		render_column(&r, &res);
 		x = x + 1;
 	}
-	mlx_put_image_to_window(cub->mlx, cub->win, img, 0, 0);
-	mlx_destroy_image(cub->mlx, img);
+	mlx_put_image_to_window(cub->mlx, cub->win, ex.img, 0, 0);
+	mlx_destroy_image(cub->mlx, ex.img);
 }

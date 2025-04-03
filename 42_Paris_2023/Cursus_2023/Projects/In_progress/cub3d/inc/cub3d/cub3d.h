@@ -23,11 +23,13 @@
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
 
+# define KEY_MAJ_L		65505
+# define KEY_MAJ_R		65506
 # define KEY_BACKWARD	65364
 # define KEY_RIGHT		65363
-# define KEY_FORWARD		65362
+# define KEY_FORWARD	65362
 # define KEY_LEFT		65361
-# define KEY_ESC			65307
+# define KEY_ESC		65307
 # define KEY_Z			122
 # define KEY_W			119
 # define KEY_S			115
@@ -102,6 +104,7 @@ typedef struct s_cub
 	int			move_right;
 	int			move_forward;
 	int			move_backward;
+	int			sprint;
 	int			exit;
 	t_img_cub	img_tex_no;
 	t_img_cub	img_tex_so;
@@ -143,6 +146,24 @@ typedef struct s_ray_result
 	int			hit;
 }				t_ray_result;
 
+typedef struct s_exec
+{
+	void	*img;
+	char	*data;
+	int		bpp;
+	int		sl;
+}				t_exec;
+
+typedef struct s_key
+{
+	double	ms;
+	double	rs;
+	double	strafex;
+	double	strafey;
+	double	olddirx;
+	double	oldplanex;
+}				t_key;
+
 /* Parsing */
 int		parse_file(char *filename, t_cub *cub);
 int		parse_header_line(char *line, t_cub *cub);
@@ -153,7 +174,8 @@ int		convert_map_list(t_list *map_list, t_cub *cub);
 int		elements_order(char *line);
 
 /* Exécution */
-void	put_pixel(char *data, int x, int y, int color, int size_line, int bpp);
+void	put_pixel(t_render *r, int y, int color);
+void	set_initial_position_and_direction(t_cub *cub);
 int		init_mlx(t_cub *cub);
 int		get_texture_pixel(t_img_cub *tex, int x, int y);
 void	render_column(t_render *r, t_ray_result *res);

@@ -28,62 +28,9 @@ void	init_cub(t_cub *cub)
 	cub->move_right = 0;
 	cub->move_forward = 0;
 	cub->move_backward = 0;
+	cub->sprint = 0;
 	cub->exit = 0;
 	cub->map = NULL;
-}
-
-void	set_initial_position_and_direction(t_cub *cub)
-{
-	int		row;
-	int		col;
-	char	c;
-
-	row = 0;
-	while (cub->map[row])
-	{
-		col = 0;
-		while (cub->map[row][col])
-		{
-			c = cub->map[row][col];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-			{
-				cub->posx = col + 0.5;
-				cub->posy = row + 0.5;
-				if (c == 'N')
-				{
-					cub->dirx = 0.0;
-					cub->diry = -1.0;
-					cub->planex = 0.66;
-					cub->planey = 0.0;
-				}
-				else if (c == 'S')
-				{
-					cub->dirx = 0.0;
-					cub->diry = 1.0;
-					cub->planex = -0.66;
-					cub->planey = 0.0;
-				}
-				else if (c == 'W')
-				{
-					cub->dirx = 1.0;
-					cub->diry = 0.0;
-					cub->planex = 0.0;
-					cub->planey = 0.66;
-				}
-				else if (c == 'E')
-				{
-					cub->dirx = -1.0;
-					cub->diry = 0.0;
-					cub->planex = 0.0;
-					cub->planey = -0.66;
-				}
-				cub->map[row][col] = '0';
-				return ;
-			}
-			col++;
-		}
-		row++;
-	}
 }
 
 int	main(int argc, char **argv)
