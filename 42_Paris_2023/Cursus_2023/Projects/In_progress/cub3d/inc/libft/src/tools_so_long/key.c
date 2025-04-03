@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 13:04:44 by mechard           #+#    #+#             */
-/*   Updated: 2024/07/08 14:02:25 by mechard          ###   ########.fr       */
+/*   Updated: 2025/04/04 02:41:38 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_finish(t_game *game)
 			ft_printf(NOT_SUCCESS, game->nb_collectibles - game->collectibles);
 		else
 			ft_printf(NOTS_SUCCESS, game->nb_collectibles - game->collectibles);
-	}	
+	}
 }
 
 int	key_press(int keycode, t_game *game)

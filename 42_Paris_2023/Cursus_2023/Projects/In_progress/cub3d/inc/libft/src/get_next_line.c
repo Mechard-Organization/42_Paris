@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 18:28:12 by mechard           #+#    #+#             */
-/*   Updated: 2025/04/03 17:05:16 by mechard          ###   ########.fr       */
+/*   Updated: 2025/04/04 01:06:04 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,9 @@ char	*get_next_line(int fd)
 			return (free(buff), NULL);
 		buff[nbytes] = '\0';
 		line = ft_strjoin_gnl(line, buff);
-		(free(buff), buff = NULL);
 		if (!line)
-			return (NULL);
+			return (free(buff), NULL);
 	}
-	if (buff)
-		free(buff);
+	free(buff);
 	return (res = ft_get_line(line), line = ft_next_line(line), res);
 }

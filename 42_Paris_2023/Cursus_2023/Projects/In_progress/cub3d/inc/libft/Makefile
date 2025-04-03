@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/04/02 22:22:48 by mechard          ###   ########.fr        #
+#    Updated: 2025/04/04 02:22:02 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ else ifeq ($(LANG), c)
 endif
 
 ifeq ($(PROJECT), LIBFT)
-	FILES			= $(CSRCS) $(CHDRS)
+	FILES			= $(LSRCS) $(LHDRS)
 endif
 
 #------------------------------------------------------
@@ -144,6 +144,7 @@ END_SPACES      = 12
 
 LSRCS 			= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
 LOBJS 			= $(patsubst %.c,%.o,$(notdir $(LSRCS)))
+LHDRS			= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
 INC				= inc/
 EXEC_DIR		= exec/
 OBJ_DIR			= obj/

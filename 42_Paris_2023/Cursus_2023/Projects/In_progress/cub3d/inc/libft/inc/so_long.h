@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:38:25 by mechard           #+#    #+#             */
-/*   Updated: 2024/08/22 18:03:32 by mechard          ###   ########.fr       */
+/*   Updated: 2025/04/04 02:42:17 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <X11/keysym.h>
 
 # ifndef INVALID_NAME
-#  define INVALID_NAME "\033[1;31mError\033[0m\nLa nom de la map n'est pas valide\n"
+#  define INVALID_NAME "\033[1;31mError\033[0m\nLa nom de la map n'est pas \
+valide\n"
 # endif
 
 # ifndef INVALID_MAP
