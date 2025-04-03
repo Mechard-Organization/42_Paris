@@ -3,7 +3,7 @@ SO ./src/textures/roc.xpm
 WE ./src/textures/roc.xpm
 EA ./src/textures/roc.xpm
 
-C 225,30,0
+C 225,30,-1
 F 220,100,0
 
 11111111

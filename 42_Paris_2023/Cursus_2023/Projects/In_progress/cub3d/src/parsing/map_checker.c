@@ -27,7 +27,7 @@ static int	check_map_chars(char *line, int *start_count)
 			&& line[i] != 'N' && line[i] != 'S'
 			&& line[i] != 'E' && line[i] != 'W'
 			&& line[i] != ' ')
-			return (ft_putendl_fd("Error\nMap invalid", 2), 0);
+			return (ft_putendl_fd(MAP_INVALID, 2), 0);
 		if (line[i] == 'N' || line[i] == 'S'
 			|| line[i] == 'E' || line[i] == 'W')
 			(*start_count)++;
@@ -96,8 +96,8 @@ int	validate_map(char **map)
 				return (0);
 	}
 	if (start_count != 1)
-		return (ft_putendl_fd("Error\nInvalid starting position", 2), 0);
+		return (ft_putendl_fd(INVALID_STA_PO, 2), 0);
 	if (!check_surounded(map, rows))
-		return (ft_putendl_fd("Error\nMap is not surrounded by walls", 2), 0);
+		return (ft_putendl_fd(MAP_NOT_SURROU, 2), 0);
 	return (1);
 }

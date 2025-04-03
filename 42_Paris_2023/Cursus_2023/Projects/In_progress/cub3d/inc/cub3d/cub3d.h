@@ -24,6 +24,24 @@
 
 # define TEXT_NOT_FOUND "Error\nTexture file not found"
 
+# define HEADER_INCOMPL "Error\nIncomplete or incorrect header"
+
+# define FILE_FORMAT_IN "Error\nIncorrect file format"
+
+# define FILE_EXTENS_IN "Error\nInvalid file extension"
+
+# define FILE_CANT_OPEN "Error\nCannot open file"
+
+# define MAP_INVALID "Error\nMap invalid"
+
+# define MAP_NOT_FOUND "Error\nNo map found"
+
+# define INVALID_STA_PO "Error\nInvalid starting position"
+
+# define MAP_NOT_SURROU "Error\nMap is not surrounded by walls"
+
+# define COLOR_ALLOC_ER "Error\nColor allocation error"
+
 /*
 ** Structure principale du projet Cub3D
 */
@@ -65,6 +83,7 @@ int		exit_hook(t_cub *cub);
 /* Free */
 int		free_textures(t_cub *cub);
 int		free_all_cub(t_cub *cub);
+int		free_lac(char *line, t_cub *cub);
 void	free_cub(t_cub *cub);
 
 #endif

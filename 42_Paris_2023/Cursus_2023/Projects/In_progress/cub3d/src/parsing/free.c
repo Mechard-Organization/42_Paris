@@ -25,6 +25,13 @@ int	free_textures(t_cub *cub)
 	return (0);
 }
 
+int	free_lac(char *line, t_cub *cub)
+{
+	free(line);
+	free_textures(cub);
+	return (1);
+}
+
 int	free_all_cub(t_cub *cub)
 {
 	ft_dfree(cub->map);

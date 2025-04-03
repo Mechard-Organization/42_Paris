@@ -41,14 +41,14 @@ static int	parse_color_line(char *line, int color[3])
 
 	nums = ft_split(line + 2, ',');
 	if (!nums || ft_dstrlen(nums) != 3)
-		return (ft_putendl_fd("Error\nColor allocation error", 2), 1);
+		return (ft_putendl_fd(COLOR_ALLOC_ER, 2), 1);
 	color[0] = ft_atoi(nums[0]);
 	color[1] = ft_atoi(nums[1]);
 	color[2] = ft_atoi(nums[2]);
 	(free(nums[0]), free(nums[1]), free(nums[2]), free(nums));
 	if ((color[0] > 255 || color[0] < 0) || (color[1] > 255 || color[1] < 0)
 		|| (color[2] > 255 || color[2] < 0))
-		return (ft_putendl_fd("Error\nColor allocation error", 2), 1);
+		return (ft_putendl_fd(COLOR_ALLOC_ER, 2), color[0] = -1, 1);
 	return (0);
 }
 
@@ -72,8 +72,7 @@ int	elements_order(char *line)
 	}
 	if (line[1] == '\n')
 		return (i);
-	else
-		return (i + 1);
+	return (7);
 }
 
 int	parse_header_line(char *line, t_cub *cub)
@@ -94,12 +93,13 @@ int	parse_header_line(char *line, t_cub *cub)
 	else if (header == 5 && cub->color_ceiling[0] == -1)
 		return (parse_color_line(line, cub->color_ceiling));
 	else
-		return (ft_putendl_fd("Error\nIncomplete or incorrect header", 2), free_textures(cub), 1);
+		return (ft_putendl_fd(HEADER_INCOMPL, 2), 1);
 	if ((header == 0 && check_texture_file(cub->tex_no))
 		|| (header == 1 && check_texture_file(cub->tex_so))
 		|| (header == 2 && check_texture_file(cub->tex_we))
 		|| (header == 3 && check_texture_file(cub->tex_ea))
-		|| header == 6)
-		return (free_textures(cub), 1);
+		|| (header == 4 && cub->color_floor[0] == -1)
+		|| (header == 5 && cub->color_ceiling[0] == -1))
+		return (1);
 	return (0);
 }
