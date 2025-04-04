@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/04/04 02:22:02 by mechard          ###   ########.fr        #
+#    Updated: 2025/04/04 10:11:46 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -246,8 +246,6 @@ endif
 			$(MAKE) under_begin ARG3="CLEAN"; \
 			deleted=1; \
 		fi; \
-		rm -rf $(MLX_DIR); \
-		$(MAKE) suppr_line ARG3="$(MLX_DIR)"; \
 	fi; \
 	for dir in $$(find . -type f -name "*.o" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -exec dirname {} \; | sort -u); do \
 	    if [ "$$dir" != "." ]; then \

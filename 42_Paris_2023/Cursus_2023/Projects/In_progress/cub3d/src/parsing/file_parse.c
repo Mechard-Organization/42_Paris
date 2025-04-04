@@ -1,13 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_file.c                                     :+:      :+:    :+:   */
+/*   file_parse.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/29 09:09:21 by mechard           #+#    #+#             */
-/*   Updated: 2025/03/29 09:09:21 by mechard          ###   ########.fr       */
+/*   Created: 2025/04/04 08:28:52 by mechard           #+#    #+#             */
+/*   Updated: 2025/04/04 08:28:52 by mechard          ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                              file_parse.c                                  */
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -27,7 +32,8 @@ static int	read_header(int fd, t_cub *cub)
 		{
 			if (parse_header_line(line, cub))
 				return (free_lac(line, cub), 1);
-			(free(line), header++);
+			free(line);
+			header++;
 		}
 		line = get_next_line(fd);
 	}
@@ -46,7 +52,7 @@ static int	read_map(int fd, t_list **list)
 	t_list	*tmp;
 
 	line = get_next_line(fd);
-	if (line[1] == '\n' )
+	if (line[1] == '\n')
 	{
 		free(line);
 		line = get_next_line(fd);
@@ -54,10 +60,18 @@ static int	read_map(int fd, t_list **list)
 	while (line)
 	{
 		if (ft_strlen(line) == 0)
-			return (ft_lstclear(list, free), free(line), 1);
+		{
+			ft_lstclear(list, free);
+			free(line);
+			return (1);
+		}
 		tmp = ft_lstnew(ft_strdup(line));
 		if (!tmp)
-			return (ft_lstclear(list, free), free(line), 1);
+		{
+			ft_lstclear(list, free);
+			free(line);
+			return (1);
+		}
 		free(line);
 		ft_lstadd_back(list, tmp);
 		line = get_next_line(fd);
@@ -87,5 +101,7 @@ int	parse_file(char *filename, t_cub *cub)
 	if (!list)
 		return (get_next_line(-1), ft_putendl_fd(MAP_NOT_FOUND, 2), 1);
 	ret = convert_map_list(list, cub);
-	return (get_next_line(-1), ft_lstclear(&list, free), ret);
+	get_next_line(-1);
+	ft_lstclear(&list, free);
+	return (ret);
 }

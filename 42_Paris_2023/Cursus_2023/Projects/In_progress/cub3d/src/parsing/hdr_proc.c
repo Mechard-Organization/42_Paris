@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*   hdr_proc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/29 09:00:16 by mechard           #+#    #+#             */
-/*   Updated: 2025/03/29 09:00:16 by mechard          ###   ########.fr       */
+/*   Created: 2025/04/04 08:27:56 by mechard           #+#    #+#             */
+/*   Updated: 2025/04/04 08:27:56 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,20 @@ static int	check_texture_file(const char *path)
 		dup[len - 1] = '\0';
 		len = ft_strlen(dup);
 	}
-	if (len < 4 || ft_strcmp((char *)(dup + len - 4), ".xpm") != 0)
-		return (ft_putendl_fd(TEXT_EXT_ERROR, 2), free(dup), 1);
+	if (len < 4 || ft_strcmp(dup + len - 4, ".xpm") != 0)
+	{
+		ft_putendl_fd(TEXT_EXT_ERROR, 2);
+		free(dup);
+		return (1);
+	}
 	else if (access(dup, F_OK) != 0)
-		return (ft_putendl_fd(TEXT_NOT_FOUND, 2), free(dup), 1);
-	return (free(dup), 0);
+	{
+		ft_putendl_fd(TEXT_NOT_FOUND, 2);
+		free(dup);
+		return (1);
+	}
+	free(dup);
+	return (0);
 }
 
 static int	parse_color_line(char *line, int color[3])
@@ -45,34 +54,44 @@ static int	parse_color_line(char *line, int color[3])
 	color[0] = ft_atoi(nums[0]);
 	color[1] = ft_atoi(nums[1]);
 	color[2] = ft_atoi(nums[2]);
-	(free(nums[0]), free(nums[1]), free(nums[2]), free(nums));
-	if ((color[0] > 255 || color[0] < 0) || (color[1] > 255 || color[1] < 0)
+	free(nums[0]);
+	free(nums[1]);
+	free(nums[2]);
+	free(nums);
+	if ((color[0] > 255 || color[0] < 0)
+		|| (color[1] > 255 || color[1] < 0)
 		|| (color[2] > 255 || color[2] < 0))
-		return (ft_putendl_fd(COLOR_ALLOC_ER, 2), color[0] = -1, 1);
+	{
+		ft_putendl_fd(COLOR_ALLOC_ER, 2);
+		color[0] = -1;
+		return (1);
+	}
 	return (0);
 }
 
-int	elements_order(char *line)
+int	convert_map_list(t_list *map_list, t_cub *cub)
 {
-	char	*exp[6];
-	int		i;
+	int	count;
 
-	exp[0] = "NO";
-	exp[1] = "SO";
-	exp[2] = "WE";
-	exp[3] = "EA";
-	exp[4] = "F";
-	exp[5] = "C";
-	i = 0;
-	while (i < 6)
+	count = ft_lstsize(map_list);
+	cub->map = malloc(sizeof(char *) * (count + 1));
+	if (!cub->map)
+		return (1);
+	count = 0;
+	while (map_list)
 	{
-		if (!ft_strncmp(line, exp[i], ft_strlen(exp[i])))
-			return (i);
-		i++;
+		cub->map[count++] = ft_strdup((char *)map_list->content);
+		map_list = map_list->next;
 	}
-	if (line[1] == '\n')
-		return (i);
-	return (7);
+	cub->map[count] = NULL;
+	cub->map_rows = count;
+	if (!validate_map(cub->map))
+	{
+		ft_dfree(cub->map);
+		free_textures(cub);
+		return (1);
+	}
+	return (0);
 }
 
 int	parse_header_line(char *line, t_cub *cub)

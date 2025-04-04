@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_header.c                                   :+:      :+:    :+:   */
+/*   hdr_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/29 08:20:09 by mechard           #+#    #+#             */
-/*   Updated: 2025/03/29 08:20:09 by mechard          ###   ########.fr       */
+/*   Created: 2025/04/04 08:26:48 by mechard           #+#    #+#             */
+/*   Updated: 2025/04/04 08:26:48 by mechard          ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                               hdr_check.c                                  */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	is_valid_extension(const char *filename)
+int	is_valid_extension(char *filename)
 {
 	size_t	len;
 
@@ -21,7 +26,7 @@ int	is_valid_extension(const char *filename)
 	len = ft_strlen(filename);
 	if (len < 4)
 		return (0);
-	return (ft_strcmp((char *)(filename + len - 4), ".cub") == 0);
+	return (ft_strcmp(filename + len - 4, ".cub") == 0);
 }
 
 int	is_header_line(const char *line)
@@ -43,23 +48,25 @@ int	is_header_line(const char *line)
 	return (0);
 }
 
-int	convert_map_list(t_list *map_list, t_cub *cub)
+int	elements_order(char *line)
 {
-	int	count;
+	char	*exp[6];
+	int		i;
 
-	count = ft_lstsize(map_list);
-	cub->map = malloc(sizeof(char *) * (count + 1));
-	if (!cub->map)
-		return (1);
-	count = 0;
-	while (map_list)
+	exp[0] = "NO";
+	exp[1] = "SO";
+	exp[2] = "WE";
+	exp[3] = "EA";
+	exp[4] = "F";
+	exp[5] = "C";
+	i = 0;
+	while (i < 6)
 	{
-		cub->map[count++] = ft_strdup((char *)map_list->content);
-		map_list = map_list->next;
+		if (!ft_strncmp(line, exp[i], ft_strlen(exp[i])))
+			return (i);
+		i++;
 	}
-	cub->map[count] = NULL;
-	cub->map_rows = count;
-	if (!validate_map(cub->map))
-		return (ft_dfree(cub->map), free_textures(cub), 1);
-	return (0);
+	if (line[1] == '\n')
+		return (i);
+	return (7);
 }
