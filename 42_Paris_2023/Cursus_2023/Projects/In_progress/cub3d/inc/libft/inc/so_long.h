@@ -152,6 +152,7 @@ int			key_release(int keycode, t_game *game);
 int			ft_init_sprites(t_game *game);
 int			map_comp(t_game *game, char **map);
 int			ft_set_img(t_game *game);
+int			close_window(t_game *game);
 
 char		**recup_map(char *str);
 char		**verif_map(char *str, char **map, t_game *game);
@@ -161,7 +162,6 @@ void		free_game(t_game *game);
 void		ft_init_null(t_game *game);
 void		map_init(t_map *map, char **str);
 void		*open_windows(t_game *game);
-void		close_window(t_game *game);
 void		ft_coor(int x, int y, t_map *coor);
 void		draw_sprite(t_game *game, t_img *img, int x, int y);
 void		ft_moove(int keycode, t_game *game);

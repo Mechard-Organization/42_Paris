@@ -30,15 +30,14 @@
 */
 typedef struct s_img_cub
 {
-    void    *img_ptr;
-    char    *data;
-    int     width;
-    int     height;
-    int     bpp;
-    int     size_line;
-    int     endian;
-}           t_img_cub;
-
+	void	*img_ptr;
+	char	*data;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
+}			t_img_cub;
 
 /*
 ** Structure t_cub
@@ -57,10 +56,12 @@ typedef struct s_img_cub
 ** - dirx, diry    : Vecteur directionnel du joueur.
 ** - planex, planey: Vecteur du plan caméra pour le champ de vision.
 ** - pov_left, pov_right :
-**                   Flags indiquant la rotation du point de vue vers la gauche ou la droite.
+**                   Flags indiquant la rotation du point de vue vers la 
+**                   gauche ou la droite.
 ** - move_left, move_right,
 **   move_forward, move_backward :
-**                   Flags indiquant le mouvement dans les différentes directions.
+**                   Flags indiquant le mouvement dans les différentes 
+**                   directions.
 ** - sprint        : Flag indiquant si le joueur est en mode sprint.
 ** - exit          : Flag indiquant la demande de sortie du programme.
 ** - img_tex_no, img_tex_so,
@@ -69,42 +70,41 @@ typedef struct s_img_cub
 */
 typedef struct s_cub
 {
-    void        *mlx;
-    void        *win;
-    char        *tex_no;
-    char        *tex_so;
-    char        *tex_we;
-    char        *tex_ea;
-    int         color_floor[3];
-    int         color_ceiling[3];
-    char        **map;
-    int         map_rows;
-    double      posx;
-    double      posy;
-    double      dirx;
-    double      diry;
-    double      planex;
-    double      planey;
-    int         pov_left;
-    int         pov_right;
-    int         move_left;
-    int         move_right;
-    int         move_forward;
-    int         move_backward;
-    int         sprint;
-    int         exit;
-    t_img_cub   img_tex_no;
-    t_img_cub   img_tex_so;
-    t_img_cub   img_tex_we;
-    t_img_cub   img_tex_ea;
-}   t_cub;
-
+	void		*mlx;
+	void		*win;
+	char		*tex_no;
+	char		*tex_so;
+	char		*tex_we;
+	char		*tex_ea;
+	int			color_floor[3];
+	int			color_ceiling[3];
+	char		**map;
+	int			map_rows;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
+	int			pov_left;
+	int			pov_right;
+	int			move_left;
+	int			move_right;
+	int			move_forward;
+	int			move_backward;
+	int			sprint;
+	int			exit;
+	t_img_cub	img_tex_no;
+	t_img_cub	img_tex_so;
+	t_img_cub	img_tex_we;
+	t_img_cub	img_tex_ea;
+}				t_cub;
 
 /*
 ** Structure t_render
 ** ---------------------
-** Utilité : Contient les informations nécessaires au rendu d'une colonne de l'écran
-**           lors du raycasting.
+** Utilité : Contient les informations nécessaires au rendu d'une colonne
+**           de l'écran lors du raycasting.
 **
 ** - cub       : Pointeur vers la structure principale t_cub.
 ** - x         : Position en x de la colonne en cours de rendu.
@@ -114,21 +114,22 @@ typedef struct s_cub
 */
 typedef struct s_render
 {
-    t_cub   *cub;
-    int     x;
-    char    *data;
-    int     bpp;
-    int     size_line;
-}               t_render;
-
+	t_cub	*cub;
+	int		x;
+	char	*data;
+	int		bpp;
+	int		size_line;
+}			t_render;
 
 /*
 ** Structure t_ray_result
 ** -------------------------
-** Utilité : Stocke les résultats du raycasting pour un rayon particulier, incluant
-**           les informations sur l'intersection avec un mur et les paramètres de texture.
+** Utilité : Stocke les résultats du raycasting pour un rayon
+**           particulier, incluant les informations sur l'intersection
+**           avec un mur et les paramètres de texture.
 **
-** - side          : Indique si l'impact a eu lieu sur un mur vertical (0) ou horizontal (1).
+** - side          : Indique si l'impact a eu lieu sur un mur vertical 
+**                   (0) ou horizontal (1).
 ** - perpwalldist  : Distance perpendiculaire entre le joueur et le mur.
 ** - lineheight    : Hauteur de la ligne à dessiner pour le mur.
 ** - drawstart, drawend :
@@ -141,36 +142,37 @@ typedef struct s_render
 **                   Composantes du vecteur direction du rayon.
 ** - mapx, mapy    : Coordonnées de la case de la map touchée par le rayon.
 ** - deltadistx, deltadisty :
-**                   Distances entre les intersections successives sur les axes x et y.
+**                   Distances entre les intersections successives sur les
+**                   axes x et y.
 ** - sidedistx, sidedisty :
-**                   Distance initiale du joueur à la première intersection sur les axes x et y.
+**                   Distance initiale du joueur à la première intersection
+**                   sur les axes x et y.
 ** - stepx, stepy  : Valeurs de pas (direction) sur les axes x et y.
 ** - hit           : Flag indiquant si un mur a été touché (1 si oui, 0 sinon).
 */
 typedef struct s_ray_result
 {
-    int         side;
-    double      perpwalldist;
-    int         lineheight;
-    int         drawstart;
-    int         drawend;
-    double      wallx;
-    int         texx;
-    t_img_cub   *current_tex;
-    double      camx;
-    double      raydirx;
-    double      raydiry;
-    int         mapx;
-    int         mapy;
-    double      deltadistx;
-    double      deltadisty;
-    double      sidedistx;
-    double      sidedisty;
-    int         stepx;
-    int         stepy;
-    int         hit;
-}               t_ray_result;
-
+	int			side;
+	double		perpwalldist;
+	int			lineheight;
+	int			drawstart;
+	int			drawend;
+	double		wallx;
+	int			texx;
+	t_img_cub	*current_tex;
+	double		camx;
+	double		raydirx;
+	double		raydiry;
+	int			mapx;
+	int			mapy;
+	double		deltadistx;
+	double		deltadisty;
+	double		sidedistx;
+	double		sidedisty;
+	int			stepx;
+	int			stepy;
+	int			hit;
+}				t_ray_result;
 
 /*
 ** Structure t_exec
@@ -185,34 +187,35 @@ typedef struct s_ray_result
 */
 typedef struct s_exec
 {
-    void    *img;
-    char    *data;
-    int     bpp;
-    int     sl;
-}               t_exec;
-
+	void	*img;
+	char	*data;
+	int		bpp;
+	int		sl;
+}			t_exec;
 
 /*
 ** Structure t_key
 ** ------------------
-** Utilité : Stocke les paramètres de déplacement et de rotation influencés par les
-**           entrées clavier.
+** Utilité : Stocke les paramètres de déplacement et de rotation
+**           influencés par les entrées clavier.
 **
 ** - ms       : Vitesse de déplacement (movement speed).
 ** - rs       : Vitesse de rotation (rotation speed).
 ** - strafex, strafey :
 **              Composantes pour le déplacement en strafe (déplacement latéral).
-** - olddirx  : Ancienne valeur de la direction en x (pour les calculs de rotation).
-** - oldplanex: Ancienne valeur du plan caméra en x (pour les calculs de rotation).
+** - olddirx  : Ancienne valeur de la direction en x
+**              (pour les calculs de rotation).
+** - oldplanex: Ancienne valeur du plan caméra en x
+**              (pour les calculs de rotation).
 */
 typedef struct s_key
 {
-    double  ms;
-    double  rs;
-    double  strafex;
-    double  strafey;
-    double  olddirx;
-    double  oldplanex;
-}               t_key;
+	double	ms;
+	double	rs;
+	double	strafex;
+	double	strafey;
+	double	olddirx;
+	double	oldplanex;
+}			t_key;
 
 #endif

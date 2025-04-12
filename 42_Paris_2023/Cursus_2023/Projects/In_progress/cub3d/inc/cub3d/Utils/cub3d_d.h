@@ -18,7 +18,7 @@
 ** --------------------------
 **
 ** Utilisés dans :
-**   - draw_scene() (run_draw.c)         : Création de l'image et boucle de rendu.
+**   - draw_scene() (run_draw.c)     : Création de l'image et boucle de rendu.
 **   - compute_distances() (calc_rays.c)   : Calcul de la hauteur de la ligne.
 **   - draw_upper_and_wall_pixels() (render.c) et
 **     draw_floor_pixels() (render.c)      : Dessin du plafond et du sol.
@@ -60,8 +60,9 @@
 ** (TEXT_EXT_ERROR, TEXT_NOT_FOUND)
 **
 ** Utilisés dans :
-**   - check_texture_file() (hdr_proc.c) : Vérification de l'extension et de l'existence
-**                                          des fichiers de texture, appelés par parse_header_line().
+**   - check_texture_file() (hdr_proc.c)
+**     Vérification de l'extension et de l'existence 
+**     des fichiers de texture, appelés par parse_header_line().
 */
 
 # define TEXT_EXT_ERROR "Error\nInvalid texture extension"
@@ -75,7 +76,8 @@
 **
 ** Utilisé dans :
 **   - read_header() (parsing_file.c)    : En-tête incomplet ou incorrect.
-**   - parse_header_line() (hdr_proc.c)   : Erreur lors du parsing d'une ligne d'en-tête.
+**   - parse_header_line() (hdr_proc.c)  : Erreur lors du parsing 
+**                                         d'une ligne d'en-tête.
 **
 ******************* FILE_FORMAT_IN *******************
 **
@@ -120,12 +122,14 @@
 ******************* MAP_NOT_SURROU *******************
 **
 ** Utilisé dans :
-**   - validate_map() (map_checker.c) : La carte n'est pas correctement entourée de murs.
+**   - validate_map() (map_checker.c)
+**     La carte n'est pas correctement entourée de murs.
 **
 ******************* COLOR_ALLOC_ER *******************
 **
 ** Utilisé dans :
-**   - parse_color_line() (hdr_proc.c) : Erreur d'allocation ou de valeurs incorrectes pour les couleurs.
+**   - parse_color_line() (hdr_proc.c°
+**     Erreur d'allocation ou de valeurs incorrectes pour les couleurs.
 */
 # define MAP_INVALID "Error\nMap invalid"
 # define MAP_NOT_FOUND "Error\nNo map found"

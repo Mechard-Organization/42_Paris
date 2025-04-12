@@ -66,14 +66,10 @@ char	*ft_reader(char *av2, char *res)
 
 int	ft_read_user(char *av1, char *av2)
 {
-	int		i;
 	int		hd;
-	size_t	reader;
 	char	*res;
 
-	i = 0;
 	res = NULL;
-	reader = 0;
 	hd = open(av1, O_RDONLY);
 	if (ft_strncmp(av1, "here_doc", ft_strlen("here_doc")) == 0 && (hd < 0
 			|| hd > 1024 || read(hd, 0, 0) < 0))

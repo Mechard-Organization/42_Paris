@@ -73,11 +73,10 @@ char	*ft_dstrscpy(char **dstr, int start, int sub, int flag)
 char	*ft_dstrcpy(char **dstr, int sub, int flag)
 {
 	int		i;
-	int		len;
 	char	*str;
 
 	i = 0;
-	len = ft_dstrlen(dstr) - sub;
+	(void)sub;
 	str = "/";
 	if (flag == 0)
 	{

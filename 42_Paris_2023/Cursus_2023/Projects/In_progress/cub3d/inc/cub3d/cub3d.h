@@ -38,14 +38,13 @@
 */
 # include "cub3d_exec.h"
 
-
 /*
 ** Fonctions de libération et autres fonctions générales
 */
 
-int     free_textures(t_cub *cub);
-int     free_all_cub(t_cub *cub);
-int     free_lac(char *line, t_cub *cub);
-void    free_cub(t_cub *cub);
+int		free_textures(t_cub *cub);
+int		free_all_cub(t_cub *cub);
+int		free_lac(char *line, t_cub *cub);
+void	free_cub(t_cub *cub);
 
 #endif

@@ -12,10 +12,11 @@
 
 #include "libft.h"
 
-void	close_window(t_game *game)
+int	close_window(t_game *game)
 {
 	free_game(game);
 	exit(0);
+	return (0);
 }
 
 void	*open_windows(t_game *game)

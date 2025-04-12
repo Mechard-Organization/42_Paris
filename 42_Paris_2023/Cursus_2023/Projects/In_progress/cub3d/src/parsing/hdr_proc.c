@@ -31,17 +31,14 @@ static int	check_texture_file(const char *path)
 	if (len < 4 || ft_strcmp(dup + len - 4, ".xpm") != 0)
 	{
 		ft_putendl_fd(TEXT_EXT_ERROR, 2);
-		free(dup);
-		return (1);
+		return (free(dup), 1);
 	}
 	else if (access(dup, F_OK) != 0)
 	{
 		ft_putendl_fd(TEXT_NOT_FOUND, 2);
-		free(dup);
-		return (1);
+		return (free(dup), 1);
 	}
-	free(dup);
-	return (0);
+	return (free(dup), 0);
 }
 
 static int	parse_color_line(char *line, int color[3])

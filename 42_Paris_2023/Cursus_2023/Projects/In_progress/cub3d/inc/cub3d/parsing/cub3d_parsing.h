@@ -19,13 +19,13 @@
 ** Function returning a int
 */
 
-int     parse_file(char *filename, t_cub *cub);
-int     parse_header_line(char *line, t_cub *cub);
-int     is_valid_extension(char *filename);
-int     is_header_line(const char *line);
-int     validate_map(char **map);
-int     convert_map_list(t_list *map_list, t_cub *cub);
-int     elements_order(char *line);
+int		parse_file(char *filename, t_cub *cub);
+int		parse_header_line(char *line, t_cub *cub);
+int		is_valid_extension(char *filename);
+int		is_header_line(const char *line);
+int		validate_map(char **map);
+int		convert_map_list(t_list *map_list, t_cub *cub);
+int		elements_order(char *line);
 
 /*
 ** Function returning a char

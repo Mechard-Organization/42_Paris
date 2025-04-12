@@ -97,10 +97,8 @@ int	ft_check_mand(char *str, va_list args, int *len)
 int	ft_check_bonu(char *str, va_list args, int *len)
 {
 	int	i;
-	int	nb;
 
 	i = 1;
-	nb = 0;
 	if (str[0] == '#')
 		ft_flag_sharp(str[i], args, len);
 	else if (str[0] == '+')
