@@ -26,8 +26,14 @@ void	put_pixel(t_render *r, int y, int color)
 
 int	exit_hook(t_cub *cub)
 {
-	mlx_destroy_window(cub->mlx, cub->win);
 	free_all_cub(cub);
+	if (cub->mlx && cub->win)
+		mlx_destroy_window(cub->mlx, cub->win);
+	if (cub->mlx)
+	{
+		mlx_destroy_display(cub->mlx);
+		free(cub->mlx);
+	}
 	exit(0);
 	return (0);
 }

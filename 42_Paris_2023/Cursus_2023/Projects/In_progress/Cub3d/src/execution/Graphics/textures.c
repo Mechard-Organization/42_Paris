@@ -96,6 +96,7 @@ static int	load_texture(t_img_cub *tex, void *mlx, char *path)
 	rl_path = resolve_path(path);
 	tex->img_ptr = mlx_xpm_file_to_image(mlx, rl_path,
 			&tex->width, &tex->height);
+	free(rl_path);
 	if (!tex->img_ptr)
 	{
 		ft_putendl_fd("Error: impossible de charger la texture", 2);

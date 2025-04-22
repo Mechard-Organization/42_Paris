@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/04/13 03:35:15 by mechard          ###   ########.fr        #
+#    Updated: 2025/04/22 14:45:01 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ LIB					= libft.a
 ifeq ($(MLX_A),)
 	MLX_A = minilibx.a
 endif
+ifeq ($(LANG), c)
 ifneq ($(PROJECT), LIBFT)
 	LIB_DIR			= $(shell find inc -type d -name "libft")
 	LIB_OBJ			= $(addprefix $(LIB_DIR)/, obj)
@@ -57,6 +58,7 @@ ifneq ($(PROJECT), LIBFT)
 	LIB_A			= $(addprefix $(LIB_EXEC)/, libft.a)
 else
 	NAME			= $(addprefix exec/, $(LIB))
+endif
 endif
 
 ################################################################################
@@ -68,13 +70,13 @@ ifeq ($(LANG), c++)
 	SRC_EXT			= .cpp
 	HDR_EXT			= .hpp
 	CFLAGS			= -Wall -Wextra -Werror -std=c++98 -g3 #-fsanitize=address -fsanitize=undefined
-	COMPI			= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC)
+	COMPI			= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC) -o $(NAME)
 else ifeq ($(LANG), c)
 	CC				= cc
 	SRC_EXT			= .c
 	HDR_EXT			= .h
 	CFLAGS			= -Wall -Wextra -Werror -g3 #-fsanitize=address -fsanitize=undefined
-	LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm -pthread
+	LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -pthread
 	ifeq ($(PROJECT), LIBFT)
 		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(LIBRARY) -c $(SRC)
 	else ifeq ($(LIBFT_DIR),)
@@ -158,7 +160,9 @@ ifeq ($(PROJECT), LIBFT)
 else
 	@$(MAKE) under_begin ARG3=$(NAME)
 endif
+ifeq ($(LANG), c)
 	@-$(MAKE) verif_norme
+endif
 ifeq ($(LANG), c)
 	@if [ ! -f "$(LIB_A)" ] && [ -n $(LIBFT_DIR) ] && [ "$(PROJECT)" != "LIBFT" ]; then \
 		$(LMAKE) all $(SILENCE); \
@@ -191,7 +195,7 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@allowed="$(FILES) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
+	@allowed="$(ALL) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
 	deleted=0; \
 	if [ -d "$(LIB_OBJ)" ]; then \
 		$(MAKE) under_begin ARG3="CLEAN"; \

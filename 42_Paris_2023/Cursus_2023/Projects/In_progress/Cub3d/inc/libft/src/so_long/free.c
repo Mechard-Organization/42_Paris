@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 10:48:59 by mechard           #+#    #+#             */
-/*   Updated: 2024/09/04 14:16:49 by mechard          ###   ########.fr       */
+/*   Updated: 2025/04/22 15:39:25 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	mlx_destroy_sprites(t_game *game)
 void	free_game(t_game *game)
 {
 	mlx_destroy_sprites(game);
-	if (game->win_ptr)
+	if (game->win_ptr && game->mlx_ptr)
 		mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 	if (game->mlx_ptr)
 		mlx_destroy_display(game->mlx_ptr);

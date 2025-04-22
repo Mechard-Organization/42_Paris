@@ -20,6 +20,10 @@ void	init_cub(t_cub *cub)
 	cub->tex_so = NULL;
 	cub->tex_we = NULL;
 	cub->tex_ea = NULL;
+	cub->img_tex_no.img_ptr = NULL;
+	cub->img_tex_so.img_ptr = NULL;
+	cub->img_tex_ea.img_ptr = NULL;
+	cub->img_tex_we.img_ptr = NULL;
 	cub->color_floor[0] = -1;
 	cub->color_ceiling[0] = -1;
 	cub->pov_left = 0;
@@ -49,14 +53,14 @@ int	main(int argc, char **argv)
 	{
 		if (ret != -1)
 			ft_putendl_fd("Erreur de parsing", 2);
-		return (EXIT_FAILURE);
+		return (free_all_cub(&cub), EXIT_FAILURE);
 	}
 	set_initial_position_and_direction(&cub);
 	if (init_mlx(&cub) || load_textures(&cub))
-		return (free_all_cub(&cub), EXIT_FAILURE);
+		return (exit_hook(&cub), EXIT_FAILURE);
 	(draw_scene(&cub), mlx_hook(cub.win, 2, 1L << 0, key_press_cub, &cub));
 	mlx_hook(cub.win, 3, 1L << 1, key_release_cub, &cub);
 	mlx_hook(cub.win, 17, 0, exit_hook, &cub);
 	(mlx_loop_hook(cub.mlx, update_loop, &cub), mlx_loop(cub.mlx));
-	return (free_all_cub(&cub), EXIT_SUCCESS);
+	return (EXIT_SUCCESS);
 }

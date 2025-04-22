@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/04/13 03:34:50 by mechard          ###   ########.fr        #
+#    Updated: 2025/04/22 14:43:49 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,11 +74,11 @@ else ifeq ($(LANG), c)
 	SRC_EXT			= .c
 	HDR_EXT			= .h
 	CFLAGS			= -Wall -Wextra -Werror -g3 #-fsanitize=address -fsanitize=undefined
-	LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm -pthread
+	LIBRARY			= -pthread
 	ifeq ($(PROJECT), LIBFT)
 		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(LIBRARY) -c $(SRC)
 	else ifeq ($(LIBFT_DIR),)
-		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC) $(MLX_A) $(LIB_A) $(LIBRARY) -o $(NAME)
+		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC) $(MLX_A) $(LIB_A) -o $(NAME)
 	else
 		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC) $(LIBRARY) -o $(NAME)
 	endif
