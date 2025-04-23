@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/03/22 15:54:31 by mechard          ###   ########.fr        #
+#    Updated: 2025/04/23 09:41:09 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,68 +18,77 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT         = cpp05
-NAME            = ex03
-LANG			= c++
+PROJECT				= cpp05
+NAME				= ex03
+LANG				= c++
 
-#------------------------------------------------------
-# Flags de compilation et compilateur
-#------------------------------------------------------
+# Répertoires
+INC_DIR				= inc
+OBJ_DIR				= obj
+EXEC_DIR			= exec
 
-# Compilation pour le c++
+################################################################################
+# Variables
+################################################################################
 
-CXXFLAGS        = -Wall -Wextra -Werror -std=c++98 -g3
-CXX             = c++ $(CXXFLAGS) $(CXXHDRFLAG)
-CXXHDRFLAG		= -I$(CXXHDR_LOCATION)
-CXXCOMPI		= $(CXX) $(CXXSRCS) -o $(NAME)
+# Globales
+SRC					= $(shell find . -type f -not -path "./inc/*" | awk 'length($$0) >= 4 && substr($$0, length($$0)- length("$(SRC_EXT)") + 1, length("$(SRC_EXT)")) == "$(SRC_EXT)" { print }')
+HDRS				= $(shell find . -type f -not -path "./inc/libft/inc/minilibx-linux/*" -not -path "./inc/minilibx-linux/*" | awk 'length($$0) >= 4 && substr($$0, length($$0)- length("$(HDR_EXT)") + 1, length("$(HDR_EXT)")) == "$(HDR_EXT)" { print }')
+OBJS 				= $(patsubst %.c,%.o,$(notdir $(SRC)))
+HDRS_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)- length("$(HDR_EXT)") + 1, length("$(HDR_EXT)")) == "$(HDR_EXT)" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
+HDRS_FLAG			= $(addprefix -I, $(HDRS_LOCATION))
+SANITIZE			= -fsanitize=address -fsanitize=undefined
+ALL					= $(SRC) $(HDRS)
 
-# Compilation pour le c
-
-CFLAGS			= -Wall -Wextra -Werror -g3
-C				= cc $(CFLAGS) $(CHDRFLAG)
-CHDRFLAG		= -I$(CHDR_LOCATION)
-CCOMPI			= $(C) $(CSRCS) -o $(NAME)
-
-# Compilateur
-
-ifeq ($(LANG), c++)
-	COMPILATION	= $(CXXCOMPI)
-else ifeq ($(LANG), c)
-	COMPILATION	= $(CCOMPI)
+# Libft
+MLX_TITLE			= Minilibx
+LINK_MLX			= https://cdn.intra.42.fr/document/document/31613/minilibx-linux.tgz
+MLX_DIR				= $(addprefix $(INC_DIR)/, minilibx-linux)
+MLX_A				= $(shell find . -type f -name "libmlx.a")
+LIB					= libft.a
+ifeq ($(MLX_A),)
+	MLX_A = minilibx.a
+endif
+ifeq ($(LANG), c)
+ifneq ($(PROJECT), LIBFT)
+	LIB_DIR			= $(shell find inc -type d -name "libft")
+	LIB_OBJ			= $(addprefix $(LIB_DIR)/, obj)
+	LIB_INC			= $(addprefix $(LIB_DIR)/, inc)
+	LIB_EXEC		= $(addprefix $(LIB_DIR)/, exec)
+	LIB_A			= $(addprefix $(LIB_EXEC)/, libft.a)
+else
+	NAME			= $(addprefix exec/, $(LIB))
+endif
 endif
 
-#------------------------------------------------------
-# Fichiers sources et headers
-#------------------------------------------------------
-
-# Fichiers sources pour le c++
-
-CXXSRCS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".cpp" { print }')
-CXXHDRS				= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { print }')
-CXXHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 4 && substr($$0, length($$0)-3, 4) == ".hpp" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
-CXXSRC_LOCATION		= $(CXXSRCS) $(CXXHDRS)
-
-# Fichiers sources pour le c
-
-CSRCS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".c" { print }')
-COBJS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".o" { print }')
-CHDRS				= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { print }')
-CHDR_LOCATION		= $(shell find . -type f | awk 'length($$0) >= 2 && substr($$0, length($$0)-1, 2) == ".h" { cmd="dirname "$$0; cmd | getline d; close(cmd); print d }' | sort -u)
-CSRC_LOCATION		= $(CSRCS) $(CHDRS) $(COBJS)
-
-# Tout les fichiers sources en une seule variables
-
-ALL					= $(CSRC_LOCATION) $(CXXSRC_LOCATION)
+################################################################################
+# Compilateur et options
+################################################################################
 
 ifeq ($(LANG), c++)
-	FILES			= $(CXXSRC_LOCATION)
+	CC				= c++
+	SRC_EXT			= .cpp
+	HDR_EXT			= .hpp
+	CFLAGS			= -Wall -Wextra -Werror -std=c++98 -g3 #-fsanitize=address -fsanitize=undefined
+	COMPI			= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC) -o $(NAME)
 else ifeq ($(LANG), c)
-	FILES			= $(CSRC_LOCATION)
+	CC				= cc
+	SRC_EXT			= .c
+	HDR_EXT			= .h
+	CFLAGS			= -Wall -Wextra -Werror -g3 #-fsanitize=address -fsanitize=undefined
+	LIBRARY			= -lreadline -lncurses -lXext -lX11 -lm -lXpm -pthread
+	ifeq ($(PROJECT), LIBFT)
+		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(LIBRARY) -c $(SRC)
+	else ifeq ($(LIBFT_DIR),)
+		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC) $(MLX_A) $(LIB_A) $(LIBRARY) -o $(NAME)
+	else
+		COMPI		= $(CC) $(CFLAGS) $(HDRS_FLAG) $(SRC) $(LIBRARY) -o $(NAME)
+	endif
 endif
 
-#------------------------------------------------------
+################################################################################
 # Couleurs, symboles et autres variables d'affichage
-#------------------------------------------------------
+################################################################################
 
 # Reset & style
 D_COLOR         = \033[0m
@@ -110,35 +119,26 @@ SUCCESS         = ✅
 TELECHARGEMENT  = 🔽🔁
 DL_FINISH       = 🔽✅
 DELETED         = 💥
+ERR				= ‼️
 
 # Autres variables
 SILENCE         = > /dev/null 2>&1
-MAKE            = make --no-print-directory -C ./
+M           	= make --no-print-directory -C
+MAKE			= $(M) ./
+LMAKE			= $(M) $(LIB_DIR)
 FIN             = =================$(GREEN1)END$(D_COLOR)=================\n
 
-#------------------------------------------------------
+################################################################################
 # Variables d'affichage (pour les règles begin et under_begin)
-#------------------------------------------------------
+################################################################################
 
 LINE_WIDTH      = 37
 BLOCK_SIZE      = 21
 END_SPACES      = 12
 
-#------------------------------------------------------
-# (Optionnel) Variables pour la librairie
-#------------------------------------------------------
-
-LIB				= libft.a
-LIB_DIR			= $(addprefix $(INC), libft/)
-LIB_OBJ			= $(addprefix $(LIB_DIR), obj/)
-LIB_INC			= $(addprefix $(LIB_DIR), inc/)
-LIB_EXEC		= $(addprefix $(LIB_DIR), exec/)
-LIB_A			= $(addprefix $(LIB_EXEC), $(LIB))
-LIBRARY			= -lreadline -lncurses
-
-#======================================================
+################################################################################
 #                   RÈGLES PRINCIPALES
-#======================================================
+################################################################################
 
 all: $(NAME)
 
@@ -146,16 +146,45 @@ all: $(NAME)
 # Compilation de l'exécutable
 #------------------------------------------------------
 
-$(NAME): $(FILES)
+$(NAME): $(ALL)
 ifeq ($(filter-out all $(NAME), $(MAKECMDGOALS)), )
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@-$(MAKE) under_begin ARG3="$(NAME)"
-ifeq ($(LANG), c++)
-	@-$(MAKE) c++
-else ifeq ($(LANG), c)
-	FILES			= $(CSRC_LOCATION)
+
+ifeq ($(PROJECT), LIBFT)
+	@if [ ! -f $(MLX_A) ] || [ ! $(MLX_A) ]; then \
+		$(MAKE) minilibx.a; \
+	fi
+	@mkdir -p $(OBJ_DIR)
+	@-$(MAKE) under_begin ARG3="$(LIB)"
+else
+	@$(MAKE) under_begin ARG3=$(NAME)
 endif
+ifeq ($(LANG), c)
+	@-$(MAKE) verif_norme
+endif
+ifeq ($(LANG), c)
+	@if [ ! -f "$(LIB_A)" ] && [ -n $(LIBFT_DIR) ] && [ "$(PROJECT)" != "LIBFT" ]; then \
+		$(LMAKE) all $(SILENCE); \
+		$(MAKE) success ARG3="$(LIB)"; \
+	fi
+endif
+	@-$(COMPI) > res_cmp
+ifeq ($(PROJECT), LIBFT)
+	@ar rcs $(LIB) $(OBJS) $(SILENCE)
+	@mkdir -p $(EXEC_DIR)
+	@ranlib $(LIB) $(SILENCE)
+	@mv $(OBJS) $(OBJ_DIR)
+	@mv $(LIB) $(EXEC_DIR)
+endif
+	@if [ ! -s res_cmp ]; then \
+		rm -rf res_cmp; \
+		if [ -s $(NAME) ]; then \
+			$(MAKE) success ARG3="$(NAME)"; \
+		fi; \
+	elif [ -s res_cmp ]; then \
+		$(MAKE) error_compi; \
+	fi
 	@$(MAKE) end
 
 #------------------------------------------------------
@@ -166,9 +195,15 @@ clean:
 ifneq ($(filter-out $(COMPI),$(MAKECMDGOALS)),)
 	@$(MAKE) begin ARG3="$(MAKECMDGOALS)"
 endif
-	@allowed="$(FILES) $(OBJS) $(NAME) Makefile"; \
+	@allowed="$(ALL) $(OBJS) $(NAME) Makefile Makefile_OLD"; \
 	deleted=0; \
-	for file in $$(find . -type f); do \
+	if [ -d "$(LIB_OBJ)" ]; then \
+		$(MAKE) under_begin ARG3="CLEAN"; \
+		deleted=1; \
+		$(LMAKE) clean $(SILENCE); \
+		$(MAKE) suppr_line ARG3=".o dans libft"; \
+	fi; \
+	for file in $$(find . -type f -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -not -path "./obj/*" -not -path "./map/*" -not -name ".gitignore"); do \
 		keep=no; \
 		for a in $$allowed; do \
 			if [ "$$file" = "$$a" ] || [ "$$file" = "./$$a" ]; then \
@@ -184,7 +219,15 @@ endif
 			$(MAKE) suppr_line ARG3=$$file; \
 		fi; \
 	done; \
-	for dir in $$(find . -type f -name "*.o" -exec dirname {} \; | sort -u); do \
+	if [ -d $(OBJ_DIR) ]; then \
+		if [ $$deleted -eq 0 ]; then \
+			$(MAKE) under_begin ARG3="CLEAN"; \
+			deleted=1; \
+		fi; \
+		rm -rf $(OBJ_DIR); \
+		$(MAKE) suppr_line ARG3="$(OBJ_DIR)"; \
+	fi; \
+	for dir in $$(find . -type f -name "*.o" -not -path "./src/*" -not -path "./inc/*" -not -path "./exec/*" -exec dirname {} \; | sort -u); do \
 	    if [ "$$dir" != "." ]; then \
 		    rm -rf $$dir; \
 		    $(MAKE) suppr_line ARG3="Directory $$dir"; \
@@ -192,10 +235,17 @@ endif
 	done; \
 	if [ "$(MAKECMDGOALS)" != "clean" ] && [ $$deleted -eq 1 ]; then \
 		printf "|                                   |\n"; \
+	fi; \
+	if [ $$deleted -eq 0 ]; then \
+		echo "|Nothing to be done for 'clean'     |"; \
+		if [ -f "$(NAME)" ]; then \
+			printf "|                                   |\n"; \
+		fi; \
 	fi
 ifeq ($(MAKECMDGOALS), clean)
 	@$(MAKE) end
 endif
+
 
 
 #------------------------------------------------------
@@ -205,9 +255,28 @@ endif
 fclean: clean
 	@if [ -f "$(NAME)" ]; then \
 		$(MAKE) under_begin ARG3="FCLEAN"; \
-		rm -rf $(NAME) $(SILENCE); \
-		echo "|$(NAME)                         : $(RED1)$(DELETED)$(D_COLOR)  |"; \
+		if [ -d "$(LIB_EXEC)" ]; then \
+			rm -rf $(LIB_EXEC); \
+			$(MAKE) suppr_line ARG3="$(LIB_EXEC)"; \
+		fi; \
+		if [ -f "$(NAME)" ]; then \
+			rm -rf $(NAME) $(SILENCE); \
+			$(MAKE) suppr_line ARG3=$(NAME); \
+		fi; \
+		if [ -d "$(MLX_DIR)" ]; then \
+			rm -rf $(MLX_DIR); \
+			$(MAKE) suppr_line ARG3="$(MLX_DIR)"; \
+		fi; \
+		if [ -d "$(EXEC_DIR)" ]; then \
+			rm -rf $(EXEC_DIR); \
+			$(MAKE) suppr_line ARG3="$(EXEC_DIR)"; \
+		fi; \
 		if [ "$(MAKECMDGOALS)" != "fclean" ]; then \
+			echo "|                                   |"; \
+		fi; \
+	else \
+		echo "|Nothing to be done for 'fclean'    |"; \
+		if [ $(MAKECMDGOALS) != "fclean" ]; then \
 			echo "|                                   |"; \
 		fi; \
 	fi
@@ -221,41 +290,41 @@ endif
 
 re: fclean all
 
-#======================================================
+################################################################################
 #                 AUTRES RÈGLES
-#======================================================
+################################################################################
 
 #------------------------------------------------------
-# Compilation de la librairie statique
+# Compilation de la minilibx
 #------------------------------------------------------
 
-$(LIB_A):
-	@$(MAKE) $(LIB) -C $(LIB_DIR)
+$(MLX_A):
+	@$(MAKE) under_begin ARG3="Minilibx"
+	@echo "|$(PINK1)Téléchargement de la mlx$(D_COLOR)     : $(TELECHARGEMENT)|"
+	@mkdir -p $(MLX_DIR)
+	@curl -o $(INC_DIR)/minilibx-linux.tgz $(LINK_MLX) $(SILENCE)
+	@tar -xzvf $(INC_DIR)/minilibx-linux.tgz -C $(INC_DIR) $(SILENCE)
+	@rm $(INC_DIR)/minilibx-linux.tgz
+	@echo "\033[1A\033[2K|$(GREEN1)Minilibx telechargé$(D_COLOR)          : $(DL_FINISH)|"
+	@$(M) $(MLX_DIR) all $(SILENCE)
+	@$(MAKE) success ARG3="./minilibx"
+	@printf "|                                   |\n"
 
 #------------------------------------------------------
-# Règle de compilation
+# Règle de vérification de la norme 42
 #------------------------------------------------------
 
-c :
-	@-$(COMPILATION) > res_cmp
-	@if [ ! -s res_cmp ]; then \
-		rm -rf res_cmp; \
-		if [ -s $(NAME) ]; then \
-			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-		fi; \
-	elif [ -s res_cmp ]; then \
-		$(MAKE) error_compi; \
-	fi
-
-c++ :
-	@-$(COMPILATION) > res_cmp
-	@if [ ! -s res_cmp ]; then \
-		rm -rf res_cmp; \
-		if [ -s $(NAME) ]; then \
-			echo "|$(NAME)                         : $(GREEN1)$(SUCCESS)$(D_COLOR)  |"; \
-		fi; \
-	elif [ -s res_cmp ]; then \
-		$(MAKE) error_compi; \
+verif_norme :
+	-@norminette $(SRC) > res_cmd || true
+	-@grep 'Error' res_cmd > norminette || true
+	-@norminette $(HDRS) > res_cmd || true
+	-@grep "Error" res_cmd >> norminette || true
+	@rm res_cmd
+	@if [ ! -s norminette ]; then \
+    	rm norminette; \
+		$(MAKE) success ARG3="norme de $(NAME)"; \
+	else \
+   		$(MAKE) suppr_line ARG3="norme de $(NAME)"; \
 	fi
 
 #------------------------------------------------------
@@ -338,7 +407,7 @@ under_begin:
 	printf "|\n";
 
 #------------------------------------------------------
-# Règle d'affichage "error_line"
+# Règle d'affichage "suppr_line"
 # Affiche une ligne de 37 caractères contenant ARG3 ajusté
 # sur 29 caractères (tronqué ou complété) suivi de " : 💥  "
 # pour signaler la suppression d'un fichier.
@@ -364,7 +433,42 @@ suppr_line:
 				i=$$(( i + 1 )); \
 			done; \
 		fi; \
-		printf "|$(RED2)%s$(D_COLOR) : 💥  |\n" "$$field"; \
+		if [ "$$(echo "$(ARG3)" | cut -c1-5)" = "norme" ]; then \
+    		deleted_symbol=" $(ERR)"; \
+		else \
+    		deleted_symbol="$(DELETED)"; \
+		fi; \
+		printf "|$(RED2)%s$(D_COLOR) : %s  |\n" "$$field" "$$deleted_symbol"; \
+	}
+
+#------------------------------------------------------
+# Règle d'affichage "success"
+# Affiche une ligne de 37 caractères contenant ARG3 ajusté
+# sur 29 caractères (tronqué ou complété) suivi de " : ✅  "
+# pour signaler la suppression d'un fichier.
+#------------------------------------------------------
+
+success :
+	@{ \
+		if [ -z "$(ARG3)" ]; then \
+			display_arg3="\" \""; \
+		else \
+			display_arg3="$(ARG3)"; \
+		fi; \
+		arg_len=$$(echo -n "$$display_arg3" | wc -c); \
+		if [ $$arg_len -gt 28 ]; then \
+			truncated=$$(echo -n "$$display_arg3" | cut -c1-25); \
+			field="$$truncated..."; \
+		else \
+			field="$$display_arg3"; \
+			pad=$$((28 - arg_len)); \
+			i=1; \
+			while [ $$i -le $$pad ]; do \
+				field="$$field "; \
+				i=$$(( i + 1 )); \
+			done; \
+		fi; \
+		printf "|%s$(D_COLOR) : $(SUCCESS)  |\n" "$$field"; \
 	}
 
 #------------------------------------------------------
@@ -375,8 +479,8 @@ end:
 	@printf "|                                   |\n"
 	@echo "$(FIN)"
 
-#======================================================
+################################################################################
 #              RÈGLES PHONY (obligatoires)
-#======================================================
+################################################################################
 
 .PHONY: all clean fclean re begin under_begin suppr_line end
