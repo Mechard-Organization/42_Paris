@@ -38,6 +38,7 @@ int main()
     scav.takeDamage(50);
     scav.attack("Cible2");
     scav.guardGate();
+    std::cout << "\033[0m";
 
     return 0;
 }
