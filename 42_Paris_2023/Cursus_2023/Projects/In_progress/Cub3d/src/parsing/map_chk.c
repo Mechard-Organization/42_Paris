@@ -44,16 +44,11 @@ static int	checking(char **map, int i, int j, int rows)
 	if (map[i][j] == '0' || map[i][j] == 'N'
 		|| map[i][j] == 'S' || map[i][j] == 'E'
 		|| map[i][j] == 'W')
-	{
-		if (i == 0 || i == rows - 1 || j == 0 || j == len - 1)
+		if ((i == 0 || i == rows - 1 || j == 0 || j == len - 1)
+			|| (j >= (int)ft_strlen(map[i - 1]) || map[i - 1][j] == ' ')
+			|| (j >= (int)ft_strlen(map[i + 1]) || map[i + 1][j] == ' ')
+			|| (map[i][j - 1] == ' ' || map[i][j + 1] == ' '))
 			return (1);
-		if (j >= (int)ft_strlen(map[i - 1]) || map[i - 1][j] == ' ')
-			return (1);
-		if (j >= (int)ft_strlen(map[i + 1]) || map[i + 1][j] == ' ')
-			return (1);
-		if (map[i][j - 1] == ' ' || map[i][j + 1] == ' ')
-			return (1);
-	}
 	return (0);
 }
 

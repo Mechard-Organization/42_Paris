@@ -6,7 +6,7 @@
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 15:27:59 by mechard           #+#    #+#             */
-/*   Updated: 2025/01/26 14:12:45 by mechard          ###   ########.fr       */
+/*   Updated: 2025/06/04 13:50:34 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,13 @@ int					ft_lstsize(t_list *lst);
 int					ft_dstrlen(char **cmd);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
+int					ft_strisdigit(char *str);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
+int					ft_strdeln(char *str);
 
 /* Function returning a char variable */
 

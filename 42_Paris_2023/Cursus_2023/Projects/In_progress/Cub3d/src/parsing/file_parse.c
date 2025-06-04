@@ -31,7 +31,7 @@ static int	read_header(int fd, t_cub *cub)
 		else
 		{
 			if (parse_header_line(line, cub))
-				return (free_lac(line, cub), 1);
+				return (free(line), 1);
 			free(line);
 			header++;
 		}
@@ -40,9 +40,9 @@ static int	read_header(int fd, t_cub *cub)
 	if (elements_order(line) == 6)
 		free(line);
 	else if (elements_order(line) < 6)
-		return (ft_putendl_fd(HEADER_INCOMPL, 2), free_lac(line, cub));
+		return (ft_putendl_fd(HEADER_INCOMPL, 2), free(line), 1);
 	else if (elements_order(line) == 7)
-		return (ft_putendl_fd(FILE_FORMAT_IN, 2), free_lac(line, cub));
+		return (ft_putendl_fd(FILE_FORMAT_IN, 2), free(line), 1);
 	return (0);
 }
 

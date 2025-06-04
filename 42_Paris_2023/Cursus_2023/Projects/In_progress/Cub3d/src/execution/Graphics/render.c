@@ -47,7 +47,7 @@ void	draw_upper_and_wall_pixels(t_render *r, t_ray_result *res, int *py)
 		put_pixel(r, tmp_y, color);
 		tmp_y++;
 	}
-	while (tmp_y < res->drawend)
+	while (tmp_y <= res->drawend)
 	{
 		d = tmp_y * 256 - WIN_HEIGHT * 128 + res->lineheight * 128;
 		texy = ((d * res->current_tex->height) / res->lineheight) / 256;

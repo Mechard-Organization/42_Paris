@@ -43,18 +43,21 @@ static int	check_texture_file(const char *path)
 
 static int	parse_color_line(char *line, int color[3])
 {
-	char	**nums;
+	char	**n;
 
-	nums = ft_split(line + 2, ',');
-	if (!nums || ft_dstrlen(nums) != 3)
+	n = ft_split(line + 2, ',');
+	if (!n || ft_dstrlen(n) != 3)
 		return (ft_putendl_fd(COLOR_ALLOC_ER, 2), 1);
-	color[0] = ft_atoi(nums[0]);
-	color[1] = ft_atoi(nums[1]);
-	color[2] = ft_atoi(nums[2]);
-	free(nums[0]);
-	free(nums[1]);
-	free(nums[2]);
-	free(nums);
+	if (ft_strisdigit(n[0]) && ft_strisdigit(n[1]) && ft_strisdigit(n[2]))
+	{
+		color[0] = ft_atoi(n[0]);
+		color[1] = ft_atoi(n[1]);
+		color[2] = ft_atoi(n[2]);
+	}
+	else
+		return (ft_putendl_fd(COLOR_ALLOC_ER, 2), 1);
+	(free(n[0]), free(n[1]), free(n[2]));
+	free(n);
 	if ((color[0] > 255 || color[0] < 0)
 		|| (color[1] > 255 || color[1] < 0)
 		|| (color[2] > 255 || color[2] < 0))
@@ -83,11 +86,7 @@ int	convert_map_list(t_list *map_list, t_cub *cub)
 	cub->map[count] = NULL;
 	cub->map_rows = count;
 	if (!validate_map(cub->map))
-	{
-		ft_dfree(cub->map);
-		free_textures(cub);
 		return (1);
-	}
 	return (0);
 }
 

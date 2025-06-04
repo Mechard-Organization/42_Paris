@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdeln.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mechard <mechard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 15:12:58 by mechard           #+#    #+#             */
-/*   Updated: 2025/06/04 14:05:26 by mechard          ###   ########.fr       */
+/*   Created: 2025/06/04 13:47:41 by mechard           #+#    #+#             */
+/*   Updated: 2025/06/04 14:06:57 by mechard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+int	ft_strdeln(char *str)
 {
 	int	i;
-	int	sign;
-	int	res;
 
-	i = 0;
-	sign = 1;
-	res = 0;
-	while (str[i] == ' ' || (str[i] >= '\t' && str[i] <= '\r'))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	i = 1;
+	if (str[ft_strlen(str) - i] == '\n')
 	{
-		if (str[i] == '-')
-			sign = -sign;
-		i++;
+		if (str[ft_strlen(str) - i - 1] == '\r')
+			i++;
+		str[ft_strlen(str) - i] = '\0';
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - 48);
-		i++;
-	}
-	return (res * sign);
+	return (0);
 }
