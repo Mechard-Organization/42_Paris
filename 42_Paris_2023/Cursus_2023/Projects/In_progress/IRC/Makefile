@@ -6,7 +6,7 @@
 #    By: mechard <mechard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/22 13:47:46 by mechard           #+#    #+#              #
-#    Updated: 2025/04/13 03:54:22 by mechard          ###   ########.fr        #
+#    Updated: 2025/06/16 16:23:24 by mechard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,8 @@
 # Variables globales
 #------------------------------------------------------
 
-PROJECT				= WS
-NAME				= Webserv
+PROJECT				= IRC_Project
+NAME				= IRC
 LANG				= c++
 
 # Répertoires
