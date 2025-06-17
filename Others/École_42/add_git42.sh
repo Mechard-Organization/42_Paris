@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "$1"
+
 if [ "$(pwd | grep "42_paris")" ] && [ ! "$(pwd | grep "Cursus_2023")" ]; then
 	echo "42_paris"
 	pwd=$(pwd)
