@@ -21,6 +21,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
+		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
 			echo "\033[32mCursus_2023 pusher !\033[0m"
@@ -32,6 +33,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/42_Paris_2023/Others
+		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
 			echo "\033[32mOther pusher !\033[0m"
