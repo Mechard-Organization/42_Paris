@@ -68,7 +68,6 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 elif [ "$1" = "-p" ]; then
 	echo "-p"
 	if [ "$(pwd | grep "42_paris")" ] && [ ! "$(pwd | grep "Cursus_2023")" ]; then
-		
 		echo "42_paris"
 		cd ~/Downloads/42_paris
 		# git add -A && git commit -m "$(date) - $(pwd) update" && git push
