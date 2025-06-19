@@ -4,18 +4,28 @@ pwd=$(pwd)
 
 if [ "$1" = "-g" ] || [ ! "$1" ]; then
 	if [ "$(pwd | grep "42_paris")" ] && [ ! "$(pwd | grep "Cursus_2023")" ]; then
-		echo "Push de 42_Paris et ces sous-dossiers en cours !"
+		echo "Push of 42_Paris folder and subfolders in progress !"
 
 		# Push de 42_paris
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris
-		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1
-		git push > /dev/null 2>&1
-		if [ "$?" = "0" ]; then
-			echo "\033[32m42_Paris pusher !\033[0m"
-		else
-			echo "\033[31mAn error as occured !\033[0m"
+		pwd
+		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
+		if [ "$?" = "1" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33mNothing need to be pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
+		elif [ "$?" = "0" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33m42_Paris was pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
 		fi
 
 		# Push de Cursus_2023
@@ -24,11 +34,20 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
 		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
-		git push > /dev/null 2>&1
-		if [ "$?" = "0" ]; then
-			echo "\033[32mCursus_2023 pusher !\033[0m"
-		else
-			echo "\033[31mAn error as occured !\033[0m"
+		if [ "$?" = "1" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33mNothing need to be pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
+		elif [ "$?" = "0" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33mCursus_2023 was pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
 		fi
 
 		# Push de Others
@@ -37,11 +56,20 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		cd ~/Downloads/42_paris/Others
 		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
-		git push > /dev/null 2>&1
-		if [ "$?" = "0" ]; then
-			echo "\033[32mOther pusher !\033[0m"
-		else
-			echo "\033[31mAn error as occured !\033[0m"
+		if [ "$?" = "1" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33mNothing need to be pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
+		elif [ "$?" = "0" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33mOthers was pusher !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
 		fi
 		echo "--------------------------------------------------------------------------------------------------------"
 
