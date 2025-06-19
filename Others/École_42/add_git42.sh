@@ -2,6 +2,7 @@
 
 pwd=$(pwd)
 
+
 if [ "$1" = "-g" ] || [ ! "$1" ]; then
 	if [ "$(pwd | grep "42_paris")" ] && [ ! "$(pwd | grep "Cursus_2023")" ]; then
 		echo "Push of 42_Paris folder and subfolders in progress !"
