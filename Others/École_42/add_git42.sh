@@ -10,6 +10,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris
+		echo "42_Paris"
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "1" ]; then
 			git push > /dev/null 2>&1
@@ -21,7 +22,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		elif [ "$?" = "0" ]; then
 			git push > /dev/null 2>&1
 			if [ "$?" = "0" ]; then
-				echo "\033[33m42_Paris was pushed !\033[0m"
+				echo "\033[33mCursus_2023 was pushed !\033[0m"
 			else
 				echo "\033[31mAn error as occured !\033[0m"
 			fi
@@ -31,6 +32,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
+		echo "Cursus_2023"
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "1" ]; then
 			git push > /dev/null 2>&1
@@ -52,6 +54,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/Others
+		echo "Others"
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "1" ]; then
 			git push > /dev/null 2>&1
@@ -63,7 +66,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		elif [ "$?" = "0" ]; then
 			git push > /dev/null 2>&1
 			if [ "$?" = "0" ]; then
-				echo "\033[33mOthers was pusher !\033[0m"
+				echo "\033[33mCursus_2023 was pushed !\033[0m"
 			else
 				echo "\033[31mAn error as occured !\033[0m"
 			fi
