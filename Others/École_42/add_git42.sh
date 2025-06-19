@@ -12,9 +12,9 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		cd ~/Downloads/42_paris
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
-			echo "\033[32m42_Paris pusher !"
+			echo "\033[32m42_Paris pusher !\033[0m"
 		else
-			echo "\033[31mAn error as occured !"
+			echo "\033[31mAn error as occured !\033[0m"
 		fi
 
 		# Push de Cursus_2023
@@ -23,9 +23,9 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
-			echo "\033[32mCursus_2023 pusher !"
+			echo "\033[32mCursus_2023 pusher !\033[0m"
 		else
-			echo "\033[31mAn error as occured !"
+			echo "\033[31mAn error as occured !\033[0m"
 		fi
 
 		# Push de Others
@@ -34,9 +34,9 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		cd ~/Downloads/42_paris/42_Paris_2023/Others
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
-			echo "\033[32mOther pusher !"
+			echo "\033[32mOther pusher !\033[0m"
 		else
-			echo "\033[31mAn error as occured !"
+			echo "\033[31mAn error as occured !\033[0m"
 		fi
 		echo "--------------------------------------------------------------------------------------------------------"
 
