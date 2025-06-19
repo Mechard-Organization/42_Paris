@@ -3,6 +3,8 @@
 pwd=$(pwd)
 
 if [ "$1" = "-g" ] || [ ! "$1" ]; then
+	if [ -f "/home/mechard/Downloads/42_paris/push.res" ]; then
+		rm -rf "/home/mechard/Downloads/42_paris/push.res"
 	if [ "$(pwd | grep "42_paris")" ] && [ ! "$(pwd | grep "Cursus_2023")" ]; then
 		echo "Push de 42_Paris et ces sous-dossiers en cours !"
 
