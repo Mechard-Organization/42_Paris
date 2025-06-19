@@ -29,7 +29,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		# Push de Others
 		
 		echo "--------------------------------------------------------------------------------------------------------"
-		echo -n "Push de Others en cours."
+		echo "Push de Others en cours."
 		cd ~/Downloads/42_paris/42_Paris_2023/Others
 		echo "\033[1A\033[2KPush de Others en cours.."
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
