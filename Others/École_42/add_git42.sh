@@ -79,18 +79,53 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		echo "Push de Cursus_2023 !"
 
 		# Push de Cursus_2023
-
+		
+		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
-		git add -A && git commit -m "$(date) - $(pwd) update" && git push
-		cd $pwd
+		echo "Cursus_2023"
+		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
+		if [ "$?" = "1" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33mNothing need to be pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
+		else
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[32mCursus_2023 was pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
+		fi
 
 	elif [ "$(pwd | grep "42_paris")" ] && [ "$(pwd | grep "Others")" ]; then
 		echo "Push de Others !"
 
-		# Push de Cursus_2023
+		# Push de Others
+		
+		echo "--------------------------------------------------------------------------------------------------------"
+		cd ~/Downloads/42_paris/Others
+		echo "Others"
+		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
+		if [ "$?" = "1" ]; then
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[33mNothing need to be pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
+		else
+			git push > /dev/null 2>&1
+			if [ "$?" = "0" ]; then
+				echo "\033[32mOthers was pushed !\033[0m"
+			else
+				echo "\033[31mAn error as occured !\033[0m"
+			fi
+		fi
+		echo "--------------------------------------------------------------------------------------------------------"
 
-		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
-		git add -A && git commit -m "$(date) - $(pwd) update" && git push
 		cd $pwd
 
 	else
