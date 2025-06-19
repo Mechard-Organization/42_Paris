@@ -3,8 +3,6 @@
 pwd=$(pwd)
 
 if [ "$1" = "-g" ] || [ ! "$1" ]; then
-	if [ -f "/home/mechard/Downloads/42_paris/push.res" ]; then
-		rm -rf "/home/mechard/Downloads/42_paris/push.res"
 	if [ "$(pwd | grep "42_paris")" ] && [ ! "$(pwd | grep "Cursus_2023")" ]; then
 		echo "Push de 42_Paris et ces sous-dossiers en cours !"
 
@@ -12,8 +10,9 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris
-		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
+		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
+			git push > /dev/null 2>&1
 			echo "\033[32m42_Paris pusher !\033[0m"
 		else
 			echo "\033[31mAn error as occured !\033[0m"
@@ -26,6 +25,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
+			git push > /dev/null 2>&1
 			echo "\033[32mCursus_2023 pusher !\033[0m"
 		else
 			echo "\033[31mAn error as occured !\033[0m"
@@ -38,6 +38,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
+			git push > /dev/null 2>&1
 			echo "\033[32mOther pusher !\033[0m"
 		else
 			echo "\033[31mAn error as occured !\033[0m"
