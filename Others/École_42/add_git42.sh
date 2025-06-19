@@ -10,7 +10,6 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris
-		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "1" ]; then
 			git push > /dev/null 2>&1
@@ -32,7 +31,6 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
-		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "1" ]; then
 			git push > /dev/null 2>&1
@@ -54,7 +52,6 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/Others
-		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "1" ]; then
 			git push > /dev/null 2>&1
