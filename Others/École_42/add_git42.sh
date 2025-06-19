@@ -32,7 +32,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		# Push de Others
 		
 		echo "--------------------------------------------------------------------------------------------------------"
-		cd ~/Downloads/42_paris/42_Paris_2023/Others
+		cd ~/Downloads/42_paris/Others
 		pwd
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
