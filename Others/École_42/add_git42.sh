@@ -19,7 +19,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 			else
 				echo "\033[31mAn error as occured !\033[0m"
 			fi
-		elif [ "$?" = "0" ]; then
+		else
 			git push > /dev/null 2>&1
 			if [ "$?" = "0" ]; then
 				echo "\033[33mCursus_2023 was pushed !\033[0m"
@@ -41,7 +41,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 			else
 				echo "\033[31mAn error as occured !\033[0m"
 			fi
-		elif [ "$?" = "0" ]; then
+		else
 			git push > /dev/null 2>&1
 			if [ "$?" = "0" ]; then
 				echo "\033[33mCursus_2023 was pushed !\033[0m"
@@ -63,7 +63,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 			else
 				echo "\033[31mAn error as occured !\033[0m"
 			fi
-		elif [ "$?" = "0" ]; then
+		else
 			git push > /dev/null 2>&1
 			if [ "$?" = "0" ]; then
 				echo "\033[33mCursus_2023 was pushed !\033[0m"
