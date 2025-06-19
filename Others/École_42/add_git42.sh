@@ -4,9 +4,8 @@ pwd=$(pwd)
 
 if [ "$1" = "-g" ] || [ ! "$1" ]; then
 	echo "-g"
-	echo "Push en cours !"
 	if [ "$(pwd | grep "42_paris")" ] && [ ! "$(pwd | grep "Cursus_2023")" ]; then
-		echo "42_paris"
+		echo "Push de 42_Paris et ces sous-dossiers en cours !"
 
 		# Push de 42_paris
 		
@@ -36,11 +35,27 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		echo "\033[1A\033[2KOther pusher !"
 
 		cd $pwd
+
 	elif [ "$(pwd | grep "42_paris")" ] && [ "$(pwd | grep "Cursus_2023")" ]; then
-		echo "Cursus_2023"
+		echo "Push de Cursus_2023 !"
+
+		# Push de Cursus_2023
+
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
-		# git add -A && git commit -m "$(date) - $(pwd) update" && git push
+		git add -A && git commit -m "$(date) - $(pwd) update" && git push
 		cd $pwd
+
+	elif [ "$(pwd | grep "42_paris")" ] && [ "$(pwd | grep "Others")" ]; then
+		echo "Push de Others !"
+
+		# Push de Cursus_2023
+
+		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
+		git add -A && git commit -m "$(date) - $(pwd) update" && git push
+		cd $pwd
+		
+	else
+		echo "This command can only be used in 42_Paris and 42_Paris's repositories"
 	fi
 elif [ "$1" = "-p" ]; then
 	echo "-p"
