@@ -9,6 +9,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 
 		# Push de 42_paris
 		
+		echo "--------------------------------------------------------------------------------------------------------"
 		echo "Push de 42_Paris en cours."
 		cd ~/Downloads/42_paris
 		echo "\033[1A\033[2KPush de 42_Paris en cours.."
@@ -18,6 +19,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 
 		# Push de Cursus_2023
 		
+		echo "--------------------------------------------------------------------------------------------------------"
 		echo "Push de Cursus_2023 en cours."
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
 		echo "\033[1A\033[2KPush de Cursus_2023 en cours.."
@@ -27,12 +29,14 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 
 		# Push de Others
 		
+		echo "--------------------------------------------------------------------------------------------------------"
 		echo "Push de Others en cours."
 		cd ~/Downloads/42_paris/42_Paris_2023/Others
 		echo "\033[1A\033[2KPush de Others en cours.."
 		git add -A && git commit -m "$(date) - $(pwd) update" && git push
 		echo "\033[1A\033[2KPush de Others en cours..."
 		echo "\033[1A\033[2KOther pusher !"
+		echo "--------------------------------------------------------------------------------------------------------"
 
 		cd $pwd
 
@@ -53,7 +57,7 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
 		git add -A && git commit -m "$(date) - $(pwd) update" && git push
 		cd $pwd
-		
+
 	else
 		echo "This command can only be used in 42_Paris and 42_Paris's repositories"
 	fi
