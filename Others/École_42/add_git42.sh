@@ -11,22 +11,33 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
-		echo "42_Paris pusher !"
+		if [ "$?" = "0" ]; then
+			echo "\033[32m42_Paris pusher !"
+		else
+			echo "\033[31mAn error as occured !"
+		fi
 
 		# Push de Cursus_2023
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
-		echo "Cursus_2023 pusher !"
+		if [ "$?" = "0" ]; then
+			echo "\033[32mCursus_2023 pusher !"
+		else
+			echo "\033[31mAn error as occured !"
+		fi
 
 		# Push de Others
 		
 		echo "--------------------------------------------------------------------------------------------------------"
 		cd ~/Downloads/42_paris/42_Paris_2023/Others
 		git add -A > /dev/null 2>&1 && git commit -m "$(date) - $(pwd) update" > /dev/null 2>&1 && git push > /dev/null 2>&1
-		if [ "$?" = "" ]
-		echo "Other pusher !"
+		if [ "$?" = "0" ]; then
+			echo "\033[32mOther pusher !"
+		else
+			echo "\033[31mAn error as occured !"
+		fi
 		echo "--------------------------------------------------------------------------------------------------------"
 
 		cd $pwd
