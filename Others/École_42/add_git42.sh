@@ -9,31 +9,31 @@ if [ "$1" = "-g" ] || [ ! "$1" ]; then
 		# Push de 42_paris
 		
 		echo "--------------------------------------------------------------------------------------------------------"
-		echo -n "Push de 42_Paris en cours."
+		echo -en "Push de 42_Paris en cours."
 		cd ~/Downloads/42_paris
-		echo -n "\033[1A\033[2KPush de 42_Paris en cours.."
+		echo -en "\033[1A\033[2KPush de 42_Paris en cours.."
 		git add -A && git commit -m "$(date) - $(pwd) update" && git push
-		echo -n "\033[1A\033[2KPush de 42_Paris en cours..."
+		echo -en "\033[1A\033[2KPush de 42_Paris en cours..."
 		echo "\033[1A\033[2K42_Paris pusher !"
 
 		# Push de Cursus_2023
 		
 		echo "--------------------------------------------------------------------------------------------------------"
-		echo -n "Push de Cursus_2023 en cours."
+		echo -en "Push de Cursus_2023 en cours."
 		cd ~/Downloads/42_paris/42_Paris_2023/Cursus_2023
-		echo -n "\033[1A\033[2KPush de Cursus_2023 en cours.."
+		echo -en "\033[1A\033[2KPush de Cursus_2023 en cours.."
 		git add -A && git commit -m "$(date) - $(pwd) update" && git push
-		echo -n "\033[1A\033[2KPush de Cursus_2023 en cours..."
+		echo -en "\033[1A\033[2KPush de Cursus_2023 en cours..."
 		echo "\033[1A\033[2KCursus_2023 pusher !"
 
 		# Push de Others
 		
 		echo "--------------------------------------------------------------------------------------------------------"
-		echo -n "Push de Others en cours."
+		echo -en "Push de Others en cours."
 		cd ~/Downloads/42_paris/42_Paris_2023/Others
-		echo -n "\033[1A\033[2KPush de Others en cours.."
+		echo -en "\033[1A\033[2KPush de Others en cours.."
 		git add -A && git commit -m "$(date) - $(pwd) update" && git push
-		echo -n "\033[1A\033[2KPush de Others en cours..."
+		echo -en "\033[1A\033[2KPush de Others en cours..."
 		echo "\033[1A\033[2KOther pusher !"
 		echo "--------------------------------------------------------------------------------------------------------"
 
