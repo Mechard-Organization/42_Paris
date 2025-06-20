@@ -1,6 +1,0 @@
-[submodule "Others"]
-	path = Others
-	url = git@github.com:M2000-fr/Others.git
-[submodule "42_Paris_2023/Cursus_2023"]
-	path = 42_Paris_2023/Cursus_2023
-	url = git@github.com:M2000-fr/Cursus_2023.git
