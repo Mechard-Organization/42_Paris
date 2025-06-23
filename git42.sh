@@ -1,0 +1,1 @@
+/home/mechard/.git42.sh
