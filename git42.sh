@@ -65,7 +65,6 @@ gpush() {
 		# Sauvegarde de l'emplacement utilisateur
 		LAST_PWD=$(pwd)
 
-		echo "CD = $CURRENT_DIR" | rev | cut -d'/' -f1 | rev
 		if [ "$CURRENT_DIR_NAME" = "Cursus_2023" ] || [ "$CURRENT_DIR_NAME" = "Others" ]; then
 			if [ "$CURRENT_DIR_NAME" = "Cursus_2023" ]; then
 				cd ..
@@ -124,6 +123,7 @@ disp() {
 # Remplacement de la commande GIT générale
 
 gbegin
+echo "CD = $CURRENT_DIR" | rev | cut -d'/' -f1 | rev
 if [ "$1" = "clone" ]; then
 	gclone $@ $CURRENT_DIR_NAME
 elif [ "$1" = "push" ]; then
