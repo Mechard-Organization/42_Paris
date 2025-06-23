@@ -21,6 +21,9 @@ case "$URL" in
   *)
     ;;
 esac
+if [ $3 ]; then
+	REPO_NAME=$3
+fi
 
 # 🔍 Recherche du dossier 42_Paris (vrai repo Git racine)
 CURRENT_DIR="$INITIAL_DIR"
@@ -53,6 +56,7 @@ gbegin () {
 gclone() {
 	if [ "$0" = "/home/mechard/.local/bin/git42" ] && [ "$1" ] && [ "$2" != "--recurse-submodules" ] && [ "$REPO_NAME" = "42_Paris" ]; then
 		git $1 --recurse-submodules $2 $3
+		cd $CURRENT_DIR
 	else
 		disp $@
 	fi
@@ -64,37 +68,33 @@ gpush() {
 		
 		# Sauvegarde de l'emplacement utilisateur
 		LAST_PWD=$(pwd)
+		CURRENT_DIR=$(echo "$CURRENT_DIR" | sed -E 's|(.*?/42_Paris)(/.*)?|\1|')
 
-		if [ "$CURRENT_DIR_NAME" = "Cursus_2023" ] || [ "$CURRENT_DIR_NAME" = "Others" ]; then
-			if [ "$CURRENT_DIR_NAME" = "Cursus_2023" ]; then
-				cd ..
-			fi
-			cd ..
-		fi
-
-		echo "---------------Push de 42_Paris---------------"
+		echo "---------------Push de 42_Paris---------------\n"
+		echo "▶️ Push du folder \"42_Paris\""
+		cd $CURRENT_DIR
 		# Push du repo Others
-		cd Others
-		echo "Push du submodule \"Others\""
-		git add -A
-		git commit -m "$(pwd) - update of $(date) by $(whoami)"
-		git push origin main_perso
+		cd $CURRENT_DIR/Others
+		echo "    ⏩ Push du submodule \"Others\""
+		git add -A > /dev/null 2>&1 
+		git commit -m "$(pwd) - update of $(date) by $(whoami)" > /dev/null 2>&1
+		git push origin main_perso > /dev/null 2>&1
 		echo
 
 		# Push du repo Cursus_2023
-		cd ../42_Paris_2023/Cursus_2023
-		echo "Push du submodule \"Cursus_2023\""
-		git add -A
-		git commit -m "$(pwd) - update of $(date) by $(whoami)"
-		git push origin main_cursus_2023
+		cd $CURRENT_DIR/42_Paris_2023/Cursus_2023
+		echo "    ⏩ Push du submodule \"Cursus_2023\""
+		git add -A > /dev/null 2>&1
+		git commit -m "$(pwd) - update of $(date) by $(whoami)" > /dev/null 2>&1
+		git push origin main_cursus_2023 > /dev/null 2>&1
 		echo
 
 		# Push du repo principal
-		cd ..
-		echo "Push du folder \"42_Paris\""
-		git add -A
-		git commit -m "$(pwd) - update of $(date) by $(whoami)"
-		git push
+		cd $CURRENT_DIR
+		git add -A > /dev/null 2>&1
+		git commit -m "$(pwd) - update of $(date) by $(whoami)" > /dev/null 2>&1
+		git push > /dev/null 2>&1
+		echo "Push du folder 42 Paris ✅"
 		echo
 
 		# Retour de l'utilisateur à sa place
@@ -123,7 +123,6 @@ disp() {
 # Remplacement de la commande GIT générale
 
 gbegin
-echo "CD = $CURRENT_DIR" | rev | cut -d'/' -f1 | rev
 if [ "$1" = "clone" ]; then
 	gclone $@ $CURRENT_DIR_NAME
 elif [ "$1" = "push" ]; then
