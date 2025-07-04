@@ -4,3 +4,6 @@
 [submodule "42_Paris_2023/Cursus_2023"]
 	path = 42_Paris_2023/Cursus_2023
 	url = git@github.com:M2000-fr/Cursus_2023.git
+[submodule "Projects/In_progress/Cpp/cpp_05"]
+	path = Projects/In_progress/Cpp/cpp_05
+	url = git@vogsphere.42paris.fr:vogsphere/intra-uuid-9337bd21-0fae-4b3d-b6f8-b8efc328e08d-6659286-mechard
