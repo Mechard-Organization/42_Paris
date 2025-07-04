@@ -1,4 +1,5 @@
-/home/mechard/Downloads/42_Paris/42_Paris_2023/Cursus_2023/Projects/In_progress/*/.git
-/home/mechard/Downloads/42_paris/42_Paris_2023/Cursus_2023/.git
-/home/mechard/Downloads/42_paris/Others/.git
-42_Paris/42_Paris_2023/*/.git
+42_Paris_2023/Cursus_2023/Projects/*.git
+42_Paris_2023/Cursus_2023/Projects/*/*.git
+42_Paris_2023/Cursus_2023/Projects/*/*/*.git
+42_Paris_2023/Cursus_2023/Projects/In_progress/*/.git
+42_Paris_2023/Cursus_2023/Projects/In_progress/Cpp/*/.git
