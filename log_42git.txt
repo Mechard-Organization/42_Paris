@@ -107120,3 +107120,12 @@ t push" in the folder 42_Paris finished ! <<[0m
 + git42:115 > echo 't push" in the folder 42_Paris finished ! <<[0m'
 command "git push" in the folder 42_Paris <<[0m
 [0;33mMon Jul  7 03:02:50 PM CEST 2025[0m by [0;33mmechard[0m 
+                                            
+t push" in the folder 42_Paris finished ! <<[0m
+                                            
+t push" in the folder 42_Paris finished ! <<[0m
+                                            
+t push" in the folder 42_Paris finished ! <<[0m
+command "git push" in the folder 42_Paris <<[0m
+[0;33mMon Jul  7 03:02:56 PM CEST 2025[0m by [0;33mmechard[0m 
+
