@@ -1,8 +1,8 @@
 command "git push" in the folder 42_Paris <<[0m
-[0;33mMon Jul  7 02:57:04 PM CEST 2025[0m by [0;33mmechard[0m 
-+ git42:360 > '[' push = clone ']'
-+ git42:365 > '[' push = push ']'
-+ git42:366 > gbegin
+[0;33mMon Jul  7 03:00:11 PM CEST 2025[0m by [0;33mmechard[0m 
++ git42:362 > '[' push = clone ']'
++ git42:367 > '[' push = push ']'
++ git42:368 > gbegin
 + git42:175 > '[' '' ']'
 + git42:181 > '[' 42_Paris '!=' . ']'
 + git42:182 > print_centered_title '[0;36m[1m42_Paris[0m' =
@@ -88,8 +88,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:112 > head -c 18
 ++ git42:112 > tr '\0' =
 + git42:112 > left_fill===================
-++ git42:113 > tr '\0' =
 ++ git42:113 > head -c 18
+++ git42:113 > tr '\0' =
 + git42:113 > right_fill===================
 + git42:115 > echo '==================[0;36m[1m42_Paris[0m=================='
 ==================[0;36m[1m42_Paris[0m==================
@@ -562,7 +562,7 @@ command "git push" in the folder 42_Paris <<[0m
 3
 + git42:165 > printf '\033[1A\033[2K|%s%s|\n' ' ' '                                         '
 [1A[2K|                                          |
-+ git42:366 > gbegin
++ git42:368 > gbegin
 + git42:175 > '[' '' ']'
 + git42:181 > '[' 42_Paris '!=' . ']'
 + git42:182 > print_centered_title '[0;36m[1m42_Paris[0m' =
@@ -576,8 +576,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:61 > local 'input=[0;36m[1m42_Paris[0m'
 ++ git42:62 > local stripped length=0 char w i
 ++ git42:63 > local esc_cleaned
-+++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 +++ git42:66 > echo '[0;36m[1m42_Paris[0m'
++++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 ++ git42:66 > esc_cleaned=42_Paris
 ++ git42:69 > i=0
 ++ git42:70 > IFS=
@@ -1122,7 +1122,7 @@ command "git push" in the folder 42_Paris <<[0m
 6
 + git42:165 > printf '\033[1A\033[2K|%s%s|\n' ' ' '                                         '
 [1A[2K|                                          |
-+ git42:367 > gpush push 42_Paris
++ git42:369 > gpush push 42_Paris
 + git42:222 > loop=0
 + git42:223 > REPLACE=1
 + git42:224 > cd /home/mechard/Downloads/42_Paris
@@ -2072,7 +2072,7 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:240 > pwd
 ++ git42:240 > date
 ++ git42:240 > whoami
-+ git42:240 > git commit -m '/home/mechard/Downloads/42_Paris/Others - update of Mon Jul  7 02:57:04 PM CEST 2025 by mechard'
++ git42:240 > git commit -m '/home/mechard/Downloads/42_Paris/Others - update of Mon Jul  7 03:00:11 PM CEST 2025 by mechard'
 + git42:241 > git push origin main_sub
 + git42:243 > print_centered '    [0;32mFolder [1m"Others"[0m[0;32m pushed ✅[0m' ' '
 + git42:121 > local 'raw_text=    [0;32mFolder [1m"Others"[0m[0;32m pushed ✅[0m'
@@ -2297,8 +2297,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:61 > local 'input=    [0;32mFolder [1m"Others"[0m[0;32m pushed ✅[0m'
 ++ git42:62 > local stripped length=0 char w i
 ++ git42:63 > local esc_cleaned
-+++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 +++ git42:66 > echo '    [0;32mFolder [1m"Others"[0m[0;32m pushed ✅[0m'
++++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 ++ git42:66 > esc_cleaned='    Folder "Others" pushed ✅'
 ++ git42:69 > i=0
 ++ git42:70 > IFS=
@@ -4446,8 +4446,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:61 > local 'input=    🔁 [0;33mPushing submodule [1m"...aris_2023/Cursus_2023"[0m'
 ++ git42:62 > local stripped length=0 char w i
 ++ git42:63 > local esc_cleaned
-+++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 +++ git42:66 > echo '    🔁 [0;33mPushing submodule [1m"...aris_2023/Cursus_2023"[0m'
++++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 ++ git42:66 > esc_cleaned='    🔁 Pushing submodule "...aris_2023/Cursus_2023"'
 ++ git42:69 > i=0
 ++ git42:70 > IFS=
@@ -8112,7 +8112,7 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:240 > pwd
 ++ git42:240 > date
 ++ git42:240 > whoami
-+ git42:240 > git commit -m '/home/mechard/Downloads/42_Paris/42_Paris_2023/Cursus_2023 - update of Mon Jul  7 02:57:06 PM CEST 2025 by mechard'
++ git42:240 > git commit -m '/home/mechard/Downloads/42_Paris/42_Paris_2023/Cursus_2023 - update of Mon Jul  7 03:00:12 PM CEST 2025 by mechard'
 + git42:241 > git push origin main_sub
 + git42:243 > print_centered '    [0;32mFolder [1m"42_Paris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m' ' '
 + git42:121 > local 'raw_text=    [0;32mFolder [1m"42_Paris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
@@ -8477,8 +8477,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:61 > local 'input=    [0;32mFolder [1m"...42_Paris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
 ++ git42:62 > local stripped length=0 char w i
 ++ git42:63 > local esc_cleaned
-+++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 +++ git42:66 > echo '    [0;32mFolder [1m"...42_Paris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
++++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 ++ git42:66 > esc_cleaned='    Folder "...42_Paris_2023/Cursus_2023" pushed ✅'
 ++ git42:69 > i=0
 ++ git42:70 > IFS=
@@ -9903,8 +9903,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:61 > local 'input=    [0;32mFolder [1m"...aris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
 ++ git42:62 > local stripped length=0 char w i
 ++ git42:63 > local esc_cleaned
-+++ git42:66 > echo '    [0;32mFolder [1m"...aris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
 +++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
++++ git42:66 > echo '    [0;32mFolder [1m"...aris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
 ++ git42:66 > esc_cleaned='    Folder "...aris_2023/Cursus_2023" pushed ✅'
 ++ git42:69 > i=0
 ++ git42:70 > IFS=
@@ -10242,8 +10242,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:61 > local 'input=    [0;32mFolder [1m"...ris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
 ++ git42:62 > local stripped length=0 char w i
 ++ git42:63 > local esc_cleaned
-+++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 +++ git42:66 > echo '    [0;32mFolder [1m"...ris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
++++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 ++ git42:66 > esc_cleaned='    Folder "...ris_2023/Cursus_2023" pushed ✅'
 ++ git42:69 > i=0
 ++ git42:70 > IFS=
@@ -11217,8 +11217,8 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:61 > local 'input=    [0;32mFolder [1m"..._2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
 ++ git42:62 > local stripped length=0 char w i
 ++ git42:63 > local esc_cleaned
-+++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 +++ git42:66 > echo '    [0;32mFolder [1m"..._2023/Cursus_2023"[0m[0;32m pushed ✅[0m'
++++ git42:66 > sed -E 's/\x1B\[[0-9;]*[a-zA-Z]//g'
 ++ git42:66 > esc_cleaned='    Folder "..._2023/Cursus_2023" pushed ✅'
 ++ git42:69 > i=0
 ++ git42:70 > IFS=
@@ -20294,7 +20294,7 @@ command "git push" in the folder 42_Paris <<[0m
 ++ git42:240 > pwd
 ++ git42:240 > date
 ++ git42:240 > whoami
-+ git42:240 > git commit -m '/home/mechard/Downloads/42_Paris/Projects/In_progress/Cpp/cpp_05 - update of Mon Jul  7 02:57:07 PM CEST 2025 by mechard'
++ git42:240 > git commit -m '/home/mechard/Downloads/42_Paris/Projects/In_progress/Cpp/cpp_05 - update of Mon Jul  7 03:00:13 PM CEST 2025 by mechard'
 + git42:241 > git push origin main_sub
 + git42:243 > print_centered '    [0;32mFolder [1m"Projects/In_progress/Cpp/cpp_05"[0m[0;32m pushed ✅[0m' ' '
 + git42:121 > local 'raw_text=    [0;32mFolder [1m"Projects/In_progress/Cpp/cpp_05"[0m[0;32m pushed ✅[0m'
