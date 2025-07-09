@@ -9,20 +9,3 @@
 |    [0;32mFolder [1m"42_Paris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m                                                      |
 |    🔁 [0;33mPushing submodule [1m"Projects/In_progress/Cpp/cpp_05"[0m                                            |
 |    [0;32mFolder [1m"Projects/In_progress/Cpp/cpp_05"[0m[0;32m pushed ✅[0m                                                |
-|[0;32mMain folder [1m42_Paris_2 [0m[0;32mpushed ✅[0m                                                                      |
-|                                                                                                      |
-========================================================================================================
-|log_42git.log-----------------------------------------------------------------------------------------|
-                                                                                                        
-----------------------[0;31m>> Command "git push" in the folder 42_Paris_2 finished ! <<[0m----------------------
-===============================================[0;36m[1m42_Paris_2[0m===============================================
-|                                                                                                      |
-|📁 [0;34mFolder ➡️  [0;34m[1m[4m42_Paris_2[0m                                                                               |
-|                                                                                                      |
-|🔄 [0;33mPushing folder [1m"42_Paris_2"[0m                                                                        |
-|    🔁 [0;33mPushing submodule [1m"Others"[0m                                                                     |
-|    [0;32mFolder [1m"Others"[0m[0;32m pushed ✅[0m                                                                         |
-|    🔁 [0;33mPushing submodule [1m"42_Paris_2023/Cursus_2023"[0m                                                  |
-|    [0;32mFolder [1m"42_Paris_2023/Cursus_2023"[0m[0;32m pushed ✅[0m                                                      |
-|    🔁 [0;33mPushing submodule [1m"Projects/In_progress/Cpp/cpp_05"[0m                                            |
-|    [0;32mFolder [1m"Projects/In_progress/Cpp/cpp_05"[0m[0;32m pushed ✅[0m                                                |
