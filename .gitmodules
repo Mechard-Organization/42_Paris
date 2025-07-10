@@ -4,9 +4,3 @@
 [submodule "42_Paris_2023/Cursus_2023"]
 	path = 42_Paris_2023/Cursus_2023
 	url = git@github.com:M2000-fr/Cursus_2023.git
-[submodule "42_Paris_2023/Cursus_2023/Projects/In_progress/IRC"]
-	path = 42_Paris_2023/Cursus_2023/Projects/In_progress/IRC
-	url = git@github.com:M2000-fr/IRC.git
-[submodule "/home/mechard/Downloads/42_Paris/42_Paris_2023/IRC"]
-	path = /home/mechard/Downloads/42_Paris/42_Paris_2023/IRC
-	url = git@github.com:M2000-fr/IRC.git
