@@ -10,6 +10,3 @@
 [submodule "/home/mechard/Downloads/42_Paris/42_Paris_2023/IRC"]
 	path = /home/mechard/Downloads/42_Paris/42_Paris_2023/IRC
 	url = git@github.com:M2000-fr/IRC.git
-[submodule "42_Paris_2023/IRC"]
-	path = 42_Paris_2023/IRC
-	url = git@github.com:M2000-fr/IRC.git
