@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/mechard/Downloads/42_Paris/42_Paris_2023/Cursus_2023/Projects/In_progress/IRC/inc/**",
+                "${workspaceFolder}/42_Paris_2023/Cursus_2023/Projects/In_progress/IRC/*/**",
+                "${workspaceFolder}/42_Paris_2023/Cursus_2023/Projects/In_progress/IRC/inc/user"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64"
+        }
+    ],
+    "version": 4
+}
