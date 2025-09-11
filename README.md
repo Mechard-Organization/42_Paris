@@ -56,7 +56,7 @@ This section showcases creativity, independence, and the extension of official t
 <details>
   <summary align="center"><strong>Choose a folder</strong></summary>
 
-  - [42_Paris_2017](https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8)  
+  <div align="center">[42_Paris_2017](https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8)</div>
 
   - [42_Paris_2023](https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023)  
 
