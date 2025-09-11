@@ -3,7 +3,7 @@
 Folder for all Cursus at 42
 
 <details>
-  <summary>Choisir un cursus</summary>
+  <summary align="center"><strong>Choisir un cursus</strong></summary>
 
   - [42_Paris_2017](https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8)  
     Folders for Cursus 2017 and the Pool 2017 at 42.
