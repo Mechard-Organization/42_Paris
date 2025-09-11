@@ -58,11 +58,15 @@ This section showcases creativity, independence, and the extension of official t
 
   <div align="center">
 
+---
+
 [42_Paris_2017](https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8)  
 
 [42_Paris_2023](https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023)    
 
 [Others](https://github.com/M1000-93/42_Paris/tree/master/Others)  
+
+---
 
 </div> 
 </details>
