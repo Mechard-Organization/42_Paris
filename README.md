@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".img/42Paris_title_banner.png" width="1000" alt="42_Paris">
+  <img src=".img/42_Paris_title_banner.png" width="1000" alt="42_Paris">
 </p>
 
 ---
