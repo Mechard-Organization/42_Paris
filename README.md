@@ -53,8 +53,10 @@ This section showcases creativity, independence, and the extension of official t
 
 ---
 
+<div style="background-color:white; border:1px solid #ccc; padding:10px; border-radius:8px;">
+
 <details>
-  <summary align="center"><strong>Choose a folder</strong></summary>
+  <summary align="center"><strong>Choisir un cursus</strong></summary>
 
   - [42_Paris_2017](https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8)  
     Folders for Cursus 2017 and the Pool 2017 at 42.
@@ -65,3 +67,5 @@ This section showcases creativity, independence, and the extension of official t
   - [Others](https://github.com/M1000-93/42_Paris/tree/master/Others)  
     Folders for all personal projects at 42.
 </details>
+
+</div>
