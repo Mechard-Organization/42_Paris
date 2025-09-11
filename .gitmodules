@@ -12,3 +12,6 @@
 [submodule "42_Paris_2023/Associations_2023"]
 	path = 42_Paris_2023/Associations_2023
 	url = git@github.com:M2000-fr/Associations.git
+[submodule "42_Paris_2017"]
+	path = 42_Paris_2017
+	url = git@github.com:M2000-fr/42_Paris_2017.git
