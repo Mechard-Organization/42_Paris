@@ -4,12 +4,12 @@
 
 ---
 
-<div align="center">
 
 <p align="center">
   <img src=".assets/images/mechard_42.jpg" width="400" alt="42_Paris">
 </p>
 
+<div align="center">
 Maxime ECHARD
 
 <br>
