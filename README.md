@@ -4,6 +4,23 @@
 
 ---
 
+## My Skill Levels (Cursus 2023 + Personal Projects)
+
+| Language / Tech | Level |
+|-----------------|-------|
+| **C**           | ⭐⭐⭐⭐☆ (4/5) |
+| **C++**         | ⭐⭐⭐☆☆ (3/5) |
+| **Shell (Bash/Zsh)** | ⭐⭐⭐☆☆ (3/5) |
+| **Dockerfile**  | ⭐⭐⭐☆☆ (3/5) |
+| **YAML**        | ⭐⭐☆☆☆ (2/5) |
+| **JavaScript**  | ⭐⭐☆☆☆ (2/5) |
+| **HTML**        | ⭐⭐⭐☆☆ (3/5) |
+| **CSS**         | ⭐⭐☆☆☆ (2/5) |
+| **SQL**         | ⭐⭐☆☆☆ (2/5) |
+| **Markdown**    | ⭐⭐⭐⭐☆ (4/5) |
+
+---
+
 The **42_Paris** repository is a central hub that gathers multiple cursus and personal projects developed at the **42 Paris School of Programming**. It is organized into three main sections:  
 <p align="center">
   <a href="https://github.com/M2000-fr/42_Paris_2017/tree/main_sub"><img src=".assets/images/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200"></a>&nbsp;&nbsp;<a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023"><img src=".assets/images/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200"></a>&nbsp;&nbsp;<a href="https://github.com/M2000-fr/Others/tree/main_sub"><img src=".assets/images/Others_title_banner.png" alt="Others" width="200"></a>
