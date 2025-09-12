@@ -62,7 +62,7 @@ This section showcases creativity, independence, and the extension of official t
 
   <br>
   <a href="https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8">
-    <img src=".img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
+    <img src="42_Paris_2017/.img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
   </a>
   <br><br>
   
