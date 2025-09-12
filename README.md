@@ -5,7 +5,9 @@
 ---
 
 ## My Skill Levels (Cursus 2023 + Personal Projects)
-<p align="center">
+
+<div align="center">
+
 | Language / Tech | Level |
 |-----------------|-------|
 | **C**           | ⭐⭐⭐⭐☆ (4/5) |
@@ -18,7 +20,8 @@
 | **CSS**         | ⭐⭐☆☆☆ (2/5) |
 | **SQL**         | ⭐⭐☆☆☆ (2/5) |
 | **Markdown**    | ⭐⭐⭐⭐☆ (4/5) |
-</p>
+
+</div>
 
 ---
 
