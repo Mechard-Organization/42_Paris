@@ -5,7 +5,7 @@
 </div>
 
 ```zsh
-.
+42_Paris_2023
 ├── Associations_2023
 │   ├── BDE
 │   │   └── planning_BDE.txt
