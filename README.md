@@ -29,7 +29,7 @@ This structure allows a clear separation between different cursus generations an
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/tree_42_2017">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/42_Paris_2017">
     <img src=".assets/images/White_tree.png" alt="tree" width="50">
   </a>
 </p>
