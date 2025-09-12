@@ -47,7 +47,7 @@ This section is particularly useful for tracing the origins of the 42 training a
 </p>
 <p align="center">
   <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.img">
-    <img src=".img/White_tree.png" alt="42_Paris_2023" width="50">
+    <img src=".img/White_tree.png" alt="tree" width="50">
   </a>
 </p>
 
