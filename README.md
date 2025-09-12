@@ -8,7 +8,6 @@
 
 Maxime ECHARD
 
-<br>
 | Language / Tech | Level |
 |-----------------|-------|
 | **C**           | ⭐⭐⭐⭐☆ (4/5) |
