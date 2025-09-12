@@ -28,6 +28,11 @@ This structure allows a clear separation between different cursus generations an
     <img src=".assets/images/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
   </a>
 </p>
+<p align="center">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/text/tree_42_2017.yml">
+    <img src=".assets/images/White_tree.png" alt="tree" width="50">
+  </a>
+</p>
 
 This folder contains the projects and materials from the **2017 cursus and Piscine** at 42. It includes foundational programming assignments, beginner exercises, and early-stage projects. The structure highlights the initial coding journey of a 42 student, from basic C projects to more advanced exercises, gradually building programming expertise.
 
@@ -66,6 +71,11 @@ This section provides insight into the current state of the 42 cursus and highli
 <p align="center">
   <a href="https://github.com/M2000-fr/Others/tree/main_sub">
     <img src=".assets/images/Others_title_banner.png" alt="Others" width="200">
+  </a>
+</p>
+<p align="center">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/text/Others.yml">
+    <img src=".assets/images/White_tree.png" alt="tree" width="50">
   </a>
 </p>
 
