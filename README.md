@@ -45,6 +45,11 @@ This section is particularly useful for tracing the origins of the 42 training a
     <img src=".img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
   </a>
 </p>
+<p align="center">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.img">
+    <img src=".img/White_tree.png" alt="42_Paris_2023" width="50">
+  </a>
+</p>
 
 This folder covers the **2023 cursus and Piscine** at 42. It represents a more modern and updated set of projects, aligned with the latest 42 curriculum. Compared to 2017, this section contains more refined, larger-scale projects and reflects current standards in programming and system design.
 
