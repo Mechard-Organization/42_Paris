@@ -4,14 +4,18 @@
 
 ---
 
-<p align="center">
-  <img src=".assets/images/mechard_42.jpg" width="400" alt="42_Paris">
-</p>
-
 <div align="center">
 
-Maxime ECHARD
+<table>
+  <tr>
+    <!-- Colonne photo -->
+    <td>
+      <img src=".assets/images/mechard_42.jpg" alt="Maxime ECHARD" width="250">
+    </td>
 
+    <!-- Colonne tableau -->
+    <td>
+      
 | Language / Tech | Level |
 |-----------------|-------|
 | **C**           | ⭐⭐⭐⭐☆ (4/5) |
@@ -24,6 +28,10 @@ Maxime ECHARD
 | **CSS**         | ⭐⭐☆☆☆ (2/5) |
 | **SQL**         | ⭐⭐☆☆☆ (2/5) |
 | **Markdown**    | ⭐⭐⭐⭐☆ (4/5) |
+
+    </td>
+  </tr>
+</table>
 
 </div>
 
