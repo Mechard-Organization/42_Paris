@@ -7,7 +7,7 @@
 <div align="center">
 
 <p align="center">
-  <img src=".assets/images/mechard_42.jpg" width="1000" alt="42_Paris">
+  <img src=".assets/images/mechard_42.jpg" width="400" alt="42_Paris">
 </p>
 
 Maxime ECHARD
