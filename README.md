@@ -6,7 +6,7 @@
 
 The **42_Paris** repository is a central hub that gathers multiple cursus and personal projects developed at the **42 Paris School of Programming**. It is organized into three main sections:  
 <p align="center">
-  <a href="https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8">
+  <a href="https://github.com/M2000-fr/42_Paris_2017/tree/main_sub">
     <img src=".img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
   </a>
   &nbsp;&nbsp;&nbsp;
@@ -14,7 +14,7 @@ The **42_Paris** repository is a central hub that gathers multiple cursus and pe
     <img src=".img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
   </a>
   &nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/M2000-fr/Others/tree/a08ba21eeea8d4af0bcfb3d5be3fd695cd5412f83">
+  <a href="https://github.com/M2000-fr/Others/tree/main_sub">
     <img src=".img/Others_title_banner.png" alt="Others" width="200">
   </a>
 </p>
