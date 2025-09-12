@@ -64,6 +64,8 @@ This section showcases creativity, independence, and the extension of official t
   <img src="42_Paris_2017/.img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
 </a>
 
+
+
 <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023">
   <img src="42_Paris_2023/.img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
 </a>
