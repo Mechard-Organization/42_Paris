@@ -6,9 +6,13 @@
 
 <div align="center">
 
+<p align="center">
+  <img src=".assets/images/mechard_42.jpg" width="1000" alt="42_Paris">
+</p>
+
 Maxime ECHARD
 
-<br><br>
+<br>
 | Language / Tech | Level |
 |-----------------|-------|
 | **C**           | ⭐⭐⭐⭐☆ (4/5) |
