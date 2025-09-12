@@ -6,8 +6,9 @@
 
 <div align="center">
 
-## Me
+Maxime ECHARD
 
+<br><br>
 | Language / Tech | Level |
 |-----------------|-------|
 | **C**           | ⭐⭐⭐⭐☆ (4/5) |
