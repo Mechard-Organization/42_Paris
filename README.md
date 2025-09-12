@@ -4,9 +4,9 @@
 
 ---
 
-## My Skill Levels (Cursus 2023 + Personal Projects)
-
 <div align="center">
+
+## Me
 
 | Language / Tech | Level |
 |-----------------|-------|
