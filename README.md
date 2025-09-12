@@ -85,6 +85,7 @@ This section showcases creativity, independence, and the extension of official t
 
   <div align="center">
 
+  <br>
   <p align="center">
     <a href="https://github.com/M2000-fr/42_Paris_2017/tree/main_sub"><img src=".assets/images/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200"></a>&nbsp;&nbsp;<a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023"><img src=".assets/images/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200"></a>&nbsp;&nbsp;<a href="https://github.com/M2000-fr/Others/tree/main_sub"><img src=".assets/images/Others_title_banner.png" alt="Others" width="200"></a>
   </p>
