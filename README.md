@@ -71,7 +71,10 @@ This section showcases creativity, independence, and the extension of official t
   </a>
   <br>
   
-  [Others](https://github.com/M1000-93/42_Paris/tree/master/Others)  
+  [Others](https://github.com/M1000-93/42_Paris/tree/master/Others)
+  <a href="https://github.com/M2000-fr/Others/tree/a08ba21eeea8d4af0bcfb3d5be3fd695cd5412f83">
+    <img src=".img/Others_title_banner.png" alt="Others" width="200">
+  </a>
   
   ---
   
