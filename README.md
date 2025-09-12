@@ -46,7 +46,7 @@ This section is particularly useful for tracing the origins of the 42 training a
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/text/tree.">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/text/tree.txt">
     <img src=".assets/images/White_tree.png" alt="tree" width="50">
   </a>
 </p>
