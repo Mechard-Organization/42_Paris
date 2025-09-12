@@ -62,7 +62,9 @@ This section showcases creativity, independence, and the extension of official t
 
 [42_Paris_2017](https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8)  
 
-[![42_Paris_2023](42_Paris_2023/.img/42_Paris_2023_title_banner.png)](https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023)
+<a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023">
+  <img src="assets/42_Paris_2023.png" alt="42_Paris_2023" width="400">
+</a>
 
 [Others](https://github.com/M1000-93/42_Paris/tree/master/Others)  
 
