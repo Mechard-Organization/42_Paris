@@ -14,3 +14,7 @@
 	path = 42_Paris_2017
 	url = git@github.com:M2000-fr/42_Paris_2017.git
 	branch = main_sub
+[submodule "Others"]
+	path = Others
+	url = git@github.com:Team-mechard/Others.git
+	branch = main_sub
