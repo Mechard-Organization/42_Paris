@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".img/42_Paris_title_banner.png" width="1000" alt="42_Paris">
+  <img src=".assets/images/42_Paris_title_banner.png" width="1000" alt="42_Paris">
 </p>
 
 ---
@@ -7,15 +7,15 @@
 The **42_Paris** repository is a central hub that gathers multiple cursus and personal projects developed at the **42 Paris School of Programming**. It is organized into three main sections:  
 <p align="center">
   <a href="https://github.com/M2000-fr/42_Paris_2017/tree/main_sub">
-    <img src=".img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
+    <img src=".assets/images/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
   </a>
   &nbsp;&nbsp;&nbsp;
   <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023">
-    <img src=".img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
+    <img src=".assets/images/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
   </a>
   &nbsp;&nbsp;&nbsp;
   <a href="https://github.com/M2000-fr/Others/tree/main_sub">
-    <img src=".img/Others_title_banner.png" alt="Others" width="200">
+    <img src=".assets/images/Others_title_banner.png" alt="Others" width="200">
   </a>
 </p>
 
@@ -25,7 +25,7 @@ This structure allows a clear separation between different cursus generations an
 
 <p align="center">
   <a href="https://github.com/M2000-fr/42_Paris_2017/tree/main_sub">
-    <img src=".img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
+    <img src=".assets/images/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
   </a>
 </p>
 
@@ -42,12 +42,12 @@ This section is particularly useful for tracing the origins of the 42 training a
 
 <p align="center">
   <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023">
-    <img src=".img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
+    <img src=".assets/images/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
   </a>
 </p>
 <p align="center">
   <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.img">
-    <img src=".img/White_tree.png" alt="tree" width="50">
+    <img src=".assets/images/White_tree.png" alt="tree" width="50">
   </a>
 </p>
 
@@ -65,7 +65,7 @@ This section provides insight into the current state of the 42 cursus and highli
 
 <p align="center">
   <a href="https://github.com/M2000-fr/Others/tree/main_sub">
-    <img src=".img/Others_title_banner.png" alt="Others" width="200">
+    <img src=".assets/images/Others_title_banner.png" alt="Others" width="200">
   </a>
 </p>
 
@@ -87,15 +87,15 @@ This section showcases creativity, independence, and the extension of official t
 
   <p align="center">
     <a href="https://github.com/M2000-fr/42_Paris_2017/tree/main_sub">
-      <img src=".img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
+      <img src=".assets/images/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
     </a>
     &nbsp;&nbsp;&nbsp;
     <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023">
-      <img src=".img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
+      <img src=".assets/images/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
     </a>
     &nbsp;&nbsp;&nbsp;
     <a href="https://github.com/M2000-fr/Others/tree/main_sub">
-      <img src=".img/Others_title_banner.png" alt="Others" width="200">
+      <img src=".assets/images/Others_title_banner.png" alt="Others" width="200">
     </a>
   </p>
   
