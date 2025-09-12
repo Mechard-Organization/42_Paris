@@ -27,7 +27,7 @@ This structure allows a clear separation between different cursus generations an
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/42_Paris_2017">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/42_Paris_2017.md">
     <img src=".assets/images/White_tree.png" alt="tree" width="50">
   </a>
 </p>
@@ -49,7 +49,7 @@ This section is particularly useful for tracing the origins of the 42 training a
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/42_Paris_2023">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/42_Paris_2023.md">
     <img src=".assets/images/White_tree.png" alt="tree" width="50">
   </a>
 </p>
@@ -72,7 +72,7 @@ This section provides insight into the current state of the 42 cursus and highli
   </a>
 </p>
 <p align="center">
-  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/Others">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/.assets/tree/Others.md">
     <img src=".assets/images/White_tree.png" alt="tree" width="50">
   </a>
 </p>
