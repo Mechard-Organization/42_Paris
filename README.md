@@ -23,7 +23,11 @@ This structure allows a clear separation between different cursus generations an
 
 ---
 
-## 1. 42_Paris_2017
+<p align="center">
+  <a href="https://github.com/M2000-fr/42_Paris_2017/tree/main_sub">
+    <img src=".img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
+  </a>
+</p>
 
 This folder contains the projects and materials from the **2017 cursus and Piscine** at 42. It includes foundational programming assignments, beginner exercises, and early-stage projects. The structure highlights the initial coding journey of a 42 student, from basic C projects to more advanced exercises, gradually building programming expertise.
 
@@ -36,7 +40,11 @@ This section is particularly useful for tracing the origins of the 42 training a
 
 ---
 
-## 2. 42_Paris_2023
+<p align="center">
+  <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023">
+    <img src=".img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
+  </a>
+</p>
 
 This folder covers the **2023 cursus and Piscine** at 42. It represents a more modern and updated set of projects, aligned with the latest 42 curriculum. Compared to 2017, this section contains more refined, larger-scale projects and reflects current standards in programming and system design.
 
@@ -50,7 +58,11 @@ This section provides insight into the current state of the 42 cursus and highli
 
 ---
 
-## 3. Others
+<p align="center">
+  <a href="https://github.com/M2000-fr/Others/tree/main_sub">
+    <img src=".img/Others_title_banner.png" alt="Others" width="200">
+  </a>
+</p>
 
 The **Others** folder gathers **personal projects** and experiments carried out at 42, outside the strict cursus requirements. It serves as a sandbox where custom scripts, utilities, and extra learning exercises are stored.
 
