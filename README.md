@@ -64,12 +64,12 @@ This section showcases creativity, independence, and the extension of official t
   <a href="https://github.com/M2000-fr/42_Paris_2017/tree/2db178476d25978f634e4a546589395aa08eb2f8">
     <img src=".img/42_Paris_2017_title_banner.png" alt="42_Paris_2017" width="200">
   </a>
-  <br><br>
+  <br>
   
   <a href="https://github.com/M2000-fr/42_Paris/tree/main_42_Paris/42_Paris_2023">
     <img src=".img/42_Paris_2023_title_banner.png" alt="42_Paris_2023" width="200">
   </a>
-  <br><br>
+  <br>
   
   [Others](https://github.com/M1000-93/42_Paris/tree/master/Others)  
   
