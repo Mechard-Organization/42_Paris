@@ -4,34 +4,65 @@
 
 ---
 
-<div align="center">
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 40px;">
+
+  <!-- Photo -->
+  <div>
+    <img src=".assets/images/profil.png" alt="Maxime ECHARD" width="250">
+    <p align="center"><strong>Maxime ECHARD</strong></p>
+  </div>
+
+  <!-- Tableau -->
+  <div>
 
 <table>
   <tr>
-    <!-- Colonne photo -->
-    <td>
-      <img src=".assets/images/mechard_42.jpg" alt="Maxime ECHARD" width="250">
-    </td>
-
-    <!-- Colonne tableau -->
-    <td>
-      
-| Language / Tech | Level |
-|-----------------|-------|
-| **C**           | ⭐⭐⭐⭐☆ (4/5) |
-| **C++**         | ⭐⭐⭐☆☆ (3/5) |
-| **Shell (Bash/Zsh)** | ⭐⭐⭐☆☆ (3/5) |
-| **Dockerfile**  | ⭐⭐⭐☆☆ (3/5) |
-| **YAML**        | ⭐⭐☆☆☆ (2/5) |
-| **JavaScript**  | ⭐⭐☆☆☆ (2/5) |
-| **HTML**        | ⭐⭐⭐☆☆ (3/5) |
-| **CSS**         | ⭐⭐☆☆☆ (2/5) |
-| **SQL**         | ⭐⭐☆☆☆ (2/5) |
-| **Markdown**    | ⭐⭐⭐⭐☆ (4/5) |
-
-    </td>
+    <th>Language / Tech</th>
+    <th>Level</th>
+  </tr>
+  <tr>
+    <td><b>C</b></td>
+    <td>⭐⭐⭐⭐☆ (4/5)</td>
+  </tr>
+  <tr>
+    <td><b>C++</b></td>
+    <td>⭐⭐⭐☆☆ (3/5)</td>
+  </tr>
+  <tr>
+    <td><b>Shell (Bash/Zsh)</b></td>
+    <td>⭐⭐⭐☆☆ (3/5)</td>
+  </tr>
+  <tr>
+    <td><b>Dockerfile</b></td>
+    <td>⭐⭐⭐☆☆ (3/5)</td>
+  </tr>
+  <tr>
+    <td><b>YAML</b></td>
+    <td>⭐⭐☆☆☆ (2/5)</td>
+  </tr>
+  <tr>
+    <td><b>JavaScript</b></td>
+    <td>⭐⭐☆☆☆ (2/5)</td>
+  </tr>
+  <tr>
+    <td><b>HTML</b></td>
+    <td>⭐⭐⭐☆☆ (3/5)</td>
+  </tr>
+  <tr>
+    <td><b>CSS</b></td>
+    <td>⭐⭐☆☆☆ (2/5)</td>
+  </tr>
+  <tr>
+    <td><b>SQL</b></td>
+    <td>⭐⭐☆☆☆ (2/5)</td>
+  </tr>
+  <tr>
+    <td><b>Markdown</b></td>
+    <td>⭐⭐⭐⭐☆ (4/5)</td>
   </tr>
 </table>
+
+  </div>
 
 </div>
 
