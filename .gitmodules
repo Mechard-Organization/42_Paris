@@ -10,3 +10,11 @@
 	path = 42_Paris_2023/Cursus_2023
 	url = git@github.com:Team-mechard/Cursus_2023.git
 	branch = main_sub
+[submodule "42_Paris_2023/Association_2023"]
+	path = 42_Paris_2023/Association_2023
+	url = git@github.com:Team-mechard/Associations.git
+	branch = main_sub
+[submodule "42_Paris_2023/Piscine_C_2023"]
+	path = 42_Paris_2023/Piscine_C_2023
+	url = git@github.com:Team-mechard/Piscine_C_2023.git
+	branch = main_sub
