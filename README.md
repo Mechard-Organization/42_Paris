@@ -6,9 +6,13 @@
 
 <div align="center" style="display: flex; align-items: center; justify-content: center; gap: 40px;">
 
-  <!-- Photo -->
+  <!-- Image -->
   <div>
     <img src=".assets/images/mechard_42.png" alt="Maxime ECHARD" width="400">
+  </div>
+
+  <!-- Tableau -->
+  <div>
     <table>
       <tr>
         <th>Language / Tech</th>
@@ -55,15 +59,10 @@
         <td>⭐⭐⭐⭐☆ (4/5)</td>
       </tr>
     </table>
-    <strong>Maxime ECHARD
-  </div>
-
-  <!-- Tableau -->
-  <div>
-
   </div>
 
 </div>
+
 
 ---
 
