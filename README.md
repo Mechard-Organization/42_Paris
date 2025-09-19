@@ -4,61 +4,11 @@
 
 ---
 
-<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 40px;">
+<div align="center" style="display: flex; align-items: center; justify-content: center; gap: 40px">
 
   <!-- Image -->
   <div>
-    <img src=".assets/images/mechard_42.png" alt="Maxime ECHARD" width="400">
-  </div>
-
-  <!-- Tableau -->
-  <div>
-    <table>
-      <tr>
-        <th>Language / Tech</th>
-        <th>Level</th>
-      </tr>
-      <tr>
-        <td><b>C</b></td>
-        <td>⭐⭐⭐⭐☆ (4/5)</td>
-      </tr>
-      <tr>
-        <td><b>C++</b></td>
-        <td>⭐⭐⭐☆☆ (3/5)</td>
-      </tr>
-      <tr>
-        <td><b>Shell (Bash/Zsh)</b></td>
-        <td>⭐⭐⭐☆☆ (3/5)</td>
-      </tr>
-      <tr>
-        <td><b>Dockerfile</b></td>
-        <td>⭐⭐⭐☆☆ (3/5)</td>
-      </tr>
-      <tr>
-        <td><b>YAML</b></td>
-        <td>⭐⭐☆☆☆ (2/5)</td>
-      </tr>
-      <tr>
-        <td><b>JavaScript</b></td>
-        <td>⭐⭐☆☆☆ (2/5)</td>
-      </tr>
-      <tr>
-        <td><b>HTML</b></td>
-        <td>⭐⭐⭐☆☆ (3/5)</td>
-      </tr>
-      <tr>
-        <td><b>CSS</b></td>
-        <td>⭐⭐☆☆☆ (2/5)</td>
-      </tr>
-      <tr>
-        <td><b>SQL</b></td>
-        <td>⭐⭐☆☆☆ (2/5)</td>
-      </tr>
-      <tr>
-        <td><b>Markdown</b></td>
-        <td>⭐⭐⭐⭐☆ (4/5)</td>
-      </tr>
-    </table>
+    <img src=".assets/images/mechard+st_42.png" alt="Maxime ECHARD" width="400">
   </div>
 
 </div>
