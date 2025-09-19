@@ -3,12 +3,13 @@
 </p>
 
 ---
+
 <div align="center">
 
 <table>
   <tr>
     <!-- Colonne image -->
-    <td valign="top" style="padding-right:30px;">
+    <td valign="top">
       <img src=".assets/images/mechard_42.png" alt="Maxime ECHARD" width="400">
     </td>
 
