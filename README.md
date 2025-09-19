@@ -9,7 +9,7 @@
   <!-- Photo -->
   <div>
     <img src=".assets/images/mechard_42.png" alt="Maxime ECHARD" width="400">
-    <p align="center"><strong>Maxime ECHARD</strong></p>
+    <p align="center"><strong>Maxime ECHARD  </strong></p>
   </div>
 
   <!-- Tableau -->
