@@ -8,7 +8,7 @@
 
   <!-- Image -->
   <div>
-    <img src=".assets/images/mechard+st_42.png" alt="Maxime ECHARD" width="600">
+    <img src=".assets/images/mechard+st_42.png" alt="Maxime ECHARD" width="800">
   </div>
 
 </div>
