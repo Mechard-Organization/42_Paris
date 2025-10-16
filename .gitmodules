@@ -18,6 +18,3 @@
 	path = 42_Paris_2017
 	url = git@github.com:Team-mechard/42_Paris_2017.git
 	branch = main_sub
-[submodule "/home/mechard/Documents/42_Paris/Projects"]
-	path = /home/mechard/Documents/42_Paris/Projects
-	url = git@github.com:Mechard-Organization/Projects.git
