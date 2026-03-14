@@ -67,7 +67,7 @@ Main content includes:
 - Group projects that simulate real-world collaboration (e.g., web development, networking, and containerization).  
 - Specialized projects like **Inception**, **ft_transcendence**, or advanced C++ modules.  
 
-This section provides insight into the current state of the 42 cursus and highlights the evolution of its teaching philosophy over time.
+This section provides insight into the current state of the 42 cursus and highlights the evolution of its teaching philosophy over time. Currently, I have finished the common core since the February 26, 2026 ! 
 
 ---
 
