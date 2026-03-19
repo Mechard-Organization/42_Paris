@@ -1,4 +1,4 @@
 {
 	"git.detectSubmodules": true,
-	"git.detectSubmodulesLimit": 100
+	"git.detectSubmodulesLimit": 999
 }
