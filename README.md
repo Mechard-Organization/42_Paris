@@ -28,7 +28,7 @@
 
 ## ✨ At a glance
 
-> `42_Paris` is not a single app. It is a **curated hub of repositories and nested submodules** that documents my work at **École 42 Paris**, including projects, archived cursus material, experiments and tooling.
+> `42_Paris` is not a single app. It is a **curated hub of repositories and nested submodules** that documents my work at **42 Paris**, including projects, archived cursus material, experiments and tooling.
 
 <table>
 <tr>
@@ -55,7 +55,7 @@
 
 ### Key facts
 
-- 🎓 **School:** École 42 Paris  
+- 🎓 **School:** 42 Paris  
 - 📚 **Scope:** cursus archives, Common Core projects, personal tools and experiments  
 - 🧩 **Structure:** nested Git repositories / submodules  
 - 🏁 **Milestone:** 2023 Common Core completed on **26 February 2026**  

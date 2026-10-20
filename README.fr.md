@@ -55,7 +55,7 @@
 
 ### Informations clés
 
-- 🎓 **École :** École 42 Paris  
+- 🎓 **École :** 42 Paris  
 - 📚 **Contenu :** archives de cursus, projets Common Core, outils personnels et expérimentations  
 - 🧩 **Structure :** dépôts Git imbriqués / sous-modules  
 - 🏁 **Étape importante :** Common Core 2023 terminé le **26 février 2026**  
