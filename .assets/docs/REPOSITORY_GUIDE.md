@@ -28,19 +28,19 @@ The **`Projects/` intermediate folder is gone**. The folders below are now direc
 
 | Group | Project folders |
 | :--- | :--- |
-| Fundamentals | [`libft_125`](https://github.com/Mechard-Organization/libft_125/tree/main), [`ft_printf_110`](https://github.com/Mechard-Organization/ft_printf_110/tree/main), [`get_next_line_112`](https://github.com/Mechard-Organization/get_next_line_112/tree/main) |
-| Algorithms, processes and shells | [`push_swap_100`](https://github.com/Mechard-Organization/push_swap_100/tree/main), [`pipex_115`](https://github.com/Mechard-Organization/pipex_115/tree/main), [`philo_100`](https://github.com/Mechard-Organization/philo_100/tree/main), [`minishell_101`](https://github.com/Mechard-Organization/minishell_101/tree/main) |
-| Graphics | [`So_long_96`](https://github.com/Mechard-Organization/So_long_96/tree/main), [`Cub3D_105`](https://github.com/Mechard-Organization/Cub3D_105/tree/main) |
+| Fundamentals | [`libft_125`](https://github.com/Mechard-Organization/libft/tree/main), [`ft_printf_110`](https://github.com/Mechard-Organization/ft_printf/tree/main), [`get_next_line_112`](https://github.com/Mechard-Organization/get_next_line/tree/main) |
+| Algorithms, processes and shells | [`push_swap_100`](https://github.com/Mechard-Organization/push_swap/tree/main), [`pipex_115`](https://github.com/Mechard-Organization/pipex/tree/main), [`philo_100`](https://github.com/Mechard-Organization/philo/tree/main), [`minishell_101`](https://github.com/Mechard-Organization/minishell/tree/main) |
+| Graphics | [`So_long_96`](https://github.com/Mechard-Organization/So_long_96/tree/main), [`Cub3D_105`](https://github.com/Mechard-Organization/Cub3D/tree/main) |
 | C++ | [`Cpp`](https://github.com/Mechard-Organization/Cpp/tree/main) — `cpp00_80` to `cpp09_100` |
-| Systems / networks | [`Born2beroot_125`](https://github.com/Mechard-Organization/Born2beroot_125/tree/main), [`Netpractice_100`](https://github.com/Mechard-Organization/Netpractice_100/tree/main), [`IRC_125`](https://github.com/Mechard-Organization/IRC_125/tree/main), [`Inception_100`](https://github.com/Mechard-Organization/Inception_100/tree/main) |
-| Collaboration / web | [`42_collaborative_resume_100`](https://github.com/Mechard-Organization/42_collaborative_resume_100/tree/main), [`ft_transcendence_125`](https://github.com/Mechard-Organization/ft_transcendence_125/tree/main) |
+| Systems / networks | [`Born2beroot_125`](https://github.com/Mechard-Organization/Born2beroot/tree/main), [`Netpractice_100`](https://github.com/Mechard-Organization/Netpractice/tree/main), [`IRC_125`](https://github.com/Mechard-Organization/IRC/tree/main), [`Inception_100`](https://github.com/Mechard-Organization/Inception/tree/main) |
+| Collaboration / web | [`42_collaborative_resume_100`](https://github.com/Mechard-Organization/42_collaborative_resume/tree/main), [`ft_transcendence_125`](https://github.com/Mechard-Organization/ft_transcendence/tree/main) |
 
 ### Post–Common Core
 
 | Area | What is present in the snapshot |
 | :--- | :--- |
-| [`Realeased/`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainRealeased/) | A `tmp` placeholder file |
-| [`Unrealeased/`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/) | [`Darkly`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Darkly/), [`Internship`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Intership_I_video/), [`libasm`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/libasm/), [`snow-crash`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/snow-crash/) |
+| [`Realeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | A `tmp` placeholder file |
+| [`Unrealeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Darkly/), [`Internship`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Intership_I_video/), [`libasm`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/libasm/), [`snow-crash`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/snow-crash/) |
 
 The folder spellings are intentionally preserved as they appear in the archive.
 
