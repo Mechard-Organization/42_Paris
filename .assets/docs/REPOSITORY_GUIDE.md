@@ -10,49 +10,49 @@
 
 | Section | Purpose |
 | :--- | :--- |
-| [42_Paris_2017](../../42_Paris_2017/) | 2017 Piscine C and historical cursus |
-| [42_Paris_2023](../../42_Paris_2023/) | 2023 Piscine, Common Core, post–Common Core and student associations |
-| [Others](../../Others/) | Personal utilities, school-related files and tooling |
+| [42_Paris_2017](https://github.com/Mechard-Organization/42_Paris_2017/tree/main_sub) | 2017 Piscine C and historical cursus |
+| [42_Paris_2023](https://github.com/Mechard-Organization/42_Paris/tree/main_42_Paris/42_Paris_2023) | 2023 Piscine, Common Core, post–Common Core and student associations |
+| [Others](https://github.com/Mechard-Organization/Others/tree/main_sub) | Personal utilities, school-related files and tooling |
 
 ## 2023 curriculum
 
-The **`Projects/` intermediate folder is gone**. The folders below are now direct children of [`Cursus_2023`](../../42_Paris_2023/Cursus_2023/):
+The **`Projects/` intermediate folder is gone**. The folders below are now direct children of [`Cursus_2023`](https://github.com/Mechard-Organization/Cursus_2023/tree/main_sub):
 
 | Folder | Contents |
 | :--- | :--- |
-| [`Common_Core/`](../../42_Paris_2023/Cursus_2023/Common_Core/) | 16 project folders, including C/C++, graphics, systems and web |
-| [`Post_Common_Core/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/) | `Realeased/` and `Unrealeased/` |
+| [`Common_Core/`](https://github.com/Mechard-Organization/Common_core/tree/main) | 16 project folders, including C/C++, graphics, systems and web |
+| [`Post_Common_Core/`](https://github.com/Mechard-Organization/Post_Common_Core/tree/main) | `Realeased/` and `Unrealeased/` |
 | [`Tools/`](../../42_Paris_2023/Cursus_2023/Tools/) | `Complete_libft ✅/` |
 
 ### Common Core projects
 
 | Group | Project folders |
 | :--- | :--- |
-| Fundamentals | [`libft_125`](../../42_Paris_2023/Cursus_2023/Common_Core/libft_125/), [`ft_printf_110`](../../42_Paris_2023/Cursus_2023/Common_Core/ft_printf_110/), [`get_next_line_112`](../../42_Paris_2023/Cursus_2023/Common_Core/get_next_line_112/) |
-| Algorithms, processes and shells | [`push_swap_100`](../../42_Paris_2023/Cursus_2023/Common_Core/push_swap_100/), [`pipex_115`](../../42_Paris_2023/Cursus_2023/Common_Core/pipex_115/), [`philo_100`](../../42_Paris_2023/Cursus_2023/Common_Core/philo_100/), [`minishell_101`](../../42_Paris_2023/Cursus_2023/Common_Core/minishell_101/) |
-| Graphics | [`So_long_96`](../../42_Paris_2023/Cursus_2023/Common_Core/So_long_96/), [`Cub3D_105`](../../42_Paris_2023/Cursus_2023/Common_Core/Cub3D_105/) |
-| C++ | [`Cpp`](../../42_Paris_2023/Cursus_2023/Common_Core/Cpp/) — `cpp00_80` to `cpp09_100` |
-| Systems / networks | [`Born2beroot_125`](../../42_Paris_2023/Cursus_2023/Common_Core/Born2beroot_125/), [`Netpractice_100`](../../42_Paris_2023/Cursus_2023/Common_Core/Netpractice_100/), [`IRC_125`](../../42_Paris_2023/Cursus_2023/Common_Core/IRC_125/), [`Inception_100`](../../42_Paris_2023/Cursus_2023/Common_Core/Inception_100/) |
-| Collaboration / web | [`42_collaborative_resume_100`](../../42_Paris_2023/Cursus_2023/Common_Core/42_collaborative_resume_100/), [`ft_transcendence_125`](../../42_Paris_2023/Cursus_2023/Common_Core/ft_transcendence_125/) |
+| Fundamentals | [`libft_125`](https://github.com/Mechard-Organization/libft_125/tree/main), [`ft_printf_110`](https://github.com/Mechard-Organization/ft_printf_110/tree/main), [`get_next_line_112`](https://github.com/Mechard-Organization/get_next_line_112/tree/main) |
+| Algorithms, processes and shells | [`push_swap_100`](https://github.com/Mechard-Organization/push_swap_100/tree/main), [`pipex_115`](https://github.com/Mechard-Organization/pipex_115/tree/main), [`philo_100`](https://github.com/Mechard-Organization/philo_100/tree/main), [`minishell_101`](https://github.com/Mechard-Organization/minishell_101/tree/main) |
+| Graphics | [`So_long_96`](https://github.com/Mechard-Organization/So_long_96/tree/main), [`Cub3D_105`](https://github.com/Mechard-Organization/Cub3D_105/tree/main) |
+| C++ | [`Cpp`](https://github.com/Mechard-Organization/Cpp/tree/main) — `cpp00_80` to `cpp09_100` |
+| Systems / networks | [`Born2beroot_125`](https://github.com/Mechard-Organization/Born2beroot_125/tree/main), [`Netpractice_100`](https://github.com/Mechard-Organization/Netpractice_100/tree/main), [`IRC_125`](https://github.com/Mechard-Organization/IRC_125/tree/main), [`Inception_100`](https://github.com/Mechard-Organization/Inception_100/tree/main) |
+| Collaboration / web | [`42_collaborative_resume_100`](https://github.com/Mechard-Organization/42_collaborative_resume_100/tree/main), [`ft_transcendence_125`](https://github.com/Mechard-Organization/ft_transcendence_125/tree/main) |
 
 ### Post–Common Core
 
 | Area | What is present in the snapshot |
 | :--- | :--- |
-| [`Realeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | A `tmp` placeholder file |
-| [`Unrealeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/), [`Internship`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Intership_I_video/), [`libasm`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/), [`snow-crash`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
+| [`Realeased/`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainRealeased/) | A `tmp` placeholder file |
+| [`Unrealeased/`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/) | [`Darkly`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Darkly/), [`Internship`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Intership_I_video/), [`libasm`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/libasm/), [`snow-crash`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/snow-crash/) |
 
 The folder spellings are intentionally preserved as they appear in the archive.
 
 ## 2017 archive
 
-- [`Piscine_C_2017`](../../42_Paris_2017/Piscine_C_2017/)
-- [`Cursus_2017`](../../42_Paris_2017/Cursus_2017/)
+- [`Piscine_C_2017`](https://github.com/Mechard-Organization/42_Paris_2017/tree/main_sub/Piscine_C_2017)
+- [`Cursus_2017`](https://github.com/Mechard-Organization/42_Paris_2017/tree/main_sub/Cursus_2017)
 
 ## Personal tools
 
-- [`Others/École_42`](../../Others/%C3%89cole_42/)
-- [`Others/Perso/GC`](../../Others/Perso/GC/)
+- [`Others/École_42`](https://github.com/Mechard-Organization/-cole-42/tree/main)
+- [`Others/Perso/GC`](https://github.com/Mechard-Organization/Others/tree/main_sub/Perso/GC)
 
 ## Directory snapshots
 
