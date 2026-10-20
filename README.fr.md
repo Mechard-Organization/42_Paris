@@ -7,226 +7,212 @@
 
 <a id="top"></a>
 
-<div align="center">
+<p align="center">
+  <img src=".assets/images/42_paris_banner_main.png" alt="42 Paris banner" width="100%">
+</p>
 
-<a href="https://github.com/Mechard-Organization/42_Paris">
-  <img src=".assets/images/42_Paris_title_banner.png" alt="42 Paris — programmation, projets et apprentissage continu" width="820">
-</a>
+<h1 align="center">42 Paris · Projets, archives & expérimentations</h1>
 
-# 42 Paris · Projets et archives d'apprentissage
+<p align="center">
+  <strong>Un hub propre et lisible de tout mon parcours à 42 Paris :</strong><br>
+  des <strong>fondations de 2017</strong> au <strong>Common Core 2023</strong>, avec des outils perso, des expérimentations et un workflow Git sur mesure.
+</p>
 
-**Deux chapitres à 42 Paris. Une collection de code, d'expérimentations et d'outils en constante évolution.**
-
-De la **Piscine de 2017** au **cursus de 2023**, ce dépôt rassemble mes projets de formation, mes expérimentations techniques et les outils que j'utilise pour les maintenir.
-
-**[Explorer le dépôt](#explore)** · **[Projets de 2023](#journey-2023)** · **[Archives de 2017](#journey-2017)** · **[Workflow Git](#git-workflow)**
-
-<sub>Maintenu par <strong>Maxime Echard</strong> · École 42 Paris</sub>
-
-</div>
+<p align="center">
+  <a href="#-vue-densemble">Vue d’ensemble</a> ·
+  <a href="#-explorer-le-dépôt">Explorer</a> ·
+  <a href="#-workflow-git">Workflow Git</a> ·
+  <a href="#-assets--documentation">Assets & docs</a>
+</p>
 
 ---
 
-## Bienvenue
+## ✨ Vue d’ensemble
 
-`42_Paris` est mon espace de travail central pour les projets et ressources d'apprentissage issus de **l'École 42 Paris**. Il réunit mon premier parcours en **2017**, un nouveau cursus commencé en **2023**, ainsi que les projets personnels et utilitaires développés en parallèle.
-
-Il s'agit d'une **collection de dépôts Git reliés par des sous-modules imbriqués**, et non d'une application monolithique. Chaque projet conserve son propre code source, son historique et, le cas échéant, sa documentation.
-
-> **Étape importante :** j'ai terminé le **tronc commun du cursus 2023 le 26 février 2026**. Le dépôt contient également des travaux historiques, des expérimentations et des projets postérieurs au tronc commun ; la présence d'un projet ne signifie donc pas nécessairement qu'il a été validé.
-
-<a id="explore"></a>
-
-## Explorer le dépôt
+> `42_Paris` n’est pas une seule application. C’est un **hub de dépôts et de sous-modules imbriqués** qui rassemble mon travail à **École 42 Paris** : projets, archives de cursus, expérimentations et outils.
 
 <table>
 <tr>
-  <td align="center" width="33%">
-    <a href="42_Paris_2017/"><img src=".assets/images/42_Paris_2017_title_banner.png" alt="Découvrir mon parcours en 2017" width="250"></a>
-    <br><strong><a href="42_Paris_2017/">42 Paris · 2017</a></strong>
-    <br><sub>Piscine C, premiers pas et premiers projets du cursus.</sub>
-  </td>
-  <td align="center" width="33%">
-    <a href="42_Paris_2023/"><img src=".assets/images/42_Paris_2023_title_banner.png" alt="Découvrir mon parcours en 2023" width="250"></a>
-    <br><strong><a href="42_Paris_2023/">42 Paris · 2023</a></strong>
-    <br><sub>Piscine, tronc commun, projets ultérieurs et vie étudiante.</sub>
-  </td>
-  <td align="center" width="33%">
-    <a href="Others/"><img src=".assets/images/Others_title_banner.png" alt="Explorer les projets personnels et outils" width="250"></a>
-    <br><strong><a href="Others/">Others</a></strong>
-    <br><sub>Apprentissage personnel, expérimentations, notes et outils Git.</sub>
-  </td>
+<td align="center" width="33%">
+  <a href="42_Paris_2017/"><img src=".assets/images/42_paris_banner_2017.png" alt="42 Paris 2017" width="100%"></a>
+  <br><br>
+  <strong>🧱 42_Paris_2017</strong><br>
+  <sub>Cursus historique, Piscine et premières bases en programmation.</sub>
+</td>
+<td align="center" width="33%">
+  <a href="42_Paris_2023/"><img src=".assets/images/42_paris_banner_2023.png" alt="42 Paris 2023" width="100%"></a>
+  <br><br>
+  <strong>🚀 42_Paris_2023</strong><br>
+  <sub>Cursus moderne, Common Core et projets plus avancés.</sub>
+</td>
+<td align="center" width="33%">
+  <a href="Others/"><img src=".assets/images/42_paris_banner_others.png" alt="Others" width="100%"></a>
+  <br><br>
+  <strong>🛠️ Others</strong><br>
+  <sub>Outils perso, automatisation, notes et projets annexes.</sub>
+</td>
 </tr>
 </table>
 
-### Structure du dépôt
+### Informations clés
+
+- 🎓 **École :** École 42 Paris  
+- 📚 **Contenu :** archives de cursus, projets Common Core, outils personnels et expérimentations  
+- 🧩 **Structure :** dépôts Git imbriqués / sous-modules  
+- 🏁 **Étape importante :** Common Core 2023 terminé le **26 février 2026**  
+- 🌍 **Documentation :** disponible en **anglais, français et japonais**
+
+---
+
+## 🧭 Explorer le dépôt
+
+### Structure globale
 
 ```text
 42_Paris/
 ├── 42_Paris_2017/
-│   ├── Piscine_C_2017/          # Exercices et sujets de la Piscine 2017
-│   └── Cursus_2017/            # Premiers projets et ressources d'apprentissage
 ├── 42_Paris_2023/
-│   ├── Piscine_C_2023/          # Exercices de Piscine en C et en Shell
+│   ├── Association_2023/
 │   ├── Cursus_2023/
 │   │   └── Projects/
-│   │       ├── Common_core/     # Tronc commun et dépôts imbriqués
-│   │       ├── Post_CC/         # Travaux postérieurs au tronc commun
-│   │       └── Tools/           # Utilitaires et outils complémentaires
-│   └── Association_2023/       # Vie associative étudiante
+│   │       ├── Common_core/
+│   │       ├── Post_CC/
+│   │       └── Tools/
+│   └── Piscine_C_2023/
 ├── Others/
-│   ├── École_42/                # Ressources personnelles pour l'école
-│   └── Perso/GC/               # Outils Git personnalisés
+│   ├── École_42/
+│   └── Perso/GC/
 └── .assets/
-    ├── docs/                    # Documentation complémentaire
-    ├── images/                  # Images utilisées par les README
-    ├── text/                    # Exports textuels des arborescences
-    └── tree/                    # Instantanés détaillés des arborescences
+    ├── docs/
+    ├── images/
+    ├── text/
+    └── tree/
 ```
 
-Cette carte présente volontairement les **principaux points d'entrée**, plutôt que chaque exercice et sous-dépôt. Consulte le [guide détaillé des dossiers](.assets/docs/REPOSITORY_GUIDE.md) ou les arborescences existantes : [2017](.assets/tree/42_Paris_2017.md) · [2023](.assets/tree/42_Paris_2023.md) · [Others](.assets/tree/Others.md).
+Pour les arborescences détaillées :
+- [`42_Paris_2017`](.assets/tree/42_Paris_2017.md)
+- [`42_Paris_2023`](.assets/tree/42_Paris_2023.md)
+- [`Others`](.assets/tree/Others.md)
 
 ---
 
-<a id="journey-2023"></a>
+## 🧱 42_Paris_2017
 
-## Le parcours de 2023
+<p align="center"><img src=".assets/images/42_paris_banner_2017.png" alt="42 Paris 2017 banner" width="100%"></p>
 
-<p align="center"><a href="42_Paris_2023/"><img src=".assets/images/42_Paris_2023_title_banner.png" alt="Section 42 Paris 2023" width="600"></a></p>
+La section **2017** conserve le début de mon parcours à 42 : la Piscine, les premiers projets en C, les bases Unix et les premiers réflexes de développement.
 
-La section 2023 retrace mon retour dans le cursus de l'école : la **Piscine**, les projets du **tronc commun**, les travaux ultérieurs et ma participation à des activités étudiantes.
+| Partie | Description |
+| :--- | :--- |
+| **Piscine C** | exercices quotidiens, rushes et premières mises en pratique |
+| **Programmation C** | projets classiques de démarrage et fondations algorithmiques |
+| **Valeur d’archive** | permet de retracer l’évolution du niveau et de la méthodologie |
 
-| Domaine | Contenu | Explorer |
+---
+
+## 🚀 42_Paris_2023
+
+<p align="center"><img src=".assets/images/42_paris_banner_2023.png" alt="42 Paris 2023 banner" width="100%"></p>
+
+La section **2023** correspond à une phase plus moderne de mon parcours : reprise du cursus, progression structurée dans le Common Core et projets techniques plus ambitieux.
+
+| Partie | Description | Lien |
 | :--- | :--- | :--- |
-| **Piscine C** | Exercices Shell, modules C et projets rush | [Piscine_C_2023](42_Paris_2023/Piscine_C_2023/) |
-| **Tronc commun** | Fondamentaux de programmation, algorithmes, systèmes, réseau et projets d'équipe | [Common_core](42_Paris_2023/Cursus_2023/Projects/Common_core/) |
-| **Post–tronc commun** | Projets complémentaires et avancés | [Post_CC](42_Paris_2023/Cursus_2023/Projects/Post_CC/) |
-| **Outils** | Utilitaires et composants réutilisables | [Tools](42_Paris_2023/Cursus_2023/Projects/Tools/) |
-| **Associations** | Ressources du BDE et de Blackout | [Association_2023](42_Paris_2023/Association_2023/) |
+| **Piscine C / Shell** | retour dans la pédagogie 42 | [ouvrir](42_Paris_2023/Piscine_C_2023/) |
+| **Common Core** | prog système, algo, graphisme, réseau, travail en équipe | [ouvrir](42_Paris_2023/Cursus_2023/Projects/Common_core/) |
+| **Post_CC** | projets additionnels après le Common Core | [ouvrir](42_Paris_2023/Cursus_2023/Projects/Post_CC/) |
+| **Tools** | utilitaires et supports réutilisables | [ouvrir](42_Paris_2023/Cursus_2023/Projects/Tools/) |
+| **Associations** | vie étudiante et matériel associatif | [ouvrir](42_Paris_2023/Association_2023/) |
 
-### Sélection de projets du tronc commun
+### Familles de projets
 
-Les projets et dossiers ci-dessous sont présents dans l'archive fournie. Leurs noms respectent l'organisation d'origine des dépôts.
-
-| Domaine | Projets |
-| :--- | :--- |
-| **Fondamentaux du C et entrées/sorties** | [`libft_125`](42_Paris_2023/Cursus_2023/Projects/Common_core/libft_125/), [`ft_printf_110`](42_Paris_2023/Cursus_2023/Projects/Common_core/ft_printf_110/), [`get_next_line_112`](42_Paris_2023/Cursus_2023/Projects/Common_core/get_next_line_112/) |
-| **Algorithmes et gestion des processus** | [`push_swap_100`](42_Paris_2023/Cursus_2023/Projects/Common_core/push_swap_100/), [`pipex_115`](42_Paris_2023/Cursus_2023/Projects/Common_core/pipex_115/), [`philo_100`](42_Paris_2023/Cursus_2023/Projects/Common_core/philo_100/), [`minishell_101`](42_Paris_2023/Cursus_2023/Projects/Common_core/minishell_101/) |
-| **Graphisme** | [`So_long_96`](42_Paris_2023/Cursus_2023/Projects/Common_core/So_long_96/), [`Cub3D_105`](42_Paris_2023/Cursus_2023/Projects/Common_core/Cub3D_105/) |
-| **C++** | [`Cpp`](42_Paris_2023/Cursus_2023/Projects/Common_core/Cpp/) — modules de `cpp00_80` à `cpp09_100`, selon les éléments présents dans l'archive |
-| **Systèmes et réseau** | [`Born2beroot_125`](42_Paris_2023/Cursus_2023/Projects/Common_core/Born2beroot_125/), [`Netpractice_100`](42_Paris_2023/Cursus_2023/Projects/Common_core/Netpractice_100/), [`IRC_125`](42_Paris_2023/Cursus_2023/Projects/Common_core/IRC_125/), [`Inception_100`](42_Paris_2023/Cursus_2023/Projects/Common_core/Inception_100/) |
-| **Collaboration et web** | [`42_collaborative_resume_100`](42_Paris_2023/Cursus_2023/Projects/Common_core/42_collaborative_resume_100/), [`ft_transcendence_125`](42_Paris_2023/Cursus_2023/Projects/Common_core/ft_transcendence_125/) |
-
-Pour parcourir tous les dossiers, consulte le [guide de navigation 2023](.assets/docs/REPOSITORY_GUIDE.md#2023-curriculum).
+- **Fondations C** : `libft_125`, `ft_printf_110`, `get_next_line_112`
+- **Algo & processus** : `push_swap_100`, `pipex_115`, `philo_100`, `minishell_101`
+- **Graphisme** : `So_long_96`, `Cub3D_105`
+- **C++** : `Cpp`, `cpp00_80` → `cpp09_100`
+- **Systèmes & infra** : `Born2beroot_125`, `Netpractice_100`, `IRC_125`, `Inception_100`
+- **Web & collaboration** : `42_collaborative_resume_100`, `ft_transcendence_125`
 
 ---
 
-<a id="journey-2017"></a>
+## 🛠️ Others
 
-## Le parcours de 2017
+<p align="center"><img src=".assets/images/42_paris_banner_others.png" alt="Others banner" width="100%"></p>
 
-<p align="center"><a href="42_Paris_2017/"><img src=".assets/images/42_Paris_2017_title_banner.png" alt="Section 42 Paris 2017" width="600"></a></p>
+`Others/` est le **terrain d’expérimentation** du dépôt : outils perso, helpers shell, automatisations Git, notes d’apprentissage et side projects.
 
-Mon premier chapitre à 42 : une archive de mes débuts en **programmation C et fondamentaux Unix**, avec les exercices intensifs de la Piscine et mes premiers projets du cursus. Ces ressources témoignent du début de mon parcours.
-
-| Domaine | Contenu |
+| Dossier | Rôle |
 | :--- | :--- |
-| **[Piscine C 2017](42_Paris_2017/Piscine_C_2017/)** | Exercices quotidiens, pratique du C et sujets |
-| **[Cursus 2017](42_Paris_2017/Cursus_2017/)** | `libft`, `get_next_line`, `ft_printf`, `fillit`, `fdf`, `fract_ol`, `docker-1`, `init`, `piscine_reloaded` et autres premiers travaux |
-
-La section 2017 constitue avant tout une **archive historique**. Son contenu, ses conventions et ses dépendances peuvent différer de ceux du cursus plus récent.
+| `École_42/` | ressources personnelles liées à l’école |
+| `Perso/GC/` | commandes Git custom, outils shell et helpers |
+| autres sous-dossiers | projets perso et expérimentations |
 
 ---
 
-## Projets personnels et outils
+## 🔀 Workflow Git
 
-<p align="center"><a href="Others/"><img src=".assets/images/Others_title_banner.png" alt="Others : projets personnels, ressources et outils" width="600"></a></p>
+<p align="center"><img src=".assets/images/42_paris_banner_git_workflow.png" alt="Git workflow banner" width="100%"></p>
 
-Le dossier [`Others/`](Others/) regroupe mes travaux en dehors des exigences formelles du cursus : ressources complémentaires, scripts, expérimentations et utilitaires pratiques.
+Comme ce dépôt repose sur des **sous-modules imbriqués**, le workflow Git est central.
 
-| Emplacement | Fonction |
-| :--- | :--- |
-| [`École_42/`](Others/%C3%89cole_42/) | Ressources scolaires complémentaires, exercices et documentation de référence |
-| [`Perso/GC/`](Others/Perso/GC/) | Outils Git personnels et configuration du shell |
-| [`Perso/`](Others/Perso/) | Autres éléments de mon espace de travail personnel |
-
-**Remarque :** il s'agit d'archives de projets personnels ; leur documentation, leur maintenance et leur visibilité peuvent varier d'un dossier à l'autre.
-
----
-
-<a id="git-workflow"></a>
-
-## Travailler avec ce dépôt
-
-### Cloner tous les sous-modules imbriqués
-
-Le dépôt contient des **sous-modules Git imbriqués**. Un simple `git clone` ne récupère pas nécessairement leur contenu.
-
-**Git standard** — fonctionne avec Bash, Zsh et d'autres shells :
+### Clonage récursif standard
 
 ```bash
 git clone --recurse-submodules git@github.com:Mechard-Organization/42_Paris.git
 cd 42_Paris
 ```
 
-Le dépôt est déjà cloné, mais sans ses sous-modules ?
+### Si le dépôt est déjà cloné sans sous-modules
 
 ```bash
 git submodule update --init --recursive
 ```
 
-**Configuration Zsh personnelle** — lorsque mon wrapper personnalisé est installé, la commande exacte ci-dessous active aussi le clonage récursif et l'alignement automatique des branches :
+### Workflow personnalisé (avec mon wrapper Zsh)
 
 ```bash
 git clone git@github.com:Mechard-Organization/42_Paris.git
-```
-
-Ce comportement spécial **ne fait pas partie de Git**. Sans le wrapper Zsh, utilise la commande standard de clonage récursif ci-dessus.
-
-### Branches et commits
-
-Mon wrapper aligne la racine sur `main_42_Paris`, puis utilise `main_sub` dans les sous-modules lorsqu'elle existe, sinon `main`. Comme Git extrait normalement les sous-modules aux **commits enregistrés**, cet alignement et les commits suivants peuvent modifier les pointeurs des sous-modules dans les dépôts parents (*gitlinks*).
-
-Lorsque le wrapper est activé, le workflow de publication est le suivant :
-
-```bash
 git add -A
-git commit -m "Décrire les modifications"
+git commit -m "Ton message"
 git push
 ```
 
-Le wrapper parcourt les dépôts imbriqués, crée les commits nécessaires **des enfants vers les parents**, puis pousse uniquement les dépôts ayant des commits locaux à publier. Après chaque tentative de push, un nouveau cycle `add → commit` est obligatoire.
+Le wrapper personnalisé peut :
+- cloner récursivement les sous-modules et sous-sous-modules
+- aligner les branches (`main_42_Paris`, `main_sub`, `main`)
+- préparer les dépôts imbriqués
+- commit des enfants vers les parents
+- push uniquement les dépôts réellement modifiés
+- conserver des logs lisibles
 
-> **Vérifie avant de committer.** Avec le wrapper, `git add -A` agit sur **tous les dépôts initialisés** de cet espace de travail, même lorsqu'il est lancé depuis un dossier imbriqué. Vérifie `git status` ou `git diff --cached` dans les dépôts concernés, surtout si tu travailles avec des fichiers personnels. Ne versionne pas de mots de passe ni d'autres secrets.
-
-Pour les commandes détaillées, les précautions de sécurité, les exemples et l'emplacement des logs, consulte le **[guide Git et wrapper](.assets/docs/GIT_WORKFLOW.md)**.
+📘 Tous les détails sont dans [`.assets/docs/GIT_WORKFLOW.md`](.assets/docs/GIT_WORKFLOW.md).
 
 ---
 
-## Documentation et ressources
+## 🗂️ Assets & documentation
 
-Toutes les ressources utilisées par **ces README** sont regroupées dans [`.assets/`](.assets/) à la racine : **images, documents Markdown/textuels complémentaires et exports des arborescences**. Les README ne dépendent d'aucun service externe d'images ou de badges.
+<p align="center"><img src=".assets/images/42_paris_banner_repository_guide.png" alt="Repository guide banner" width="100%"></p>
+
+Toutes les ressources liées aux README sont centralisées dans `.assets/`.
 
 | Ressource | Emplacement |
 | :--- | :--- |
-| Guide du dépôt et workflow Git | [`.assets/docs/`](.assets/docs/) |
-| Bannières, illustration de profil et autres images | [`.assets/images/`](.assets/images/) |
-| Arborescences textuelles existantes | [`.assets/text/`](.assets/text/) |
-| Instantanés Markdown des arborescences | [`.assets/tree/`](.assets/tree/) |
-| Organisation et maintenance des ressources | [`.assets/docs/ASSETS.md`](.assets/docs/ASSETS.md) |
-
-Les dossiers imbriqués conservent leurs propres README, fichiers source et ressources spécifiques. `.assets/` centralise le **contenu complémentaire des README racine** ; elle ne déplace pas le code source et ne modifie pas les sous-modules indépendants.
+| Guide du dépôt | [`.assets/docs/REPOSITORY_GUIDE.md`](.assets/docs/REPOSITORY_GUIDE.md) |
+| Guide du workflow Git | [`.assets/docs/GIT_WORKFLOW.md`](.assets/docs/GIT_WORKFLOW.md) |
+| Documentation des assets | [`.assets/docs/ASSETS.md`](.assets/docs/ASSETS.md) |
+| Images du README | [`.assets/images/`](.assets/images/) |
+| snapshots d’arborescence | [`.assets/tree/`](.assets/tree/) |
+| exports texte | [`.assets/text/`](.assets/text/) |
 
 ---
 
-<div align="center">
+## 💡 Pourquoi ce dépôt est intéressant
 
-<img src=".assets/images/mechard_round.png" alt="Illustration du profil de Maxime Echard" width="96">
+Ce dépôt est à la fois :
+- une **archive technique** du parcours 42,
+- un **point d’entrée** pour naviguer dans des dépôts imbriqués,
+- un **workspace vivant** pour l’outillage et l’expérimentation.
 
-**Maxime Echard** · 42 Paris
+---
 
-*Apprendre en construisant, en se trompant, en comprenant et en recommençant.*
-
-[Retour en haut ↑](#top)
-
-</div>
+<p align="center"><a href="#top">⬆️ Retour en haut</a></p>
