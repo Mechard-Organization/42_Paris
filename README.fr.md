@@ -28,7 +28,7 @@
 
 ## ✨ Vue d’ensemble
 
-> `42_Paris` n’est pas une seule application. C’est un **hub de dépôts et de sous-modules imbriqués** qui rassemble mon travail à **École 42 Paris** : projets, archives de cursus, expérimentations et outils.
+> `42_Paris` n’est pas une seule application. C’est un **hub de dépôts et de sous-modules imbriqués** qui rassemble mon travail à **42 Paris** : projets, archives de cursus, expérimentations et outils.
 
 <table>
 <tr>
