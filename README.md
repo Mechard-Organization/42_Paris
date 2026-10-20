@@ -46,7 +46,7 @@
   <sub>Modern curriculum, Common Core and advanced projects.</sub>
 </td>
 <td align="center" width="33%">
-  <a href="Others/"><img src=".assets/images/42_paris_banner_others.png" alt="Others" width="100%"></a>
+  <a href="https://github.com/Mechard-Organization/Others/tree/main_sub"><img src=".assets/images/42_paris_banner_others.png" alt="Others" width="100%"></a>
   <br><br>
   <strong>🛠️ Others</strong><br>
   <sub>Personal tools, automation, notes and side experiments.</sub>

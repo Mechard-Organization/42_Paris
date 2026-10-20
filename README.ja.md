@@ -34,7 +34,7 @@
 <table>
 <tr>
 <td align="center" width="33%">
-  <a href="42_Paris_2017/"><img src=".assets/images/42_paris_banner_2017.png" alt="42 Paris 2017" width="100%"></a>
+  <a href="https://github.com/Mechard-Organization/42_Paris_2017/tree/main_sub"><img src=".assets/images/42_paris_banner_2017.png" alt="42 Paris 2017" width="100%"></a>
   <br><br>
   <strong>🧱 42_Paris_2017</strong><br>
   <sub>初期カリキュラム、Piscine、最初の基礎学習。</sub>
@@ -46,7 +46,7 @@
   <sub>現代的なカリキュラム、Common Core、発展的な課題。</sub>
 </td>
 <td align="center" width="33%">
-  <a href="Others/"><img src=".assets/images/42_paris_banner_others.png" alt="Others" width="100%"></a>
+  <a href="https://github.com/Mechard-Organization/Others/tree/main_sub"><img src=".assets/images/42_paris_banner_others.png" alt="Others" width="100%"></a>
   <br><br>
   <strong>🛠️ Others</strong><br>
   <sub>個人ツール、自動化、メモ、サイドプロジェクト。</sub>
