@@ -39,8 +39,8 @@ The **`Projects/` intermediate folder is gone**. The folders below are now direc
 
 | Area | What is present in the snapshot |
 | :--- | :--- |
-| [`Realeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | A `tmp` placeholder file |
-| [`Unrealeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Darkly/), [`Internship`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Intership_I_video/), [`libasm`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/libasm/), [`snow-crash`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/snow-crash/) |
+| [`Realeased/`](https://github.com/Mechard-Organization/Post_common_core/tree/main/Realeased) | A `tmp` placeholder file |
+| [`Unrealeased/`](https://github.com/Mechard-Organization/Post_common_core/tree/main/Unrealeased) | [`Darkly`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Darkly/), [`Internship`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/Intership_I_video/), [`libasm`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/libasm/), [`snow-crash`](https://github.com/Mechard-Organization/Post_Common_Core/tree/mainUnrealeased/snow-crash/) |
 
 The folder spellings are intentionally preserved as they appear in the archive.
 
