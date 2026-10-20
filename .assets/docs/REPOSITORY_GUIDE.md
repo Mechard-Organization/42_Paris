@@ -40,7 +40,7 @@ The **`Projects/` intermediate folder is gone**. The folders below are now direc
 | Area | What is present in the snapshot |
 | :--- | :--- |
 | [`Realeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | A `tmp` placeholder file |
-| [`Unrealeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/), [`libasm`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/), [`snow-crash`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
+| [`Unrealeased/`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/), [`Internship`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Intership_I_video/), [`libasm`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/), [`snow-crash`](../../42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
 
 The folder spellings are intentionally preserved as they appear in the archive.
 
