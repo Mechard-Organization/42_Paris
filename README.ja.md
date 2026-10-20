@@ -1,5 +1,4 @@
 <p align="center">
-  🌐 <strong>言語：</strong>
   <a href="./README.md">🇬🇧 English</a> &nbsp;·&nbsp;
   <a href="./README.fr.md">🇫🇷 Français</a> &nbsp;·&nbsp;
   <strong>🇯🇵 日本語</strong>
