@@ -1,3 +1,10 @@
+<p align="center">
+  🌐 <strong>Languages:</strong>
+  <strong>🇬🇧 English</strong> &nbsp;·&nbsp;
+  <a href="./README.fr.md">🇫🇷 Français</a> &nbsp;·&nbsp;
+  <a href="./README.ja.md">🇯🇵 日本語</a>
+</p>
+
 <a id="top"></a>
 
 <div align="center">
@@ -12,7 +19,7 @@
 
 From the **2017 Piscine** to the **2023 curriculum**, this repository brings together my training projects, technical experiments and the tooling I use to maintain them.
 
-**[Explore the repository](#explore-the-repository)** · **[2023 projects](#the-2023-journey)** · **[2017 archive](#the-2017-journey)** · **[Git workflow](#working-with-this-repository)**
+**[Explore the repository](#explore)** · **[2023 projects](#journey-2023)** · **[2017 archive](#journey-2017)** · **[Git workflow](#git-workflow)**
 
 <sub>Maintained by <strong>Maxime Echard</strong> · École 42 Paris</sub>
 
@@ -28,12 +35,9 @@ The repository is a **collection of Git repositories connected through nested su
 
 > **Milestone:** I completed the **2023 Common Core on 26 February 2026**. The repository also contains historical work, experiments and post–Common Core material; the presence of a project does not necessarily imply a particular validation status.
 
-<details>
-<summary><strong>🇫🇷 Présentation en français</strong></summary>
 
-Ce dépôt rassemble mon parcours à **42 Paris** : les projets et exercices de **2017**, ceux de mon cursus repris en **2023**, ainsi que mes projets personnels, ressources et outils. Le tronc commun du cursus 2023 a été terminé le **26 février 2026**. Les projets sont organisés en dépôts Git et sous-modules imbriqués afin de conserver leur autonomie.
 
-</details>
+<a id="explore"></a>
 
 ## Explore the repository
 
@@ -86,6 +90,8 @@ The map intentionally shows **navigation landmarks**, rather than every exercise
 
 ---
 
+<a id="journey-2023"></a>
+
 ## The 2023 journey
 
 <p align="center"><a href="42_Paris_2023/"><img src=".assets/images/42_Paris_2023_title_banner.png" alt="42 Paris 2023 section" width="600"></a></p>
@@ -117,6 +123,8 @@ For a complete folder-by-folder view, see the [2023 navigation guide](.assets/do
 
 ---
 
+<a id="journey-2017"></a>
+
 ## The 2017 journey
 
 <p align="center"><a href="42_Paris_2017/"><img src=".assets/images/42_Paris_2017_title_banner.png" alt="42 Paris 2017 section" width="600"></a></p>
@@ -147,6 +155,8 @@ The 2017 section is primarily a **historical archive**. Its contents, convention
 **Note:** This is an archive of personal work, so individual folders may have different documentation, maintenance levels and visibility settings.
 
 ---
+
+<a id="git-workflow"></a>
 
 ## Working with this repository
 
