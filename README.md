@@ -74,12 +74,21 @@
 │   └── Cursus_2017/
 ├── 42_Paris_2023/
 │   ├── Association_2023/
-│   ├── Cursus_2023/
-│   │   └── Projects/
-│   │       ├── Common_core/
-│   │       ├── Post_CC/
-│   │       └── Tools/
-│   └── Piscine_C_2023/
+│   │   ├── BDE/
+│   │   └── Blackout/
+│   ├── Piscine_C_2023/
+│   └── Cursus_2023/
+│       ├── Common_Core/                    # 16 project folders
+│       │   ├── Cpp/                        # cpp00_80 … cpp09_100
+│       │   └── ...                         # C, graphics, systems, web
+│       ├── Post_Common_Core/
+│       │   ├── Realeased/
+│       │   └── Unrealeased/
+│       │       ├── Darkly/
+│       │       ├── libasm/
+│       │       └── snow-crash/
+│       └── Tools/
+│           └── Complete_libft ✅/
 ├── Others/
 │   ├── École_42/
 │   └── Perso/GC/
@@ -135,9 +144,9 @@ The **2023 section** reflects a more modern phase of my journey: refreshed learn
 | Area | Description | Browse |
 | :--- | :--- | :--- |
 | **Piscine C / Shell** | re-entry through the 42 learning model | [open](42_Paris_2023/Piscine_C_2023/) |
-| **Common Core** | core programming, systems, graphics, networking and team work | [open](42_Paris_2023/Cursus_2023/Projects/Common_core/) |
-| **Post_CC** | additional projects beyond the Common Core | [open](42_Paris_2023/Cursus_2023/Projects/Post_CC/) |
-| **Tools** | reusable helpers and project support | [open](42_Paris_2023/Cursus_2023/Projects/Tools/) |
+| **Common Core** | core programming, systems, graphics, networking and team work | [open](42_Paris_2023/Cursus_2023/Common_Core/) |
+| **Post_Common_Core** | additional projects beyond the Common Core | [open](42_Paris_2023/Cursus_2023/Post_Common_Core/) |
+| **Tools** | reusable helpers and project support | [open](42_Paris_2023/Cursus_2023/Tools/) |
 | **Associations** | school-life and association material | [open](42_Paris_2023/Association_2023/) |
 
 ### Selected project families
@@ -150,6 +159,18 @@ The **2023 section** reflects a more modern phase of my journey: refreshed learn
 | **C++** | `Cpp`, `cpp00_80` → `cpp09_100` |
 | **Systems & infra** | `Born2beroot_125`, `Netpractice_100`, `IRC_125`, `Inception_100` |
 | **Web & collaboration** | `42_collaborative_resume_100`, `ft_transcendence_125` |
+
+### Post–Common Core: current structure
+
+The post–Common Core workspace now lives directly under [`Cursus_2023/Post_Common_Core/`](42_Paris_2023/Cursus_2023/Post_Common_Core/), rather than the former `Projects/Post_CC/` location.
+
+| Folder | Contents |
+| :--- | :--- |
+| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | Contains a `tmp` placeholder in this snapshot; folder name preserved exactly as in the repository |
+| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/), [`libasm`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/) and [`snow-crash`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
+
+These are the **folders present in the supplied snapshot**, not a claim that every project is completed or validated. The spellings `Realeased` and `Unrealeased` are intentional here to match the actual paths.
+
 
 ---
 

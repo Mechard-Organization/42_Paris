@@ -70,14 +70,25 @@
 ```text
 42_Paris/
 ├── 42_Paris_2017/
+│   ├── Piscine_C_2017/
+│   └── Cursus_2017/
 ├── 42_Paris_2023/
 │   ├── Association_2023/
-│   ├── Cursus_2023/
-│   │   └── Projects/
-│   │       ├── Common_core/
-│   │       ├── Post_CC/
-│   │       └── Tools/
-│   └── Piscine_C_2023/
+│   │   ├── BDE/
+│   │   └── Blackout/
+│   ├── Piscine_C_2023/
+│   └── Cursus_2023/
+│       ├── Common_Core/                    # 16 project folders
+│       │   ├── Cpp/                        # cpp00_80 … cpp09_100
+│       │   └── ...                         # C, graphics, systems, web
+│       ├── Post_Common_Core/
+│       │   ├── Realeased/
+│       │   └── Unrealeased/
+│       │       ├── Darkly/
+│       │       ├── libasm/
+│       │       └── snow-crash/
+│       └── Tools/
+│           └── Complete_libft ✅/
 ├── Others/
 │   ├── École_42/
 │   └── Perso/GC/
@@ -118,9 +129,9 @@
 | 項目 | 内容 | リンク |
 | :--- | :--- | :--- |
 | **Piscine C / Shell** | 42の学習モデルへの再スタート | [open](42_Paris_2023/Piscine_C_2023/) |
-| **Common Core** | 基礎プログラミング、システム、グラフィックス、ネットワーク、協業 | [open](42_Paris_2023/Cursus_2023/Projects/Common_core/) |
-| **Post_CC** | Common Core後の追加プロジェクト | [open](42_Paris_2023/Cursus_2023/Projects/Post_CC/) |
-| **Tools** | 補助ツールや再利用可能なユーティリティ | [open](42_Paris_2023/Cursus_2023/Projects/Tools/) |
+| **Common Core** | 基礎プログラミング、システム、グラフィックス、ネットワーク、協業 | [open](42_Paris_2023/Cursus_2023/Common_Core/) |
+| **Post_Common_Core** | Common Core後の追加プロジェクト | [open](42_Paris_2023/Cursus_2023/Post_Common_Core/) |
+| **Tools** | 補助ツールや再利用可能なユーティリティ | [open](42_Paris_2023/Cursus_2023/Tools/) |
 | **Associations** | 学校生活・団体関連の資料 | [open](42_Paris_2023/Association_2023/) |
 
 ### 代表的なプロジェクト群
@@ -131,6 +142,18 @@
 - **C++**: `Cpp`, `cpp00_80` → `cpp09_100`
 - **システム / インフラ**: `Born2beroot_125`, `Netpractice_100`, `IRC_125`, `Inception_100`
 - **Web / 協業**: `42_collaborative_resume_100`, `ft_transcendence_125`
+
+### Post–Common Core：新しいディレクトリ構成
+
+Post–Common Core のプロジェクトは、以前の `Projects/Post_CC/` ではなく、[`Cursus_2023/Post_Common_Core/`](42_Paris_2023/Cursus_2023/Post_Common_Core/) の直下にまとめられています。
+
+| フォルダ | 内容 |
+| :--- | :--- |
+| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | このアーカイブには `tmp` ファイルが含まれています（実際のスペルを維持） |
+| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/)、[`libasm`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/)、[`snow-crash`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
+
+この一覧は**提供されたアーカイブ内のフォルダ構成**を示しており、各プロジェクトの完了や評価状況を意味するものではありません。`Realeased` と `Unrealeased` の表記は実際のパスに合わせています。
+
 
 ---
 
