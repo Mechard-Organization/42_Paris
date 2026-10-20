@@ -78,9 +78,9 @@
 │   │   └── Blackout/
 │   ├── Piscine_C_2023/
 │   └── Cursus_2023/
-│       ├── Common_Core/                    # 16 project folders
-│       │   ├── Cpp/                        # cpp00_80 … cpp09_100
-│       │   └── ...                         # C, graphics, systems, web
+│       ├── Common_Core/
+│       │   ├── Cpp/
+│       │   └── ...
 │       ├── Post_Common_Core/
 │       │   ├── Realeased/
 │       │   └── Unrealeased/
