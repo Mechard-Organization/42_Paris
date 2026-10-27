@@ -67,14 +67,14 @@ Cette arborescence présente les principaux chemins de navigation, sans détaill
 
 ```text
 42_Paris/
-├── 42_Paris_2017/                         # Sous-module Git
+├── 42_Paris_2017/                       # Sous-module Git
 │   ├── Piscine_C_2017/
 │   └── Cursus_2017/
 ├── 42_Paris_2023/
-│   ├── Association_2023/                 # Sous-module Git
+│   ├── Association_2023/                # Sous-module Git
 │   │   ├── BDE/
 │   │   └── Blackout/
-│   ├── Piscine_C_2023/                   # Sous-module Git
+│   ├── Piscine_C_2023/                  # Sous-module Git
 │   └── Cursus_2023/                     # Sous-module Git
 │       ├── Common_Core/                 # Sous-module Git
 │       │   ├── Cpp/                     # Sous-module Git (cpp00 à cpp09)
@@ -88,12 +88,12 @@ Cette arborescence présente les principaux chemins de navigation, sans détaill
 │       │       └── snow-crash/          # Sous-module Git
 │       └── Tools/
 │           └── Complete_libft ✅/       # Sous-module Git
-├── Others/                                # Sous-module Git
-│   ├── École_42/                         # Sous-module Git
+├── Others/                              # Sous-module Git
+│   ├── École_42/                        # Sous-module Git
 │   └── Perso/
 │       ├── GC/
 │       └── GS/
-├── .assets/                               # Visuels et guides des README
+├── .assets/                             # Visuels et guides des README
 │   ├── docs/
 │   ├── images/
 │   ├── text/
@@ -151,8 +151,8 @@ Le cursus 2023 regroupe la Piscine, le **Common Core**, les projets post–Commo
 
 | Dossier | Projets |
 | :--- | :--- |
-| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | [`Internship_I_119`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/Internship_I_119/) |
-| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/), [`libasm`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/), [`snow-crash`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
+| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | `Internship_I_119` |
+| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | `Darkly`, `libasm`, `snow-crash` |
 
 Ces noms et dossiers décrivent l'organisation du dépôt ; ils **ne signifient pas** que tous les projets sont terminés ou validés.
 

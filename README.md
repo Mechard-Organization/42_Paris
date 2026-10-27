@@ -67,14 +67,14 @@ The tree below highlights the main navigation paths, not every file or project:
 
 ```text
 42_Paris/
-├── 42_Paris_2017/                         # Git submodule
+├── 42_Paris_2017/                       # Git submodule
 │   ├── Piscine_C_2017/
 │   └── Cursus_2017/
 ├── 42_Paris_2023/
-│   ├── Association_2023/                 # Git submodule
+│   ├── Association_2023/                # Git submodule
 │   │   ├── BDE/
 │   │   └── Blackout/
-│   ├── Piscine_C_2023/                   # Git submodule
+│   ├── Piscine_C_2023/                  # Git submodule
 │   └── Cursus_2023/                     # Git submodule
 │       ├── Common_Core/                 # Git submodule
 │       │   ├── Cpp/                     # Git submodule (cpp00 to cpp09)
@@ -88,12 +88,12 @@ The tree below highlights the main navigation paths, not every file or project:
 │       │       └── snow-crash/          # Git submodule
 │       └── Tools/
 │           └── Complete_libft ✅/       # Git submodule
-├── Others/                                # Git submodule
-│   ├── École_42/                         # Git submodule
+├── Others/                              # Git submodule
+│   ├── École_42/                        # Git submodule
 │   └── Perso/
 │       ├── GC/
 │       └── GS/
-├── .assets/                               # README assets and guides
+├── .assets/                             # README assets and guides
 │   ├── docs/
 │   ├── images/
 │   ├── text/
@@ -151,8 +151,9 @@ The 2023 curriculum includes the Piscine, the **Common Core**, post–Common Cor
 
 | Directory | Projects |
 | :--- | :--- |
-| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | [`Internship_I_119`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/Internship_I_119/) |
-| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/), [`libasm`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/), [`snow-crash`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
+| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | `Internship_I_119` |
+| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | `Darkly`, `libasm`, `snow-crash` |
+
 
 Directory names and project folders describe the repository layout; they do **not** imply that each project has been completed or validated.
 

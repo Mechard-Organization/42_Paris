@@ -67,14 +67,14 @@
 
 ```text
 42_Paris/
-├── 42_Paris_2017/                         # Gitサブモジュール
+├── 42_Paris_2017/                       # Gitサブモジュール
 │   ├── Piscine_C_2017/
 │   └── Cursus_2017/
 ├── 42_Paris_2023/
-│   ├── Association_2023/                 # Gitサブモジュール
+│   ├── Association_2023/                # Gitサブモジュール
 │   │   ├── BDE/
 │   │   └── Blackout/
-│   ├── Piscine_C_2023/                   # Gitサブモジュール
+│   ├── Piscine_C_2023/                  # Gitサブモジュール
 │   └── Cursus_2023/                     # Gitサブモジュール
 │       ├── Common_Core/                 # Gitサブモジュール
 │       │   ├── Cpp/                     # Gitサブモジュール (cpp00〜cpp09)
@@ -88,12 +88,12 @@
 │       │       └── snow-crash/          # Gitサブモジュール
 │       └── Tools/
 │           └── Complete_libft ✅/       # Gitサブモジュール
-├── Others/                                # Gitサブモジュール
-│   ├── École_42/                         # Gitサブモジュール
+├── Others/                              # Gitサブモジュール
+│   ├── École_42/                        # Gitサブモジュール
 │   └── Perso/
 │       ├── GC/
 │       └── GS/
-├── .assets/                               # README用の画像とガイド
+├── .assets/                             # README用の画像とガイド
 │   ├── docs/
 │   ├── images/
 │   ├── text/
@@ -151,8 +151,9 @@
 
 | ディレクトリ | プロジェクト |
 | :--- | :--- |
-| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | [`Internship_I_119`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/Internship_I_119/) |
-| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | [`Darkly`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/Darkly/)、[`libasm`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/libasm/)、[`snow-crash`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/snow-crash/) |
+| [`Realeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Realeased/) | `Internship_I_119` |
+| [`Unrealeased/`](42_Paris_2023/Cursus_2023/Post_Common_Core/Unrealeased/) | `Darkly`, `libasm`, `snow-crash` |
+
 
 これらのディレクトリ名はリポジトリの構成を示しています。**すべての課題の完了や評価合格を意味するものではありません。**
 
