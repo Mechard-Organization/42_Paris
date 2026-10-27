@@ -91,7 +91,7 @@
 ├── Others/                              # Gitサブモジュール
 │   ├── École_42/                        # Gitサブモジュール
 │   └── Perso/
-│       └── Git-Custom/
+│       └── Git_Custom/
 ├── .assets/                             # README用の画像とガイド
 │   ├── docs/
 │   ├── images/
@@ -169,7 +169,7 @@
 | ディレクトリ | 用途 |
 | :--- | :--- |
 | `École_42/` | 学校関連の資料（ネストされたサブモジュール） |
-| `Perso/Git-Custom/` | カスタムGitユーティリティ、シェル補助ツール |
+| `Perso/Git_Custom/` | カスタムGitユーティリティ、シェル補助ツール |
 
 ---
 

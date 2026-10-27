@@ -91,7 +91,7 @@ The tree below highlights the main navigation paths, not every file or project:
 ├── Others/                              # Git submodule
 │   ├── École_42/                        # Git submodule
 │   └── Perso/
-│       └── Git-Custom/
+│       └── Git_Custom/
 ├── .assets/                             # README assets and guides
 │   ├── docs/
 │   ├── images/
@@ -169,7 +169,7 @@ A workspace for personal tooling, automation, school-related resources and side 
 | Directory | Purpose |
 | :--- | :--- |
 | `École_42/` | School-related resources (nested submodule) |
-| `Perso/Git-Custom/` | Custom Git utilities and shell helpers |
+| `Perso/Git_Custom/` | Custom Git utilities and shell helpers |
 
 ---
 
