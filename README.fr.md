@@ -91,8 +91,7 @@ Cette arborescence présente les principaux chemins de navigation, sans détaill
 ├── Others/                              # Sous-module Git
 │   ├── École_42/                        # Sous-module Git
 │   └── Perso/
-│       ├── GC/
-│       └── GS/
+│       └── Git-Custom/
 ├── .assets/                             # Visuels et guides des README
 │   ├── docs/
 │   ├── images/
@@ -169,8 +168,7 @@ Un espace dédié aux outils personnels, à l'automatisation, aux ressources de 
 | Dossier | Rôle |
 | :--- | :--- |
 | `École_42/` | Ressources scolaires (sous-module imbriqué) |
-| `Perso/GC/` | Utilitaires Git personnalisés et helpers shell |
-| `Perso/GS/` | Autres outils et scripts personnels |
+| `Perso/Git-Custom/` | Utilitaires Git personnalisés et helpers shell |
 
 ---
 

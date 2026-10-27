@@ -52,7 +52,7 @@ The folder spellings are intentionally preserved as they appear in the archive.
 ## Personal tools
 
 - [`Others/École_42`](https://github.com/Mechard-Organization/-cole-42/tree/main)
-- [`Others/Perso/GC`](https://github.com/Mechard-Organization/Others/tree/main_sub/Perso/GC)
+- [`Others/Perso/Git-Custom`](https://github.com/Mechard-Organization/Others/tree/main_sub/Perso/Git-Custom)
 
 ## Directory snapshots
 
