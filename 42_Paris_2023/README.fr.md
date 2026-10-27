@@ -64,28 +64,28 @@ Cette arborescence sert de **repère de navigation** : elle ne répertorie pas t
 
 ```text
 42_Paris_2023/
-├── Association_2023/                    # Sous-module Git
+├── Association_2023/                   # Sous-module Git
 │   ├── BDE/
 │   └── Blackout/
-├── Piscine_C_2023/                      # Sous-module Git
+├── Piscine_C_2023/                     # Sous-module Git
 │   ├── Shell_00/
 │   ├── Shell_01/
 │   ├── C_00/ ... C_09/
 │   ├── C_11/
 │   └── Rush/
-├── Cursus_2023/                         # Sous-module Git
-│   ├── Common_Core/                     # Sous-module Git (16 projets)
-│   │   ├── Cpp/                         # Sous-module Git (cpp00 à cpp09)
-│   │   └── ...                          # Autres projets Common Core
+├── Cursus_2023/                        # Sous-module Git
+│   ├── Common_Core/                    # Sous-module Git (16 projets)
+│   │   ├── Cpp/                        # Sous-module Git (cpp00 à cpp09)
+│   │   └── ...                         # Autres projets Common Core
 │   ├── Post_Common_Core/               # Sous-module Git
 │   │   ├── Realeased/
-│   │   │   └── Internship_I_119/        # Sous-module Git
+│   │   │   └── Internship_I_119/       # Sous-module Git
 │   │   └── Unrealeased/
-│   │       ├── Darkly/                  # Sous-module Git
-│   │       ├── libasm/                  # Sous-module Git
-│   │       └── snow-crash/              # Sous-module Git
+│   │       ├── Darkly/                 # Sous-module Git
+│   │       ├── libasm/                 # Sous-module Git
+│   │       └── snow-crash/             # Sous-module Git
 │   └── Tools/
-│       ├── Complete_libft ✅/           # Sous-module Git
+│       ├── Complete_libft ✅/          # Sous-module Git
 │       └── Makefile_standard
 ├── README.md
 ├── README.fr.md

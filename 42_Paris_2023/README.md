@@ -64,28 +64,28 @@ This is a **navigation overview**, not an exhaustive list of files. Names reflec
 
 ```text
 42_Paris_2023/
-├── Association_2023/                    # Git submodule
+├── Association_2023/                   # Git submodule
 │   ├── BDE/
 │   └── Blackout/
-├── Piscine_C_2023/                      # Git submodule
+├── Piscine_C_2023/                     # Git submodule
 │   ├── Shell_00/
 │   ├── Shell_01/
 │   ├── C_00/ ... C_09/
 │   ├── C_11/
 │   └── Rush/
-├── Cursus_2023/                         # Git submodule
-│   ├── Common_Core/                     # Git submodule (16 projects)
-│   │   ├── Cpp/                         # Git submodule (cpp00 to cpp09)
-│   │   └── ...                          # Other Common Core projects
+├── Cursus_2023/                        # Git submodule
+│   ├── Common_Core/                    # Git submodule (16 projects)
+│   │   ├── Cpp/                        # Git submodule (cpp00 to cpp09)
+│   │   └── ...                         # Other Common Core projects
 │   ├── Post_Common_Core/               # Git submodule
 │   │   ├── Realeased/
-│   │   │   └── Internship_I_119/        # Git submodule
+│   │   │   └── Internship_I_119/       # Git submodule
 │   │   └── Unrealeased/
-│   │       ├── Darkly/                  # Git submodule
-│   │       ├── libasm/                  # Git submodule
-│   │       └── snow-crash/              # Git submodule
+│   │       ├── Darkly/                 # Git submodule
+│   │       ├── libasm/                 # Git submodule
+│   │       └── snow-crash/             # Git submodule
 │   └── Tools/
-│       ├── Complete_libft ✅/           # Git submodule
+│       ├── Complete_libft ✅/          # Git submodule
 │       └── Makefile_standard
 ├── README.md
 ├── README.fr.md

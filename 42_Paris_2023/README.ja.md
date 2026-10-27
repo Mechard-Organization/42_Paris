@@ -64,28 +64,28 @@
 
 ```text
 42_Paris_2023/
-├── Association_2023/                    # Gitサブモジュール
+├── Association_2023/                   # Gitサブモジュール
 │   ├── BDE/
 │   └── Blackout/
-├── Piscine_C_2023/                      # Gitサブモジュール
+├── Piscine_C_2023/                     # Gitサブモジュール
 │   ├── Shell_00/
 │   ├── Shell_01/
 │   ├── C_00/ ... C_09/
 │   ├── C_11/
 │   └── Rush/
-├── Cursus_2023/                         # Gitサブモジュール
-│   ├── Common_Core/                     # Gitサブモジュール（16プロジェクト）
-│   │   ├── Cpp/                         # Gitサブモジュール（cpp00〜cpp09）
-│   │   └── ...                          # その他のCommon Core課題
+├── Cursus_2023/                        # Gitサブモジュール
+│   ├── Common_Core/                    # Gitサブモジュール（16プロジェクト）
+│   │   ├── Cpp/                        # Gitサブモジュール（cpp00〜cpp09）
+│   │   └── ...                         # その他のCommon Core課題
 │   ├── Post_Common_Core/               # Gitサブモジュール
 │   │   ├── Realeased/
-│   │   │   └── Internship_I_119/        # Gitサブモジュール
+│   │   │   └── Internship_I_119/       # Gitサブモジュール
 │   │   └── Unrealeased/
-│   │       ├── Darkly/                  # Gitサブモジュール
-│   │       ├── libasm/                  # Gitサブモジュール
-│   │       └── snow-crash/              # Gitサブモジュール
+│   │       ├── Darkly/                 # Gitサブモジュール
+│   │       ├── libasm/                 # Gitサブモジュール
+│   │       └── snow-crash/             # Gitサブモジュール
 │   └── Tools/
-│       ├── Complete_libft ✅/           # Gitサブモジュール
+│       ├── Complete_libft ✅/          # Gitサブモジュール
 │       └── Makefile_standard
 ├── README.md
 ├── README.fr.md
