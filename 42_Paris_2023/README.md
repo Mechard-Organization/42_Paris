@@ -1,144 +1,231 @@
-# 42_Paris_2023
+<p align="center">
+  <strong>🇬🇧 English</strong> &nbsp;·&nbsp;
+  <a href="./README.fr.md">🇫🇷 Français</a> &nbsp;·&nbsp;
+  <a href="./README.ja.md">🇯🇵 日本語</a>
+</p>
 
-Folder for Cursus 2023 and the Pool at 42.
-Contain subject and code for validate the Pool in 2023.
+<a id="top"></a>
 
-*42_Paris_2023* <br />
-[Association_2023](https://github.com/M1000-93/42_Paris/tree/main/42_Paris_2023/Association_2023) <br />
-&nbsp;&nbsp;&nbsp;[Blackout](https://github.com/M1000-93/42_Paris/tree/main/42_Paris_2023/Association_2023/Blackout) <br />
-&nbsp;&nbsp;&nbsp;[BDE](https://github.com/M1000-93/42_Paris/tree/main/42_Paris_2023/Association_2023/BDE) <br />
-[Cursus_2023](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023) <br />
-&nbsp;&nbsp;&nbsp;[libft](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023/libft) 2023 (validate) <br />
-&nbsp;&nbsp;&nbsp;[get_next_line](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023/get_next_line) 2023 (on going) <br />
-&nbsp;&nbsp;&nbsp;[ft_printf](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023/ft_printf) 2023 (on going) <br />
-&nbsp;&nbsp;&nbsp;[born2beroot](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Cursus_2023/get_next_line) 2023 (on going) <br />
-[Piscine_C_2023](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023) <br />
-&nbsp;&nbsp;&nbsp;[Shell_00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex00) - z <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex01) - testShell00.tar <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex02) - eo2.tar <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex03) - id_rsa_pub <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex04) - midLS <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex05) - git_commit.sh <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex06](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex06) - git_ignore.sh <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex07](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/ex07) - b <br />
-&nbsp;&nbsp;&nbsp;[Shell_01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_01) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/blob/master/42_Paris_2023/Piscine_C_2023/Shell_01/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_01/ex01) - print_groups.sh <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_01/ex02) - find_sh.sh <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_01/ex03) - count_files.sh <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_01/ex04) - MAC.sh <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_01/ex05) - '"\?>$*'\''MaRViN'\''*$?\"' <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex06](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_01/ex06) - skip.sh <br />
-&nbsp;&nbsp;&nbsp;[C_00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Shell_00/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex00) - ft_putchar.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex01) - ft_print_alphabet.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex02) - ft_print_reverse_alphabet.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex03) - ft_print_numbers.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex04) - ft_is_negative.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex05) - ft_print_comb.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex06](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex06) - ft_print_comb2.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex07](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_00/ex07) - ft_putnbr.c <br />
-&nbsp;&nbsp;&nbsp;[C_01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex00) - ft_ft.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex01) - ft_ultimate_ft.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex02) - ft_swap.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex03) - ft_div_mod.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex04) - ft_ultimate_div_mod.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex05) - ft_putstr.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex06](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex06) - ft_strlen.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex07](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_01/ex07) - ft_rev_int_tab.c <br />
-&nbsp;&nbsp;&nbsp;[C_02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex00) - ft_strcpy.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex01) - ft_strncpy.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex02) - ft_str_is_alpha.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex03) - ft_str_is_numeric.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex04) - ft_str_is_lowercase.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex05) - ft_str_is_uppercase.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex06](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex06) - ft_str_is_printable.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex07](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex07) - ft_strupcase.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex08](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex08) - ft_strlowcase.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex09](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex09) - ft_strcapitalize.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex10](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_02/ex10) - ft_strlcpy.c <br />
-&nbsp;&nbsp;&nbsp;[C_03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03/ex00) - ft_strcmp.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03/ex01) - ft_strncmp.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03/ex02) - ft_strcat.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03/ex03) - ft_strncat.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03/ex04) - ft_strstr.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_03/ex05) - ft_strlcat.c <br />
-&nbsp;&nbsp;&nbsp;[C_04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_04) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_04/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_04/ex00) - ft_strlen.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_04/ex01) - ft_putstr.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_04/ex02) - ft_putnbr.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_04/ex03) - ft_atoi.c <br />
-&nbsp;&nbsp;&nbsp;[C_05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex00) - ft_iterative_factorial.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex01) - ft_recursive_factorial.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex02) - ft_iterative_power.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex03) - ft_recursive_power.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex04) - ft_fibonacci.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex05) - ft_sqrt.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex06](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex06) - ft_is_prime.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex07](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_05/ex07) - ft_find_next_prime.c <br />
-&nbsp;&nbsp;&nbsp;[C_06](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_06) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_06/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_06/ex00) - ft_print_program_name.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_06/ex01) - ft_print_params.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_06/ex02) - ft_rev_params.c <br />
-&nbsp;&nbsp;&nbsp;[C_07](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_07) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_07/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_07/ex00) - ft_strdup.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_07/ex01) - ft_range.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_07/ex02) - ft_ultimate_range.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_07/ex03) - ft_strjoin.c <br />
-&nbsp;&nbsp;&nbsp;[C_08](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08/ex00) - ft.h <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08/ex01) - ft_boolean.h <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08/ex02) - ft_abs.h <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08/ex03) - ft_point.h <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08/ex04) - ft_strs_to_tab.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex05](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_08/ex05) - ft_show_tab.c <br />
-&nbsp;&nbsp;&nbsp;[C_09](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_09) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_09/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_09/ex00) - ft_putchar.c/ft_putstr.c/ft_str... <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_09/ex01) - Makefile <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_09/ex02) - ft_split.c <br />
-&nbsp;&nbsp;&nbsp;[C_11](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_11) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[```fr.subject.pdf```](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_11/fr.subject.pdf) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_11/ex00) - ft_foreach.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex01](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_11/ex01) - ft_map.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex02](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_11/ex02) - ft_any.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex03](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_11/ex03) - ft_count_if.c <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex04](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/C_11/ex04) - ft_is_sort.c <br />
-&nbsp;&nbsp;&nbsp;[Rush](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`C_Rush_00`](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_00/ex00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_00/ex00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;ft_putchar.c/main.c/ru... <br />
-&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`C_Rush_01`](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_01/ex00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_01/ex00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;algo.c/check_all_ra... <br />
-&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`C_Rush_02`](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_02/ex00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ex00](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_02/ex00) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;[dicts](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_02/ex00/dicts) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;numbers.dict/numbers_fr.d... <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;[includes](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_02/ex00/includes) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;ft_ft.h <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;Makefile <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;[srcs](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_02/ex00/srcs) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp; check_dictionary.c/... <br />
-&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[`C_Rush_BSQ`](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_BSQ) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;[includes](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_BSQ/includes) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;bsq.h <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;Makefile <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;script.pl <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;[srcs](https://github.com/M1000-93/42_Paris/tree/master/42_Paris_2023/Piscine_C_2023/Rush/C_Rush_BSQ/srcs) <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;ft_bsq.c/ft_...
+<p align="center">
+  <img src="../.assets/images/42_paris_banner_2023.png" alt="42 Paris 2023 — Piscine, Common Core and student life" width="100%">
+</p>
+
+<h1 align="center">42 Paris · 2023 Piscine, Cursus & Associations</h1>
+
+<p align="center">
+  <strong>The 2023 chapter of my journey at 42 Paris:</strong><br>
+  from the <strong>Piscine</strong> to the <strong>Common Core</strong>, then post–Common Core projects, development tools and campus life.
+</p>
+
+<p align="center">
+  <a href="#overview">Overview</a> ·
+  <a href="#structure">Structure</a> ·
+  <a href="#projects">Projects</a> ·
+  <a href="#git-workflow">Git workflow</a> ·
+  <a href="#documentation">Documentation</a>
+</p>
+
+---
+
+<a id="overview"></a>
+## ✨ At a glance
+
+`42_Paris_2023/` is the **2023 section** of the [main `42_Paris` repository](../README.md). It connects my Piscine work, the curriculum and student associations through **three direct Git submodules**. The curriculum itself contains additional nested submodules, each with its own history.
+
+<table>
+<tr>
+<td align="center" width="33%">
+  <a href="#piscine"><strong>🏊 Piscine_C_2023</strong></a><br><br>
+  <sub>Shell exercises, C modules and rushes: the foundations of the 2023 journey.</sub>
+</td>
+<td align="center" width="33%">
+  <a href="#cursus"><strong>🚀 Cursus_2023</strong></a><br><br>
+  <sub>Common Core projects, post–Common Core work and reusable tools.</sub>
+</td>
+<td align="center" width="33%">
+  <a href="#associations"><strong>🤝 Association_2023</strong></a><br><br>
+  <sub>Student initiatives, BDE and Blackout association materials.</sub>
+</td>
+</tr>
+</table>
+
+- 🎓 **School:** 42 Paris
+- 🏁 **Milestone:** 2023 Common Core completed on **26 February 2026**
+- 🧩 **Architecture:** three direct submodules, with further recursive submodules under `Cursus_2023`
+- 🌍 **Languages:** English, French and Japanese
+- 🔐 **Access:** the main repository is public, but several child repositories are private; their contents require permission
+
+---
+
+<a id="structure"></a>
+## 🧭 Directory structure
+
+This is a **navigation overview**, not an exhaustive list of files. Names reflect the current Git paths:
+
+```text
+42_Paris_2023/
+├── Association_2023/                    # Git submodule
+│   ├── BDE/
+│   └── Blackout/
+├── Piscine_C_2023/                      # Git submodule
+│   ├── Shell_00/
+│   ├── Shell_01/
+│   ├── C_00/ ... C_09/
+│   ├── C_11/
+│   └── Rush/
+├── Cursus_2023/                         # Git submodule
+│   ├── Common_Core/                     # Git submodule (16 projects)
+│   │   ├── Cpp/                         # Git submodule (cpp00 to cpp09)
+│   │   └── ...                          # Other Common Core projects
+│   ├── Post_Common_Core/               # Git submodule
+│   │   ├── Realeased/
+│   │   │   └── Internship_I_119/        # Git submodule
+│   │   └── Unrealeased/
+│   │       ├── Darkly/                  # Git submodule
+│   │       ├── libasm/                  # Git submodule
+│   │       └── snow-crash/              # Git submodule
+│   └── Tools/
+│       ├── Complete_libft ✅/           # Git submodule
+│       └── Makefile_standard
+├── README.md
+├── README.fr.md
+└── README.ja.md
+```
+
+> `42_Paris_2023/` is a directory in the parent repository, **not a separate Git repository**. Its three direct child directories are submodules. Git records a **specific commit** for each submodule; specifying a branch in `.gitmodules` does not make that pointer move automatically.
+
+> The spellings `Realeased` and `Unrealeased` are preserved intentionally because they match the real paths. The Piscine list includes `C_11` but not a `C_10` directory.
+
+---
+
+<a id="projects"></a>
+## 🧪 Projects & activities
+
+<a id="piscine"></a>
+### 🏊 Piscine C / Shell — 2023
+
+The 2023 Piscine gathers early exercises in **Shell and C**, plus group challenges (rushes). It is preserved as a separate repository and may require access permission.
+
+| Area | Content | Browse |
+| :--- | :--- | :--- |
+| **Shell** | `Shell_00`, `Shell_01` | [`Piscine_C_2023`](https://github.com/Mechard-Organization/Piscine_C_2023/tree/main_sub) |
+| **C modules** | `C_00`–`C_09` and `C_11` | [C modules](https://github.com/Mechard-Organization/Piscine_C_2023/tree/main_sub) |
+| **Rushes** | Collaborative and timed projects in `Rush/` | [Rush directory](https://github.com/Mechard-Organization/Piscine_C_2023/tree/main_sub/Rush) |
+
+<a id="cursus"></a>
+### 🚀 Cursus 2023
+
+[`Cursus_2023`](https://github.com/Mechard-Organization/Cursus_2023/tree/main_sub) is the main curriculum repository. It contains **Common Core**, **Post_Common_Core** and **Tools** as separate areas, including nested Git submodules.
+
+<a id="common-core"></a>
+#### 🧱 Common Core
+
+The **Common Core** covers C, C++, algorithms, Unix systems, graphics, networking and collaborative development. The [`Common_core`](https://github.com/Mechard-Organization/Common_core/tree/main) repository contains **16 project submodules**:
+
+| Focus | Project directories |
+| :--- | :--- |
+| **C foundations** | `libft_125`, `ft_printf_110`, `get_next_line_112` |
+| **Algorithms, processes & shells** | `push_swap_100`, `pipex_115`, `philo_100`, `minishell_101` |
+| **Graphics** | `So_long_96`, `Cub3D_105` |
+| **C++** | `Cpp` → `cpp00_80` through `cpp09_100` (nested inside `Cpp`) |
+| **Systems & networking** | `Born2beroot_125`, `Netpractice_105`, `IRC_125`, `Inception_100` |
+| **Web & collaboration** | `42_collaborative_resume_100`, `ft_transcendence_125` |
+
+**Personal milestone:** the 2023 Common Core was completed on **26 February 2026**. Project folder names that include scores are preserved as part of the repository naming convention.
+
+<a id="post-common-core"></a>
+#### 🔭 Post–Common Core
+
+The private [`Post_common_core`](https://github.com/Mechard-Organization/Post_common_core/tree/main) repository groups work beyond the Common Core and internship material.
+
+| Directory | Git submodules |
+| :--- | :--- |
+| [`Realeased/`](https://github.com/Mechard-Organization/Post_common_core/tree/main/Realeased) | `Internship_I_119` |
+| [`Unrealeased/`](https://github.com/Mechard-Organization/Post_common_core/tree/main/Unrealeased) | `Darkly`, `libasm`, `snow-crash` |
+
+These directories describe the repository structure; **they do not claim that every project is validated or publicly released**.
+
+#### 🛠️ Development tools
+
+The `Tools/` directory currently contains:
+
+- **[`Complete_libft ✅`](https://github.com/Mechard-Organization/Complete_Libft-/tree/main)** — a genuine Git submodule, stored in a private repository with its own commit history.
+- **`Makefile_standard`** — a tracked file alongside the tools, inside [`Cursus_2023`](https://github.com/Mechard-Organization/Cursus_2023/tree/main_sub/Tools).
+
+<a id="associations"></a>
+### 🤝 Student associations
+
+[`Association_2023`](https://github.com/Mechard-Organization/Associations/tree/main_sub) collects student-life materials in a private repository.
+
+| Area | Contents |
+| :--- | :--- |
+| **`BDE/`** | Student association resources |
+| **`Blackout/`** | Association materials organized into office, communication and visual resources |
+
+---
+
+<a id="git-workflow"></a>
+## 🔀 Git workflow
+
+<p align="center"><img src="../.assets/images/42_paris_banner_git_workflow.png" alt="Git submodule workflow — 42 Paris" width="100%"></p>
+
+### Clone the complete project tree
+
+Since `42_Paris_2023/` belongs to the parent repository, clone the parent **recursively**:
+
+```bash
+git clone --recurse-submodules git@github.com:Mechard-Organization/42_Paris.git
+cd 42_Paris/42_Paris_2023
+```
+
+SSH access is required for private child repositories. Without it, the public parent can still be cloned, but some recursive submodule checkouts will fail.
+
+### Synchronize an existing clone
+
+From the **root of `42_Paris`**:
+
+```bash
+git submodule sync --recursive
+git submodule update --init --recursive
+git submodule status --recursive
+```
+
+### Updating submodule references
+
+The parent pins **commits**, not live branches. To move a direct submodule to the latest commit of its configured branch, run from the root of `42_Paris`:
+
+```bash
+git submodule update --remote -- 42_Paris_2023/Cursus_2023
+git add 42_Paris_2023/Cursus_2023
+git commit -m "chore: update Cursus_2023 submodule"
+```
+
+When changing a **nested** submodule, commit its updated pointer in the immediate parent first, then commit the resulting pointer in the next parent, working from the deepest repository up to `42_Paris`.
+
+📘 [Custom Git workflow guide](../.assets/docs/GIT_WORKFLOW.md)
+
+---
+
+<a id="documentation"></a>
+## 🗂️ Documentation & navigation
+
+<p align="center"><img src="../.assets/images/42_paris_banner_repository_guide.png" alt="42 Paris repository documentation" width="100%"></p>
+
+The visual assets and shared guides are maintained centrally in the parent repository's `.assets/` directory.
+
+| Resource | Link |
+| :--- | :--- |
+| Main repository overview | [42_Paris](../README.md) |
+| French version of this page | [README.fr.md](./README.fr.md) |
+| Japanese version of this page | [README.ja.md](./README.ja.md) |
+| Repository guide | [REPOSITORY_GUIDE.md](../.assets/docs/REPOSITORY_GUIDE.md) |
+| Git workflow guide | [GIT_WORKFLOW.md](../.assets/docs/GIT_WORKFLOW.md) |
+| Images and visual assets | [`.assets/images/`](../.assets/images/) |
+
+---
+
+## 💡 Purpose
+
+This section provides a **readable map of my 2023 experience at 42 Paris**, from the Piscine to the Common Core and beyond. Detailed technical information, project histories and validation context belong in the relevant child repositories.
+
+<p align="center"><a href="#top">⬆️ Back to top</a></p>
