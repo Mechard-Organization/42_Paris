@@ -89,7 +89,8 @@ Cette arborescence présente les principaux chemins de navigation, sans détaill
 │       └── Tools/
 │           └── Complete_libft ✅/       # Sous-module Git
 ├── Others/                              # Sous-module Git
-│   ├── École_42/                        # Sous-module Git
+│   ├── École_42/
+│   ├── .assets/
 │   └── Perso/
 │       └── Git_Custom/
 ├── .assets/                             # Visuels et guides des README
